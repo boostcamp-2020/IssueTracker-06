@@ -50,7 +50,7 @@ final class LabelView: UILabel {
 }
 
 @IBDesignable
-extension LabelView {
+private extension LabelView {
     
     @IBInspectable
     var borderColor: UIColor? {
@@ -91,6 +91,6 @@ private extension LabelView {
         static let paddingTop: CGFloat = 2
         static let paddingBottom: CGFloat = 2
         static let cornerRadius: CGFloat = 8
-        static let fontSize: CGFloat = 14
+        static let fontSize: CGFloat = 13
     }
 }
