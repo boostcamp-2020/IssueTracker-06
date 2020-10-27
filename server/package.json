@@ -1,0 +1,10 @@
+{
+  "name": "issue-tracker-server",
+  "version": "0.1.0",
+  "description": "team6 issue tracker clone api server",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "team6",
+  "license": "MIT"
+}
