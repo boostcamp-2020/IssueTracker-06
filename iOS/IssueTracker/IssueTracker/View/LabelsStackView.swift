@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LabelsStackView: UIStackView {
+final class LabelsStackView: UIStackView {
     
     func add(label: LabelView) {
         addArrangedSubview(label)

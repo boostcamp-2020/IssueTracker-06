@@ -7,20 +7,20 @@
 
 import UIKit
 
-class LabelView: UILabel {
+final class LabelView: UILabel {
     
-    @IBInspectable private var paddingLeft: CGFloat = 5
-    @IBInspectable private var paddingRight: CGFloat = 5
-    @IBInspectable private var paddingTop: CGFloat = 2
-    @IBInspectable private var paddingBottom: CGFloat = 2
+    @IBInspectable private var paddingLeft: CGFloat = Metric.paddingLeft
+    @IBInspectable private var paddingRight: CGFloat = Metric.paddingRight
+    @IBInspectable private var paddingTop: CGFloat = Metric.paddingTop
+    @IBInspectable private var paddingBottom: CGFloat = Metric.paddingBottom
     
     static func create(text: String, color: UIColor) -> LabelView {
         let label = LabelView()
         label.text = text
         label.backgroundColor = color
         label.clipsToBounds = true
-        label.cornerRadius = 8
-        label.font = label.font.withSize(14)
+        label.cornerRadius = Metric.cornerRadius
+        label.font = label.font.withSize(Metric.fontSize)
         return label
     }
     
@@ -81,5 +81,16 @@ extension LabelView {
         set {
             layer.cornerRadius = newValue
         }
+    }
+}
+
+private extension LabelView {
+    enum Metric {
+        static let paddingLeft: CGFloat = 7
+        static let paddingRight: CGFloat = 7
+        static let paddingTop: CGFloat = 2
+        static let paddingBottom: CGFloat = 2
+        static let cornerRadius: CGFloat = 8
+        static let fontSize: CGFloat = 14
     }
 }
