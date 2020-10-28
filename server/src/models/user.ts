@@ -6,7 +6,7 @@ import { dbType } from './index';
 class User extends Model {
   public readonly id!: number;
 
-  public user_id!: string;
+  public email!: string;
 
   public password!: string;
 
@@ -17,7 +17,7 @@ class User extends Model {
 
 User.init(
   {
-    user_id: {
+    email: {
       type: DataTypes.STRING(25),
       allowNull: false,
     },
@@ -43,6 +43,10 @@ User.init(
   },
 );
 
-export const associate = (db: dbType) => {};
+export const associate = (db: dbType) => {
+  db.User.belongsToMany(db.Issue, { through: 'issue_assigned', foreignKey: 'assigned_id' });
+  db.User.hasMany(db.Issue, { foreignKey: 'user_id' });
+  db.User.hasMany(db.Comment, { foreignKey: 'user_id' });
+};
 
 export default User;

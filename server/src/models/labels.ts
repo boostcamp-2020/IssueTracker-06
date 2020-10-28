@@ -36,5 +36,7 @@ Labels.init(
   },
 );
 
-export const associate = (db: dbType) => {};
+export const associate = (db: dbType) => {
+  db.Labels.belongsToMany(db.Issue, { through: 'issue_label', foreignKey: 'label_id' });
+};
 export default Labels;
