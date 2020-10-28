@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from './sequelize';
 import { dbType } from './index';

@@ -1,33 +1,43 @@
-import { Model, DataTypes } from 'sequelize';
+/* eslint-disable camelcase */
+import { Model, DataTypes, Sequelize } from 'sequelize';
 import { sequelize } from './sequelize';
 import { dbType } from './index';
 
 class Comment extends Model {
-    public readonly id!: number;
+  public readonly id!: number;
 
-    public content!: string;
+  public content!: string;
 
-    public readonly created_at!: Date;
+  public readonly created_at!: Date;
 
-    public readonly updated_at!: Date;
+  public readonly updated_at!: Date;
 }
 
 Comment.init(
-    {
-      content: {
-        type: DataTypes.STRING(255),
-        allowNull: false,
-      },
+  {
+    content: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
     },
-    {
-      sequelize,
-      modelName: 'Comment',
-      tableName: 'comments',
-      charset: 'utf8',
-      collate: 'utf8_general_ci',
+    createdAt: {
+      type: DataTypes.DATE,
+      field: 'created_at',
     },
-  );
-  
-  export const associate = (db: dbType) => {};
-  
-  export default Comment;
+    updatedAt: {
+      type: DataTypes.DATE,
+      field: 'updated_at',
+    },
+  },
+  {
+    sequelize,
+    modelName: 'Comment',
+    tableName: 'comments',
+    charset: 'utf8',
+    collate: 'utf8_general_ci',
+    timestamps: true,
+  },
+);
+
+export const associate = (db: dbType) => {};
+
+export default Comment;
