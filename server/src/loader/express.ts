@@ -1,4 +1,4 @@
-import { Express } from 'express';
+import express, { Express } from 'express';
 import logger from 'morgan';
 import helmet from 'helmet';
 import hpp from 'hpp';
@@ -22,6 +22,8 @@ const expressLoader = (app: Express) => {
     }),
   );
   app.use(compression());
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 };
 
 export default expressLoader;
