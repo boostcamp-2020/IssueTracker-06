@@ -43,6 +43,12 @@ Issue.init(
   },
 );
 
-export const associate = (db: dbType) => {};
+export const associate = (db: dbType) => {
+  db.Issue.belongsToMany(db.User, { through: 'issue_assigned', foreignKey: 'issue_id' });
+  db.Issue.belongsTo(db.User, { foreignKey: 'user_id' });
+  db.Issue.belongsToMany(db.Labels, { through: 'issue_label', foreignKey: 'issue_id' });
+  db.Issue.belongsTo(db.Milestones, { foreignKey: 'milestone_id' });
+  db.Issue.hasMany(db.Comment, { foreignKey: 'issue_id' });
+};
 
 export default Issue;

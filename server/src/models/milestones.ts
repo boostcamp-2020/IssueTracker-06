@@ -43,5 +43,7 @@ Milestones.init(
   },
 );
 
-export const associate = (db: dbType) => {};
+export const associate = (db: dbType) => {
+  db.Milestones.hasMany(db.Issue, { foreignKey: 'milestone_id' });
+};
 export default Milestones;
