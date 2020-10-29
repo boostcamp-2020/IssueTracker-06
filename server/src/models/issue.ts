@@ -44,8 +44,8 @@ export const associate = (db: dbType) => {
     as: 'Assignee',
   });
   db.Issue.belongsTo(db.User, { foreignKey: 'user_id' });
-  db.Issue.belongsToMany(db.Labels, { through: 'issue_label', foreignKey: 'issue_id' });
-  db.Issue.belongsTo(db.Milestones, { foreignKey: 'milestone_id' });
+  db.Issue.belongsToMany(db.Label, { through: 'issue_label', foreignKey: 'issue_id' });
+  db.Issue.belongsTo(db.Milestone, { foreignKey: 'milestone_id' });
   db.Issue.hasMany(db.Comment, { foreignKey: 'issue_id' });
 };
 

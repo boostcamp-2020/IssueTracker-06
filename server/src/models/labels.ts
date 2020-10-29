@@ -2,7 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import { sequelize } from './sequelize';
 import { dbType } from './index';
 
-class Labels extends Model {
+class Label extends Model {
   public readonly id!: number;
 
   public name!: string;
@@ -12,7 +12,7 @@ class Labels extends Model {
   public description?: string;
 }
 
-Labels.init(
+Label.init(
   {
     name: {
       type: DataTypes.STRING(25),
@@ -29,7 +29,7 @@ Labels.init(
   },
   {
     sequelize,
-    modelName: 'Labels',
+    modelName: 'Label',
     tableName: 'labels',
     charset: 'utf8',
     collate: 'utf8_general_ci',
@@ -37,6 +37,6 @@ Labels.init(
 );
 
 export const associate = (db: dbType) => {
-  db.Labels.belongsToMany(db.Issue, { through: 'issue_label', foreignKey: 'label_id' });
+  db.Label.belongsToMany(db.Issue, { through: 'issue_label', foreignKey: 'label_id' });
 };
-export default Labels;
+export default Label;

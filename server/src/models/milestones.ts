@@ -3,7 +3,7 @@ import { Model, DataTypes } from 'sequelize';
 import { sequelize } from './sequelize';
 import { dbType } from './index';
 
-class Milestones extends Model {
+class Milestone extends Model {
   public readonly id!: number;
 
   public name!: string;
@@ -15,7 +15,7 @@ class Milestones extends Model {
   public is_open!: Boolean;
 }
 
-Milestones.init(
+Milestone.init(
   {
     name: {
       type: DataTypes.STRING(25),
@@ -36,7 +36,7 @@ Milestones.init(
   },
   {
     sequelize,
-    modelName: 'Milestones',
+    modelName: 'Milestone',
     tableName: 'milestones',
     charset: 'utf8',
     collate: 'utf8_general_ci',
@@ -44,6 +44,6 @@ Milestones.init(
 );
 
 export const associate = (db: dbType) => {
-  db.Milestones.hasMany(db.Issue, { foreignKey: 'milestone_id' });
+  db.Milestone.hasMany(db.Issue, { foreignKey: 'milestone_id' });
 };
-export default Milestones;
+export default Milestone;
