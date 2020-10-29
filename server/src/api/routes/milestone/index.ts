@@ -5,4 +5,6 @@ const router = Router();
 
 router.put('/:id', controllers.updateMilestone);
 
+router.put('/:id/status', controllers.updateMilestoneStatus);
+
 export default router;
