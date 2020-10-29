@@ -5,4 +5,6 @@ const router = Router();
 
 router.post('/', controllers.createIssue);
 
+router.patch('/:id/title', controllers.updateIssueTitle);
+
 export default router;
