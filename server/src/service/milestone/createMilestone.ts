@@ -8,8 +8,8 @@ interface MilestoneProps {
 
 const craeteMilestone = async (milestone: MilestoneProps) => {
   try {
-    const createMilestone = await Milestone.create({ ...milestone, is_open: true });
-    return createMilestone.id;
+    const createdMilestone = await Milestone.create({ ...milestone, is_open: true });
+    return createdMilestone.id;
   } catch (error) {
     console.error(error);
   }
