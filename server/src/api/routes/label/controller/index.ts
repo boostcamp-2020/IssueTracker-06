@@ -1,3 +1,5 @@
+import deleteLabel from './deleteLabel';
+import updateLabel from './updateLabel';
 import createLabel from './createLabel';
 
-export default { createLabel };
+export default { deleteLabel, updateLabel, createLabel };
