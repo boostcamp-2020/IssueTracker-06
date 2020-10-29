@@ -5,4 +5,6 @@ const router = Router();
 
 router.post('/', controllers.createMilestone);
 
+router.delete('/:id', controllers.deleteMilestone);
+
 export default router;
