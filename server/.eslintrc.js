@@ -10,4 +10,15 @@ module.exports = {
     'prettier/prettier': 0,
     'no-unused-vars': 1,
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@models', './src/models'],
+          ['@api', './src/api'],
+          ['@service', './src/service'],
+        ],
+      },
+    },
+  },
 };
