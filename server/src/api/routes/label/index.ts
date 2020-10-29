@@ -3,8 +3,8 @@ import controllers from './controller';
 
 const router = Router();
 
-router.delete('/', controllers.deleteLabel);
+router.delete('/:id', controllers.deleteLabel);
 
-router.put('/', controllers.updateLabel);
+router.put('/:id', controllers.updateLabel);
 
 export default router;

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import labelService from '@service/label';
 
 const deleteLabel = async (req: Request, res: Response, next: NextFunction) => {
-  const { labelId } = req.body;
+  const labelId = Number(req.params.id);
   const deleteResult = await labelService.deleteLabel(labelId);
 
   if (!deleteResult) {
