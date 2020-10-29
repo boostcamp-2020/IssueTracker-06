@@ -1,3 +1,4 @@
 import createIssue from './createIssue';
+import getIssue from './getIssue';
 
-export default { createIssue };
+export default { createIssue, getIssue };
