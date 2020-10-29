@@ -8,6 +8,7 @@
 import Foundation
 
 struct Issue {
+    let id: String
     let title: String
     let description: String
     let milestone: String
