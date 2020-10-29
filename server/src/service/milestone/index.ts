@@ -1,3 +1,4 @@
 import createMilestone from './createMilestone';
+import deleteMilestone from './deleteMilestone';
 
-export default { createMilestone };
+export default { createMilestone, deleteMilestone };
