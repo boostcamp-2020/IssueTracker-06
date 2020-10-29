@@ -1,8 +1,8 @@
 import User, { associate as associateUser } from './user';
 import Comment, { associate as associateComment } from './comment';
 import Issue, { associate as associateIssue } from './issue';
-import Label, { associate as associateLabel } from './labels';
-import Milestone, { associate as associateMilestone } from './milestones';
+import Label, { associate as associateLabel } from './label';
+import Milestone, { associate as associateMilestone } from './milestone';
 
 export * from './sequelize';
 
