@@ -1,4 +1,5 @@
 import updateMilestone from './updateMilestone';
 import updateMilestoneStatus from './updateMilestoneStatus';
+import getMilestones from './getMilestones';
 
-export default { updateMilestone, updateMilestoneStatus };
+export default { getMilestones, updateMilestone, updateMilestoneStatus };
