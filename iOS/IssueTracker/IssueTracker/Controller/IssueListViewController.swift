@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol IssueListViewControllerDelegate: class {
+    func issueId(_ id: String)
+}
+
 final class IssueListViewController: UIViewController {
 
-    @IBOutlet weak var issueListCollectionView: UICollectionView!
-    
+    @IBOutlet private weak var issueListCollectionView: UICollectionView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIssueListCollectionView()
@@ -23,21 +27,20 @@ final class IssueListViewController: UIViewController {
     }
     
     private func removeNavigationBarUnderLine() {
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 }
 
-extension IssueListViewController: UICollectionViewDelegate {
-        
+extension IssueListViewController: UICollectionViewDelegate {}
+
+extension IssueListViewController: UICollectionViewDataSource {
+    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
         return MockupData.data.count
     }
-}
-
-extension IssueListViewController: UICollectionViewDataSource {
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -46,11 +49,12 @@ extension IssueListViewController: UICollectionViewDataSource {
         let cell = issueListCollectionView.dequeueReusableCell(
             withReuseIdentifier: Constant.issueListCell,
             for: indexPath
-        )
+        ) 
         if let issueListCollectionViewCell = cell as? IssueListCollectionViewCell {
             setIssueListCollectionViewCellWidth(issueListCollectionViewCell)
             setIssueListCollectionViewCellData(issueListCollectionViewCell, at: indexPath)
         }
+        setCellTouchEvent(at: cell, selector: #selector(scrollViewTapTest))
         return cell
     }
     
@@ -62,6 +66,19 @@ extension IssueListViewController: UICollectionViewDataSource {
     private func setIssueListCollectionViewCellData(_ cell: IssueListCollectionViewCell, at indexPath: IndexPath) {
         let issue = MockupData.data[indexPath.row]
         cell.setIssue(issue)
+    }
+    
+    private func setCellTouchEvent(at view: UIView, selector touchEventHandler: Selector? = nil) {
+        let scrollViewTapGestureRecognizer =
+            UITapGestureRecognizer(target: self, action: touchEventHandler)
+        scrollViewTapGestureRecognizer.numberOfTouchesRequired = 1
+        scrollViewTapGestureRecognizer.isEnabled = true
+        scrollViewTapGestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(scrollViewTapGestureRecognizer)
+    }
+    
+    @objc private func scrollViewTapTest() {
+        performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
     }
 }
 
@@ -79,6 +96,7 @@ extension IssueListViewController: UICollectionViewDelegateFlowLayout {
 private extension IssueListViewController {
     enum Constant {
         static let issueListCell: String = "IssueListCell"
+        static let issueDetailSegue: String = "IssueDetailSegue"
     }
     
     enum Metric {
