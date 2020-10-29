@@ -1,49 +1,42 @@
-/* eslint-disable camelcase */
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from './sequelize';
 import { dbType } from './index';
 
-class Milestones extends Model {
+class Label extends Model {
   public readonly id!: number;
 
   public name!: string;
 
-  public date?: Date;
+  public color!: string;
 
   public description?: string;
-
-  public is_open!: Boolean;
 }
 
-Milestones.init(
+Label.init(
   {
     name: {
       type: DataTypes.STRING(25),
       allowNull: false,
     },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: true,
+    color: {
+      type: DataTypes.STRING(10),
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING(250),
       allowNull: true,
     },
-    is_open: {
-      type: DataTypes.TINYINT,
-      allowNull: false,
-    },
   },
   {
     sequelize,
-    modelName: 'Milestones',
-    tableName: 'milestones',
+    modelName: 'Label',
+    tableName: 'labels',
     charset: 'utf8',
     collate: 'utf8_general_ci',
   },
 );
 
 export const associate = (db: dbType) => {
-  db.Milestones.hasMany(db.Issue, { foreignKey: 'milestone_id' });
+  db.Label.belongsToMany(db.Issue, { through: 'issue_label', foreignKey: 'label_id' });
 };
-export default Milestones;
+export default Label;
