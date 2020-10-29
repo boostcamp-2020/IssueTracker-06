@@ -1,3 +1,4 @@
 import createLabel from './createLabel';
+import getLabels from './getLabels';
 
-export default { createLabel };
+export default { createLabel, getLabels };
