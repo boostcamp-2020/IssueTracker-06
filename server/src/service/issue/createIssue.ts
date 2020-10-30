@@ -2,7 +2,7 @@ import Issue from '@models/issue';
 
 interface IssueProps {
   title: string;
-  content: string;
+  content?: string;
   milestoneId?: number;
   labelIds?: number[];
   assigneeIds?: number[];
