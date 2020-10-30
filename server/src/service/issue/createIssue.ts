@@ -3,9 +3,9 @@ import Issue from '@models/issue';
 interface IssueProps {
   title: string;
   content: string;
-  milestoneId: number;
-  labelIds: number[];
-  assigneeIds: number[];
+  milestoneId?: number;
+  labelIds?: number[];
+  assigneeIds?: number[];
   userId: number;
 }
 
@@ -25,8 +25,13 @@ const createIssue = async (issue: IssueProps) => {
       user_id: userId,
       is_open: true,
     })) as IssueInstance;
-    await createdIssue.addLabels(labelIds);
-    await createdIssue.addAssignee(assigneeIds);
+
+    if (labelIds) {
+      await createdIssue.addLabels(labelIds);
+    }
+    if (assigneeIds) {
+      await createdIssue.addAssignee(assigneeIds);
+    }
 
     return createdIssue.id;
   } catch (error) {
