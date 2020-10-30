@@ -103,6 +103,24 @@ extension IssueDetailViewController: UICollectionViewDataSource {
     }
 }
 
+extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let commentText = MockupData.detailIssue.comments[indexPath.row].content
+        let height = fitLabelHeight(
+            text: commentText,
+            width: view.bounds.width - Metric.detailCellCommentLabelWidthMargin)
+        return CGSize(width: view.bounds.width, height: view.bounds.height + height)
+    }
+    
+    private func fitLabelHeight(text: String, width: CGFloat) -> CGFloat {
+        let dummyLabel = UILabel()
+        dummyLabel.numberOfLines = 0
+        dummyLabel.text = text
+        let fitSize = dummyLabel.sizeThatFits(CGSize(width: width, height: CGFloat.greatestFiniteMagnitude))
+        return fitSize.height
+    }
+}
+
 extension IssueDetailViewController: IssueListViewControllerDelegate {
     func issueId(_ id: String) {
         
