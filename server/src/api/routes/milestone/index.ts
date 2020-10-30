@@ -7,7 +7,7 @@ router.post('/', controllers.createMilestone);
 
 router.put('/:id', controllers.updateMilestone);
 
-router.put('/:id/status', controllers.updateMilestoneStatus);
+router.patch('/:id/status', controllers.updateMilestoneStatus);
 
 router.delete('/:id', controllers.deleteMilestone);
 
