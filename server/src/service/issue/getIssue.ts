@@ -15,6 +15,14 @@ const getIssue = async (issueId: number) => {
           attributes: ['id', 'email', 'name', 'profile'],
         },
         {
+          model: User,
+          attributes: ['id', 'email', 'name', 'profile'],
+          as: 'Assignee',
+          through: {
+            attributes: [],
+          },
+        },
+        {
           model: Comment,
           attributes: ['id', 'content', 'created_at', 'updated_at'],
           include: [

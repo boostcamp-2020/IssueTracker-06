@@ -21,7 +21,7 @@ Issue.init(
     },
     content: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     is_open: {
       type: DataTypes.TINYINT,
