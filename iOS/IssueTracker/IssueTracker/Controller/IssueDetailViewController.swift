@@ -9,51 +9,48 @@ import UIKit
 
 class IssueDetailViewController: UIViewController {
 
-    @IBOutlet weak var issueDetailCollectionView: UICollectionView!
-    @IBOutlet weak var bottomDetailView: BottomDetailView!
+    @IBOutlet private weak var issueDetailCollectionView: UICollectionView!
+    @IBOutlet private weak var bottomDetailView: BottomDetailView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         issueDetailCollectionView.delegate = self
         issueDetailCollectionView.dataSource = self
-        configurebottomView()
+        configurebottomViewData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.bottomDetailView.frame.origin.y = view.frame.height - Metric.bottomDetailViewHeight
-        configurebottomViewSwipeUp()
-        configurebottomViewSwipeDown()
+        configureBottomViewLayout()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
     
-    private func configurebottomView() {
+    private func configureBottomViewLayout() {
+        bottomDetailView.frame.origin.y = view.frame.height - Metric.bottomDetailViewHeight
+        configurebottomViewSwipe(direction: .up, action: #selector(swipeUp))
+        configurebottomViewSwipe(direction: .down, action: #selector(swipeDown))
+    }
+    
+    private func configurebottomViewData() {
         let issue = MockupData.detailIssue
         bottomDetailView.configureView(issue: issue)
     }
     
-    func configurebottomViewSwipeUp() {
+    private func configurebottomViewSwipe(
+        direction: UISwipeGestureRecognizer.Direction,
+        action: Selector) {
         let swipe = UISwipeGestureRecognizer(
             target: self,
-            action: #selector(swipeUpGesture(gesture:))
+            action: action
         )
-        swipe.direction = .up
+        swipe.direction = direction
         bottomDetailView.addGestureRecognizer(swipe)
     }
     
-    func configurebottomViewSwipeDown() {
-        let swipe = UISwipeGestureRecognizer(
-            target: self,
-            action: #selector(swipeDownGesture(gesture:))
-        )
-        swipe.direction = .down
-        bottomDetailView.addGestureRecognizer(swipe)
-    }
-    
-    @objc func swipeUpGesture(gesture: UIGestureRecognizer) {
+    @objc private func swipeUp() {
         UIView.animate(withDuration: AnimationDuration.swipeUp, animations: { [weak self] in
             guard let currentViewHeight = self?.view.frame.height,
                   let bottomViewHeight = self?.bottomDetailView.frame.height else { return }
@@ -62,7 +59,7 @@ class IssueDetailViewController: UIViewController {
         })
     }
     
-    @objc func swipeDownGesture(gesture: UIGestureRecognizer) {
+    @objc private func swipeDown() {
         UIView.animate(withDuration: AnimationDuration.swipeDown, animations: { [weak self] in
             guard let currentViewHeight = self?.view.frame.height else { return }
             self?.bottomDetailView.frame.origin.y = currentViewHeight - Metric.bottomDetailViewHeight
@@ -123,6 +120,7 @@ private extension IssueDetailViewController {
         static let closeButtonWidth: CGFloat = 80
         static let deleteButtonWidth: CGFloat = 80
         static let bottomDetailViewHeight: CGFloat = 100
+        static let detailCellCommentLabelWidthMargin: CGFloat = 30
     }
     
     enum AnimationDuration {
