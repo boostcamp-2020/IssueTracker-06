@@ -20,7 +20,7 @@ struct MockupData {
     ]
     
     static let detailIssue = DetailIssue(
-        user: User(image: "", name: "godrm"), title: "이슈 생성 기능ㅎㅎ",
+        user: User(image: "", name: "godrm"), title: "이슈 생성 기능",
         issueNumber: "11",
         comments: [
             Comment(user: User(image: "", name: "taehee"), timestamp: "16 minutes ago", content: "레이블 전체 목록을 볼 수 있는게 어떨까요"),
