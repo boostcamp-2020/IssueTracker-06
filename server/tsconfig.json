@@ -20,6 +20,12 @@
 
     // more spec
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@api/*": ["src/api/*"],
+      "@models/*": ["src/models/*"],
+      "@service/*": ["src/service/*"]
+    }
   }
 }

@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 4000;
 const onListening = () => console.log(`Listening on port ${PORT}`);
 
 const startServer = async () => {
-  loader(app);
+  await loader(app);
   app.listen(PORT, onListening);
 };
 
