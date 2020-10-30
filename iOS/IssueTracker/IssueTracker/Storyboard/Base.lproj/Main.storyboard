@@ -566,11 +566,11 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMy-jR-Mw6">
                                         <rect key="frame" x="15" y="134.5" width="384" height="100"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="C7Y-ZN-XJJ" customClass="AssigneeStackView" customModule="IssueTracker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="68" height="100"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="C7Y-ZN-XJJ" customClass="AssigneeStackView" customModule="IssueTracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="100"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcC-iV-53R" customClass="AssigneeView" customModule="IssueTracker" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="100"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qxB-Y8-JSV">
                                                                 <rect key="frame" x="0.0" y="8" width="60" height="60"/>
@@ -597,7 +597,7 @@
                                                             <constraint firstItem="pMO-Ah-gZL" firstAttribute="top" secondItem="qxB-Y8-JSV" secondAttribute="bottom" constant="8" id="ADo-Hz-7Vi"/>
                                                             <constraint firstItem="qxB-Y8-JSV" firstAttribute="leading" secondItem="BcC-iV-53R" secondAttribute="leading" id="BW8-Qr-NjQ"/>
                                                             <constraint firstItem="qxB-Y8-JSV" firstAttribute="top" secondItem="BcC-iV-53R" secondAttribute="top" constant="8" id="YTF-9t-OhK"/>
-                                                            <constraint firstAttribute="trailing" secondItem="qxB-Y8-JSV" secondAttribute="trailing" constant="8" id="g3p-Md-EfU"/>
+                                                            <constraint firstAttribute="trailing" secondItem="qxB-Y8-JSV" secondAttribute="trailing" id="g3p-Md-EfU"/>
                                                             <constraint firstItem="pMO-Ah-gZL" firstAttribute="centerX" secondItem="qxB-Y8-JSV" secondAttribute="centerX" id="uBc-J5-xCJ"/>
                                                         </constraints>
                                                     </view>

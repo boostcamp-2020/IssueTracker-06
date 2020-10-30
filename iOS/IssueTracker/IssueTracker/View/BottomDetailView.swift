@@ -17,7 +17,7 @@ final class BottomDetailView: UIView {
     }
     
     private func configureAssigneeStackView(assignee: [User]) {
-//        assigneeStackView.clear()
+        assigneeStackView.clear()
 
         assignee.forEach {
             let assigneeView = AssigneeView.create(user: $0)
