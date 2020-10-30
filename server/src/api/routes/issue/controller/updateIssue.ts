@@ -13,6 +13,8 @@ const updateIssue = async (req: Request, res: Response, next: NextFunction) => {
     updateResult = await issueService.updateIssueLabel(issueId, targets);
   }
   if (target === 'milestone') {
+    if (targets.length > 1) return res.status(400).json({ result: false });
+
     const milestoneId = targets[0];
     updateResult = issueService.updateIssueMilestone(issueId, milestoneId);
   }
