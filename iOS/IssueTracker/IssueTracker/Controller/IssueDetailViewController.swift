@@ -134,7 +134,7 @@ private extension IssueDetailViewController {
     }
     
     enum Metric {
-        static let cellHeight: CGFloat = 200 // 원래 100
+        static let cellHeight: CGFloat = 100
         static let closeButtonWidth: CGFloat = 80
         static let deleteButtonWidth: CGFloat = 80
         static let bottomDetailViewHeight: CGFloat = 100
