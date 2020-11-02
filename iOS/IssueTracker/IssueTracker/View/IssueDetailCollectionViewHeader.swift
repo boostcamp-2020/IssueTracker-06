@@ -7,7 +7,8 @@
 
 import UIKit
 
-class IssueDetailCollectionViewHeader: UICollectionReusableView {
+final class IssueDetailCollectionViewHeader: UICollectionReusableView {
+    
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!

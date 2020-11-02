@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IssueDetailCollectionViewCell: UICollectionViewCell {
+final class IssueDetailCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var userImage: UIImageView!

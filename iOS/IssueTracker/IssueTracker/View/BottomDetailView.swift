@@ -8,6 +8,7 @@
 import UIKit
 
 final class BottomDetailView: UIView {
+    
     @IBOutlet weak var assigneeStackView: AssigneeStackView!
     @IBOutlet weak var labelStackView: LabelsStackView!
 

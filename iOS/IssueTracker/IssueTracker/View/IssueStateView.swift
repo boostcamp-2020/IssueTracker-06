@@ -8,6 +8,7 @@
 import UIKit
 
 final class IssueStateView: UIView {
+    
     @IBOutlet weak var issueImageView: UIImageView!
     @IBOutlet weak var stateLabel: UILabel!
     
