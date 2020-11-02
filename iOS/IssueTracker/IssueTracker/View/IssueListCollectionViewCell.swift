@@ -15,11 +15,8 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var milestone: LabelView!
     @IBOutlet private weak var labelsStackView: LabelsStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet weak var checkboxButton: UIButton!
     
-    @IBAction private func checkboxTouched(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-    }
-        
     func disableCheckbox() {
         frame.origin.x = -55
         frame.size.width += 55
@@ -39,6 +36,10 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     func setWidth(_ width: CGFloat) {
         widthConstraint.constant = width
     }
+    
+    func updateCheckboxState(isSelected: Bool) {
+        checkboxButton.isSelected = isSelected
+    }
 
     private func setLabelsStackView(labels: [Label]) {
         labelsStackView.clear()
@@ -46,5 +47,9 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
             let label = LabelView.create(text: $0.name, color: $0.color.color)
             labelsStackView.add(label: label)
         }
+    }
+    
+    @IBAction private func checkboxTouched(_ sender: UIButton) {
+        updateCheckboxState(isSelected: !sender.isSelected)
     }
 }

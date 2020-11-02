@@ -68,7 +68,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ec6-XF-rvl">
-                        <barButtonItem key="leftBarButtonItem" title="SelectAll" id="C0v-Z7-T6r"/>
+                        <barButtonItem key="leftBarButtonItem" title="SelectAll" id="C0v-Z7-T6r">
+                            <connections>
+                                <action selector="selectAllButtonTouched:" destination="Jy0-5f-YyN" id="ehu-Jm-TFs"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="VH2-0o-Opq">
                             <connections>
                                 <action selector="cancelButtonTouched:" destination="Jy0-5f-YyN" id="AQ5-zx-710"/>

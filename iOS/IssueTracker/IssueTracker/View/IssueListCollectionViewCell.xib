@@ -214,6 +214,7 @@
                 <constraint firstAttribute="bottom" secondItem="cVn-OL-dSA" secondAttribute="bottom" id="on9-rB-zmg"/>
             </constraints>
             <connections>
+                <outlet property="checkboxButton" destination="E5s-4K-wVR" id="cef-N8-poU"/>
                 <outlet property="descriptionLabel" destination="qQl-Om-rdg" id="qvX-GC-uXZ"/>
                 <outlet property="labelsStackView" destination="h9M-wR-YFC" id="6kN-Qs-yBc"/>
                 <outlet property="milestone" destination="thr-uq-gwl" id="Tbw-my-GTi"/>

@@ -26,13 +26,23 @@ final class IssueListEditViewController: UIViewController {
         issueListCollectionView.dataSource = issueListCollectionViewDataSource
     }
     
+    @IBAction func selectAllButtonTouched(_ sender: UIBarButtonItem) {
+        MockupData.data.enumerated().forEach {
+            let indexPath = IndexPath(row: $0.offset, section: 0)
+            guard let cell = issueListCollectionView.cellForItem(at: indexPath) as? IssueListCollectionViewCell
+            else {
+                return
+            }
+            cell.updateCheckboxState(isSelected: true)
+        }
+    }
+    
     @IBAction private func cancelButtonTouched(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
 }
 
 extension IssueListEditViewController: UICollectionViewDelegate {
-    
 }
 
 extension IssueListEditViewController: UICollectionViewDelegateFlowLayout {
