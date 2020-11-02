@@ -10,6 +10,63 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="Kki-1T-fDG">
+            <objects>
+                <viewController id="Jy0-5f-YyN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r1W-UV-Cft">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1개 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUN-sy-k0y">
+                                <rect key="frame" x="15" y="15" width="112.5" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P91-1D-QkK">
+                                <rect key="frame" x="0.0" y="61" width="414" height="664"/>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="P2D-Fg-PMb">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueListCell" id="nrP-zp-HUt" customClass="IssueListCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="9" y="0.0" width="396" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NPp-2h-2UY">
+                                            <rect key="frame" x="0.0" y="0.0" width="396" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="396" height="128"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ayk-3A-eAv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fUN-sy-k0y" firstAttribute="leading" secondItem="ayk-3A-eAv" secondAttribute="leading" constant="15" id="1px-8y-UPY"/>
+                            <constraint firstItem="ayk-3A-eAv" firstAttribute="bottom" secondItem="P91-1D-QkK" secondAttribute="bottom" id="36L-GY-6ka"/>
+                            <constraint firstItem="P91-1D-QkK" firstAttribute="leading" secondItem="r1W-UV-Cft" secondAttribute="leading" id="EXz-1v-3PS"/>
+                            <constraint firstItem="fUN-sy-k0y" firstAttribute="top" secondItem="ayk-3A-eAv" secondAttribute="top" constant="15" id="QYX-S8-Sf7"/>
+                            <constraint firstItem="P91-1D-QkK" firstAttribute="top" secondItem="fUN-sy-k0y" secondAttribute="bottom" constant="5" id="Ua1-dS-Qb8"/>
+                            <constraint firstItem="ayk-3A-eAv" firstAttribute="trailing" secondItem="P91-1D-QkK" secondAttribute="trailing" id="ien-3B-uYM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ec6-XF-rvl">
+                        <barButtonItem key="leftBarButtonItem" title="SelectAll" id="C0v-Z7-T6r"/>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="VH2-0o-Opq"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qoA-XL-yg8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1829" y="-675"/>
+        </scene>
         <!--Issue List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -84,7 +141,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="FUr-ze-lRh">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="6i9-Oj-TAM"/>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="QCY-a0-DGt"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="QCY-a0-DGt">
+                            <connections>
+                                <segue destination="Jy0-5f-YyN" kind="show" id="h8n-lm-qba"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="issueListCollectionView" destination="JHs-Zp-fEN" id="E3o-nw-Ys0"/>

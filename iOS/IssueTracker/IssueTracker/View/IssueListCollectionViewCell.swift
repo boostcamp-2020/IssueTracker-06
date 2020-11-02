@@ -10,15 +10,15 @@ import UIKit
 class IssueListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
-        @IBOutlet weak var titleLabel: UILabel!
-        @IBOutlet weak var descriptionLabel: UILabel!
-        @IBOutlet weak var milestone: LabelView!
-        @IBOutlet weak var labelsStackView: LabelsStackView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var milestone: LabelView!
+    @IBOutlet weak var labelsStackView: LabelsStackView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBAction func checkboxTouched(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
     }
-
+    
     func setIssue(_ issue: Issue) {
         titleLabel.text = issue.title
         descriptionLabel.text = issue.description
