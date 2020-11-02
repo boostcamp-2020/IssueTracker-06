@@ -165,7 +165,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="6i9-Oj-TAM"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="QCY-a0-DGt">
                             <connections>
-                                <segue destination="Jy0-5f-YyN" kind="show" id="h8n-lm-qba"/>
+                                <segue destination="Jy0-5f-YyN" kind="show" animates="NO" id="h8n-lm-qba"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

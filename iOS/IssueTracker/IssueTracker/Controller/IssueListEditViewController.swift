@@ -43,7 +43,7 @@ final class IssueListEditViewController: UIViewController {
     }
     
     @IBAction private func cancelButtonTouched(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
     }
     
     @objc private func cellTouched(_ sender: UITapGestureRecognizer) {
