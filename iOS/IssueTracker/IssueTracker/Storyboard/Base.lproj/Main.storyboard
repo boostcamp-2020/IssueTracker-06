@@ -861,12 +861,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="daF-Z0-gt7">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="R0N-0Z-YA5">
+                            <connections>
+                                <action selector="CancelPressed:" destination="oW6-ue-0aA" id="uQ6-n9-Hx1"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="VS2-MB-IvK"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M3i-Vz-zOu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828.985507246377" y="735.9375"/>
+            <point key="canvasLocation" x="1742" y="726"/>
         </scene>
         <!--Filter Select Table View Controller-->
         <scene sceneID="Z6m-i0-1Ei">

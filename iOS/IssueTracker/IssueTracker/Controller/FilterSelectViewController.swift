@@ -11,8 +11,9 @@ class FilterSelectViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
+    @IBAction func CancelPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
