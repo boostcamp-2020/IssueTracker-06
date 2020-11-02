@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IssueDetailViewController: UIViewController {
+final class IssueDetailViewController: UIViewController {
 
     @IBOutlet private weak var issueDetailCollectionView: UICollectionView!
     @IBOutlet private weak var bottomDetailView: BottomDetailView!
@@ -123,7 +123,6 @@ extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension IssueDetailViewController: IssueListViewControllerDelegate {
     func issueId(_ id: String) {
-        
     }
 }
 

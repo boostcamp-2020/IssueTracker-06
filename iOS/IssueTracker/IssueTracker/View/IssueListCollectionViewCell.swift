@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
+final class IssueListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!

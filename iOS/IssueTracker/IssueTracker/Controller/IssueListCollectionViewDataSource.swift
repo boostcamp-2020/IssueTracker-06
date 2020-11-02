@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IssueListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+final class IssueListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     private let collectionView: UICollectionView
     private let data: [Issue]

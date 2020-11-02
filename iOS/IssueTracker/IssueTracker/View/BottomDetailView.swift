@@ -9,8 +9,8 @@ import UIKit
 
 final class BottomDetailView: UIView {
     
-    @IBOutlet weak var assigneeStackView: AssigneeStackView!
-    @IBOutlet weak var labelStackView: LabelsStackView!
+    @IBOutlet private weak var assigneeStackView: AssigneeStackView!
+    @IBOutlet private weak var labelStackView: LabelsStackView!
 
     func configureView(issue: DetailIssue) {
         configureAssigneeStackView(assignee: issue.assignee)

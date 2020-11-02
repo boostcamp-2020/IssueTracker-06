@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IssueListEditViewController: UIViewController {
+final class IssueListEditViewController: UIViewController {
 
     @IBOutlet weak var issueListCollectionView: UICollectionView!
     @IBOutlet weak var selectCountLabel: UILabel!

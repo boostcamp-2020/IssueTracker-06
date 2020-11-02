@@ -9,12 +9,12 @@ import UIKit
 
 final class IssueDetailCollectionViewHeader: UICollectionReusableView {
     
-    @IBOutlet weak var headerContentView: UIView!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var issueNumberLabel: UILabel!
-    @IBOutlet weak var issueStateView: IssueStateView!
+    @IBOutlet private weak var headerContentView: UIView!
+    @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var usernameLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var issueNumberLabel: UILabel!
+    @IBOutlet private weak var issueStateView: IssueStateView!
     
     func configureHeader(issue: DetailIssue) {
         usernameLabel.text = issue.user.name

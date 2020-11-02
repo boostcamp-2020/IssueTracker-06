@@ -9,8 +9,8 @@ import UIKit
 
 final class IssueStateView: UIView {
     
-    @IBOutlet weak var issueImageView: UIImageView!
-    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet private weak var issueImageView: UIImageView!
+    @IBOutlet private weak var stateLabel: UILabel!
     
     func updateState(enabled: Bool) {
         if enabled {
