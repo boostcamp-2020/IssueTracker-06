@@ -186,9 +186,6 @@
                         <state key="selected">
                             <imageReference key="image" image="checkmark.circle.fill" catalog="system" symbolScale="large"/>
                         </state>
-                        <connections>
-                            <action selector="checkboxTouched:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Byj-JE-f7M"/>
-                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9O-xc-icR">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="1"/>

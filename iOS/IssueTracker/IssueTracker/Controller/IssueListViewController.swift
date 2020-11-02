@@ -26,27 +26,18 @@ final class IssueListViewController: UIViewController {
         super.viewDidLoad()
         configureIssueListCollectionView()
         removeNavigationBarUnderLine()
-        configureTapGesture(at: issueListCollectionView, action: #selector(cellTouched(_:)))
     }
     
     private func configureIssueListCollectionView() {
         issueListCollectionView.delegate = self
         issueListCollectionView.dataSource = issueListCollectionViewDataSource
+        issueListCollectionView.configureTapGesture(target: self, action: #selector(cellTouched(_:)))
     }
     
     private func removeNavigationBarUnderLine() {
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    private func configureTapGesture(at view: UIView, action: Selector? = nil) {
-        let scrollViewTapGestureRecognizer =
-            UITapGestureRecognizer(target: self, action: action)
-        scrollViewTapGestureRecognizer.numberOfTouchesRequired = 1
-        scrollViewTapGestureRecognizer.isEnabled = true
-        scrollViewTapGestureRecognizer.cancelsTouchesInView = false
-        view.addGestureRecognizer(scrollViewTapGestureRecognizer)
-    }
-
     @objc private func cellTouched(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: issueListCollectionView)
         guard let indexPath = issueListCollectionView.indexPathForItem(at: point) else { return }

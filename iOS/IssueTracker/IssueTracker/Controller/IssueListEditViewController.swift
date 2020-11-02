@@ -22,8 +22,13 @@ final class IssueListEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureIssueListCollectionView()
+    }
+    
+    private func configureIssueListCollectionView() {
         issueListCollectionView.delegate = self
         issueListCollectionView.dataSource = issueListCollectionViewDataSource
+        issueListCollectionView.configureTapGesture(target: self, action: #selector(cellTouched(_:)))
     }
     
     @IBAction func selectAllButtonTouched(_ sender: UIBarButtonItem) {
@@ -39,6 +44,16 @@ final class IssueListEditViewController: UIViewController {
     
     @IBAction private func cancelButtonTouched(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func cellTouched(_ sender: UITapGestureRecognizer) {
+        let point = sender.location(in: issueListCollectionView)
+        guard let indexPath = issueListCollectionView.indexPathForItem(at: point) else { return }
+        guard let cell = issueListCollectionView.cellForItem(at: indexPath) as? IssueListCollectionViewCell
+        else {
+            return
+        }
+        cell.switchCheckboxState()
     }
 }
 
