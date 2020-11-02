@@ -24,6 +24,8 @@ final class IssueListViewController: UIViewController {
     private func setupIssueListCollectionView() {
         issueListCollectionView.delegate = self
         issueListCollectionView.dataSource = self
+        let nib = UINib(nibName: Constant.issueListCollectionViewCell, bundle: nil)
+        issueListCollectionView.register(nib, forCellWithReuseIdentifier: Constant.issueListCell)
     }
     
     private func removeNavigationBarUnderLine() {
@@ -97,6 +99,7 @@ private extension IssueListViewController {
     enum Constant {
         static let issueListCell: String = "IssueListCell"
         static let issueDetailSegue: String = "IssueDetailSegue"
+        static let issueListCollectionViewCell: String = "IssueListCollectionViewCell"
     }
     
     enum Metric {
