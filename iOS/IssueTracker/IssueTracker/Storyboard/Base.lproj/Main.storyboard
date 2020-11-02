@@ -123,7 +123,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="396" height="128"/>
                                         <connections>
-                                            <segue destination="bsV-cy-HC3" kind="show" identifier="IssueDetailSegue" id="SX5-c9-NJL"/>
+                                            <segue destination="bsV-cy-HC3" kind="show" identifier="IssueDetailSegue" destinationCreationSelector="presentIssueDeatilViewController:" id="SX5-c9-NJL"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -14,6 +14,7 @@ protocol IssueListViewControllerDelegate: class {
 final class IssueListViewController: UIViewController {
 
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
+    private var selectedIndexPath: IndexPath?
     
     private lazy var issueListCollectionViewDataSource: IssueListCollectionViewDataSource = {
         IssueListCollectionViewDataSource(
@@ -23,11 +24,12 @@ final class IssueListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupIssueListCollectionView()
+        configureIssueListCollectionView()
         removeNavigationBarUnderLine()
+        configureTapGesture(at: issueListCollectionView, action: #selector(cellTouched(_:)))
     }
     
-    private func setupIssueListCollectionView() {
+    private func configureIssueListCollectionView() {
         issueListCollectionView.delegate = self
         issueListCollectionView.dataSource = issueListCollectionViewDataSource
     }
@@ -35,25 +37,40 @@ final class IssueListViewController: UIViewController {
     private func removeNavigationBarUnderLine() {
         navigationController?.navigationBar.shadowImage = UIImage()
     }
-}
-
-extension IssueListViewController: UICollectionViewDelegate {}
-
-extension IssueListViewController {
     
-    private func setCellTouchEvent(at view: UIView, selector touchEventHandler: Selector? = nil) {
+    private func configureTapGesture(at view: UIView, action: Selector? = nil) {
         let scrollViewTapGestureRecognizer =
-            UITapGestureRecognizer(target: self, action: touchEventHandler)
+            UITapGestureRecognizer(target: self, action: action)
         scrollViewTapGestureRecognizer.numberOfTouchesRequired = 1
         scrollViewTapGestureRecognizer.isEnabled = true
         scrollViewTapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(scrollViewTapGestureRecognizer)
     }
 
-    @objc private func scrollViewTapTest() {
+    @objc private func cellTouched(_ sender: UITapGestureRecognizer) {
+        let point = sender.location(in: issueListCollectionView)
+        guard let indexPath = issueListCollectionView.indexPathForItem(at: point) else { return }
+        selectedIndexPath = indexPath
+        moveToIssueDetailViewController()
+    }
+    
+    private func moveToIssueDetailViewController() {
         performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
     }
+    
+    @IBSegueAction func presentIssueDeatilViewController(_ coder: NSCoder) -> IssueDetailViewController? {
+        let issueDetailViewController = IssueDetailViewController(coder: coder)
+        guard let selectedIndexPath = selectedIndexPath,
+              let issueId = MockupData.data[safe: selectedIndexPath.row]?.id
+        else {
+            return issueDetailViewController
+        }
+        issueDetailViewController?.issueId(issueId)
+        return issueDetailViewController
+    }
 }
+
+extension IssueListViewController: UICollectionViewDelegate {}
 
 extension IssueListViewController: UICollectionViewDelegateFlowLayout {
     
