@@ -14,6 +14,12 @@ protocol IssueListViewControllerDelegate: class {
 final class IssueListViewController: UIViewController {
 
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
+    
+    private lazy var issueListCollectionViewDataSource: IssueListCollectionViewDataSource = {
+        IssueListCollectionViewDataSource(
+            collectionView: issueListCollectionView,
+            data: MockupData.data)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +29,7 @@ final class IssueListViewController: UIViewController {
     
     private func setupIssueListCollectionView() {
         issueListCollectionView.delegate = self
-        issueListCollectionView.dataSource = self
-        let nib = UINib(nibName: Constant.issueListCollectionViewCell, bundle: nil)
-        issueListCollectionView.register(nib, forCellWithReuseIdentifier: Constant.issueListCell)
+        issueListCollectionView.dataSource = issueListCollectionViewDataSource
     }
     
     private func removeNavigationBarUnderLine() {
@@ -35,40 +39,7 @@ final class IssueListViewController: UIViewController {
 
 extension IssueListViewController: UICollectionViewDelegate {}
 
-extension IssueListViewController: UICollectionViewDataSource {
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-    ) -> Int {
-        return MockupData.data.count
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        let cell = issueListCollectionView.dequeueReusableCell(
-            withReuseIdentifier: Constant.issueListCell,
-            for: indexPath
-        ) 
-        if let issueListCollectionViewCell = cell as? IssueListCollectionViewCell {
-            setIssueListCollectionViewCellWidth(issueListCollectionViewCell)
-            setIssueListCollectionViewCellData(issueListCollectionViewCell, at: indexPath)
-        }
-        setCellTouchEvent(at: cell, selector: #selector(scrollViewTapTest))
-        return cell
-    }
-    
-    private func setIssueListCollectionViewCellWidth(_ cell: IssueListCollectionViewCell) {
-        let cellwidth: CGFloat = issueListCollectionView.bounds.width + Metric.closeButtonWidth + Metric.deleteButtonWidth
-        cell.setWidth(cellwidth)
-    }
-    
-    private func setIssueListCollectionViewCellData(_ cell: IssueListCollectionViewCell, at indexPath: IndexPath) {
-        let issue = MockupData.data[indexPath.row]
-        cell.setIssue(issue)
-    }
+extension IssueListViewController {
     
     private func setCellTouchEvent(at view: UIView, selector touchEventHandler: Selector? = nil) {
         let scrollViewTapGestureRecognizer =
@@ -78,7 +49,7 @@ extension IssueListViewController: UICollectionViewDataSource {
         scrollViewTapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(scrollViewTapGestureRecognizer)
     }
-    
+
     @objc private func scrollViewTapTest() {
         performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
     }
@@ -97,14 +68,10 @@ extension IssueListViewController: UICollectionViewDelegateFlowLayout {
 
 private extension IssueListViewController {
     enum Constant {
-        static let issueListCell: String = "IssueListCell"
         static let issueDetailSegue: String = "IssueDetailSegue"
-        static let issueListCollectionViewCell: String = "IssueListCollectionViewCell"
     }
     
     enum Metric {
         static let cellHeight: CGFloat = 100
-        static let closeButtonWidth: CGFloat = 80
-        static let deleteButtonWidth: CGFloat = 80
     }
 }

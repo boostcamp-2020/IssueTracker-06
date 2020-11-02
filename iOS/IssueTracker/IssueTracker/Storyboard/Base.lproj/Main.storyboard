@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Issue List Edit View Controller-->
         <scene sceneID="Kki-1T-fDG">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Jy0-5f-YyN" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Jy0-5f-YyN" customClass="IssueListEditViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r1W-UV-Cft">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,9 +69,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ec6-XF-rvl">
                         <barButtonItem key="leftBarButtonItem" title="SelectAll" id="C0v-Z7-T6r"/>
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="VH2-0o-Opq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="VH2-0o-Opq">
+                            <connections>
+                                <action selector="cancelButtonTouched:" destination="Jy0-5f-YyN" id="AQ5-zx-710"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="issueListCollectionView" destination="P91-1D-QkK" id="WzU-oq-qdP"/>
+                        <outlet property="selectCountLabel" destination="fUN-sy-k0y" id="eX6-sE-W1E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qoA-XL-yg8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

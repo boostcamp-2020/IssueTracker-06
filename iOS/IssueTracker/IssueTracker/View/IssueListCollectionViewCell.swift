@@ -9,14 +9,24 @@ import UIKit
 
 class IssueListCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var milestone: LabelView!
-    @IBOutlet weak var labelsStackView: LabelsStackView!
-
-    @IBAction func checkboxTouched(_ sender: UIButton) {
+    @IBOutlet private weak var widthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var milestone: LabelView!
+    @IBOutlet private weak var labelsStackView: LabelsStackView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    
+    @IBAction private func checkboxTouched(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+    }
+        
+    func disableCheckbox() {
+        frame.origin.x = -55
+        frame.size.width += 55
+    }
+    
+    func disableScroll() {
+        scrollView.isScrollEnabled = false
     }
     
     func setIssue(_ issue: Issue) {
