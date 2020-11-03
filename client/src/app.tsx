@@ -1,5 +1,14 @@
 import React, { FunctionComponent } from 'react';
+import { ThemeProvider } from 'emotion-theming';
 
-const App: FunctionComponent = () => <>Init</>;
+import theme from '@themes/index';
+import GlobalStyle from '@themes/global';
+
+const App: FunctionComponent = () => (
+  <ThemeProvider theme={theme}>
+    <GlobalStyle />
+    init
+  </ThemeProvider>
+);
 
 export default App;
