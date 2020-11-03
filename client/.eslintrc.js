@@ -10,14 +10,24 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  rules: {},
+  rules: {
+    'prettier/prettier': 0,
+  },
   settings: {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
       alias: {
-        map: [[]],
+        map: [
+          ['@', './src'],
+          ['@components', './src/components'],
+          ['@lib', './src/lib'],
+          ['@apis', './src/apis'],
+          ['@themes', './src/themes'],
+          ['@stores', './src/stores'],
+          ['@hooks', './src/hooks'],
+        ],
       },
     },
   },
