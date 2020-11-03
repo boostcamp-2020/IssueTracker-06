@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AssigneeStackView: UIStackView {
+final class AssigneeStackView: UIStackView {
     
     func add(assigneeView: AssigneeView) {
         addArrangedSubview(assigneeView)

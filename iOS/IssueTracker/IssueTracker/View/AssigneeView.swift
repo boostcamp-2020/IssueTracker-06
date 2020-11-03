@@ -30,9 +30,10 @@ final class AssigneeView: UIView {
             imageView.widthAnchor.constraint(equalToConstant: 60),
             imageView.heightAnchor.constraint(equalToConstant: 60),
             imageView.topAnchor.constraint(equalTo: assigneeView.topAnchor, constant: 8),
-            imageView.trailingAnchor.constraint(equalTo: assigneeView.trailingAnchor, constant: -8),
-            imageView.bottomAnchor.constraint(equalTo: userNamelabel.topAnchor, constant:  8),
-            userNamelabel.bottomAnchor.constraint(equalTo: assigneeView.bottomAnchor, constant: 8),
+            imageView.leadingAnchor.constraint(equalTo: assigneeView.leadingAnchor, constant: 0),
+            imageView.trailingAnchor.constraint(equalTo: assigneeView.trailingAnchor, constant:0),
+            imageView.bottomAnchor.constraint(equalTo: userNamelabel.topAnchor, constant:  -8),
+            userNamelabel.bottomAnchor.constraint(equalTo: assigneeView.bottomAnchor, constant: -8),
             userNamelabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor)
         ])
         return assigneeView

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IssueDetailViewController: UIViewController {
+final class IssueDetailViewController: UIViewController {
 
     @IBOutlet private weak var issueDetailCollectionView: UICollectionView!
     @IBOutlet private weak var bottomDetailView: BottomDetailView!
@@ -16,7 +16,7 @@ class IssueDetailViewController: UIViewController {
         super.viewDidLoad()
         issueDetailCollectionView.delegate = self
         issueDetailCollectionView.dataSource = self
-        configurebottomViewData()
+        configureBottomViewData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,24 +30,24 @@ class IssueDetailViewController: UIViewController {
     
     private func configureBottomViewLayout() {
         bottomDetailView.frame.origin.y = view.frame.height - Metric.bottomDetailViewHeight
-        configurebottomViewSwipe(direction: .up, action: #selector(swipeUp))
-        configurebottomViewSwipe(direction: .down, action: #selector(swipeDown))
+        bottomDetailView.addGestureRecognizer(swipe(direction: .up, action: #selector(swipeUp)))
+        bottomDetailView.addGestureRecognizer(swipe(direction: .down, action: #selector(swipeDown)))
     }
     
-    private func configurebottomViewData() {
+    private func configureBottomViewData() {
         let issue = MockupData.detailIssue
         bottomDetailView.configureView(issue: issue)
     }
     
-    private func configurebottomViewSwipe(
+    private func swipe(
         direction: UISwipeGestureRecognizer.Direction,
-        action: Selector) {
+        action: Selector) -> UISwipeGestureRecognizer {
         let swipe = UISwipeGestureRecognizer(
             target: self,
             action: action
         )
         swipe.direction = direction
-        bottomDetailView.addGestureRecognizer(swipe)
+        return swipe
     }
     
     @objc private func swipeUp() {
@@ -123,7 +123,6 @@ extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension IssueDetailViewController: IssueListViewControllerDelegate {
     func issueId(_ id: String) {
-        
     }
 }
 
