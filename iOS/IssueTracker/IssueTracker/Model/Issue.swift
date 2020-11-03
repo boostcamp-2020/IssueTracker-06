@@ -7,10 +7,26 @@
 
 import Foundation
 
-struct Issue {
-    let id: String
+struct Issue: Codable {
+    let id: Int
     let title: String
-    let description: String
-    let milestone: String
+    let milestone: Milestone
     let labels: [Label]
+    let comments: [Comment]
+    let user: User
+    let content: String
+    let isOpen: Int
+    let assignee: [User]
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case milestone = "Milestone"
+        case labels = "Labels"
+        case comments = "Comments"
+        case user = "User"
+        case content
+        case isOpen = "is_open"
+        case assignee = "Assignee"
+    }
 }
