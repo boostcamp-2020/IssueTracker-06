@@ -4,11 +4,14 @@
   "description": "team6 issue tracker clone front",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --open --hot"
+    "dev": "webpack-dev-server --mode development --open --hot",
+    "storybook": "start-storybook -p 6006 -c .storybook"
   },
   "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-hot-loader": "^4.13.0"
   },
   "devDependencies": {
@@ -16,6 +19,13 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-backgrounds": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-knobs": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/node-logger": "^6.0.28",
+    "@storybook/react": "^6.0.28",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
