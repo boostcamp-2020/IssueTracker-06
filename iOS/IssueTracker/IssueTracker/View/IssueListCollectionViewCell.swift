@@ -2,18 +2,29 @@
 //  IssueListCollectionViewCell.swift
 //  IssueTracker
 //
-//  Created by 박태희 on 2020/10/27.
+//  Created by eunjeong lee on 2020/11/02.
 //
 
 import UIKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
+final class IssueListCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var milestone: LabelView!
-    @IBOutlet weak var labelsStackView: LabelsStackView!
+    @IBOutlet private weak var widthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var milestone: LabelView!
+    @IBOutlet private weak var labelsStackView: LabelsStackView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet weak var checkboxButton: UIButton!
+    
+    func disableCheckbox() {
+        frame.origin.x = -55
+        frame.size.width += 55
+    }
+    
+    func disableScroll() {
+        scrollView.isScrollEnabled = false
+    }
     
     func setIssue(_ issue: Issue) {
         titleLabel.text = issue.title
@@ -21,11 +32,19 @@ class IssueListCollectionViewCell: UICollectionViewCell {
         milestone.text = issue.milestone
         setLabelsStackView(labels: issue.labels)
     }
-    
+
     func setWidth(_ width: CGFloat) {
         widthConstraint.constant = width
     }
     
+    func updateCheckboxState(isSelected: Bool) {
+        checkboxButton.isSelected = isSelected
+    }
+    
+    func switchCheckboxState() {
+        checkboxButton.isSelected = !checkboxButton.isSelected
+    }
+
     private func setLabelsStackView(labels: [Label]) {
         labelsStackView.clear()
         labels.forEach {
