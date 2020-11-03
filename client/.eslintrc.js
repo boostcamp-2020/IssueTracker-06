@@ -12,6 +12,9 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': 0,
+    'no-use-before-define': 0,
+    'react/jsx-filename-extension': 0,
+    'import/extensions': 0,
   },
   settings: {
     'import/resolver': {

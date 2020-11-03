@@ -1,5 +1,5 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
-const App = () => <>Init</>;
+const App: FunctionComponent = () => <>Init</>;
 
 export default App;
