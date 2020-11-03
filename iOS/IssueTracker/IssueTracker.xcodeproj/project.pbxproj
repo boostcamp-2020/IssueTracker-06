@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		19ABAC0C25495AD100F4939A /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ABAC0B25495AD100F4939A /* Milestone.swift */; };
 		19ABAC1125495B2C00F4939A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ABAC1025495B2C00F4939A /* User.swift */; };
 		19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ABAC18254968B700F4939A /* IssueDetailCollectionViewCell.swift */; };
+		19B3A142255122FB00754C2E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 19B3A141255122FB00754C2E /* Alamofire */; };
 		C803816F2547B34F008EEF6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803816E2547B34F008EEF6E /* AppDelegate.swift */; };
 		C80381712547B34F008EEF6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381702547B34F008EEF6E /* SceneDelegate.swift */; };
 		C80381732547B34F008EEF6E /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381722547B34F008EEF6E /* IssueListViewController.swift */; };
@@ -34,20 +35,9 @@
 		C854E829254816C600011D26 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E828254816C600011D26 /* Label.swift */; };
 		C854E8372548177D00011D26 /* MockupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E8362548177D00011D26 /* MockupData.swift */; };
 		C854E83C25481FF700011D26 /* LabelsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E83B25481FF700011D26 /* LabelsStackView.swift */; };
-		C8F0F421254DD6880050B6C0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F420254DD6880050B6C0 /* Extension.swift */; };
-		C8F0F426254DD6990050B6C0 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F425254DD6990050B6C0 /* IssueDetailViewController.swift */; };
-		C8F0F430254DD6AB0050B6C0 /* IssueStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F42A254DD6AB0050B6C0 /* IssueStateView.swift */; };
-		C8F0F431254DD6AB0050B6C0 /* IssueDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F42B254DD6AB0050B6C0 /* IssueDetailCollectionViewCell.swift */; };
-		C8F0F432254DD6AB0050B6C0 /* IssueDetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F42C254DD6AB0050B6C0 /* IssueDetailCollectionViewHeader.swift */; };
-		C8F0F433254DD6AB0050B6C0 /* AssigneeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F42D254DD6AB0050B6C0 /* AssigneeStackView.swift */; };
-		C8F0F434254DD6AB0050B6C0 /* BottomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F42E254DD6AB0050B6C0 /* BottomDetailView.swift */; };
-		C8F0F435254DD6AB0050B6C0 /* AssigneeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F42F254DD6AB0050B6C0 /* AssigneeView.swift */; };
 		C8F0F43D254DD6B70050B6C0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F439254DD6B70050B6C0 /* Comment.swift */; };
 		C8F0F43E254DD6B70050B6C0 /* DetailIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F43A254DD6B70050B6C0 /* DetailIssue.swift */; };
-		C8F0F43F254DD6B70050B6C0 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F43B254DD6B70050B6C0 /* Milestone.swift */; };
-		C8F0F440254DD6B70050B6C0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F43C254DD6B70050B6C0 /* User.swift */; };
 		C8F0F449254DD6C30050B6C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F0F447254DD6C30050B6C0 /* Main.storyboard */; };
-		C8F0F452254DD6DB0050B6C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F0F450254DD6DB0050B6C0 /* LaunchScreen.storyboard */; };
 		C8FA4B03254F9E8700630263 /* FilterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA4B02254F9E8700630263 /* FilterSelectViewController.swift */; };
 		C8FA4B08254F9F6D00630263 /* FilterSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA4B07254F9F6D00630263 /* FilterSelectTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -103,12 +93,7 @@
 		C854E828254816C600011D26 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		C854E8362548177D00011D26 /* MockupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupData.swift; sourceTree = "<group>"; };
 		C854E83B25481FF700011D26 /* LabelsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStackView.swift; sourceTree = "<group>"; };
-		C8F0F420254DD6880050B6C0 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		C8F0F425254DD6990050B6C0 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
-		C8F0F42A254DD6AB0050B6C0 /* IssueStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueStateView.swift; sourceTree = "<group>"; };
-		C8F0F42B254DD6AB0050B6C0 /* IssueDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailCollectionViewCell.swift; sourceTree = "<group>"; };
-		C8F0F42C254DD6AB0050B6C0 /* IssueDetailCollectionViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailCollectionViewHeader.swift; sourceTree = "<group>"; };
-		C8F0F42D254DD6AB0050B6C0 /* AssigneeStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssigneeStackView.swift; sourceTree = "<group>"; };
 		C8F0F42E254DD6AB0050B6C0 /* BottomDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomDetailView.swift; sourceTree = "<group>"; };
 		C8F0F42F254DD6AB0050B6C0 /* AssigneeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssigneeView.swift; sourceTree = "<group>"; };
 		C8F0F439254DD6B70050B6C0 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -126,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19B3A142255122FB00754C2E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +135,6 @@
 		19ABABE825487CB200F4939A /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				C80381742547B34F008EEF6E /* Main.storyboard */,
-				C80381792547B352008EEF6E /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -163,6 +147,16 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		19B3A1392551008C00754C2E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C8F0F42F254DD6AB0050B6C0 /* AssigneeView.swift */,
+				C8F0F425254DD6990050B6C0 /* IssueDetailViewController.swift */,
+				C8F0F42E254DD6AB0050B6C0 /* BottomDetailView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		C80381622547B34F008EEF6E = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +164,7 @@
 				C80381842547B353008EEF6E /* IssueTrackerTests */,
 				C803818F2547B353008EEF6E /* IssueTrackerUITests */,
 				C803816C2547B34F008EEF6E /* Products */,
+				19B3A1392551008C00754C2E /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -283,6 +278,9 @@
 			dependencies = (
 			);
 			name = IssueTracker;
+			packageProductDependencies = (
+				19B3A141255122FB00754C2E /* Alamofire */,
+			);
 			productName = IssueTracker;
 			productReference = C803816B2547B34F008EEF6E /* IssueTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -354,6 +352,9 @@
 				Base,
 			);
 			mainGroup = C80381622547B34F008EEF6E;
+			packageReferences = (
+				19B3A140255122FB00754C2E /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = C803816C2547B34F008EEF6E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -372,7 +373,6 @@
 			files = (
 				C8F0F449254DD6C30050B6C0 /* Main.storyboard in Resources */,
 				19934487254FD48B000D0D5E /* IssueListCollectionViewCell.xib in Resources */,
-				C803817B2547B352008EEF6E /* LaunchScreen.storyboard in Resources */,
 				C80381782547B352008EEF6E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,9 +402,6 @@
 				19ABAC02254959F100F4939A /* DetailIssue.swift in Sources */,
 				1993449C254FF627000D0D5E /* IssueListEditViewController.swift in Sources */,
 				C80381732547B34F008EEF6E /* IssueListViewController.swift in Sources */,
-				C8F0F435254DD6AB0050B6C0 /* AssigneeView.swift in Sources */,
-				C8F0F426254DD6990050B6C0 /* IssueDetailViewController.swift in Sources */,
-				C8F0F434254DD6AB0050B6C0 /* BottomDetailView.swift in Sources */,
 				C8FA4B08254F9F6D00630263 /* FilterSelectTableViewController.swift in Sources */,
 				C854E83C25481FF700011D26 /* LabelsStackView.swift in Sources */,
 				C8F0F43D254DD6B70050B6C0 /* Comment.swift in Sources */,
@@ -422,7 +419,7 @@
 				19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */,
 				19ABAC0C25495AD100F4939A /* Milestone.swift in Sources */,
 				19ABAC0725495A2800F4939A /* Comment.swift in Sources */,
-        C854E8372548177D00011D26 /* MockupData.swift in Sources */,
+				C854E8372548177D00011D26 /* MockupData.swift in Sources */,
 				C80381712547B34F008EEF6E /* SceneDelegate.swift in Sources */,
 				C854E829254816C600011D26 /* Label.swift in Sources */,
 				C854E8242548151800011D26 /* Issue.swift in Sources */,
@@ -760,6 +757,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		19B3A140255122FB00754C2E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		19B3A141255122FB00754C2E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 19B3A140255122FB00754C2E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C80381632547B34F008EEF6E /* Project object */;
 }
