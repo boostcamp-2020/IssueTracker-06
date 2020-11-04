@@ -3,7 +3,6 @@
 //  IssueTracker
 //
 //  Created by eunjeong lee on 2020/10/28.
-//
 
 import Foundation
 

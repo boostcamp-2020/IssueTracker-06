@@ -3,7 +3,7 @@
 //  IssueTracker
 //
 //  Created by eunjeong lee on 2020/11/04.
-//
+
 
 import Foundation
 
@@ -13,13 +13,13 @@ protocol HTTPDataProviding {
 }
 
 struct HTTPData<T: Codable & HTTPDataProviding>: Codable {
-
-    let data: T.DataType
+  
+    let data: T.DataType?
     let result: Bool
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(T.DataType.self, forKey: CodingKeys(stringValue: T.key))
+        data = try? container.decode(T.DataType.self, forKey: CodingKeys(stringValue: T.key))
         result = try container.decode(Bool.self, forKey: CodingKeys(stringValue: Key.result.rawValue))
     }
 
@@ -40,7 +40,7 @@ struct HTTPData<T: Codable & HTTPDataProviding>: Codable {
             return nil
         }
     }
-    
+
     private enum Key: String {
         case result
     }

@@ -3,7 +3,6 @@
 //  IssueTracker
 //
 //  Created by eunjeong lee on 2020/10/28.
-//
 
 import Foundation
 
@@ -15,7 +14,10 @@ struct Milestones: Codable, HTTPDataProviding {
     let milestones: [Milestone]
 }
 
-struct Milestone: Codable {
+struct Milestone: Codable, HTTPDataProviding {
+    
+    typealias DataType = Milestone
+    static var key: String = "milestone"
     
     let date: String?
     let description: String

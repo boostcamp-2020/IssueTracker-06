@@ -3,11 +3,14 @@
 //  IssueTracker
 //
 //  Created by eunjeong lee on 2020/10/28.
-//
+
 
 import Foundation
 
-struct Comment: Codable {
+struct Comment: Codable, HTTPDataProviding {
+    
+    typealias DataType = Comment
+    static var key = "comment"
     
     let user: User
     let createdAt: String?
