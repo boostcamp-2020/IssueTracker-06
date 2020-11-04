@@ -2,8 +2,7 @@
 //  User.swift
 //  IssueTracker
 //
-//  Created by 박태희 on 2020/11/04.
-//
+//  Created by eunjeong lee on 2020/10/28.
 
 import Foundation
 

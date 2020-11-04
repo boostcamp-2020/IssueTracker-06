@@ -2,8 +2,7 @@
 //  Issue.swift
 //  IssueTracker
 //
-//  Created by 박태희 on 2020/11/04.
-//
+//  Created by 박태희 on 2020/10/27.
 
 import Foundation
 
