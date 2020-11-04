@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable, HTTPDataProviding {
+struct User: Codable {
     
     let profile: String
     let name: String
