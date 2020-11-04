@@ -46,7 +46,7 @@ struct HTTPServiceHelper {
         AF.request(url, method: .delete).responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
             switch response.result {
             case .success(let httpData):
-                completionHandler?((httpData.result))
+                completionHandler?(httpData.result)
             case .failure(let error):
                 errorHandler?(error)
             }
