@@ -7,12 +7,21 @@
 
 import Foundation
 
+struct Milestones: Codable, HTTPDataProviding {
+    
+    typealias DataType = [Milestone]
+    static let key: String = "milestones"
+    
+    let milestones: [Milestone]
+}
+
 struct Milestone: Codable {
+    
     let date: String?
-    let description: String?
-    let id: Int?
-    let isOpen: Int?
-    let name: String?
+    let description: String
+    let id: Int
+    let isOpen: Int
+    let name: String
     
     private enum CodingKeys: String, CodingKey {
         case date

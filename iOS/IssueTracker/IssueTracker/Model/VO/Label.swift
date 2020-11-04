@@ -7,8 +7,17 @@
 
 import Foundation
 
+struct Labels: Codable, HTTPDataProviding {
+
+    typealias DataType = [Label]
+    static var key = "labels"
+
+    let labels: [Label]?
+}
+
 struct Label: Codable {
-    let name: String?
-    let color: String?
+    let id: Int
+    let name: String
+    let color: String
     let description: String?
 }
