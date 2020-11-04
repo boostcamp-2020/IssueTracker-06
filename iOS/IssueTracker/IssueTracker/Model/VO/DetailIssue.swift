@@ -1,13 +1,17 @@
 //
-//  Issue.swift
+//  DetailIssue.swift
 //  IssueTracker
 //
-//  Created by 박태희 on 2020/10/27.
+//  Created by eunjeong lee on 2020/11/04.
 //
 
 import Foundation
 
-struct Issue: Codable {
+struct DetailIssue: Codable, HTTPDataProviding {
+    
+    typealias DataType = DetailIssue
+    static var key = "issue"
+    
     let id: Int
     let title: String
     let milestone: Milestone
