@@ -17,28 +17,32 @@ struct HTTPServiceHelper {
     func get<T: Codable & HTTPDataProviding>(
         url: URL,
         responseType: T.Type,
-        completionHandler: ((T.DataType) -> Void)? = nil,
+        successHandler: ((T.DataType?) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
-        let request = URLRequest(url: url)
+        guard let request = try? URLRequest(url: url, method: .get) else { return }
         AF.request(request).responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
             switch response.result {
             case .success(let httpData):
-                completionHandler?(httpData.data as T.DataType)
+                successHandler?(httpData.data)
             case .failure(let error):
                 errorHandler?(error)
             }
         }
     }
     
-    func put() {
-        
-    }
-    
-    func post() {
-        
-    }
-    
-    func delete() {
-        
+    func put<T: Codable & HTTPDataProviding>(
+        url: URL,
+        body: T,
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        AF.request(url, method: .put, parameters: body)
+            .responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
+            switch response.result {
+            case .success(let httpData):
+                successHandler?(httpData.result)
+            case .failure(let error):
+                errorHandler?(error)
+            }
+        }
     }
 }
