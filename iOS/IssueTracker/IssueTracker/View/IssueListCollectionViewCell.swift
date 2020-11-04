@@ -12,7 +12,7 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var milestone: LabelView!
+    @IBOutlet private weak var milestoneView: LabelView!
     @IBOutlet private weak var labelsStackView: LabelsStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet weak var checkboxButton: UIButton!
@@ -28,9 +28,13 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     
     func setIssue(_ issue: Issue) {
         titleLabel.text = issue.title
-        descriptionLabel.text = issue.description
-        milestone.text = issue.milestone
+        descriptionLabel.text = issue.content
         setLabelsStackView(labels: issue.labels)
+        guard let milestone = issue.milestone else {
+            milestoneView.isHidden = true
+            return
+        }
+        milestoneView.text = milestone.name
     }
 
     func setWidth(_ width: CGFloat) {

@@ -9,10 +9,17 @@ import Foundation
 
 struct Issues: HTTPDataProviding, Codable {
     
+    subscript (_ index: Int) -> Issue? {
+        return issues[safe: index]
+    }
+    
     typealias DataType = [Issue]
     static let key: String = "issues"
     
     let issues: [Issue]
+    var count: Int {
+        issues.count
+    }
 }
 
 struct Issue: Codable {

@@ -46,19 +46,19 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="레이블 목록 보기 구현ㄹㅇㅁㄴㄹㅇㅁㄹㅁㄴㅇㅁㅎㅇㄴㄹㅁㄴㅇㄹㅎㅁㄴㅇㄹㅁ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdY-Lp-RMh">
-                                        <rect key="frame" x="15" y="15" width="243" height="20.5"/>
+                                        <rect key="frame" x="15" y="15" width="257" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ㅁㄴㅇㄹㅁㄴㅇㅁㅎㅇㅁㄹㅁㅎㄴㅇㄹㅁㄴㅇㅎㅁㄴㅇㄹㅁㅎㄴㅇㄹㅁㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㅁㄴㅇㅁㄴㅇㄹ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQl-Om-rdg">
-                                        <rect key="frame" x="15" y="43.5" width="195" height="36"/>
+                                        <rect key="frame" x="15" y="43.5" width="208" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thr-uq-gwl" customClass="LabelView" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="278" y="15.5" width="47" height="20"/>
+                                        <rect key="frame" x="292" y="17.5" width="33" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
@@ -87,10 +87,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="h9M-wR-YFC" customClass="LabelsStackView" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="232" y="43.5" width="93" height="21"/>
+                                        <rect key="frame" x="252" y="41.5" width="73" height="17"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vf-Pg-CTs" customClass="LabelView" customModule="IssueTracker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="45.5" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="35.5" height="17"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -114,7 +114,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pr1-jB-Eyy" customClass="LabelView" customModule="IssueTracker" customModuleProvider="target">
-                                                <rect key="frame" x="47.5" y="0.0" width="45.5" height="21"/>
+                                                <rect key="frame" x="37.5" y="0.0" width="35.5" height="17"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -214,7 +214,7 @@
                 <outlet property="checkboxButton" destination="E5s-4K-wVR" id="cef-N8-poU"/>
                 <outlet property="descriptionLabel" destination="qQl-Om-rdg" id="qvX-GC-uXZ"/>
                 <outlet property="labelsStackView" destination="h9M-wR-YFC" id="6kN-Qs-yBc"/>
-                <outlet property="milestone" destination="thr-uq-gwl" id="Tbw-my-GTi"/>
+                <outlet property="milestoneView" destination="thr-uq-gwl" id="HDX-jM-sm5"/>
                 <outlet property="scrollView" destination="cVn-OL-dSA" id="Mlq-gp-hNI"/>
                 <outlet property="titleLabel" destination="jdY-Lp-RMh" id="CVN-7G-39C"/>
                 <outlet property="widthConstraint" destination="Xzc-pj-6Qe" id="6aD-17-MAd"/>
@@ -224,13 +224,13 @@
     </objects>
     <designables>
         <designable name="2Vf-Pg-CTs">
-            <size key="intrinsicContentSize" width="45.5" height="21"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="Pr1-jB-Eyy">
-            <size key="intrinsicContentSize" width="45.5" height="21"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="thr-uq-gwl">
-            <size key="intrinsicContentSize" width="47" height="20"/>
+            <size key="intrinsicContentSize" width="33" height="16"/>
         </designable>
     </designables>
     <resources>
