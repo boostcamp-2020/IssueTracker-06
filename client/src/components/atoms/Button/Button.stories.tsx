@@ -2,7 +2,7 @@ import React from 'react';
 import { text } from '@storybook/addon-knobs';
 
 import IconTag from '@components/atoms/icons/IconTag';
-import IconText from '@components/molecules/IconText';
+import IconText from '@components/molecules/TextWithIcon';
 import Button from './index';
 
 export default {

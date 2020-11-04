@@ -13,7 +13,7 @@ interface StyledProps {
   alignIcon: AlignType;
 }
 
-const StyledIconText = styled.span<StyledProps>`
+const StyledTextWithIcon = styled.span<StyledProps>`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.palette.PRIMARY};
@@ -22,7 +22,7 @@ const StyledIconText = styled.span<StyledProps>`
     width: 1rem;
     fill: currentColor;
     margin: ${({ alignIcon }) =>
-      alignIcon === 'left' ? '0 6px 0' : '0 0 0 6px'};
+      alignIcon === 'left' ? '0 6px 0 0' : '0 0 0 6px'};
   }
 
   & > span {
@@ -31,12 +31,12 @@ const StyledIconText = styled.span<StyledProps>`
   }
 `;
 
-const IconText: FunctionComponent<Props> = ({
+const TextWithIcon: FunctionComponent<Props> = ({
   icon: Icon,
   text,
   align = 'left',
 }) => (
-  <StyledIconText alignIcon={align}>
+  <StyledTextWithIcon alignIcon={align}>
     {align === 'left' ? (
       <>
         <Icon />
@@ -48,7 +48,7 @@ const IconText: FunctionComponent<Props> = ({
         <Icon />
       </>
     )}
-  </StyledIconText>
+  </StyledTextWithIcon>
 );
 
-export default IconText;
+export default TextWithIcon;

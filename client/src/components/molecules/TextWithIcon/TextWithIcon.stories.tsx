@@ -2,21 +2,21 @@ import React from 'react';
 import { text } from '@storybook/addon-knobs';
 
 import IconTag from '@/components/atoms/icons/IconTag';
-import IconText from './index';
+import TextWithIcon from './index';
 
 export default {
-  title: 'IconText',
-  component: IconText,
+  title: 'TextWithIcon',
+  component: TextWithIcon,
 };
 
 export const Left = () => {
   const content = text('content', 'default');
 
-  return <IconText text={content} icon={IconTag} />;
+  return <TextWithIcon text={content} icon={IconTag} />;
 };
 
 export const Right = () => {
   const content = text('content', 'default');
 
-  return <IconText text={content} icon={IconTag} align="right" />;
+  return <TextWithIcon text={content} icon={IconTag} align="right" />;
 };
