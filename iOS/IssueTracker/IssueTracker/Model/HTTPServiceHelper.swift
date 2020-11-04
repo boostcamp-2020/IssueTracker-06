@@ -45,4 +45,20 @@ struct HTTPServiceHelper {
             }
         }
     }
+    
+    func post<T: Codable & HTTPDataProviding>(
+        url: URL,
+        body: T,
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        AF.request(url, method: .post, parameters: body)
+            .responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
+            switch response.result {
+            case .success(let httpData):
+                successHandler?(httpData.result)
+            case .failure(let error):
+                errorHandler?(error)
+            }
+        }
+    }
 }
