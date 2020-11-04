@@ -9,6 +9,10 @@ const GlobalStyle = () => (
 
       @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 
+      html {
+        font-size: 16px;
+      }
+
       body {
         font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
       }
