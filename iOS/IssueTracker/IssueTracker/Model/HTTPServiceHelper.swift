@@ -64,13 +64,13 @@ struct HTTPServiceHelper {
   
     func delete<T: Codable & HTTPDataProviding>(
         url: URL,
-        responseType: T.Type,
-        completionHandler: ((Bool) -> Void)? = nil,
+        requestType: T.Type,
+        successHandler: ((Bool) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
         AF.request(url, method: .delete).responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
             switch response.result {
             case .success(let httpData):
-                completionHandler?((httpData.result))
+                successHandler?((httpData.result))
             case .failure(let error):
                 errorHandler?(error)
             }
