@@ -1,7 +1,7 @@
 import React from 'react';
 import { text } from '@storybook/addon-knobs';
 
-import IconTag from '@components/atoms/Icons/IconTag';
+import IconTag from '@/components/atoms/icons/IconTag';
 import IconText from './index';
 
 export default {
