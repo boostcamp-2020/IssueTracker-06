@@ -14,7 +14,7 @@ struct DetailIssue: Codable, HTTPDataProviding {
     
     let id: Int
     let title: String
-    let milestone: Milestone
+    let milestone: Milestone?
     let labels: [Label]
     let comments: [Comment]
     let user: User

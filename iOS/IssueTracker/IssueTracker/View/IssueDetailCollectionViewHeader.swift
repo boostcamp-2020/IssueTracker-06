@@ -19,7 +19,7 @@ final class IssueDetailCollectionViewHeader: UICollectionReusableView {
     func configureHeader(issue: DetailIssue) {
         usernameLabel.text = issue.user.name
         titleLabel.text = issue.title
-        issueNumberLabel.text = "#\(issue.issueNumber)"
-        issueStateView.updateState(enabled: issue.enabled)
+        issueNumberLabel.text = "#\(issue.id)"
+        issueStateView.updateState(enabled: (issue.isOpen != 0))
     }
 }

@@ -1069,7 +1069,7 @@
     </scenes>
     <designables>
         <designable name="CnU-XO-FXg">
-            <size key="intrinsicContentSize" width="96.5" height="20"/>
+            <size key="intrinsicContentSize" width="82.5" height="16"/>
         </designable>
     </designables>
     <resources>

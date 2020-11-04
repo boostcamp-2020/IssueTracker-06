@@ -16,7 +16,7 @@ final class BottomDetailView: UIView {
         configureAssigneeStackView(assignee: issue.assignee)
         configureLabelStackView(labels: issue.labels)
     }
-    
+
     private func configureAssigneeStackView(assignee: [User]) {
         assigneeStackView.clear()
 
@@ -25,7 +25,7 @@ final class BottomDetailView: UIView {
             assigneeStackView.add(assigneeView: assigneeView)
         }
     }
-    
+
     private func configureLabelStackView(labels: [Label]) {
         labelStackView.clear()
 
