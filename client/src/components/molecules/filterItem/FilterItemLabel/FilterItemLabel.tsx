@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import ColorSwatch from '@components/atoms/filterItem/ColorSwatch';
-import Description from '@/components/atoms/filterItem/Description';
-import Title from '@/components/atoms/filterItem/Title';
+import Description from '@components/atoms/filterItem/Description';
+import Title from '@components/atoms/filterItem/Title';
 
 interface Props {
   swatchColor: string;
