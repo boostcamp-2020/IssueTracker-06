@@ -16,8 +16,9 @@ struct Milestones: Codable, HTTPDataProviding {
 }
 
 struct Milestone: Codable, HTTPDataProviding {
+    
     typealias DataType = Milestone
-    static var key: String = "result"
+    static var key: String = "milestone"
     
     let date: String?
     let description: String
