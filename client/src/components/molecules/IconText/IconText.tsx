@@ -1,12 +1,19 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
+import { AlignType } from '.';
+
 interface Props {
   icon: FunctionComponent;
   text: string;
+  align?: AlignType;
 }
 
-const StyledIconText = styled.span`
+interface StyledProps {
+  alignIcon: AlignType;
+}
+
+const StyledIconText = styled.span<StyledProps>`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.palette.PRIMARY};
@@ -14,7 +21,8 @@ const StyledIconText = styled.span`
   & > svg {
     width: 1rem;
     fill: currentColor;
-    margin-right: 6px;
+    margin: ${({ alignIcon }) =>
+      alignIcon === 'left' ? '0 6px 0' : '0 0 0 6px'};
   }
 
   & > span {
@@ -23,10 +31,23 @@ const StyledIconText = styled.span`
   }
 `;
 
-const IconText: FunctionComponent<Props> = ({ icon: Icon, text }) => (
-  <StyledIconText>
-    <Icon />
-    <span>{text}</span>
+const IconText: FunctionComponent<Props> = ({
+  icon: Icon,
+  text,
+  align = 'left',
+}) => (
+  <StyledIconText alignIcon={align}>
+    {align === 'left' ? (
+      <>
+        <Icon />
+        <span>{text}</span>
+      </>
+    ) : (
+      <>
+        <span>{text}</span>
+        <Icon />
+      </>
+    )}
   </StyledIconText>
 );
 

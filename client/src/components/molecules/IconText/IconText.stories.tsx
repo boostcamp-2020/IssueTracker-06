@@ -9,8 +9,14 @@ export default {
   component: IconText,
 };
 
-export const Default = () => {
+export const Left = () => {
   const content = text('content', 'default');
 
   return <IconText text={content} icon={IconTag} />;
+};
+
+export const Right = () => {
+  const content = text('content', 'default');
+
+  return <IconText text={content} icon={IconTag} align="right" />;
 };
