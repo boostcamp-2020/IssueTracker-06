@@ -38,9 +38,8 @@ final class IssueListViewController: UIViewController {
     }
 
     private func configureIssueListCollectionView() {
-        guard let dataSource = issueListCollectionViewDataSource else { return }
         issueListCollectionView.delegate = self
-        issueListCollectionView.dataSource = dataSource
+        issueListCollectionView.dataSource = issueListCollectionViewDataSource
         issueListCollectionView.configureTapGesture(target: self, action: #selector(cellTouched(_:)))
     }
 

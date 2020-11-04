@@ -8,22 +8,45 @@
 import Foundation
 
 struct Issues: HTTPDataProviding, Codable {
-    
-    subscript (_ index: Int) -> Issue? {
-        return issues[safe: index]
-    }
-    
+
     typealias DataType = [Issue]
-    static let key: String = "issues"
     
-    let issues: [Issue]
+    static let key: String = "issues"
+    private var issues: [Issue]
+    
     var count: Int {
         issues.count
     }
+    
+    init() {
+        issues = []
+    }
+    
+    init(issues: [Issue]) {
+        self.issues = issues
+    }
+    
+    func contains(issue: Issue) -> Bool {
+        issues.contains(issue)
+    }
+    
+    mutating func add(issue: Issue) {
+        issues.append(issue)
+    }
+    
+    mutating func remove(issue: Issue) {
+        issues.removeAll {
+            $0 == issue
+        }
+    }
+    
+    subscript (_ index: Int) -> Issue? {
+        issues[safe: index]
+    }
 }
 
-struct Issue: Codable {
-    
+struct Issue: Codable, Equatable {
+
     let id: Int
     let title: String
     let milestone: Milestone?
@@ -38,5 +61,9 @@ struct Issue: Codable {
         case labels = "Labels"
         case content
         case isOpen = "is_open"
+    }
+    
+    static func == (lhs: Issue, rhs: Issue) -> Bool {
+        lhs.id == rhs.id
     }
 }

@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P91-1D-QkK">
-                                <rect key="frame" x="0.0" y="61" width="414" height="713"/>
+                                <rect key="frame" x="0.0" y="61" width="414" height="664"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="P2D-Fg-PMb">
                                     <size key="itemSize" width="128" height="128"/>
@@ -46,9 +46,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDC-tm-QDF">
-                                <rect key="frame" x="0.0" y="730" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDC-tm-QDF">
+                                <rect key="frame" x="0.0" y="725" width="414" height="49"/>
                                 <items>
                                     <barButtonItem systemItem="flexibleSpace" id="pcj-Jc-a6h"/>
                                     <barButtonItem title="선택 이슈 닫기" id="w5d-Gu-SOe"/>
@@ -59,12 +58,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fUN-sy-k0y" firstAttribute="leading" secondItem="ayk-3A-eAv" secondAttribute="leading" constant="15" id="1px-8y-UPY"/>
-                            <constraint firstItem="ayk-3A-eAv" firstAttribute="bottom" secondItem="P91-1D-QkK" secondAttribute="bottom" id="36L-GY-6ka"/>
+                            <constraint firstItem="iDC-tm-QDF" firstAttribute="top" secondItem="P91-1D-QkK" secondAttribute="bottom" id="36L-GY-6ka"/>
+                            <constraint firstItem="iDC-tm-QDF" firstAttribute="trailing" secondItem="ayk-3A-eAv" secondAttribute="trailing" id="6ZI-uW-pOb"/>
                             <constraint firstItem="P91-1D-QkK" firstAttribute="leading" secondItem="r1W-UV-Cft" secondAttribute="leading" id="EXz-1v-3PS"/>
                             <constraint firstItem="fUN-sy-k0y" firstAttribute="top" secondItem="ayk-3A-eAv" secondAttribute="top" constant="15" id="QYX-S8-Sf7"/>
                             <constraint firstItem="P91-1D-QkK" firstAttribute="top" secondItem="fUN-sy-k0y" secondAttribute="bottom" constant="5" id="Ua1-dS-Qb8"/>
                             <constraint firstItem="ayk-3A-eAv" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fUN-sy-k0y" secondAttribute="trailing" constant="15" id="VnT-4C-Ptb"/>
                             <constraint firstItem="ayk-3A-eAv" firstAttribute="trailing" secondItem="P91-1D-QkK" secondAttribute="trailing" id="ien-3B-uYM"/>
+                            <constraint firstItem="iDC-tm-QDF" firstAttribute="leading" secondItem="ayk-3A-eAv" secondAttribute="leading" id="oym-vu-pkv"/>
+                            <constraint firstItem="iDC-tm-QDF" firstAttribute="bottom" secondItem="ayk-3A-eAv" secondAttribute="bottom" id="vU6-OP-ykB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ec6-XF-rvl">
@@ -1069,7 +1071,7 @@
     </scenes>
     <designables>
         <designable name="CnU-XO-FXg">
-            <size key="intrinsicContentSize" width="82.5" height="16"/>
+            <size key="intrinsicContentSize" width="96.5" height="20"/>
         </designable>
     </designables>
     <resources>

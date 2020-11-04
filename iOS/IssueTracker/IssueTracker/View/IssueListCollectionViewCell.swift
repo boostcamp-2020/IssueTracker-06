@@ -44,10 +44,6 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     func updateCheckboxState(isSelected: Bool) {
         checkboxButton.isSelected = isSelected
     }
-    
-    func switchCheckboxState() {
-        checkboxButton.isSelected = !checkboxButton.isSelected
-    }
 
     private func setLabelsStackView(labels: [Label]) {
         labelsStackView.clear()
