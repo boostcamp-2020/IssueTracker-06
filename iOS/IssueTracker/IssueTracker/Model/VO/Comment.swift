@@ -9,6 +9,9 @@ import Foundation
 
 struct Comment: Codable, HTTPDataProviding {
     
+    typealias DataType = Comment
+    static var key = "comment"
+    
     let user: User
     let createdAt: String?
     let updatedAt: String?
