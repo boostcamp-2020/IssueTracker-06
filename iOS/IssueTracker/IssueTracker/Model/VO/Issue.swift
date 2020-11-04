@@ -15,7 +15,7 @@ struct Issues: HTTPDataProviding, Codable {
     let issues: [Issue]
 }
 
-struct Issue: Codable {
+struct Issue: Codable, HTTPDataProviding {
     
     let id: Int
     let title: String

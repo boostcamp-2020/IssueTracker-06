@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Comment: Codable {
+struct Comment: Codable, HTTPDataProviding {
     
     let user: User
     let createdAt: String?

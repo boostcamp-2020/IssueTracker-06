@@ -15,7 +15,7 @@ struct Labels: Codable, HTTPDataProviding {
     let labels: [Label]?
 }
 
-struct Label: Codable {
+struct Label: Codable, HTTPDataProviding {
     let id: Int
     let name: String
     let color: String
