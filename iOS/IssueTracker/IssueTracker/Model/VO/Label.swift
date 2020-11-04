@@ -16,6 +16,10 @@ struct Labels: Codable, HTTPDataProviding {
 }
 
 struct Label: Codable, HTTPDataProviding {
+    
+    typealias DataType = Label
+    static var key = "label"
+
     let id: Int
     let name: String
     let color: String
