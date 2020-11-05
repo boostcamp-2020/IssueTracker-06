@@ -13,11 +13,12 @@ const StyledDatePicker = styled.input`
     background-color: ${({ theme }) => theme.palette.LIGHT};
     border-color: ${({ theme }) => theme.palette.LINK_BLUE};
     box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+    outline: none;
   }
 `;
 
 interface Props {
-  value: string;
+  value?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
