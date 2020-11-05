@@ -1,5 +1,5 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { text, number } from '@storybook/addon-knobs';
 import Textarea from './TextArea';
 
 export default {
@@ -9,13 +9,13 @@ export default {
 
 export const Default = () => {
   const placeholder = text('placeholder', 'Leave a comment');
-  const textAreaHeight = text('height', '200px');
-  const textAreaWidth = text('width', '200px');
+  const textAreaHeight = number('height', 200);
+  const textAreaWidth = number('width', 200);
   return (
     <Textarea
       placeHolder={placeholder}
-      textAreaHeight={textAreaHeight}
-      textAreaWidth={textAreaWidth}
+      textAreaHeight={`${textAreaHeight}px`}
+      textAreaWidth={`${textAreaWidth}px`}
     />
   );
 };

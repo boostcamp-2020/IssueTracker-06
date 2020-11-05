@@ -1,5 +1,5 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { text, color } from '@storybook/addon-knobs';
 import LabelTag from './LabelTag';
 
 export default {
@@ -9,7 +9,7 @@ export default {
 
 export const Default = () => {
   const value = text('tag text', 'Bug');
-  const bgColor = text('background color', '#a30a0a');
+  const bgColor = color('background color', '#a30a0a');
 
   return <LabelTag text={value} bgColor={bgColor} />;
 };

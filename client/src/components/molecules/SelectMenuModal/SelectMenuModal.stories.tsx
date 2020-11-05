@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { text } from '@storybook/addon-knobs';
 import SelectMenuModal from './SelectMenuModal';
 
@@ -15,11 +15,12 @@ export const Default = () => {
     'Everything mentioning to you',
     'Closed issues',
   ];
-  const type = 'button';
+
   const keys = ['search1', 'search2', 'search3', 'search4', 'search5'];
   const onClick = () => {
     // modal button 클릭 시
   };
+
   return (
     <SelectMenuModal
       display="block"
@@ -32,21 +33,28 @@ export const Default = () => {
 };
 
 export const Author = () => {
+  const [value, setValue] = useState('');
   const optionHeader = text('optionHeader', 'Filter by author');
   const options = ['user1', 'user2', 'user3', 'user4', 'user5'];
   const onClick = () => {
     // modal button 클릭 시
   };
-  const type = 'checkbox';
+
   const keys = ['radio1', 'radio2', 'radio3', 'radio4', 'radio5'];
-  const input = 'Filter users';
+  const placeholder = 'Filter users';
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   return (
     <SelectMenuModal
       display="block"
       optionHeader={optionHeader}
       options={options}
       onClick={onClick}
-      input={input}
+      onChange={onChange}
+      input={value}
+      placeholder={placeholder}
       keys={keys}
     />
   );

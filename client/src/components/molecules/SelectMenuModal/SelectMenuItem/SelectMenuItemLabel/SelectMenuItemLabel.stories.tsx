@@ -1,5 +1,5 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { color, text } from '@storybook/addon-knobs';
 import SelectMenuItemLabel from './SelectMenuItemLabel';
 
 export default {
@@ -8,7 +8,7 @@ export default {
 };
 
 export const Default = () => {
-  const swatchColor = text('swatch color', '#eee');
+  const swatchColor = color('swatch color', '#eee');
   const title = text('title', 'bug');
   const description = text('description', "Something isn't working");
   const onClick = () => {};

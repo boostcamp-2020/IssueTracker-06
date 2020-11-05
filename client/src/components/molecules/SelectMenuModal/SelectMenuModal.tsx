@@ -7,7 +7,9 @@ interface Props {
   optionHeader: string;
   options: string[];
   onClick: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   input?: string;
+  placeholder?: string;
   keys: string[];
   display: 'block' | 'none';
 }
@@ -17,7 +19,7 @@ interface StyledUlProps {
 }
 
 interface StyledLiProps {
-  input?: StringConstructor;
+  input?: string;
 }
 
 const StyledUl = styled.ul<StyledUlProps>`
@@ -29,7 +31,7 @@ const StyledUl = styled.ul<StyledUlProps>`
   display: ${({ display }) => display};
 `;
 
-const StyledLi = styled.li<StyledLiProps>`
+const StyledLi = styled.li`
   border-bottom: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
   & > h3 {
     font-weight: 600;
@@ -64,7 +66,9 @@ const SearchFilter: FunctionComponent<Props> = ({
   optionHeader,
   options,
   onClick,
+  onChange,
   input,
+  placeholder,
   display,
   keys,
 }) => {
@@ -73,7 +77,14 @@ const SearchFilter: FunctionComponent<Props> = ({
       <StyledLi>
         <h3>{optionHeader}</h3>
       </StyledLi>
-      {input && <Input placeholder={input} type="text" />}
+      {input !== undefined && (
+        <Input
+          value={input}
+          placeholder={placeholder}
+          onChange={onChange}
+          type="text"
+        />
+      )}
       {options.map((option: string, i: number) => (
         <StyledLi key={keys[i]}>
           <SelectMenuItem content={option} onClick={onClick} />

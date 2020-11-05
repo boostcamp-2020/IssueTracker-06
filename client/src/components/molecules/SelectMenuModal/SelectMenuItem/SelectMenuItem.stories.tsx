@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { text } from '@storybook/addon-knobs';
+import { text, color } from '@storybook/addon-knobs';
 import SelectMenuItemLabel from '@/components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemLabel';
 import SelectMenuItem from './SelectMenuItem';
 
@@ -8,7 +8,11 @@ export default {
   title: 'Molecules/SelectMenuItem',
 };
 export const Default = () => {
-  const content = <SelectMenuItemLabel swatchColor="#eee" title="1" />;
+  const title = text('content', '1');
+  const pickedColor = color('color', '#eee');
+  const content = (
+    <SelectMenuItemLabel swatchColor={pickedColor} title={title} />
+  );
   const onClick = () => {
     // 버튼 메서드
   };

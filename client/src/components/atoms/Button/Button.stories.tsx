@@ -1,5 +1,5 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { text, boolean } from '@storybook/addon-knobs';
 
 import IconTag from '@components/atoms/icons/IconTag';
 import IconText from '@components/molecules/TextWithIcon';
@@ -13,10 +13,10 @@ export default {
 
 export const Default = () => {
   const content = text('text', 'default');
-  const disabled = text('disable', '');
+  const disabled = boolean('disable', false);
 
   return (
-    <Button disabled={!!disabled}>
+    <Button disabled={disabled}>
       <IconText icon={IconTag} text={content} />
     </Button>
   );
@@ -24,10 +24,10 @@ export const Default = () => {
 
 export const Error = () => {
   const content = text('text', 'default');
-  const disabled = text('disable', '');
+  const disabled = boolean('disable', false);
 
   return (
-    <Button type="error" disabled={!!disabled}>
+    <Button type="error" disabled={disabled}>
       <BoldText value={content} />
     </Button>
   );
@@ -35,10 +35,10 @@ export const Error = () => {
 
 export const Primary = () => {
   const content = text('text', 'default');
-  const disabled = text('disable', '');
+  const disabled = boolean('disable', false);
 
   return (
-    <Button type="primary" disabled={!!disabled}>
+    <Button type="primary" disabled={disabled}>
       <IconText icon={IconTag} text={content} />
     </Button>
   );
@@ -46,10 +46,10 @@ export const Primary = () => {
 
 export const transparent = () => {
   const content = text('text', 'default');
-  const disabled = text('disable', '');
+  const disabled = boolean('disable', false);
 
   return (
-    <Button type="transparent" disabled={!!disabled}>
+    <Button type="transparent" disabled={disabled}>
       <IconText icon={IconTag} text={content} />
     </Button>
   );
