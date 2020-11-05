@@ -6,7 +6,7 @@ import IconText from '@components/molecules/TextWithIcon';
 import Button from './index';
 
 export default {
-  title: 'Atomes/Button',
+  title: 'Atoms/Button',
   component: Button,
 };
 
