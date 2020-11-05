@@ -42,7 +42,6 @@ final class IssueListCollectionViewDataSource: NSObject, UICollectionViewDataSou
             for: indexPath
         )
         if let issueListCollectionViewCell = cell as? IssueListCollectionViewCell {
-            configureIssueListCollectionViewCellWidth(issueListCollectionViewCell)
             configureIssueListCollectionViewCellData(issueListCollectionViewCell, at: indexPath)
             configureCellLayout(issueListCollectionViewCell)
         }
@@ -53,17 +52,12 @@ final class IssueListCollectionViewDataSource: NSObject, UICollectionViewDataSou
         let nib = UINib(nibName: Constant.issueListCollectionViewCell, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: Constant.issueListCell)
     }
-    
-    private func configureIssueListCollectionViewCellWidth(_ cell: IssueListCollectionViewCell) {
-        let cellwidth: CGFloat = collectionView.bounds.width + Metric.closeButtonWidth + Metric.deleteButtonWidth
-        cell.setWidth(cellwidth)
-    }
 
     private func configureIssueListCollectionViewCellData(
         _ cell: IssueListCollectionViewCell,
         at indexPath: IndexPath) {
         guard let issue = data[indexPath.row] else { return }
-        cell.setIssue(issue)
+        cell.configureCell(with: issue)
     }
     
     private func configureCellLayout(_ cell: IssueListCollectionViewCell) {
