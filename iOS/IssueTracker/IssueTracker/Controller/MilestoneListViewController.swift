@@ -16,8 +16,8 @@ class MilestoneListViewController: UIViewController {
         super.viewDidLoad()
         milestoneCollectionView.delegate = self
         milestoneCollectionView.dataSource = self
-//        milestoneCollectionView.register(UINib(, forCellWithReuseIdentifier: <#T##String#>)
-//        configureMilestonesData()
+        milestoneCollectionView.register(UINib(nibName: "MilestoneListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MilestoneListCell")
+        configureMilestonesData()
     }
     
     private func configureMilestonesData() {
@@ -25,6 +25,7 @@ class MilestoneListViewController: UIViewController {
             self?.milestones = $0
             guard let data = self?.milestones else { return }
             print(data)
+            self?.milestoneCollectionView.reloadData()
         })
     }
 
@@ -32,16 +33,36 @@ class MilestoneListViewController: UIViewController {
 
 extension MilestoneListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        guard let milestones = self.milestones else {
+            return 0
+        }
+        return milestones.milestones.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        
+        let cell = milestoneCollectionView.dequeueReusableCell(
+            withReuseIdentifier: "MilestoneListCell",
+            for: indexPath)
+        if let milestoneCell = cell as? MilestoneListCollectionViewCell,
+           let milestone = milestones?.milestones[indexPath.row] {
+            milestoneCell.setMilestone(milestone: milestone)
+        }
+        
+        return cell
     }
 
 
 }
 
 extension MilestoneListViewController: UICollectionViewDelegate {
+    
+}
 
+extension MilestoneListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = self.view.bounds.width
+        let height = CGFloat(100)
+        return CGSize(width: width, height: height)
+    }
 }

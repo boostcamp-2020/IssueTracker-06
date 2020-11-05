@@ -25,5 +25,6 @@ struct MilestoneDataProvider {
 private extension MilestoneDataProvider {
     enum IssueTrackerURL {
         static let milestones = URL(string: "http://issue-tracker.cf/api/milestones")
+        static let openIssues = "http://issue-tracker.cf/api/issues?milestone="
     }
 }
