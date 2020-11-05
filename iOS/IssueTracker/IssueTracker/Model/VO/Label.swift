@@ -12,7 +12,23 @@ struct Labels: Codable, HTTPDataProviding {
     typealias DataType = [Label]
     static var key = "labels"
 
-    let labels: [Label]?
+    private let labels: [Label]
+    
+    var count: Int {
+        labels.count
+    }
+    
+    init() {
+        labels = []
+    }
+    
+    init(labels: [Label]) {
+        self.labels = labels
+    }
+    
+    subscript (_ index: Int) -> Label? {
+        labels[safe: index]
+    }
 }
 
 struct Label: Codable, HTTPDataProviding {

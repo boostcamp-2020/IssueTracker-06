@@ -11,12 +11,21 @@ class LabelViewController: UIViewController {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var labelCollectionView: UICollectionView!
+    private var labels: Labels?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         removeNavigationBarUnderLine()
-        registerNib()
-        configureLabelCollectionView()
+        configureLabelListData() { [weak self] in
+            self?.configureLabelCollectionView()
+        }
+    }
+    
+    private func configureLabelListData(completionHandler: (() -> Void)? = nil) {
+        LabelListDataProvider().get(successHandler: { [weak self] in
+            self?.labels = $0
+            completionHandler?()
+        })
     }
     
     private func removeNavigationBarUnderLine() {
@@ -29,6 +38,7 @@ class LabelViewController: UIViewController {
     }
     
     private func configureLabelCollectionView() {
+        registerNib()
         labelCollectionView.delegate = self
         labelCollectionView.dataSource = self
     }
@@ -40,7 +50,7 @@ extension LabelViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
-        1
+        labels?.count ?? 0
     }
     
     func collectionView(
@@ -50,8 +60,12 @@ extension LabelViewController: UICollectionViewDataSource {
             withReuseIdentifier: Constant.labelCell,
             for: indexPath)
         
-        guard let labelCell = cell as? LabelCollectionViewCell else { return cell }
-        let label = Label(id: 1, name: "feature", color: "#ffffff", description: "어쩌구저쩌구")
+        guard let labelCell = cell as? LabelCollectionViewCell,
+              let labels = labels,
+              let label = labels[indexPath.row]
+        else {
+            return cell
+        }
         labelCell.configureCell(with: label)
         return cell
     }

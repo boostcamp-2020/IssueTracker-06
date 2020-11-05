@@ -14,6 +14,7 @@
 		19910A092553D43F009B3C58 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A072553D43F009B3C58 /* LabelCollectionViewCell.swift */; };
 		19910A0A2553D43F009B3C58 /* LabelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19910A082553D43F009B3C58 /* LabelCollectionViewCell.xib */; };
 		19910A172553DB43009B3C58 /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A162553DB43009B3C58 /* LabelViewController.swift */; };
+		19910A1C2553EE68009B3C58 /* LabelListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */; };
 		19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */; };
 		19934487254FD48B000D0D5E /* IssueListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */; };
 		1993449C254FF627000D0D5E /* IssueListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993449B254FF626000D0D5E /* IssueListEditViewController.swift */; };
@@ -71,6 +72,7 @@
 		19910A072553D43F009B3C58 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		19910A082553D43F009B3C58 /* LabelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelCollectionViewCell.xib; sourceTree = "<group>"; };
 		19910A162553DB43009B3C58 /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
+		19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListDataProvider.swift; sourceTree = "<group>"; };
 		19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueListCollectionViewCell.xib; sourceTree = "<group>"; };
 		1993449B254FF626000D0D5E /* IssueListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				199109F52552756A009B3C58 /* HTTPData.swift */,
 				199109FD2552C596009B3C58 /* IssueListDataProvider.swift */,
 				19910A022552D0C0009B3C58 /* DetailIssueDataProvider.swift */,
+				19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				199109FE2552C596009B3C58 /* IssueListDataProvider.swift in Sources */,
 				19ABABF325494DE900F4939A /* Extension.swift in Sources */,
 				19910A172553DB43009B3C58 /* LabelViewController.swift in Sources */,
+				19910A1C2553EE68009B3C58 /* LabelListDataProvider.swift in Sources */,
 				199344A1254FF743000D0D5E /* IssueListCollectionViewDataSource.swift in Sources */,
 				19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */,
 				C80381B82547D4A3008EEF6E /* LabelView.swift in Sources */,
