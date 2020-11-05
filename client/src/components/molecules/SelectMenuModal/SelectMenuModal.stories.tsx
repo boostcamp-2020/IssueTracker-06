@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { text } from '@storybook/addon-knobs';
-import FilterModal from './SelectMenuModal';
+import SelectMenuModal from './SelectMenuModal';
 
 export default {
-  component: FilterModal,
-  title: 'FilterModal',
+  component: SelectMenuModal,
+  title: 'Molecules/SelectMenuModal',
 };
 export const Default = () => {
   const optionHeader = text('optionHeader', 'Filter Issues');
@@ -21,12 +21,11 @@ export const Default = () => {
     // modal button 클릭 시
   };
   return (
-    <FilterModal
+    <SelectMenuModal
       display="block"
       optionHeader={optionHeader}
       options={options}
       onClick={onClick}
-      type={type}
       keys={keys}
     />
   );
@@ -42,12 +41,11 @@ export const Author = () => {
   const keys = ['radio1', 'radio2', 'radio3', 'radio4', 'radio5'];
   const input = 'Filter users';
   return (
-    <FilterModal
+    <SelectMenuModal
       display="block"
       optionHeader={optionHeader}
       options={options}
       onClick={onClick}
-      type={type}
       input={input}
       keys={keys}
     />

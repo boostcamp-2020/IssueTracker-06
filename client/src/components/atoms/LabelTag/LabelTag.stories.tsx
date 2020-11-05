@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs';
 import LabelTag from './LabelTag';
 
 export default {
-  title: 'Components/LabelTag',
+  title: 'Atoms/LabelTag',
   component: LabelTag,
 };
 

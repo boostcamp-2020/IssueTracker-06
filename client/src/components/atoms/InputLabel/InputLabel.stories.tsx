@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs';
 import InputLabel from './InputLabel';
 
 export default {
-  title: 'Components/InputLabel',
+  title: 'Atoms/InputLabel',
   component: InputLabel,
 };
 

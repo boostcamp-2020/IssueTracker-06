@@ -5,7 +5,7 @@ import XButton from './XButton';
 
 export default {
   component: XButton,
-  title: 'XButton',
+  title: 'Molecules/XButton',
 };
 export const Default = () => {
   const content = text(

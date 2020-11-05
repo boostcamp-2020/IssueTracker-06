@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs';
 import Textarea from './TextArea';
 
 export default {
-  title: 'Components/Textarea',
+  title: 'Atoms/Textarea',
   component: Textarea,
 };
 

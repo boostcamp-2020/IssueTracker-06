@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs';
 import FilterButton from './FilterButton';
 
 export default {
-  title: 'Components/FilterButton',
+  title: 'Atoms/FilterButton',
   component: FilterButton,
 };
 
