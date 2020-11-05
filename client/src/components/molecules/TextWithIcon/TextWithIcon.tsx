@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
+import BoldText from '@components/atoms/BoldText';
 import { AlignType } from '.';
 
 interface Props {
@@ -24,11 +25,6 @@ const StyledTextWithIcon = styled.span<StyledProps>`
     margin: ${({ alignIcon }) =>
       alignIcon === 'left' ? '0 6px 0 0' : '0 0 0 6px'};
   }
-
-  & > span {
-    font-weight: 700;
-    font-size: 0.95rem;
-  }
 `;
 
 const TextWithIcon: FunctionComponent<Props> = ({
@@ -40,11 +36,11 @@ const TextWithIcon: FunctionComponent<Props> = ({
     {align === 'left' ? (
       <>
         <Icon />
-        <span>{text}</span>
+        <BoldText value={text} />
       </>
     ) : (
       <>
-        <span>{text}</span>
+        <BoldText value={text} />
         <Icon />
       </>
     )}
