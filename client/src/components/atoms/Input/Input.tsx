@@ -3,20 +3,20 @@ import styled from '@themes/styled';
 
 interface Props {
   placeholder?: string;
-  value: string;
+  value?: string;
   type: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const StyledInput = styled.input`
   width: 100%;
-  font-size: 16px;
+  font-size: 1rem;
   background-color: ${({ theme }) => theme.palette.BG_COLOR01};
   padding: 5px 12px;
-  line-height: 20px;
+  line-height: 1.5rem;
   color: ${({ theme }) => theme.palette.PRIMARY};
   border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
-  border-radius: 6px;
+  border-radius: 0.3rem;
   outline: none;
 
   &:focus {
@@ -27,8 +27,8 @@ const StyledInput = styled.input`
 `;
 
 const Input: FunctionComponent<Props> = ({
-  placeholder,
-  value,
+  placeholder = 'Input',
+  value = '',
   type,
   onChange,
 }) => {
