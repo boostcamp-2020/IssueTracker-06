@@ -9,5 +9,13 @@ export default {
 
 export const Default = () => {
   const placeholder = text('placeholder', 'Leave a comment');
-  return <Textarea placeHolder={placeholder} />;
+  const textAreaHeight = text('height', '200px');
+  const textAreaWidth = text('width', '200px');
+  return (
+    <Textarea
+      placeHolder={placeholder}
+      textAreaHeight={textAreaHeight}
+      textAreaWidth={textAreaWidth}
+    />
+  );
 };
