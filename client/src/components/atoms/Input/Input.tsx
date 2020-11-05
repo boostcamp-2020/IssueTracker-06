@@ -18,6 +18,7 @@ const StyledInput = styled.input`
   border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
   border-radius: 0.3rem;
   outline: none;
+  box-sizing: border-box;
 
   &:focus {
     border: 1px solid ${({ theme }) => theme.palette.LINK_BLUE};

@@ -15,9 +15,13 @@ const FilterItemLabel: FunctionComponent<Props> = ({
   description,
 }) => (
   <>
-    <ColorSwatch bgColor={swatchColor} />
-    <div>
+    <div
+      style={{ display: 'flex', alignItems: 'center', marginBottom: '0.2rem' }}
+    >
+      <ColorSwatch bgColor={swatchColor} />
       <Title text={title} />
+    </div>
+    <div>
       <Description text={description} />
     </div>
   </>

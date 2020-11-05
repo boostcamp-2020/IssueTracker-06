@@ -4,7 +4,7 @@ import FilterModal from './FilterModal';
 
 export default {
   component: FilterModal,
-  title: 'FilterModal',
+  title: 'Molecules/FilterModal',
 };
 export const Default = () => {
   const optionHeader = text('optionHeader', 'Filter Issues');

@@ -5,13 +5,11 @@ import FilterModal from '@components/molecules/FilterModal';
 interface Props {
   label: string;
   optionHeader: string;
-  options: string[];
+  options: string[] | Element[];
   Icon: FunctionComponent;
-  onClick?: () => void;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick: () => void;
   input?: string;
-  display: string;
-  type: string;
+  display: 'none' | 'display';
   keys: string[];
 }
 
@@ -52,7 +50,6 @@ const SearchFilter: FunctionComponent<Props> = ({
   Icon,
   onClick,
   display,
-  type,
   input,
   keys,
 }) => {
@@ -69,7 +66,6 @@ const SearchFilter: FunctionComponent<Props> = ({
         input={input}
         options={options}
         keys={keys}
-        type={type}
       />
     </>
   );
