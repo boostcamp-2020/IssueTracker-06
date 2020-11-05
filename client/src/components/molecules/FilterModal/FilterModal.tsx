@@ -1,50 +1,62 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
-import { Input, FilterInput } from '@components/atoms/Input';
+import Input from '@components/atoms/Input';
+import FilterModalButton from '@/components/molecules/FilterModal/FilterModalButton';
 
 interface Props {
   optionHeader: string;
   options: string[];
-  onClick?: () => void;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick: () => void;
   input?: string;
-  type: string;
   keys: string[];
-  display: string;
+  display: 'block' | 'none';
 }
 
-const StyledUl = styled.ul`
+interface StyledUlProps {
+  display: 'block' | 'none';
+}
+
+interface StyledLiProps {
+  input?: StringConstructor;
+}
+
+const StyledUl = styled.ul<StyledUlProps>`
   border-radius: 0.3rem;
   list-style: none;
   border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
   max-width: 300px;
   margin: 10px 0;
+  display: ${({ display }) => display};
 `;
 
-const StyledLi = styled.li`
+const StyledLi = styled.li<StyledLiProps>`
+  border-bottom: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
   & > h3 {
     font-weight: 600;
   }
 
-  & > input {
+  & > button {
     width: 100%;
     text-align: left;
   }
 
-  & > input,
+  & > button,
   & > h3 {
     color: ${({ theme }) => theme.palette.PRIMARY};
     font-size: 0.8rem;
     padding: 7px 16px;
-    border-bottom: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
   }
 
-  & > input:hover {
+  & > button:hover {
     background-color: ${({ theme }) => theme.palette.BG_COLOR02};
   }
 
-  & > input:focus {
+  & > button:focus {
     outline: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
   }
 `;
 
@@ -52,20 +64,19 @@ const SearchFilter: FunctionComponent<Props> = ({
   optionHeader,
   options,
   onClick,
-  type,
   input,
   display,
   keys,
 }) => {
   return (
-    <StyledUl style={{ display }}>
+    <StyledUl display={display}>
       <StyledLi>
         <h3>{optionHeader}</h3>
       </StyledLi>
-      {input ? <Input placeholder={input} type="text" /> : <></>}
+      {input && <Input placeholder={input} type="text" />}
       {options.map((option: string, i: number) => (
         <StyledLi key={keys[i]}>
-          <FilterInput type={type} content={option} onClick={onClick} />
+          <FilterModalButton content={option} onClick={onClick} />
         </StyledLi>
       ))}
     </StyledUl>
