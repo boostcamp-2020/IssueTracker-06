@@ -1,6 +1,6 @@
 import React from 'react';
 import { text } from '@storybook/addon-knobs';
-import { Reset } from '@components/atoms/Icons';
+import { Reset } from '@components/atoms/icons';
 import XButton from './XButton';
 
 export default {
@@ -8,10 +8,13 @@ export default {
   title: 'XButton',
 };
 export const Default = () => {
-  const value = text('value', 'Clear current search query, filters, and sorts');
+  const content = text(
+    'content',
+    'Clear current search query, filters, and sorts',
+  );
   const Icon = Reset;
-  const onClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onClick = () => {
     // 필터 초기화
   };
-  return <XButton Icon={Icon} value={value} onClick={onClick} />;
+  return <XButton Icon={Icon} content={content} onClick={onClick} />;
 };

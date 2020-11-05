@@ -3,28 +3,30 @@ import styled from '@themes/styled';
 
 interface Props {
   Icon: FunctionComponent;
-  value: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  content: string;
+  onClick: () => void;
 }
 
 const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
   color: ${({ theme }) => theme.palette.SECONDARY};
   text-decoration: none;
   border: none;
-  opacity: 1;
-
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
+
   & > svg {
-    width: 18px;
-    height: 18px;
+    width: 1rem;
+    height: 1rem;
     padding: 1px;
     margin-right: 3px;
     fill: ${({ theme }) => theme.palette.LIGHT};
-    background-color: ${({ theme }) => theme.palette.SECONDARY};
-    border-radius: 6px;
+    background-color: currentColor;
+    border-radius: 0.3rem;
     border: none;
   }
 
@@ -41,11 +43,11 @@ const StyledButton = styled.button`
   }
 `;
 
-const XButton: FunctionComponent<Props> = ({ Icon, value, onClick }) => {
+const XButton: FunctionComponent<Props> = ({ Icon, content, onClick }) => {
   return (
     <StyledButton onClick={onClick}>
       <Icon />
-      {value}
+      {content}
     </StyledButton>
   );
 };
