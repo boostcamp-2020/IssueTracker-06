@@ -136,6 +136,7 @@
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFw-9l-qPf">
                                 <rect key="frame" x="344" y="655.5" width="50" height="49"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="39U-r4-FoT"/>
                                     <constraint firstAttribute="height" constant="50" id="ITK-2M-Zox"/>
@@ -144,6 +145,11 @@
                                 <state key="normal">
                                     <imageReference key="backgroundImage" image="plus.circle.fill" catalog="system" symbolScale="default"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

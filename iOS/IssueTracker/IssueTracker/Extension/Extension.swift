@@ -9,7 +9,7 @@ import UIKit
 
 extension Array {
     subscript (safe index: Int) -> Element? {
-        return indices ~= index ? self[index] : nil
+        indices ~= index ? self[index] : nil
     }
 }
 
@@ -17,7 +17,7 @@ extension UIView {
     @IBInspectable
     var cornerRadius: CGFloat {
         get {
-            return layer.cornerRadius
+            layer.cornerRadius
         }
         set {
             layer.cornerRadius = newValue
