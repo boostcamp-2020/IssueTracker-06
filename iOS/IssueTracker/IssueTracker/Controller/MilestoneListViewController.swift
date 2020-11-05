@@ -10,12 +10,18 @@ import UIKit
 class MilestoneListViewController: UIViewController {
 
     @IBOutlet weak var milestoneCollectionView: UICollectionView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     private var milestones: Milestones?
     private var milestoneIssuesMap = [Milestone:Issues]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        removeNavigationBarUnderLine()
         configureMilestonesData()
+    }
+    
+    private func removeNavigationBarUnderLine() {
+        navigationBar.shadowImage = UIImage()
     }
     
     private func configureMilestonesData() {
@@ -24,15 +30,10 @@ class MilestoneListViewController: UIViewController {
             guard let data = self?.milestones else { return }
             self?.configureMilestoneCollectionView()
             
-            var requestCount = 0
             data.milestones.forEach { [weak self] milestone in
                 self?.configureIssuesData(milestoneName: milestone.name) { [weak self] issues in
                     self?.milestoneIssuesMap[milestone] = issues
-                    requestCount += 1
                     self?.milestoneCollectionView.reloadData()
-                    if requestCount == data.milestones.count {
-                        
-                    }
                 }
             }
         })
@@ -41,54 +42,68 @@ class MilestoneListViewController: UIViewController {
     private func configureMilestoneCollectionView() {
         milestoneCollectionView.delegate = self
         milestoneCollectionView.dataSource = self
-        milestoneCollectionView.register(UINib(nibName: "MilestoneListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MilestoneListCell")
+        registerNib()
+    }
+    
+    private func registerNib() {
+        let nib = UINib(nibName: Constant.milestoneListCollectionViewCell, bundle: nil)
+        milestoneCollectionView.register(nib, forCellWithReuseIdentifier: Constant.milestoneListCell)
     }
     
     private func configureIssuesData(milestoneName: String, completionHandler: ((Issues?) -> Void)? = nil) {
-        let name = "change test"
         let processedName = milestoneName.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
         MilestoneDataProvider().getIssues(name: processedName, successHandler: {
             completionHandler?($0)
         })
     }
-
 }
 
 extension MilestoneListViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let milestones = self.milestones else {
-            return 0
-        }
-        return milestones.milestones.count
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
+        milestones?.milestones.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = milestoneCollectionView.dequeueReusableCell(
-            withReuseIdentifier: "MilestoneListCell",
+            withReuseIdentifier: Constant.milestoneListCell,
             for: indexPath)
         guard let milestoneCell = cell as? MilestoneListCollectionViewCell,
               let milestone = milestones?.milestones[indexPath.row]
         else {
             return cell
         }
-        milestoneCell.setMilestone(milestone: milestone)
+        milestoneCell.configure(with: milestone)
         let issues = milestoneIssuesMap[milestone]
         milestoneCell.configure(with: issues)
         return cell
     }
-
-
 }
 
-extension MilestoneListViewController: UICollectionViewDelegate {
-    
-}
+extension MilestoneListViewController: UICollectionViewDelegate {}
 
 extension MilestoneListViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.view.bounds.width
-        let height = CGFloat(100)
+        let width = view.bounds.width
+        let height = CGFloat(Metric.cellHeight)
         return CGSize(width: width, height: height)
+    }
+}
+
+private extension MilestoneListViewController {
+    
+    enum Constant {
+        static let milestoneListCell: String = "MilestoneListCell"
+        static let milestoneListCollectionViewCell: String = "MilestoneListCollectionViewCell"
+    }
+    
+    enum Metric {
+        static let cellHeight: CGFloat = 100
     }
 }

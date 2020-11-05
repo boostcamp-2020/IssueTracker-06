@@ -71,13 +71,13 @@ final class IssueListCollectionViewDataSource: NSObject, UICollectionViewDataSou
 }
 
 private extension IssueListCollectionViewDataSource {
+    
     enum Constant {
         static let issueListCell: String = "IssueListCell"
         static let issueListCollectionViewCell: String = "IssueListCollectionViewCell"
     }
     
     enum Metric {
-        static let cellHeight: CGFloat = 100
         static let closeButtonWidth: CGFloat = 80
         static let deleteButtonWidth: CGFloat = 80
     }

@@ -47,6 +47,7 @@ class LabelViewController: UIViewController {
 extension LabelViewController: UICollectionViewDelegate {}
 
 extension LabelViewController: UICollectionViewDataSource {
+    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
@@ -72,6 +73,7 @@ extension LabelViewController: UICollectionViewDataSource {
 }
 
 extension LabelViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -81,6 +83,7 @@ extension LabelViewController: UICollectionViewDelegateFlowLayout {
 }
 
 private extension LabelViewController {
+    
     enum Constant {
         static let labelCell: String = "LabelCell"
         static let labelCollectionViewCell: String = "LabelCollectionViewCell"
