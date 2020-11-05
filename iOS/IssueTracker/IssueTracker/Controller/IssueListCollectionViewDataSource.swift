@@ -10,13 +10,13 @@ import UIKit
 final class IssueListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     private let collectionView: UICollectionView
-    private let data: [Issue]
+    private let data: Issues
     private let scrollEnabled: Bool
     private let checkboxEnabled: Bool
     
     init(
         collectionView: UICollectionView,
-        data: [Issue],
+        data: Issues,
         scrollEnabled: Bool = true,
         checkboxEnabled: Bool = false) {
         self.collectionView = collectionView
@@ -62,7 +62,7 @@ final class IssueListCollectionViewDataSource: NSObject, UICollectionViewDataSou
     private func configureIssueListCollectionViewCellData(
         _ cell: IssueListCollectionViewCell,
         at indexPath: IndexPath) {
-        let issue = MockupData.data[indexPath.row]
+        guard let issue = data[indexPath.row] else { return }
         cell.setIssue(issue)
     }
     

@@ -214,7 +214,7 @@
                 <outlet property="checkboxButton" destination="E5s-4K-wVR" id="cef-N8-poU"/>
                 <outlet property="descriptionLabel" destination="qQl-Om-rdg" id="qvX-GC-uXZ"/>
                 <outlet property="labelsStackView" destination="h9M-wR-YFC" id="6kN-Qs-yBc"/>
-                <outlet property="milestone" destination="thr-uq-gwl" id="Tbw-my-GTi"/>
+                <outlet property="milestoneView" destination="thr-uq-gwl" id="HDX-jM-sm5"/>
                 <outlet property="scrollView" destination="cVn-OL-dSA" id="Mlq-gp-hNI"/>
                 <outlet property="titleLabel" destination="jdY-Lp-RMh" id="CVN-7G-39C"/>
                 <outlet property="widthConstraint" destination="Xzc-pj-6Qe" id="6aD-17-MAd"/>

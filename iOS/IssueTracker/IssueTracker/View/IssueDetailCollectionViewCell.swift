@@ -19,7 +19,13 @@ final class IssueDetailCollectionViewCell: UICollectionViewCell {
     
     func configureCell(with comment: Comment) {
         id.text = comment.user.name
-        writingTime.text = comment.timestamp
+        writingTime.text = comment.createdAt ?? Constant.blank
         commentLabel.text = comment.content
+    }
+}
+
+private extension IssueDetailCollectionViewCell {
+    enum Constant {
+        static let blank: String = ""
     }
 }

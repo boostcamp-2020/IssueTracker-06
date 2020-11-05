@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct User {
-    let image: String
+struct User: Codable {
+    
+    let profile: String
     let name: String
+    let email: String
+    let id: Int
 }
