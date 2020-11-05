@@ -13,9 +13,13 @@ struct Milestones: Codable, HTTPDataProviding {
     static let key: String = "milestones"
     
     let milestones: [Milestone]
+    
+    init(milestones: [Milestone]) {
+        self.milestones = milestones
+    }
 }
 
-struct Milestone: Codable, HTTPDataProviding {
+struct Milestone: Codable, HTTPDataProviding, Hashable {
     
     typealias DataType = Milestone
     static var key: String = "milestone"

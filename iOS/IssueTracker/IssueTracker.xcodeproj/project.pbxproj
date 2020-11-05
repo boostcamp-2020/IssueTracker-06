@@ -38,6 +38,10 @@
 		C80381862547B353008EEF6E /* IssueTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381852547B353008EEF6E /* IssueTrackerTests.swift */; };
 		C80381912547B353008EEF6E /* IssueTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381902547B353008EEF6E /* IssueTrackerUITests.swift */; };
 		C80381B82547D4A3008EEF6E /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381B72547D4A3008EEF6E /* LabelView.swift */; };
+		C84433E62553C30200A3CE69 /* MilestoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */; };
+		C84433EB2553C47000A3CE69 /* MilestoneDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84433EA2553C47000A3CE69 /* MilestoneDataProvider.swift */; };
+		C84433F12553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84433EF2553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift */; };
+		C84433F22553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84433F02553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib */; };
 		C854E8242548151800011D26 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E8232548151800011D26 /* Issue.swift */; };
 		C854E829254816C600011D26 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E828254816C600011D26 /* Label.swift */; };
 		C854E83C25481FF700011D26 /* LabelsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E83B25481FF700011D26 /* LabelsStackView.swift */; };
@@ -99,6 +103,10 @@
 		C80381902547B353008EEF6E /* IssueTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerUITests.swift; sourceTree = "<group>"; };
 		C80381922547B353008EEF6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C80381B72547D4A3008EEF6E /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneListViewController.swift; sourceTree = "<group>"; };
+		C84433EA2553C47000A3CE69 /* MilestoneDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneDataProvider.swift; sourceTree = "<group>"; };
+		C84433EF2553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneListCollectionViewCell.swift; sourceTree = "<group>"; };
+		C84433F02553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MilestoneListCollectionViewCell.xib; sourceTree = "<group>"; };
 		C854E8232548151800011D26 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		C854E828254816C600011D26 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		C854E83B25481FF700011D26 /* LabelsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStackView.swift; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 				199109FD2552C596009B3C58 /* IssueListDataProvider.swift */,
 				19910A022552D0C0009B3C58 /* DetailIssueDataProvider.swift */,
 				19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */,
+				C84433EA2553C47000A3CE69 /* MilestoneDataProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,6 +272,8 @@
 				1996E4FC254ABB530052E659 /* AssigneeStackView.swift */,
 				19910A072553D43F009B3C58 /* LabelCollectionViewCell.swift */,
 				19910A082553D43F009B3C58 /* LabelCollectionViewCell.xib */,
+				C84433EF2553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift */,
+				C84433F02553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -277,6 +288,7 @@
 				1993449B254FF626000D0D5E /* IssueListEditViewController.swift */,
 				199344A0254FF743000D0D5E /* IssueListCollectionViewDataSource.swift */,
 				19910A162553DB43009B3C58 /* LabelViewController.swift */,
+				C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -394,6 +406,7 @@
 				19934487254FD48B000D0D5E /* IssueListCollectionViewCell.xib in Resources */,
 				C80381782547B352008EEF6E /* Assets.xcassets in Resources */,
 				19910A0A2553D43F009B3C58 /* LabelCollectionViewCell.xib in Resources */,
+				C84433F22553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,8 +434,10 @@
 				19ABABF82549511D00F4939A /* IssueDetailCollectionViewHeader.swift in Sources */,
 				1993449C254FF627000D0D5E /* IssueListEditViewController.swift in Sources */,
 				C80381732547B34F008EEF6E /* IssueListViewController.swift in Sources */,
+				C84433EB2553C47000A3CE69 /* MilestoneDataProvider.swift in Sources */,
 				C8FA4B08254F9F6D00630263 /* FilterSelectTableViewController.swift in Sources */,
 				19B3A15925516C4900754C2E /* Milestone.swift in Sources */,
+				C84433E62553C30200A3CE69 /* MilestoneListViewController.swift in Sources */,
 				19B3A15D25516C4C00754C2E /* User.swift in Sources */,
 				C854E83C25481FF700011D26 /* LabelsStackView.swift in Sources */,
 				C8F0F43D254DD6B70050B6C0 /* Comment.swift in Sources */,
@@ -442,6 +457,7 @@
 				1996E4F8254ABAA30052E659 /* BottomDetailView.swift in Sources */,
 				19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */,
 				19910A032552D0C0009B3C58 /* DetailIssueDataProvider.swift in Sources */,
+				C84433F12553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift in Sources */,
 				C80381712547B34F008EEF6E /* SceneDelegate.swift in Sources */,
 				C854E829254816C600011D26 /* Label.swift in Sources */,
 				C854E8242548151800011D26 /* Issue.swift in Sources */,
