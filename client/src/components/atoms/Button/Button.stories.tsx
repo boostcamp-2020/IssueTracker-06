@@ -3,6 +3,7 @@ import { text } from '@storybook/addon-knobs';
 
 import IconTag from '@components/atoms/icons/IconTag';
 import IconText from '@components/molecules/TextWithIcon';
+import BoldText from '@components/atoms/BoldText';
 import Button from './index';
 
 export default {
@@ -27,7 +28,7 @@ export const Error = () => {
 
   return (
     <Button type="error" disabled={!!disabled}>
-      <IconText icon={IconTag} text={content} />
+      <BoldText value={content} />
     </Button>
   );
 };
