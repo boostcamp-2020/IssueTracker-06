@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import ColorSwatch from '@components/atoms/filterItem/ColorSwatch';
-import Description from '@components/atoms/filterItem/Description';
-import Title from '@components/atoms/filterItem/Title';
+import ColorSwatch from '@/components/atoms/selectMenuItem/ColorSwatch';
+import Description from '@/components/atoms/selectMenuItem/Description';
+import Title from '@/components/atoms/selectMenuItem/Title';
+import StyledTitleWrapper from '../selectMenuItemStyle';
 
 interface Props {
   swatchColor: string;
@@ -15,12 +16,10 @@ const FilterItemLabel: FunctionComponent<Props> = ({
   description,
 }) => (
   <>
-    <div
-      style={{ display: 'flex', alignItems: 'center', marginBottom: '0.2rem' }}
-    >
+    <StyledTitleWrapper>
       <ColorSwatch bgColor={swatchColor} />
       <Title text={title} />
-    </div>
+    </StyledTitleWrapper>
     <div>
       <Description text={description} />
     </div>

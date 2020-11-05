@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 import Input from '@components/atoms/Input';
-import FilterModalButton from '@/components/molecules/FilterModal/FilterModalButton';
+import SelectMenuItem from '@components/molecules/SelectMenuModal/SelectMenuItem';
 
 interface Props {
   optionHeader: string;
@@ -76,7 +76,7 @@ const SearchFilter: FunctionComponent<Props> = ({
       {input && <Input placeholder={input} type="text" />}
       {options.map((option: string, i: number) => (
         <StyledLi key={keys[i]}>
-          <FilterModalButton content={option} onClick={onClick} />
+          <SelectMenuItem content={option} onClick={onClick} />
         </StyledLi>
       ))}
     </StyledUl>

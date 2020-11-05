@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import Title from '@components/atoms/filterItem/Title';
-import Img from '@components/atoms/filterItem/Image';
-import StyledTitleWrapper from '../filterItemStyle';
+import Title from '@/components/atoms/selectMenuItem/Title';
+import Img from '@/components/atoms/selectMenuItem/Image';
+import StyledTitleWrapper from '../selectMenuItemStyle';
 
 interface Props {
   title: string;

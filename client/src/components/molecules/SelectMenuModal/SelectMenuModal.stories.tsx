@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { text } from '@storybook/addon-knobs';
-import FilterModal from './FilterModal';
+import FilterModal from './SelectMenuModal';
 
 export default {
   component: FilterModal,

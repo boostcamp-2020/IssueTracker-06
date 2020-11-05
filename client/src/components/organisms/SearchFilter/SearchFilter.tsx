@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
-import FilterModal from '@components/molecules/FilterModal';
+import FilterModal from '@components/molecules/SelectMenuModal';
 
 interface Props {
   label: string;

@@ -1,22 +1,24 @@
 import React from 'react';
 import { text } from '@storybook/addon-knobs';
-import FilterItemLabel from './FilterItemLabel';
+import SelectMenuItemLabel from './SelectMenuItemLabel';
 
 export default {
-  title: 'Molecules/FilterItemLabel',
-  component: FilterItemLabel,
+  title: 'Molecules/SelectMenuItemLabel',
+  component: SelectMenuItemLabel,
 };
 
 export const Default = () => {
   const swatchColor = text('swatch color', '#eee');
   const title = text('title', 'bug');
   const description = text('description', "Something isn't working");
+  const onClick = () => {};
 
   return (
-    <FilterItemLabel
+    <SelectMenuItemLabel
       swatchColor={swatchColor}
       title={title}
       description={description}
+      onClick={onClick}
     />
   );
 };

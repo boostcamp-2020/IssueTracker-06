@@ -18,8 +18,8 @@ const StyledButton = styled.button`
   }
 `;
 
-const FilterInput: FunctionComponent<Props> = ({ content, onClick }) => {
+const SelectMenuItem: FunctionComponent<Props> = ({ content, onClick }) => {
   return <StyledButton onClick={onClick}>{content}</StyledButton>;
 };
 
-export default FilterInput;
+export default SelectMenuItem;
