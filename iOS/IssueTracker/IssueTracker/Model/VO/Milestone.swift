@@ -19,7 +19,7 @@ struct Milestones: Codable, HTTPDataProviding {
     }
 }
 
-struct Milestone: Codable, HTTPDataProviding {
+struct Milestone: Codable, HTTPDataProviding, Hashable {
     
     typealias DataType = Milestone
     static var key: String = "milestone"

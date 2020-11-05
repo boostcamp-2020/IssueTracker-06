@@ -52,4 +52,14 @@ class MilestoneListCollectionViewCell: UICollectionViewCell {
         milestoneLabelView.text = milestone.name
         milestoneLabelView.sizeToFit()
     }
+    
+    func configure(with issues: Issues?) {
+        let openCount = issues?.openCount ?? 0
+        let closedCount = issues?.closedCount ?? 0
+        openIssue.text = "open \(openCount)"
+        closedIssue.text = "closed \(closedCount)"
+        
+        let percentage = openCount + closedCount == 0 ? 0 : Int((Float(closedCount) / Float(openCount + closedCount)) * 100)
+        percent.text = "\(percentage)%"
+    }
 }

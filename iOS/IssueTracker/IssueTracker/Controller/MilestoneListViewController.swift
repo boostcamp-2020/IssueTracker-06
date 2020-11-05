@@ -11,12 +11,10 @@ class MilestoneListViewController: UIViewController {
 
     @IBOutlet weak var milestoneCollectionView: UICollectionView!
     private var milestones: Milestones?
+    private var milestoneIssuesMap = [Milestone:Issues]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        milestoneCollectionView.delegate = self
-        milestoneCollectionView.dataSource = self
-        milestoneCollectionView.register(UINib(nibName: "MilestoneListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MilestoneListCell")
         configureMilestonesData()
     }
     
@@ -24,8 +22,33 @@ class MilestoneListViewController: UIViewController {
         MilestoneDataProvider().get(successHandler: { [weak self] in
             self?.milestones = $0
             guard let data = self?.milestones else { return }
-            print(data)
-            self?.milestoneCollectionView.reloadData()
+            self?.configureMilestoneCollectionView()
+            
+            var requestCount = 0
+            data.milestones.forEach { [weak self] milestone in
+                self?.configureIssuesData(milestoneName: milestone.name) { [weak self] issues in
+                    self?.milestoneIssuesMap[milestone] = issues
+                    requestCount += 1
+                    self?.milestoneCollectionView.reloadData()
+                    if requestCount == data.milestones.count {
+                        
+                    }
+                }
+            }
+        })
+    }
+    
+    private func configureMilestoneCollectionView() {
+        milestoneCollectionView.delegate = self
+        milestoneCollectionView.dataSource = self
+        milestoneCollectionView.register(UINib(nibName: "MilestoneListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MilestoneListCell")
+    }
+    
+    private func configureIssuesData(milestoneName: String, completionHandler: ((Issues?) -> Void)? = nil) {
+        let name = "change test"
+        let processedName = milestoneName.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        MilestoneDataProvider().getIssues(name: processedName, successHandler: {
+            completionHandler?($0)
         })
     }
 
@@ -44,11 +67,14 @@ extension MilestoneListViewController: UICollectionViewDataSource {
         let cell = milestoneCollectionView.dequeueReusableCell(
             withReuseIdentifier: "MilestoneListCell",
             for: indexPath)
-        if let milestoneCell = cell as? MilestoneListCollectionViewCell,
-           let milestone = milestones?.milestones[indexPath.row] {
-            milestoneCell.setMilestone(milestone: milestone)
+        guard let milestoneCell = cell as? MilestoneListCollectionViewCell,
+              let milestone = milestones?.milestones[indexPath.row]
+        else {
+            return cell
         }
-        
+        milestoneCell.setMilestone(milestone: milestone)
+        let issues = milestoneIssuesMap[milestone]
+        milestoneCell.configure(with: issues)
         return cell
     }
 

@@ -18,6 +18,18 @@ struct Issues: HTTPDataProviding, Codable {
         issues.count
     }
     
+    var openCount: Int {
+        issues.filter {
+            $0.isOpen == 1
+        }.count
+    }
+    
+    var closedCount: Int {
+        issues.filter {
+            $0.isOpen == 0
+        }.count
+    }
+    
     init() {
         issues = []
     }
