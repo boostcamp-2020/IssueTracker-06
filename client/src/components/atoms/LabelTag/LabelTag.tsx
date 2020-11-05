@@ -1,14 +1,20 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
-const StyledLabelTag = styled.span`
+interface StyledProps {
+  bgColor: string;
+}
+
+const StyledLabelTag = styled.span<StyledProps>`
   display: inline-block;
-  padding: 0 7px;
-  font-size: 12px;
+  vertical-align: middle;
+  padding: 0.05rem 0.8rem;
+  font-size: 0.7rem;
   font-weight: 500;
-  border-radius: 1rem;
-  color: #000;
-  line-height: 18px;
+  border-radius: 0.7rem;
+  line-height: 20px;
+  color: ${({ bgColor }) =>
+    parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2 ? '#000' : '#fff'};
 `;
 
 interface Props {
@@ -17,7 +23,9 @@ interface Props {
 }
 
 const LabelTag: FunctionComponent<Props> = ({ text, bgColor }) => (
-  <StyledLabelTag style={{ backgroundColor: bgColor }}>{text}</StyledLabelTag>
+  <StyledLabelTag style={{ backgroundColor: bgColor }} bgColor={bgColor}>
+    {text}
+  </StyledLabelTag>
 );
 
 export default LabelTag;

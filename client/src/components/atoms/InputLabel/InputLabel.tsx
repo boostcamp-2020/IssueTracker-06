@@ -2,8 +2,10 @@ import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
 const StyledInputLabel = styled.span`
-  font-size: 1rem;
+  display: block;
+  font-size: 0.9rem;
   font-weight: 600;
+  margin-bottom: 0.7rem;
 `;
 
 interface Props {
