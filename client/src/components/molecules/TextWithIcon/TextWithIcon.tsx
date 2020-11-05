@@ -8,6 +8,8 @@ interface Props {
   icon: FunctionComponent;
   text: string;
   align?: AlignType;
+  onClick?: () => void;
+  className?: string;
 }
 
 interface StyledProps {
@@ -31,8 +33,10 @@ const TextWithIcon: FunctionComponent<Props> = ({
   icon: Icon,
   text,
   align = 'left',
+  onClick,
+  className = '',
 }) => (
-  <StyledTextWithIcon alignIcon={align}>
+  <StyledTextWithIcon alignIcon={align} onClick={onClick} className={className}>
     {align === 'left' ? (
       <>
         <Icon />
