@@ -14,6 +14,18 @@ const theme = {
     LIGHT_BLUE01: '#f1f8ff',
     LIGHT_BLUE02: 'rgba(3,102,214,0.2)',
   },
+  commonStyle: {
+    input: `
+    background-color: #fafbfc;
+    border-radius: .5rem;
+    border: 1px solid #f6f8fa;
+    &:focus{
+      background-color: #ffffff;
+      border-color: #0366d6;
+      box-shawdow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+    }
+    `,
+  },
 };
 
 export default theme;
