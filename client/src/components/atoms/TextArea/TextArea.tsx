@@ -11,6 +11,10 @@ const StyledTextarea = styled.textarea<StyledProps>`
   resize: vertical;
   height: ${({ textAreaHeight }) => textAreaHeight};
   width: ${({ textAreaWidth }) => textAreaWidth};
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 interface Props {
