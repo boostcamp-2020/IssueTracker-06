@@ -45,6 +45,7 @@ final class IssueDetailViewController: UIViewController {
 
     private func configureBottomViewLayout() {
         bottomDetailView.frame.origin.y = view.frame.height - Metric.bottomDetailViewHeight
+        bottomDetailView.frame.size = CGSize(width: view.frame.width, height: view.frame.height - 10)
         bottomDetailView.addGestureRecognizer(swipe(direction: .up, action: #selector(swipeUp)))
         bottomDetailView.addGestureRecognizer(swipe(direction: .down, action: #selector(swipeDown)))
     }
