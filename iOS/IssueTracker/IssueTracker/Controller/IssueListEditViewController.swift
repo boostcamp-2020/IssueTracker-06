@@ -53,6 +53,7 @@ final class IssueListEditViewController: UIViewController {
     @IBAction func selectAllButtonTouched(_ sender: UIBarButtonItem) {
         guard let issues = issues else { return }
         selectedIssues = issues
+        selectCountLabel.text = selectedIssues.count.selectedCountText
         issueListCollectionView.reloadData()
     }
 
@@ -66,6 +67,7 @@ final class IssueListEditViewController: UIViewController {
               let issue = issues?[indexPath.row]
         else { return }
         switchIssueSelected(issue: issue)
+        selectCountLabel.text = selectedIssues.count.selectedCountText
         issueListCollectionView.reloadData()
     }
 }
@@ -101,5 +103,12 @@ private extension IssueListEditViewController {
     
     enum Metric {
         static let cellHeight: CGFloat = 100
+    }
+}
+
+private extension Int {
+    
+    var selectedCountText: String {
+        "\(self)개 선택"
     }
 }
