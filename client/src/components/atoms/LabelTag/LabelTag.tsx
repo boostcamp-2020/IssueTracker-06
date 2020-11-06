@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
+import getTextColorByBGColor from '@lib/getTextColorByBGColor';
 
 interface StyledProps {
   bgColor: string;
@@ -13,8 +14,7 @@ const StyledLabelTag = styled.span<StyledProps>`
   font-weight: 500;
   border-radius: 0.7rem;
   line-height: 20px;
-  color: ${({ bgColor }) =>
-    parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2 ? '#000' : '#fff'};
+  color: ${({ bgColor }) => getTextColorByBGColor(bgColor)};
 `;
 
 interface Props {
