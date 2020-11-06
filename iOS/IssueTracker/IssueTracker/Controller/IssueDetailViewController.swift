@@ -7,49 +7,65 @@
 
 import UIKit
 
-class IssueDetailViewController: UIViewController {
+final class IssueDetailViewController: UIViewController {
 
     @IBOutlet private weak var issueDetailCollectionView: UICollectionView!
     @IBOutlet private weak var bottomDetailView: BottomDetailView!
+    private var issueId: Int?
+    private var issue: DetailIssue?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        issueDetailCollectionView.delegate = self
-        issueDetailCollectionView.dataSource = self
-        configurebottomViewData()
+        configureIssueData()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureBottomViewLayout()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
     
+    private func configureIssueData() {
+        guard let id = issueId else { return }
+        DetailIssueDataProvider().get(id: id, successHandler: { [weak self] in
+            guard let issue = $0 else { return }
+            self?.issue = issue
+            self?.configureIssueDetailCollectionView()
+            self?.configureBottomViewData()
+        })
+    }
+    
+    private func configureIssueDetailCollectionView() {
+        issueDetailCollectionView.delegate = self
+        issueDetailCollectionView.dataSource = self
+    }
+
     private func configureBottomViewLayout() {
         bottomDetailView.frame.origin.y = view.frame.height - Metric.bottomDetailViewHeight
-        configurebottomViewSwipe(direction: .up, action: #selector(swipeUp))
-        configurebottomViewSwipe(direction: .down, action: #selector(swipeDown))
+        bottomDetailView.frame.size = CGSize(width: view.frame.width, height: view.frame.height - 10)
+        bottomDetailView.addGestureRecognizer(swipe(direction: .up, action: #selector(swipeUp)))
+        bottomDetailView.addGestureRecognizer(swipe(direction: .down, action: #selector(swipeDown)))
     }
-    
-    private func configurebottomViewData() {
-        let issue = MockupData.detailIssue
+
+    private func configureBottomViewData() {
+        guard let issue = issue else { return }
         bottomDetailView.configureView(issue: issue)
     }
-    
-    private func configurebottomViewSwipe(
+
+    private func swipe(
         direction: UISwipeGestureRecognizer.Direction,
-        action: Selector) {
+        action: Selector) -> UISwipeGestureRecognizer {
         let swipe = UISwipeGestureRecognizer(
             target: self,
             action: action
         )
         swipe.direction = direction
-        bottomDetailView.addGestureRecognizer(swipe)
+        return swipe
     }
-    
+
     @objc private func swipeUp() {
         UIView.animate(withDuration: AnimationDuration.swipeUp, animations: { [weak self] in
             guard let currentViewHeight = self?.view.frame.height,
@@ -58,7 +74,7 @@ class IssueDetailViewController: UIViewController {
             self?.bottomDetailView.frame.origin.y = nextY
         })
     }
-    
+
     @objc private func swipeDown() {
         UIView.animate(withDuration: AnimationDuration.swipeDown, animations: { [weak self] in
             guard let currentViewHeight = self?.view.frame.height else { return }
@@ -74,44 +90,60 @@ extension IssueDetailViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        MockupData.detailIssue.comments.count
+        issue?.comments.count ?? 0
     }
-    
+
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = issueDetailCollectionView.dequeueReusableCell(
+        let cell = issueDetailCollectionView.dequeueReusableCell(
             withReuseIdentifier: Constant.issueDetailCell,
-            for: indexPath
-        ) as? IssueDetailCollectionViewCell else { return UICollectionViewCell() }
+            for: indexPath)
         
-        let comment = MockupData.detailIssue.comments[indexPath.row]
-        cell.configureCell(with: comment)
-        cell.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
+        guard let issueDetailCollectionViewCell = cell as? IssueDetailCollectionViewCell,
+              let comment = issue?.comments[indexPath.row]
+        else {
+            return cell
+        }
+        issueDetailCollectionViewCell.configureCell(with: comment)
+        NSLayoutConstraint.activate([
+            issueDetailCollectionViewCell.widthAnchor.constraint(equalToConstant: view.bounds.width)
+        ])
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constant.issueDetailHeader, for: indexPath) as? IssueDetailCollectionViewHeader
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: Constant.issueDetailHeader,
+            for: indexPath)
+        
+        guard let issueDetailCollectionViewHeader = header as? IssueDetailCollectionViewHeader,
+              let issue = issue
         else {
-            return UICollectionReusableView()
+            return header
         }
-        let issue = MockupData.detailIssue
-        header.configureHeader(issue: issue)
+        issueDetailCollectionViewHeader.configureHeader(issue: issue)
         return header
     }
 }
 
 extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let commentText = MockupData.detailIssue.comments[indexPath.row].content
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let commentText = issue?.comments[indexPath.row].content ?? Constant.blank
         let height = fitLabelHeight(
             text: commentText,
             width: view.bounds.width - Metric.detailCellCommentLabelWidthMargin)
         return CGSize(width: view.bounds.width, height: view.bounds.height + height)
     }
-    
+
     private func fitLabelHeight(text: String, width: CGFloat) -> CGFloat {
         let dummyLabel = UILabel()
         dummyLabel.numberOfLines = 0
@@ -122,8 +154,8 @@ extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension IssueDetailViewController: IssueListViewControllerDelegate {
-    func issueId(_ id: String) {
-        
+    func issueId(_ id: Int) {
+        issueId = id
     }
 }
 
@@ -131,8 +163,9 @@ private extension IssueDetailViewController {
     enum Constant {
         static let issueDetailCell: String = "IssueDetailCell"
         static let issueDetailHeader: String = "IssueDetailHeader"
+        static let blank: String = ""
     }
-    
+
     enum Metric {
         static let cellHeight: CGFloat = 100
         static let closeButtonWidth: CGFloat = 80
@@ -140,7 +173,7 @@ private extension IssueDetailViewController {
         static let bottomDetailViewHeight: CGFloat = 100
         static let detailCellCommentLabelWidthMargin: CGFloat = 30
     }
-    
+
     enum AnimationDuration {
         static let swipeUp: Double = 0.5
         static let swipeDown: Double = 0.5

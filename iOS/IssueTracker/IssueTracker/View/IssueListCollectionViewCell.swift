@@ -2,35 +2,67 @@
 //  IssueListCollectionViewCell.swift
 //  IssueTracker
 //
-//  Created by 박태희 on 2020/10/27.
+//  Created by eunjeong lee on 2020/11/02.
 //
 
 import UIKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
+final class IssueListCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var milestone: LabelView!
-    @IBOutlet weak var labelsStackView: LabelsStackView!
+    @IBOutlet private weak var widthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var milestoneView: LabelView!
+    @IBOutlet private weak var labelsStackView: LabelsStackView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet weak var checkboxButton: UIButton!
     
-    func setIssue(_ issue: Issue) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureWidth()
+    }
+    
+    func disableCheckbox() {
+        frame.origin.x = -55
+        frame.size.width += 55
+    }
+    
+    func disableScroll() {
+        scrollView.isScrollEnabled = false
+    }
+    
+    func configureCell(with issue: Issue) {
         titleLabel.text = issue.title
-        descriptionLabel.text = issue.description
-        milestone.text = issue.milestone
-        setLabelsStackView(labels: issue.labels)
+        descriptionLabel.text = issue.content
+        configureLabelsStackView(labels: issue.labels)
+        guard let milestone = issue.milestone else {
+            milestoneView.isHidden = true
+            return
+        }
+        milestoneView.text = milestone.name
     }
     
-    func setWidth(_ width: CGFloat) {
-        widthConstraint.constant = width
+    func updateCheckboxState(isSelected: Bool) {
+        checkboxButton.isSelected = isSelected
     }
     
-    private func setLabelsStackView(labels: [Label]) {
+    private func configureWidth() {
+        widthConstraint.constant = UIScreen.main.bounds.width
+            + Metric.closeButtonWidth + Metric.deleteButtonWidth
+    }
+
+    private func configureLabelsStackView(labels: [Label]) {
         labelsStackView.clear()
         labels.forEach {
             let label = LabelView.create(text: $0.name, color: $0.color.color)
             labelsStackView.add(label: label)
         }
+    }
+}
+
+private extension IssueListCollectionViewCell {
+    enum Metric {
+        static let closeButtonWidth: CGFloat = 80
+        static let deleteButtonWidth: CGFloat = 80
     }
 }

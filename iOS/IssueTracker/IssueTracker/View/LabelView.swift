@@ -23,11 +23,7 @@ final class LabelView: UILabel {
         label.font = label.font.withSize(Metric.fontSize)
         return label
     }
-    
-    private var padding: UIEdgeInsets {
-        UIEdgeInsets(top: paddingTop, left: paddingLeft, bottom: paddingBottom, right: paddingRight)
-    }
-    
+
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: padding))
     }
@@ -40,6 +36,10 @@ final class LabelView: UILabel {
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         let superSizeThatFits = super.sizeThatFits(size)
         return self.size(with: padding, current: superSizeThatFits)
+    }
+    
+    private var padding: UIEdgeInsets {
+        UIEdgeInsets(top: paddingTop, left: paddingLeft, bottom: paddingBottom, right: paddingRight)
     }
     
     private func size(with padding: UIEdgeInsets, current size: CGSize) -> CGSize {

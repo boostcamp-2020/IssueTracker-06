@@ -7,15 +7,32 @@
 
 import UIKit
 
+extension Array {
+    subscript (safe index: Int) -> Element? {
+        indices ~= index ? self[index] : nil
+    }
+}
+
 extension UIView {
     @IBInspectable
     var cornerRadius: CGFloat {
         get {
-            return layer.cornerRadius
+            layer.cornerRadius
         }
         set {
             layer.cornerRadius = newValue
         }
+    }
+}
+
+extension UIView {
+    func configureTapGesture(target: Any?, action: Selector? = nil) {
+        let tapGestureRecognizer =
+            UITapGestureRecognizer(target: target, action: action)
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.isEnabled = true
+        tapGestureRecognizer.cancelsTouchesInView = false
+        addGestureRecognizer(tapGestureRecognizer)
     }
 }
 

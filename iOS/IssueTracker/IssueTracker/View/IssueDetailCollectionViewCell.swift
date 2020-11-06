@@ -7,19 +7,25 @@
 
 import UIKit
 
-class IssueDetailCollectionViewCell: UICollectionViewCell {
+final class IssueDetailCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var cellView: UIView!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var id: UILabel!
-    @IBOutlet weak var writingTime: UILabel!
-    @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var emojiButton: UIButton!
-    @IBOutlet weak var optionButton: UIButton!
+    @IBOutlet private weak var cellView: UIView!
+    @IBOutlet private weak var userImage: UIImageView!
+    @IBOutlet private weak var id: UILabel!
+    @IBOutlet private weak var writingTime: UILabel!
+    @IBOutlet private weak var commentLabel: UILabel!
+    @IBOutlet private weak var emojiButton: UIButton!
+    @IBOutlet private weak var optionButton: UIButton!
     
     func configureCell(with comment: Comment) {
         id.text = comment.user.name
-        writingTime.text = comment.timestamp
+        writingTime.text = comment.createdAt ?? Constant.blank
         commentLabel.text = comment.content
+    }
+}
+
+private extension IssueDetailCollectionViewCell {
+    enum Constant {
+        static let blank: String = ""
     }
 }
