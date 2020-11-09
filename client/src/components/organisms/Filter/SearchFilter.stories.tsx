@@ -11,6 +11,7 @@ export default {
 };
 export const Default = () => {
   const [display, setDisplay] = useState('none');
+  const type = text('type', 'default');
   const label = text('label', 'filter');
   const optionHeader = text('optionHeader', 'Filter Issues');
   const options = [
@@ -28,6 +29,7 @@ export const Default = () => {
   const keys = ['search1', 'search2', 'search3', 'search4', 'search5'];
   return (
     <SearchFilter
+      type={type}
       label={label}
       optionHeader={optionHeader}
       options={options}
@@ -41,6 +43,7 @@ export const Default = () => {
 
 export const Label = () => {
   const [display, setDisplay] = useState('none');
+  const type = text('type', 'transparent');
   const label = text('label', 'Label');
   const optionHeader = text('optionHeader', 'Filter by label');
   const options = [
@@ -74,6 +77,7 @@ export const Label = () => {
   const input = 'Filter labels';
   return (
     <SearchFilter
+      type={type}
       label={label}
       optionHeader={optionHeader}
       options={options}
@@ -88,6 +92,7 @@ export const Label = () => {
 
 export const User = () => {
   const [display, setDisplay] = useState('none');
+  const type = text('type', 'transparent');
   const label = text('label', 'Author');
   const optionHeader = text('optionHeader', 'Filter by Author');
   const options = [
@@ -131,6 +136,7 @@ export const User = () => {
   const input = 'Filter users';
   return (
     <SearchFilter
+      type={type}
       label={label}
       optionHeader={optionHeader}
       options={options}

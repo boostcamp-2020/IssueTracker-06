@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Dropdown, Reset, Warning } from '.';
+
+import { Dropdown, Reset, Warning, Change } from '.';
 import IconMilestone from './IconMilestone';
 import IconSearch from './IconSearch';
 import IconTag from './IconTag';
@@ -34,6 +35,7 @@ export const Default = () => {
       <IconTag />
       <IssueOpened />
       <IssueClosed />
+      <Change />
     </StyledIcons>
   );
 };
