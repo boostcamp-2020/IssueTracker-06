@@ -10,9 +10,9 @@ import Foundation
 final class LabelAddViewDataSource: AddViewDataSource {
     
     private let addView = AddView()
-    private let colorInputView = ColorInputView(propertyName: "색상")
-    private let titleInputView = TextFieldInputView(propertyName: "제목")
-    private let descriptionInputView = TextViewInputView(propertyName: "설명")
+    private let colorInputView = ColorInputView(propertyName: Label.Key.color)
+    private let titleInputView = TextFieldInputView(propertyName: Label.Key.title)
+    private let descriptionInputView = TextViewInputView(propertyName: Label.Key.description)
     
     private lazy var inputViews: [ContentInputView] = {
         [titleInputView, descriptionInputView, colorInputView]

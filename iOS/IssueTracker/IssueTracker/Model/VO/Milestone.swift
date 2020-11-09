@@ -19,16 +19,29 @@ struct Milestones: Codable, HTTPDataProviding {
     }
 }
 
-struct Milestone: Codable, HTTPDataProviding, Hashable {
+struct Milestone: Codable, HTTPDataProviding {
     
     typealias DataType = Milestone
     static var key: String = "milestone"
     
+    private var issues: Issues?
     let date: String?
     let description: String
     let id: Int
     let isOpen: Int
     let name: String
+    
+    init(date: String, description: String, id: Int, isOpen: Int, name: String) {
+        self.description = description
+        self.id = id
+        self.isOpen = isOpen
+        self.name = name
+        self.date = date != Constant.blank ? date : nil
+    }
+    
+    mutating func issues(_ issues: Issues) {
+        self.issues = issues
+    }
     
     private enum CodingKeys: String, CodingKey {
         case date
@@ -36,5 +49,18 @@ struct Milestone: Codable, HTTPDataProviding, Hashable {
         case id
         case name
         case isOpen = "is_open"
+    }
+}
+
+extension Milestone {
+    
+    enum Key {
+        static let title = "제목"
+        static let completeDate = "완료 날짜"
+        static let description = "설명"
+    }
+    
+    enum Constant {
+        static let blank = ""
     }
 }

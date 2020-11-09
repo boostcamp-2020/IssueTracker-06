@@ -41,3 +41,16 @@ struct Label: Codable, HTTPDataProviding {
     let color: String
     let description: String?
 }
+
+extension Label {
+    
+    enum Key {
+        static let title = "제목"
+        static let color = "색상"
+        static let description = "설명"
+    }
+    
+    enum Constant {
+        static let blank = ""
+    }
+}
