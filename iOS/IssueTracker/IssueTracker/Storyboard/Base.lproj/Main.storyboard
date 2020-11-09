@@ -454,6 +454,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <state key="normal" title="댓글 추가"/>
+                                        <connections>
+                                            <segue destination="Nbt-pv-2fP" kind="show" id="YXK-EH-5XW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gub-as-6q9">
                                         <rect key="frame" x="319" y="28" width="40" height="40"/>
@@ -741,6 +744,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IjN-Ln-o5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2602.898550724638" y="2.6785714285714284"/>
+        </scene>
+        <!--New Issue Add View Controller-->
+        <scene sceneID="Ud8-3m-I7J">
+            <objects>
+                <viewController id="Nbt-pv-2fP" customClass="NewIssueAddViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bky-nJ-fOy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0M-hf-j3v">
+                                <rect key="frame" x="10" y="10" width="79" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZEh-J9-AOW">
+                                <rect key="frame" x="20" y="66" width="374" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pd0-iN-Oix">
+                                <rect key="frame" x="10" y="101.5" width="394" height="1"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="KEZ-X8-skk"/>
+                                </constraints>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gUZ-Jk-6G5">
+                                <rect key="frame" x="30" y="127.5" width="354" height="32"/>
+                                <segments>
+                                    <segment title="마크다운"/>
+                                    <segment title="미리보기"/>
+                                </segments>
+                            </segmentedControl>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XfT-Yl-YXc">
+                                <rect key="frame" x="30" y="183.5" width="354" height="228.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="frh-dH-6lB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XfT-Yl-YXc" firstAttribute="top" secondItem="gUZ-Jk-6G5" secondAttribute="bottom" constant="25" id="0zX-m0-fOd"/>
+                            <constraint firstItem="ZEh-J9-AOW" firstAttribute="top" secondItem="K0M-hf-j3v" secondAttribute="bottom" constant="22" id="1ce-zq-M7d"/>
+                            <constraint firstItem="pd0-iN-Oix" firstAttribute="top" secondItem="ZEh-J9-AOW" secondAttribute="bottom" constant="10" id="GOh-oC-PHO"/>
+                            <constraint firstItem="K0M-hf-j3v" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="10" id="Hk7-Sn-0lY"/>
+                            <constraint firstItem="pd0-iN-Oix" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="10" id="NMt-HZ-voN"/>
+                            <constraint firstItem="gUZ-Jk-6G5" firstAttribute="top" secondItem="pd0-iN-Oix" secondAttribute="bottom" constant="25" id="RXP-5Q-N0K"/>
+                            <constraint firstItem="gUZ-Jk-6G5" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="30" id="VAK-Rf-zAB"/>
+                            <constraint firstItem="K0M-hf-j3v" firstAttribute="top" secondItem="frh-dH-6lB" secondAttribute="top" constant="10" id="Z0I-lF-Wc0"/>
+                            <constraint firstItem="ZEh-J9-AOW" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="20" id="cPC-o3-p0F"/>
+                            <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="gUZ-Jk-6G5" secondAttribute="trailing" constant="30" id="fgz-NM-q1Q"/>
+                            <constraint firstItem="frh-dH-6lB" firstAttribute="bottom" secondItem="XfT-Yl-YXc" secondAttribute="bottom" constant="313" id="n5K-I4-JUy"/>
+                            <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="pd0-iN-Oix" secondAttribute="trailing" constant="10" id="nxf-33-OrP"/>
+                            <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="ZEh-J9-AOW" secondAttribute="trailing" constant="20" id="rb4-am-uiC"/>
+                            <constraint firstItem="XfT-Yl-YXc" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="30" id="tJF-vo-sMo"/>
+                            <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="XfT-Yl-YXc" secondAttribute="trailing" constant="30" id="wJj-Uo-aWw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="q2u-Oz-Jym"/>
+                    <connections>
+                        <outlet property="textView" destination="XfT-Yl-YXc" id="aIK-7E-HsD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="loE-uz-zzz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3502.898550724638" y="2.6785714285714284"/>
         </scene>
         <!--레이블-->
         <scene sceneID="OgY-bf-bV9">
@@ -1240,6 +1313,9 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="smiley" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
