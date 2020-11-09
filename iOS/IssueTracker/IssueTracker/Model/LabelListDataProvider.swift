@@ -25,6 +25,19 @@ struct LabelListDataProvider {
     }
 }
 
+extension LabelListDataProvider {
+    
+    static func createLabel(labelDictionary: [String:String]) -> Label? {
+        guard let title = labelDictionary[Label.Key.title],
+              let color = labelDictionary[Label.Key.color],
+              let description = labelDictionary[Label.Key.description]
+        else {
+            return nil
+        }
+        return Label(id: .zero, name: title, color: color, description: description)
+    }
+}
+
 private extension LabelListDataProvider {
     enum IssueTrackerURL {
         static let labels: URL? = URL(string: "http://issue-tracker.cf/api/labels")

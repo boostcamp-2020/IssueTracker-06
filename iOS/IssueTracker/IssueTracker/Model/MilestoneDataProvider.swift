@@ -41,6 +41,25 @@ struct MilestoneDataProvider {
     }
 }
 
+extension MilestoneDataProvider {
+    
+    static func createMilestone(milestoneDictionary: [String: String]) -> Milestone? {
+        guard let title = milestoneDictionary[Milestone.Key.title],
+              let completeDate = milestoneDictionary[Milestone.Key.completeDate],
+              let description = milestoneDictionary[Milestone.Key.description]
+        else {
+            return nil
+        }
+        return Milestone(
+            date: completeDate,
+            description: description,
+            id: .zero,
+            isOpen: 1,
+            name: title
+        )
+    }
+}
+
 private extension MilestoneDataProvider {
     enum IssueTrackerURL {
         static let milestones = URL(string: "http://issue-tracker.cf/api/milestones")
