@@ -6,28 +6,59 @@
 //
 
 import UIKit
+import MarkdownKit
 
 class NewIssueAddViewController: UIViewController {
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var subjectTextField: UITextField!
+    @IBOutlet weak var segmented: UISegmentedControl!
+    @IBOutlet weak var previewTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.delegate = self
+        contentTextView.delegate = self
         textViewSetupView()
         let menuItem = UIMenuItem(title: Constant.insertPhoto, action: #selector(insertPhoto))
         UIMenuController.shared.menuItems = [menuItem]
+        previewTextView.backgroundColor = .yellow
+        previewTextView.isHidden = true
+        //self.view.re
     }
     
     private func textViewSetupView() {
-        textView.text = Constant.commentSet
-        textView.textColor = .lightGray
+        contentTextView.text = Constant.commentSet
+        contentTextView.textColor = .lightGray
     }
     
     @objc func insertPhoto() {
         print("insert photo")
     }
-
+    
+    @IBAction func uploadButtonPressed() {
+        if subjectTextField.text == "" {
+            return
+        }
+        print("upload")
+    }
+    
+    @IBAction func segmentedAction(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 1 {
+            contentTextView.isHidden = true
+            previewTextView.isHidden = false
+            print(contentTextView.text)
+            return
+        }
+        contentTextView.isHidden = false
+        previewTextView.isHidden = true
+    }
+    
+    func convertMarkdown() {
+        let markdownParser = MarkdownParser()
+        let str = contentTextView.text ?? ""
+        let str2 = markdownParser.parse(str)
+    }
+    
 }
 
 extension NewIssueAddViewController: UITextViewDelegate {
