@@ -13,7 +13,7 @@ export const Default = () => {
   const hexColor = bgColor
     .slice(5, -1)
     .split(',')
-    .map((v) => Number(v).toString(16))
+    .map((v) => Number(v).toString(16).padStart(2, '0'))
     .join('')
     .slice(0, 6);
 
