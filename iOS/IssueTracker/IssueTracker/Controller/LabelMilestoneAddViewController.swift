@@ -18,6 +18,12 @@ class LabelMilestoneAddViewController: UIViewController {
         }
         view.addSubview(snapshotView)
         snapshotViewLayout(snapshotView: snapshotView)
+        tapGesture()
+    }
+    
+    private func tapGesture() {
+        let taps = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(recognizer:)))
+        self.view.addGestureRecognizer(taps)
     }
     
     private func snapshotViewLayout(snapshotView: UIView) {
@@ -29,5 +35,9 @@ class LabelMilestoneAddViewController: UIViewController {
         snapshotView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         snapshotView.alpha = 0.5
     }
-
+    
+    @objc private func handleTapGesture(recognizer: UITapGestureRecognizer) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
 }

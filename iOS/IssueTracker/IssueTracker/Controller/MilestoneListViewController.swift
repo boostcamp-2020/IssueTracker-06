@@ -66,6 +66,7 @@ class MilestoneListViewController: UIViewController {
         guard let snap = UIApplication.shared.keyWindow!.snapshotView(
                 afterScreenUpdates: true
         ) else { return }
+        
         labelMilestoneAddVC.snapshotView = snap
         present(labelMilestoneAddVC, animated: false, completion: nil)
     }
