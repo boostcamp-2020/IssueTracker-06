@@ -13,6 +13,38 @@ extension Array {
     }
 }
 
+extension NSObject {
+    var typeName: String {
+        String(describing: type(of: self))
+    }
+}
+
+extension UIView {
+    var viewFromNib: UIView? {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: typeName, bundle: bundle)
+        return nib.instantiate(withOwner: self, options: nil).first as? UIView
+    }
+    
+    func configureNib() {
+        guard let view = viewFromNib else { return }
+        view.frame = bounds
+        addSubview(view)
+    }
+}
+
+extension UIView {
+    func setConstraintToFit(at view: UIView) {
+        NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topAnchor.constraint(equalTo: view.topAnchor),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+}
+
+
 extension UIView {
     @IBInspectable
     var cornerRadius: CGFloat {
