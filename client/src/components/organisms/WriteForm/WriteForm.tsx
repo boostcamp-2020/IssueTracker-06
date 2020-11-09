@@ -15,6 +15,7 @@ interface Props {
 }
 
 const StyledWriteForm = styled.form`
+  position: relative;
   border-radius: 0.5rem;
   border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
 
@@ -57,8 +58,8 @@ const StyledWriteForm = styled.form`
 
   &::before {
     position: absolute;
-    top: 16px;
-    left: -6px;
+    top: 14px;
+    left: -7px;
     width: 12px;
     height: 12px;
     content: '';

@@ -16,7 +16,7 @@ interface Props {
 }
 
 const StyledTextareaWithImgUpload = styled.div`
-  margin: 8px;
+  margin: 8px 12px;
   background-color: ${({ theme }) => theme.palette.BG_COLOR01};
 
   & > textarea {
