@@ -19,7 +19,7 @@ protocol AddViewDataSource: class {
 
 final class AddView: UIView {
 
-    @IBOutlet weak var contentStackView: UIStackView!
+    @IBOutlet private weak var contentStackView: UIStackView!
     weak var delegate: AddViewDelegate?
     weak var dataSource: AddViewDataSource? {
         didSet {
@@ -49,15 +49,15 @@ final class AddView: UIView {
         }
     }
     
-    @IBAction func closeButtonTouched(_ sender: UIButton) {
+    @IBAction private func closeButtonTouched(_ sender: UIButton) {
         delegate?.closeButtonTouched(self)
     }
     
-    @IBAction func resetButtonTouched(_ sender: UIButton) {
+    @IBAction private func resetButtonTouched(_ sender: UIButton) {
         delegate?.resetButtonTouched(self)
     }
     
-    @IBAction func saveButtonTouched(_ sender: UIButton) {
+    @IBAction private func saveButtonTouched(_ sender: UIButton) {
         delegate?.saveButtonTouched(self)
     }
 }

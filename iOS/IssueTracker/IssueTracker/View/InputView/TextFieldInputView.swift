@@ -9,7 +9,7 @@ import UIKit
 
 final class TextFieldInputView: ContentInputView {
     
-    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet private weak var inputTextField: UITextField!
     
     init(propertyName: String, placeholder: String = Constant.blank) {
         super.init(propertyName: propertyName)

@@ -101,12 +101,12 @@
             </constraints>
             <size key="customSize" width="499" height="219"/>
             <connections>
-                <outlet property="closedIssue" destination="e8J-AP-1RM" id="usu-wl-pLE"/>
-                <outlet property="date" destination="Scu-nR-VAl" id="MM4-pa-n2Z"/>
-                <outlet property="descriptionMilestone" destination="zpg-jU-Bo1" id="FRI-eg-wPz"/>
+                <outlet property="closedIssueLabel" destination="e8J-AP-1RM" id="2w3-6w-XIY"/>
+                <outlet property="dateLabel" destination="Scu-nR-VAl" id="oMP-hT-pWu"/>
+                <outlet property="descriptionLabel" destination="zpg-jU-Bo1" id="3ze-PM-uke"/>
                 <outlet property="milestoneLabelView" destination="JKq-jd-PzO" id="YCp-87-7gS"/>
-                <outlet property="openIssue" destination="2pb-3d-Rky" id="fuI-XD-UXQ"/>
-                <outlet property="percent" destination="aKK-VJ-ea7" id="WFX-8e-qZi"/>
+                <outlet property="openIssueLabel" destination="2pb-3d-Rky" id="WDJ-cN-5Cn"/>
+                <outlet property="percentLabel" destination="aKK-VJ-ea7" id="Fhj-Kk-l4C"/>
             </connections>
             <point key="canvasLocation" x="258.69565217391306" y="103.45982142857143"/>
         </collectionViewCell>

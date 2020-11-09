@@ -9,7 +9,7 @@ import UIKit
 
 final class TextViewInputView: ContentInputView {
     
-    @IBOutlet weak var inputTextView: UITextView!
+    @IBOutlet private weak var inputTextView: UITextView!
     
     override init(propertyName: String) {
         super.init(propertyName: propertyName)
@@ -25,13 +25,14 @@ final class TextViewInputView: ContentInputView {
 // MARK: configure
 private extension TextViewInputView {
     
-    private func configureTextView() {
+    func configureTextView() {
         inputTextView.textContainerInset = .zero
         inputTextView.textContainer.lineFragmentPadding = 0
     }
 }
 
 private extension TextViewInputView {
+    
     enum Constant {
         static let blank = ""
     }

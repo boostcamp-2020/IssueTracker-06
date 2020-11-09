@@ -25,6 +25,7 @@ final class IssueDetailCollectionViewCell: UICollectionViewCell {
 }
 
 private extension IssueDetailCollectionViewCell {
+    
     enum Constant {
         static let blank: String = ""
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LabelAddView: UIView {
+final class LabelAddView: UIView {
 
     private let addView = AddView()
     private let colorInputView = ColorInputView(propertyName: "색상")

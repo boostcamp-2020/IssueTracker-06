@@ -7,12 +7,12 @@
 
 import UIKit
 
-class MilestoneAddView: UIView {
+final class MilestoneAddView: UIView {
     
     private let addView = AddView()
     private let titleInputView = TextFieldInputView(propertyName: "제목")
     private let completeDateInputView = TextFieldInputView(
-        propertyName: "제목",
+        propertyName: "완료 날짜",
         placeholder: "yyyy-mm-dd (선택)"
     )
     private let descriptionInputView = TextViewInputView(propertyName: "설명")

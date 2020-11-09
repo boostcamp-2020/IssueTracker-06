@@ -9,10 +9,10 @@ import UIKit
 
 final class ColorInputView: ContentInputView {
 
-    @IBOutlet weak var colorTextField: UITextField!
-    @IBOutlet weak var colorView: UIView!
+    @IBOutlet private weak var colorTextField: UITextField!
+    @IBOutlet private weak var colorView: UIView!
 
-    @IBAction func randomColorButtonTouched(_ sender: UIButton) {
+    @IBAction private func randomColorButtonTouched(_ sender: UIButton) {
         
     }
 }
