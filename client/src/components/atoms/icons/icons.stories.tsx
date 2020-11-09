@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
+
 import { Dropdown, Reset, Warning, Change } from '.';
 import IconMilestone from './IconMilestone';
 import IconSearch from './IconSearch';
 import IconTag from './IconTag';
+import IssueClosed from './IssueClosed';
+import IssueOpened from './IssueOpened';
 
 const StyledIcons = styled.div`
   display: flex;
@@ -30,6 +33,8 @@ export const Default = () => {
       <IconMilestone />
       <IconSearch />
       <IconTag />
+      <IssueOpened />
+      <IssueClosed />
       <Change />
     </StyledIcons>
   );

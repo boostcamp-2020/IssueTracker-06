@@ -9,7 +9,7 @@ interface StyledProps {
 const StyledLabelTag = styled.span<StyledProps>`
   display: inline-block;
   vertical-align: middle;
-  padding: 0.05rem 0.8rem;
+  padding: 0.03rem 0.7rem;
   font-size: 0.7rem;
   font-weight: 500;
   border-radius: 0.7rem;
