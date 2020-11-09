@@ -21,11 +21,13 @@ const theme = {
     input: `
     background-color: #fafbfc;
     border-radius: .5rem;
-    border: 1px solid #f6f8fa;
+    border: 1px solid #e1e4e8;
+    color: #24292e;
     &:focus{
       background-color: #ffffff;
-      border-color: #0366d6;
-      box-shawdow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+      border: 1px solid #0366d6;
+      box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+      outline: none;
     }
     `,
   },
