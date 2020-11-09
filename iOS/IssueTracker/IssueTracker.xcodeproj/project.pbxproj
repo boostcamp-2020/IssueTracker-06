@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1924DE8A2559A30C0054D185 /* MilestoneAddViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE892559A30C0054D185 /* MilestoneAddViewDataSource.swift */; };
+		1924DE9A2559A3F20054D185 /* LabelAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE992559A3F20054D185 /* LabelAddViewController.swift */; };
+		1924DE9F2559A40D0054D185 /* LabelAddViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE9E2559A40D0054D185 /* LabelAddViewDataSource.swift */; };
 		19454F24255934850056FE89 /* TextFieldInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19454F23255934850056FE89 /* TextFieldInputView.swift */; };
 		19454F29255934970056FE89 /* TextFieldInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19454F28255934970056FE89 /* TextFieldInputView.xib */; };
 		19454F2E2559792E0056FE89 /* ContentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19454F2D2559792E0056FE89 /* ContentInputView.swift */; };
-		19454F41255983B80056FE89 /* LabelAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19454F40255983B80056FE89 /* LabelAddView.swift */; };
 		199109EE2551AA8C009B3C58 /* DetailIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109ED2551AA8C009B3C58 /* DetailIssue.swift */; };
 		199109F62552756A009B3C58 /* HTTPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109F52552756A009B3C58 /* HTTPData.swift */; };
 		199109FE2552C596009B3C58 /* IssueListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109FD2552C596009B3C58 /* IssueListDataProvider.swift */; };
@@ -42,7 +44,6 @@
 		19B3A15D25516C4C00754C2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F43C254DD6B70050B6C0 /* User.swift */; };
 		19CE7AD02559243B00B3101C /* ColorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CE7ACF2559243B00B3101C /* ColorInputView.swift */; };
 		19CE7AD52559244A00B3101C /* ColorInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19CE7AD42559244A00B3101C /* ColorInputView.xib */; };
-		19CE7ADA2559298900B3101C /* MilestoneAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CE7AD92559298900B3101C /* MilestoneAddView.swift */; };
 		C803816F2547B34F008EEF6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803816E2547B34F008EEF6E /* AppDelegate.swift */; };
 		C80381712547B34F008EEF6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381702547B34F008EEF6E /* SceneDelegate.swift */; };
 		C80381732547B34F008EEF6E /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381722547B34F008EEF6E /* IssueListViewController.swift */; };
@@ -81,10 +82,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1924DE892559A30C0054D185 /* MilestoneAddViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneAddViewDataSource.swift; sourceTree = "<group>"; };
+		1924DE992559A3F20054D185 /* LabelAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAddViewController.swift; sourceTree = "<group>"; };
+		1924DE9E2559A40D0054D185 /* LabelAddViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAddViewDataSource.swift; sourceTree = "<group>"; };
 		19454F23255934850056FE89 /* TextFieldInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputView.swift; sourceTree = "<group>"; };
 		19454F28255934970056FE89 /* TextFieldInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldInputView.xib; sourceTree = "<group>"; };
 		19454F2D2559792E0056FE89 /* ContentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentInputView.swift; sourceTree = "<group>"; };
-		19454F40255983B80056FE89 /* LabelAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAddView.swift; sourceTree = "<group>"; };
 		199109ED2551AA8C009B3C58 /* DetailIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssue.swift; sourceTree = "<group>"; };
 		199109F52552756A009B3C58 /* HTTPData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPData.swift; sourceTree = "<group>"; };
 		199109FD2552C596009B3C58 /* IssueListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListDataProvider.swift; sourceTree = "<group>"; };
@@ -113,7 +116,6 @@
 		19B3A14725514A1000754C2E /* HTTPServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPServiceHelper.swift; sourceTree = "<group>"; };
 		19CE7ACF2559243B00B3101C /* ColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInputView.swift; sourceTree = "<group>"; };
 		19CE7AD42559244A00B3101C /* ColorInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorInputView.xib; sourceTree = "<group>"; };
-		19CE7AD92559298900B3101C /* MilestoneAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneAddView.swift; sourceTree = "<group>"; };
 		C803816B2547B34F008EEF6E /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C803816E2547B34F008EEF6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C80381702547B34F008EEF6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,8 +194,6 @@
 			children = (
 				19910A402558DE8B009B3C58 /* AddView.swift */,
 				19910A452558DEB7009B3C58 /* AddView.xib */,
-				19CE7AD92559298900B3101C /* MilestoneAddView.swift */,
-				19454F40255983B80056FE89 /* LabelAddView.swift */,
 			);
 			path = AddView;
 			sourceTree = "<group>";
@@ -227,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				19910A162553DB43009B3C58 /* LabelViewController.swift */,
+				1924DE992559A3F20054D185 /* LabelAddViewController.swift */,
+				1924DE9E2559A40D0054D185 /* LabelAddViewDataSource.swift */,
 			);
 			path = Label;
 			sourceTree = "<group>";
@@ -236,6 +238,7 @@
 			children = (
 				C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */,
 				19910A4A2558EA08009B3C58 /* MilestoneAddViewController.swift */,
+				1924DE892559A30C0054D185 /* MilestoneAddViewDataSource.swift */,
 			);
 			path = Milestone;
 			sourceTree = "<group>";
@@ -542,15 +545,18 @@
 				C8F0F43D254DD6B70050B6C0 /* Comment.swift in Sources */,
 				19910A502558EC7D009B3C58 /* TextViewInputView.swift in Sources */,
 				C803816F2547B34F008EEF6E /* AppDelegate.swift in Sources */,
+				1924DE8A2559A30C0054D185 /* MilestoneAddViewDataSource.swift in Sources */,
 				199109FE2552C596009B3C58 /* IssueListDataProvider.swift in Sources */,
 				19ABABF325494DE900F4939A /* Extension.swift in Sources */,
 				19910A172553DB43009B3C58 /* LabelViewController.swift in Sources */,
 				19910A4B2558EA08009B3C58 /* MilestoneAddViewController.swift in Sources */,
 				19910A1C2553EE68009B3C58 /* LabelListDataProvider.swift in Sources */,
 				199344A1254FF743000D0D5E /* IssueListCollectionViewDataSource.swift in Sources */,
+				1924DE9A2559A3F20054D185 /* LabelAddViewController.swift in Sources */,
 				19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */,
 				C80381B82547D4A3008EEF6E /* LabelView.swift in Sources */,
 				19B3A14825514A1000754C2E /* HTTPServiceHelper.swift in Sources */,
+				1924DE9F2559A40D0054D185 /* LabelAddViewDataSource.swift in Sources */,
 				1996E505254ABB9B0052E659 /* AssigneeView.swift in Sources */,
 				19ABABED25493F6D00F4939A /* IssueDetailViewController.swift in Sources */,
 				19ABABFD254953A600F4939A /* IssueStateView.swift in Sources */,
@@ -558,8 +564,6 @@
 				1996E4F8254ABAA30052E659 /* BottomDetailView.swift in Sources */,
 				19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */,
 				19910A032552D0C0009B3C58 /* DetailIssueDataProvider.swift in Sources */,
-				19454F41255983B80056FE89 /* LabelAddView.swift in Sources */,
-				19CE7ADA2559298900B3101C /* MilestoneAddView.swift in Sources */,
 				19454F24255934850056FE89 /* TextFieldInputView.swift in Sources */,
 				C84433F12553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift in Sources */,
 				C80381712547B34F008EEF6E /* SceneDelegate.swift in Sources */,
