@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f2G-Lm-Xqx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -781,7 +782,7 @@
                                 </connections>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XfT-Yl-YXc">
-                                <rect key="frame" x="30" y="186.5" width="354" height="225.5"/>
+                                <rect key="frame" x="30" y="186.5" width="354" height="238.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -795,9 +796,8 @@
                                     <action selector="uploadButtonPressed" destination="Nbt-pv-2fP" eventType="touchUpInside" id="MzR-oA-Pid"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vxR-Bu-YIa">
-                                <rect key="frame" x="30" y="291" width="354" height="225.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vxR-Bu-YIa">
+                                <rect key="frame" x="30" y="186.5" width="354" height="238.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -810,6 +810,8 @@
                             <constraint firstItem="XfT-Yl-YXc" firstAttribute="top" secondItem="gUZ-Jk-6G5" secondAttribute="bottom" constant="25" id="0zX-m0-fOd"/>
                             <constraint firstItem="ZEh-J9-AOW" firstAttribute="top" secondItem="K0M-hf-j3v" secondAttribute="bottom" constant="25" id="1ce-zq-M7d"/>
                             <constraint firstItem="jwp-9x-o2z" firstAttribute="centerY" secondItem="K0M-hf-j3v" secondAttribute="centerY" id="1uh-vf-2aa"/>
+                            <constraint firstItem="vxR-Bu-YIa" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="30" id="3mz-WD-g0n"/>
+                            <constraint firstItem="frh-dH-6lB" firstAttribute="bottom" secondItem="vxR-Bu-YIa" secondAttribute="bottom" priority="750" constant="300" id="9LQ-Ff-i9k"/>
                             <constraint firstItem="pd0-iN-Oix" firstAttribute="top" secondItem="ZEh-J9-AOW" secondAttribute="bottom" constant="10" id="GOh-oC-PHO"/>
                             <constraint firstItem="K0M-hf-j3v" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="10" id="Hk7-Sn-0lY"/>
                             <constraint firstItem="pd0-iN-Oix" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="10" id="NMt-HZ-voN"/>
@@ -819,8 +821,10 @@
                             <constraint firstItem="K0M-hf-j3v" firstAttribute="top" secondItem="frh-dH-6lB" secondAttribute="top" constant="10" id="Z0I-lF-Wc0"/>
                             <constraint firstItem="ZEh-J9-AOW" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="20" id="cPC-o3-p0F"/>
                             <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="gUZ-Jk-6G5" secondAttribute="trailing" constant="30" id="fgz-NM-q1Q"/>
-                            <constraint firstItem="frh-dH-6lB" firstAttribute="bottom" secondItem="XfT-Yl-YXc" secondAttribute="bottom" constant="313" id="n5K-I4-JUy"/>
+                            <constraint firstItem="frh-dH-6lB" firstAttribute="bottom" secondItem="XfT-Yl-YXc" secondAttribute="bottom" priority="750" constant="300" id="n5K-I4-JUy"/>
                             <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="pd0-iN-Oix" secondAttribute="trailing" constant="10" id="nxf-33-OrP"/>
+                            <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="vxR-Bu-YIa" secondAttribute="trailing" constant="30" id="oD6-Cp-DIW"/>
+                            <constraint firstItem="vxR-Bu-YIa" firstAttribute="top" secondItem="gUZ-Jk-6G5" secondAttribute="bottom" constant="25" id="pOB-99-U7U"/>
                             <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="ZEh-J9-AOW" secondAttribute="trailing" constant="20" id="rb4-am-uiC"/>
                             <constraint firstItem="XfT-Yl-YXc" firstAttribute="leading" secondItem="frh-dH-6lB" secondAttribute="leading" constant="30" id="tJF-vo-sMo"/>
                             <constraint firstItem="frh-dH-6lB" firstAttribute="trailing" secondItem="XfT-Yl-YXc" secondAttribute="trailing" constant="30" id="wJj-Uo-aWw"/>
@@ -1321,7 +1325,7 @@
     </scenes>
     <designables>
         <designable name="CnU-XO-FXg">
-            <size key="intrinsicContentSize" width="82.5" height="16"/>
+            <size key="intrinsicContentSize" width="96.5" height="20"/>
         </designable>
     </designables>
     <resources>

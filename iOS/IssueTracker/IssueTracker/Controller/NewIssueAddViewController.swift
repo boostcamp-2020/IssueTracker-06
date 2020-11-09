@@ -14,16 +14,16 @@ class NewIssueAddViewController: UIViewController {
     @IBOutlet weak var subjectTextField: UITextField!
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var previewTextView: UITextView!
+    private var markdownParser: MarkdownParser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         contentTextView.delegate = self
-        textViewSetupView()
         let menuItem = UIMenuItem(title: Constant.insertPhoto, action: #selector(insertPhoto))
         UIMenuController.shared.menuItems = [menuItem]
-        previewTextView.backgroundColor = .yellow
         previewTextView.isHidden = true
-        //self.view.re
+        markdownParser = MarkdownParser()
+        textViewSetupView()
     }
     
     private func textViewSetupView() {
@@ -46,7 +46,7 @@ class NewIssueAddViewController: UIViewController {
         if sender.selectedSegmentIndex == 1 {
             contentTextView.isHidden = true
             previewTextView.isHidden = false
-            print(contentTextView.text)
+            convertMarkdown()
             return
         }
         contentTextView.isHidden = false
@@ -54,9 +54,9 @@ class NewIssueAddViewController: UIViewController {
     }
     
     func convertMarkdown() {
-        let markdownParser = MarkdownParser()
-        let str = contentTextView.text ?? ""
-        let str2 = markdownParser.parse(str)
+        guard let markdownParser = markdownParser,
+              let str = contentTextView.text else { return }
+        previewTextView.text = markdownParser.parse(str).string
     }
     
 }
