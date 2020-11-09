@@ -9,8 +9,7 @@ import UIKit
 
 protocol AddViewDelegate: class {
     func closeButtonTouched(_ addView: AddView)
-    func resetButtonTouched(_ addView: AddView)
-    func saveButtonTouched(_ addView: AddView)
+    func saveButtonTouched(_ addView: AddView, inputTexts: [String: String])
 }
 
 protocol AddViewDataSource: class {
@@ -25,6 +24,14 @@ final class AddView: UIView {
         didSet {
             configureContentView()
         }
+    }
+    
+    private var inputTexts: [String: String] {
+        var inputTexts = [String: String]()
+        dataSource?.contentViews(self).forEach {
+            inputTexts[$0.propertyName] = $0.text
+        }
+        return inputTexts
     }
     
     override init(frame: CGRect) {
@@ -54,10 +61,12 @@ final class AddView: UIView {
     }
     
     @IBAction private func resetButtonTouched(_ sender: UIButton) {
-        delegate?.resetButtonTouched(self)
+        dataSource?.contentViews(self).forEach {
+            $0.reset()
+        }
     }
     
     @IBAction private func saveButtonTouched(_ sender: UIButton) {
-        delegate?.saveButtonTouched(self)
+        delegate?.saveButtonTouched(self, inputTexts: inputTexts)
     }
 }
