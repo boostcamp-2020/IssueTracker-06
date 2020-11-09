@@ -767,6 +767,9 @@
                                     <navigationItem id="Okl-0c-uEE">
                                         <barButtonItem key="rightBarButtonItem" id="RjC-by-H9W">
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                            <connections>
+                                                <segue destination="p5r-OP-A0j" kind="show" animates="NO" id="ssJ-H2-NeC"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -1138,6 +1141,42 @@
             </objects>
             <point key="canvasLocation" x="1043" y="3"/>
         </scene>
+        <!--Milestone Add View Controller-->
+        <scene sceneID="4wI-hN-PKI">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="zVS-0D-IsH" customClass="MilestoneAddViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QRz-u9-roi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2b-vp-0Zh" customClass="AddView" customModule="IssueTracker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="198" width="374" height="500"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jsy-ds-Tdo"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="E2b-vp-0Zh" firstAttribute="leading" secondItem="jsy-ds-Tdo" secondAttribute="leading" constant="20" id="7Gl-FA-ctB"/>
+                            <constraint firstItem="E2b-vp-0Zh" firstAttribute="centerY" secondItem="QRz-u9-roi" secondAttribute="centerY" id="lcR-Gb-KXp"/>
+                            <constraint firstItem="jsy-ds-Tdo" firstAttribute="trailing" secondItem="E2b-vp-0Zh" secondAttribute="trailing" constant="20" id="lnZ-wx-cRU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="i93-V8-nxL"/>
+                    <connections>
+                        <outlet property="addView" destination="E2b-vp-0Zh" id="Ixs-6m-9zE"/>
+                        <outlet property="addViewCenterYConstraint" destination="lcR-Gb-KXp" id="gm4-Bd-7JN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nNH-6z-3Sm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1467" y="769"/>
+        </scene>
         <!--마일스톤-->
         <scene sceneID="oTW-2b-tEv">
             <objects>
@@ -1146,7 +1185,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L7H-il-0Zr" customClass="MilestoneView">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L7H-il-0Zr">
                                 <rect key="frame" x="0.0" y="159" width="414" height="654"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="HTm-Ha-8ae">
@@ -1164,6 +1203,9 @@
                                     <navigationItem id="eAm-Wf-UON">
                                         <barButtonItem key="rightBarButtonItem" id="6oL-r2-Qe7">
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                            <connections>
+                                                <segue destination="zVS-0D-IsH" kind="show" animates="NO" id="id9-nh-MIP"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -1200,12 +1242,43 @@
             </objects>
             <point key="canvasLocation" x="-690" y="769"/>
         </scene>
+        <!--Label Add View Controller-->
+        <scene sceneID="dv4-lv-4YZ">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="p5r-OP-A0j" customClass="LabelAddViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fV9-cU-6Kv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kv4-dK-bu6" customClass="AddView" customModule="IssueTracker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="198" width="374" height="500"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sT6-1Z-5uj"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Kv4-dK-bu6" firstAttribute="centerY" secondItem="fV9-cU-6Kv" secondAttribute="centerY" id="1wf-jC-BcN"/>
+                            <constraint firstItem="sT6-1Z-5uj" firstAttribute="trailing" secondItem="Kv4-dK-bu6" secondAttribute="trailing" constant="20" id="v4x-m1-owj"/>
+                            <constraint firstItem="Kv4-dK-bu6" firstAttribute="leading" secondItem="sT6-1Z-5uj" secondAttribute="leading" constant="20" id="w4e-5q-YOA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jKL-DC-cDW"/>
+                    <connections>
+                        <outlet property="addView" destination="Kv4-dK-bu6" id="0mq-Bh-EO8"/>
+                        <outlet property="addViewCenterYConstraint" destination="1wf-jC-BcN" id="StI-Iv-Arr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CpQ-R5-8jI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="769"/>
+        </scene>
     </scenes>
-    <designables>
-        <designable name="CnU-XO-FXg">
-            <size key="intrinsicContentSize" width="96.5" height="20"/>
-        </designable>
-    </designables>
     <resources>
         <image name="1.circle.fill" catalog="system" width="128" height="121"/>
         <image name="2.circle.fill" catalog="system" width="128" height="121"/>
