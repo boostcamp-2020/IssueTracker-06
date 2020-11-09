@@ -15,18 +15,40 @@ final class ColorInputView: ContentInputView {
         colorTextField.text ?? Constant.blank
     }
     
+    override init(propertyName: String) {
+        super.init(propertyName: propertyName)
+        configureColorTextField()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configureColorTextField()
+    }
+    
     override func reset() {
         super.reset()
         colorTextField.text = .none
         colorView.backgroundColor = .white
     }
-    
+
     @IBAction private func randomColorButtonTouched(_ sender: UIButton) {
         
     }
 }
 
-extension ColorInputView {
+// MARK: configure
+private extension ColorInputView {
+    
+    private func configureColorTextField() {
+        colorTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        colorView.backgroundColor = textField.text?.color
+    }
+}
+
+private extension ColorInputView {
     
     enum Constant {
         static let blank = ""

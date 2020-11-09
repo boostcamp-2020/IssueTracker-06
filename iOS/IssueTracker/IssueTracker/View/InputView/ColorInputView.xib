@@ -39,15 +39,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#FFFFFF" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ae6-ev-ULr">
-                    <rect key="frame" x="72" y="65" width="56" height="18.5"/>
+                    <rect key="frame" x="72" y="65" width="63" height="18.5"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="56" id="KR2-ms-H8Z"/>
+                        <constraint firstAttribute="width" constant="63" id="KR2-ms-H8Z"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZd-VO-34I">
-                    <rect key="frame" x="143" y="59" width="100" height="30"/>
+                    <rect key="frame" x="150" y="59" width="100" height="30"/>
                     <color key="backgroundColor" systemColor="systemRedColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="GH2-0U-n1w"/>
