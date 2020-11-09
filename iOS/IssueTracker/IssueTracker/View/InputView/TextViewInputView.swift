@@ -10,6 +10,9 @@ import UIKit
 final class TextViewInputView: ContentInputView {
     
     @IBOutlet private weak var inputTextView: UITextView!
+    override var text: String {
+        inputTextView.text
+    }
     
     override init(propertyName: String) {
         super.init(propertyName: propertyName)
@@ -19,6 +22,11 @@ final class TextViewInputView: ContentInputView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureTextView()
+    }
+    
+    override func reset() {
+        super.reset()
+        inputTextView.text = .none
     }
 }
 

@@ -7,30 +7,43 @@
 
 import UIKit
 
-class ContentInputView: UIView {
+protocol Inputable {
+    var propertyName: String { get }
+    var text: String { get }
+    func reset()
+}
 
+class ContentInputView: UIView, Inputable {
+    
+    private(set) var text: String = Constant.blank
+    let propertyName: String
+    
+    func reset() {}
+    
     @IBOutlet private weak var propertyNameLabel: UILabel!
     
     init(propertyName: String) {
+        self.propertyName = propertyName
         super.init(frame: .zero)
-        configureView(propertyName: propertyName)
+        configureView()
     }
     
     required init?(coder: NSCoder) {
+        self.propertyName = Constant.blank
         super.init(coder: coder)
-        configureView(propertyName: Constant.blank)
+        configureView()
     }
 }
 
 // MARK: configure
 private extension ContentInputView {
     
-    func configureView(propertyName: String) {
+    func configureView() {
         configureNib()
-        configurePropertyNameLabel(propertyName: propertyName)
+        configurePropertyNameLabel()
     }
     
-    func configurePropertyNameLabel(propertyName: String) {
+    func configurePropertyNameLabel() {
         propertyNameLabel.text = propertyName
     }
 }
