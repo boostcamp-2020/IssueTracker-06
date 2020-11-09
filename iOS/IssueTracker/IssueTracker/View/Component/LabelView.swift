@@ -49,31 +49,6 @@ final class LabelView: UILabel {
     }
 }
 
-@IBDesignable
-private extension LabelView {
-    
-    @IBInspectable
-    var borderColor: UIColor? {
-        get {
-            guard let color = layer.borderColor else { return nil }
-            return UIColor(cgColor: color)
-        }
-        set {
-            layer.borderColor = newValue?.cgColor
-        }
-    }
-    
-    @IBInspectable
-    var borderWidth: CGFloat {
-        get {
-            return layer.borderWidth
-        }
-        set {
-            layer.borderWidth = newValue
-        }
-    }
-}
-
 private extension LabelView {
     enum Metric {
         static let paddingLeft: CGFloat = 7
