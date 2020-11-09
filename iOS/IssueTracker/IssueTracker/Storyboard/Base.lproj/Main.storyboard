@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f2G-Lm-Xqx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -767,6 +768,9 @@
                                     <navigationItem id="Okl-0c-uEE">
                                         <barButtonItem key="rightBarButtonItem" id="RjC-by-H9W">
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="Zav-el-7uL" id="EDU-3J-5od"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -802,6 +806,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLh-jD-gcT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="247.82608695652175" y="768.75"/>
+        </scene>
+        <!--Label Milestone Add View Controller-->
+        <scene sceneID="Ii1-Wf-nRu">
+            <objects>
+                <viewController storyboardIdentifier="LabelMilestoneAddViewController" id="c55-ON-tqf" customClass="LabelMilestoneAddViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DCf-ol-Avq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="djD-uc-e7R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M3T-Lk-hTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-143" y="1539"/>
         </scene>
         <!--Filter Select View Controller-->
         <scene sceneID="JV2-N4-TqG">
@@ -1146,7 +1165,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L7H-il-0Zr" customClass="MilestoneView">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L7H-il-0Zr">
                                 <rect key="frame" x="0.0" y="159" width="414" height="654"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="HTm-Ha-8ae">
@@ -1164,6 +1183,9 @@
                                     <navigationItem id="eAm-Wf-UON">
                                         <barButtonItem key="rightBarButtonItem" id="6oL-r2-Qe7">
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="dUj-Ge-5Oo" id="Olx-W7-ual"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>

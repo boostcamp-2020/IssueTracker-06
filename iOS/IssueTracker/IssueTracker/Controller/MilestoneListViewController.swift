@@ -56,6 +56,19 @@ class MilestoneListViewController: UIViewController {
             completionHandler?($0)
         })
     }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        guard let labelMilestoneAddVC = self.storyboard?.instantiateViewController(
+                withIdentifier: Constant.labelMilestoneAddViewController)
+                as? LabelMilestoneAddViewController else { return }
+        labelMilestoneAddVC.modalPresentationStyle = .fullScreen
+        
+        guard let snap = UIApplication.shared.keyWindow!.snapshotView(
+                afterScreenUpdates: true
+        ) else { return }
+        labelMilestoneAddVC.snapshotView = snap
+        present(labelMilestoneAddVC, animated: false, completion: nil)
+    }
 }
 
 extension MilestoneListViewController: UICollectionViewDataSource {
@@ -101,6 +114,7 @@ private extension MilestoneListViewController {
     enum Constant {
         static let milestoneListCell: String = "MilestoneListCell"
         static let milestoneListCollectionViewCell: String = "MilestoneListCollectionViewCell"
+        static let labelMilestoneAddViewController: String = "LabelMilestoneAddViewController"
     }
     
     enum Metric {

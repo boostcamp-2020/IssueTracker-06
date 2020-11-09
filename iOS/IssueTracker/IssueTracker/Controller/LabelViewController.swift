@@ -42,6 +42,19 @@ class LabelViewController: UIViewController {
         labelCollectionView.delegate = self
         labelCollectionView.dataSource = self
     }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        guard let labelMilestoneAddVC = self.storyboard?.instantiateViewController(
+                withIdentifier: Constant.labelMilestoneAddViewController)
+                as? LabelMilestoneAddViewController else { return }
+        labelMilestoneAddVC.modalPresentationStyle = .fullScreen
+        
+        guard let snap = UIApplication.shared.keyWindow!.snapshotView(
+                afterScreenUpdates: true
+        ) else { return }
+        labelMilestoneAddVC.snapshotView = snap
+        present(labelMilestoneAddVC, animated: false, completion: nil)
+    }
 }
 
 extension LabelViewController: UICollectionViewDelegate {}
@@ -87,5 +100,16 @@ private extension LabelViewController {
     enum Constant {
         static let labelCell: String = "LabelCell"
         static let labelCollectionViewCell: String = "LabelCollectionViewCell"
+        static let labelMilestoneAddViewController: String = "LabelMilestoneAddViewController"
     }
+}
+
+extension UIView {
+   func snapshotImage() -> UIImage? {
+       UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0)
+       drawHierarchy(in: bounds, afterScreenUpdates: false)
+       let image = UIGraphicsGetImageFromCurrentImageContext()
+       UIGraphicsEndImageContext()
+       return image
+   }
 }
