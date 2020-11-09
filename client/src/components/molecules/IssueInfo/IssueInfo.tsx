@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import LabelTag from '@components/atoms/LabelTag';
+import LabelTag, { Label } from '@components/atoms/LabelTag';
 import styled from '@themes/styled';
 import IconMilestone from '@components/atoms/icons/IconMilestone';
 import TextWithIcon from '../TextWithIcon';
@@ -7,8 +7,7 @@ import TextWithIcon from '../TextWithIcon';
 interface Props {
   isOpen: boolean;
   title: string;
-  label?: string;
-  labelBg?: string;
+  labels?: Label[];
   issueNum: number;
   time: string;
   author: string;
@@ -39,6 +38,7 @@ const StyledIssueInfo = styled.div`
       display: inline-flex;
       color: ${({ theme }) => theme.palette.SECONDARY};
       font-size: 0.8rem;
+      margin-right: 0.2rem;
       & > svg {
         margin: 0 3px 0 6px;
       }
@@ -52,8 +52,7 @@ const StyledIssueInfo = styled.div`
 const IssueInfo: FunctionComponent<Props> = ({
   isOpen,
   title,
-  label,
-  labelBg,
+  labels,
   issueNum,
   time,
   author,
@@ -61,25 +60,31 @@ const IssueInfo: FunctionComponent<Props> = ({
 }) => (
   <StyledIssueInfo>
     <div className="issueTitleContainer">
-      <h1>{title} </h1>
-      <LabelTag text={label} bgColor={labelBg} />
+      <h1>{title}</h1>
+      {labels?.map((label) => (
+        <LabelTag
+          key={label.id}
+          id={label.id}
+          name={label.name}
+          color={label.color}
+        />
+      ))}
     </div>
     <div className="issueDescriptionContainer">
       {isOpen ? (
         <>
-          <span>#{issueNum} </span>
-          <span>&nbsp;opened {time} </span>
-          <span>&nbsp;by {author}</span>
-          <TextWithIcon icon={IconMilestone} text={milestone} />
+          <span>{`#${issueNum}`}</span>
+          <span>{`opened ${time}`}</span>
+          <span>{`by ${author}`}</span>
         </>
       ) : (
         <>
-          <span>#{issueNum}</span>
-          <span>&nbsp;by {author}</span>
-          <span>&nbsp;was closed {time}</span>
-          <TextWithIcon icon={IconMilestone} text={milestone} />
+          <span>{`#${issueNum}`}</span>
+          <span>{`by ${author}`}</span>
+          <span>{`was closed ${time}`}</span>
         </>
       )}
+      {milestone && <TextWithIcon icon={IconMilestone} text={milestone} />}
     </div>
   </StyledIssueInfo>
 );
