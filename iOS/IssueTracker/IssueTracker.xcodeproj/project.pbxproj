@@ -21,7 +21,7 @@
 		19910A1C2553EE68009B3C58 /* LabelListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */; };
 		19910A412558DE8D009B3C58 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A402558DE8B009B3C58 /* AddView.swift */; };
 		19910A462558DEB7009B3C58 /* AddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19910A452558DEB7009B3C58 /* AddView.xib */; };
-		19910A4B2558EA08009B3C58 /* LabelAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A4A2558EA08009B3C58 /* LabelAddViewController.swift */; };
+		19910A4B2558EA08009B3C58 /* MilestoneAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A4A2558EA08009B3C58 /* MilestoneAddViewController.swift */; };
 		19910A502558EC7D009B3C58 /* TextViewInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A4F2558EC7D009B3C58 /* TextViewInputView.swift */; };
 		19910A552558EC89009B3C58 /* TextViewInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19910A542558EC89009B3C58 /* TextViewInputView.xib */; };
 		19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */; };
@@ -95,7 +95,7 @@
 		19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListDataProvider.swift; sourceTree = "<group>"; };
 		19910A402558DE8B009B3C58 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		19910A452558DEB7009B3C58 /* AddView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddView.xib; sourceTree = "<group>"; };
-		19910A4A2558EA08009B3C58 /* LabelAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAddViewController.swift; sourceTree = "<group>"; };
+		19910A4A2558EA08009B3C58 /* MilestoneAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneAddViewController.swift; sourceTree = "<group>"; };
 		19910A4F2558EC7D009B3C58 /* TextViewInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewInputView.swift; sourceTree = "<group>"; };
 		19910A542558EC89009B3C58 /* TextViewInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextViewInputView.xib; sourceTree = "<group>"; };
 		19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -172,6 +172,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19454F4B25598DEF0056FE89 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */,
+				19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */,
+				19ABABF72549511D00F4939A /* IssueDetailCollectionViewHeader.swift */,
+				19ABAC18254968B700F4939A /* IssueDetailCollectionViewCell.swift */,
+				19910A072553D43F009B3C58 /* LabelCollectionViewCell.swift */,
+				19910A082553D43F009B3C58 /* LabelCollectionViewCell.xib */,
+				C84433EF2553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift */,
+				C84433F02553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		19454F4C25598E1C0056FE89 /* AddView */ = {
+			isa = PBXGroup;
+			children = (
+				19910A402558DE8B009B3C58 /* AddView.swift */,
+				19910A452558DEB7009B3C58 /* AddView.xib */,
+				19CE7AD92559298900B3101C /* MilestoneAddView.swift */,
+				19454F40255983B80056FE89 /* LabelAddView.swift */,
+			);
+			path = AddView;
+			sourceTree = "<group>";
+		};
+		19454F4D25598E3B0056FE89 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				C80381B72547D4A3008EEF6E /* LabelView.swift */,
+				C854E83B25481FF700011D26 /* LabelsStackView.swift */,
+				19ABABFC254953A600F4939A /* IssueStateView.swift */,
+				1996E504254ABB9B0052E659 /* AssigneeView.swift */,
+				1996E4FC254ABB530052E659 /* AssigneeStackView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		19454F4E25598E800056FE89 /* Issue */ = {
+			isa = PBXGroup;
+			children = (
+				C80381722547B34F008EEF6E /* IssueListViewController.swift */,
+				C8FA4B02254F9E8700630263 /* FilterSelectViewController.swift */,
+				C8FA4B07254F9F6D00630263 /* FilterSelectTableViewController.swift */,
+				19ABABEC25493F6C00F4939A /* IssueDetailViewController.swift */,
+				1993449B254FF626000D0D5E /* IssueListEditViewController.swift */,
+				199344A0254FF743000D0D5E /* IssueListCollectionViewDataSource.swift */,
+			);
+			path = Issue;
+			sourceTree = "<group>";
+		};
+		19454F4F25598E9D0056FE89 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				19910A162553DB43009B3C58 /* LabelViewController.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		19454F5025598EA60056FE89 /* Milestone */ = {
+			isa = PBXGroup;
+			children = (
+				C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */,
+				19910A4A2558EA08009B3C58 /* MilestoneAddViewController.swift */,
+			);
+			path = Milestone;
+			sourceTree = "<group>";
+		};
 		19ABABE825487CB200F4939A /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,24 +366,10 @@
 		C80381A52547BB6F008EEF6E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */,
-				19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */,
-				C80381B72547D4A3008EEF6E /* LabelView.swift */,
-				C854E83B25481FF700011D26 /* LabelsStackView.swift */,
-				19ABABF72549511D00F4939A /* IssueDetailCollectionViewHeader.swift */,
-				19ABABFC254953A600F4939A /* IssueStateView.swift */,
-				19ABAC18254968B700F4939A /* IssueDetailCollectionViewCell.swift */,
 				1996E4F7254ABAA20052E659 /* BottomDetailView.swift */,
-				1996E504254ABB9B0052E659 /* AssigneeView.swift */,
-				1996E4FC254ABB530052E659 /* AssigneeStackView.swift */,
-				19910A072553D43F009B3C58 /* LabelCollectionViewCell.swift */,
-				19910A082553D43F009B3C58 /* LabelCollectionViewCell.xib */,
-				C84433EF2553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift */,
-				C84433F02553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib */,
-				19910A402558DE8B009B3C58 /* AddView.swift */,
-				19910A452558DEB7009B3C58 /* AddView.xib */,
-				19CE7AD92559298900B3101C /* MilestoneAddView.swift */,
-				19454F40255983B80056FE89 /* LabelAddView.swift */,
+				19454F4B25598DEF0056FE89 /* CollectionViewCell */,
+				19454F4D25598E3B0056FE89 /* Component */,
+				19454F4C25598E1C0056FE89 /* AddView */,
 				19CE7ADE2559318400B3101C /* InputView */,
 			);
 			path = View;
@@ -324,15 +378,9 @@
 		C80381A62547BB73008EEF6E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C80381722547B34F008EEF6E /* IssueListViewController.swift */,
-				C8FA4B02254F9E8700630263 /* FilterSelectViewController.swift */,
-				C8FA4B07254F9F6D00630263 /* FilterSelectTableViewController.swift */,
-				19ABABEC25493F6C00F4939A /* IssueDetailViewController.swift */,
-				1993449B254FF626000D0D5E /* IssueListEditViewController.swift */,
-				199344A0254FF743000D0D5E /* IssueListCollectionViewDataSource.swift */,
-				19910A162553DB43009B3C58 /* LabelViewController.swift */,
-				C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */,
-				19910A4A2558EA08009B3C58 /* LabelAddViewController.swift */,
+				19454F5025598EA60056FE89 /* Milestone */,
+				19454F4F25598E9D0056FE89 /* Label */,
+				19454F4E25598E800056FE89 /* Issue */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -497,7 +545,7 @@
 				199109FE2552C596009B3C58 /* IssueListDataProvider.swift in Sources */,
 				19ABABF325494DE900F4939A /* Extension.swift in Sources */,
 				19910A172553DB43009B3C58 /* LabelViewController.swift in Sources */,
-				19910A4B2558EA08009B3C58 /* LabelAddViewController.swift in Sources */,
+				19910A4B2558EA08009B3C58 /* MilestoneAddViewController.swift in Sources */,
 				19910A1C2553EE68009B3C58 /* LabelListDataProvider.swift in Sources */,
 				199344A1254FF743000D0D5E /* IssueListCollectionViewDataSource.swift in Sources */,
 				19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */,
