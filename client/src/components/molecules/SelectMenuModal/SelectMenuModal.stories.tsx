@@ -1,6 +1,7 @@
 import React from 'react';
 import { text } from '@storybook/addon-knobs';
 import SelectMenuItem from '@components/molecules/SelectMenuModal/SelectMenuItem';
+import SelectMenuItemUser from '@components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemUser';
 
 import useChange from '@hooks/useChange';
 
@@ -24,9 +25,7 @@ export const Default = () => {
     <SelectMenuModal optionHeader={optionHeader}>
       <>
         {options.map((v) => (
-          <li key={v}>
-            <SelectMenuItem>{v}</SelectMenuItem>
-          </li>
+          <SelectMenuItem key={v}>{v}</SelectMenuItem>
         ))}
       </>
     </SelectMenuModal>
@@ -48,11 +47,31 @@ export const Author = () => {
       placeholder={placeholder}
     >
       <>
-        {options.map((v) => (
-          <li key={v}>
-            <SelectMenuItem>{v}</SelectMenuItem>
-          </li>
-        ))}
+        <SelectMenuItemUser
+          key="user1"
+          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+          title="user1"
+        />
+        <SelectMenuItemUser
+          key="user2"
+          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+          title="user2"
+        />
+        <SelectMenuItemUser
+          key="user3"
+          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+          title="user3"
+        />
+        <SelectMenuItemUser
+          key="user4"
+          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+          title="user4"
+        />
+        <SelectMenuItemUser
+          key="user5"
+          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+          title="user5"
+        />
       </>
     </SelectMenuModal>
   );

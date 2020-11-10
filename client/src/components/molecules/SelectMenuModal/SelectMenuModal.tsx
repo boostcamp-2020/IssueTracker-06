@@ -35,7 +35,7 @@ const StyledUl = styled.ul`
   & :first-child {
     color: ${({ theme }) => theme.palette.PRIMARY};
     font-size: 0.8rem;
-    padding: 7px 16px;
+    padding: 4px 8px;
   }
 
   & > li > button:hover {

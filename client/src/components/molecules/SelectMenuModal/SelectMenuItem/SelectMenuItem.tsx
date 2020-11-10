@@ -19,7 +19,11 @@ const StyledButton = styled.button`
 `;
 
 const SelectMenuItem: FunctionComponent<Props> = ({ children, onClick }) => {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+  return (
+    <li>
+      <StyledButton onClick={onClick}>{children}</StyledButton>
+    </li>
+  );
 };
 
 export default SelectMenuItem;

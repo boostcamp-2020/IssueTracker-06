@@ -17,13 +17,13 @@ const FilterItemLabel: FunctionComponent<Props> = ({
   description,
   onClick,
 }) => (
-  <>
+  <li>
     <StyledTitleWrapper onClick={onClick}>
       <ColorSwatch bgColor={swatchColor} />
       <Title text={title} />
     </StyledTitleWrapper>
     {description && <Description text={description} />}
-  </>
+  </li>
 );
 
 export default FilterItemLabel;
