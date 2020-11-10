@@ -81,6 +81,12 @@ final class IssueDetailViewController: UIViewController {
             self?.bottomDetailView.frame.origin.y = currentViewHeight - Metric.bottomDetailViewHeight
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? NewIssueAddViewController else { return }
+        destination.mode = "modify"
+        destination.issue = issue
+    }
 }
 
 extension IssueDetailViewController: UICollectionViewDelegate {}

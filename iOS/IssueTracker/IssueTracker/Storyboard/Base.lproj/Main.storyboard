@@ -151,6 +151,9 @@
                                         <real key="value" value="24"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="Nbt-pv-2fP" kind="show" id="aJK-ch-Nmz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -188,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1830" y="3"/>
+            <point key="canvasLocation" x="2233" y="19"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="GoC-Ki-jGw">
@@ -454,9 +457,6 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <state key="normal" title="댓글 추가"/>
-                                        <connections>
-                                            <segue destination="Nbt-pv-2fP" kind="show" id="YXK-EH-5XW"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gub-as-6q9">
                                         <rect key="frame" x="319" y="28" width="40" height="40"/>
@@ -735,7 +735,13 @@
                             <constraint firstItem="RQ5-Xb-zg6" firstAttribute="trailing" secondItem="y0o-mb-fpR" secondAttribute="trailing" id="o7O-Uf-eS5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="eun-QP-66A"/>
+                    <navigationItem key="navigationItem" id="eun-QP-66A">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="5aQ-Gj-F8S">
+                            <connections>
+                                <segue destination="Nbt-pv-2fP" kind="show" identifier="EditIssueSegue" id="h9h-al-eOU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bottomDetailView" destination="dc4-5b-vRT" id="qB2-uG-PAG"/>
                         <outlet property="issueDetailCollectionView" destination="y0o-mb-fpR" id="JRE-hO-THl"/>
@@ -743,7 +749,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IjN-Ln-o5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2602.898550724638" y="2.6785714285714284"/>
+            <point key="canvasLocation" x="3735" y="19"/>
         </scene>
         <!--New Issue Add View Controller-->
         <scene sceneID="Ud8-3m-I7J">
@@ -883,51 +889,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="loE-uz-zzz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3502.898550724638" y="2.6785714285714284"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="8VN-aF-5er">
-            <objects>
-                <viewController id="jfl-Jh-EmA" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yFS-F0-3ll">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhV-yE-Ial">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqh-5u-e72">
-                                        <rect key="frame" x="0.0" y="18" width="414" height="800"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="800" id="C1A-aY-TcJ"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="mqh-5u-e72" firstAttribute="width" secondItem="qhV-yE-Ial" secondAttribute="width" id="Hz0-as-OUD"/>
-                                    <constraint firstItem="mqh-5u-e72" firstAttribute="top" secondItem="qhV-yE-Ial" secondAttribute="top" constant="18" id="KHL-rs-wvO"/>
-                                    <constraint firstItem="mqh-5u-e72" firstAttribute="leading" secondItem="qhV-yE-Ial" secondAttribute="leading" id="Lqg-ch-5di"/>
-                                    <constraint firstAttribute="trailing" secondItem="mqh-5u-e72" secondAttribute="trailing" id="VCe-if-bUX"/>
-                                    <constraint firstAttribute="bottom" secondItem="mqh-5u-e72" secondAttribute="bottom" id="gXf-B6-ote"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="zUk-Id-sSc"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="mQz-f3-k68"/>
-                            </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="2Eh-KR-4Ep"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="qhV-yE-Ial" firstAttribute="top" secondItem="2Eh-KR-4Ep" secondAttribute="top" id="BB5-DM-mlI"/>
-                            <constraint firstItem="qhV-yE-Ial" firstAttribute="trailing" secondItem="2Eh-KR-4Ep" secondAttribute="trailing" id="GF9-DG-3qU"/>
-                            <constraint firstItem="qhV-yE-Ial" firstAttribute="leading" secondItem="2Eh-KR-4Ep" secondAttribute="leading" id="f27-ga-T7D"/>
-                            <constraint firstItem="qhV-yE-Ial" firstAttribute="bottom" secondItem="2Eh-KR-4Ep" secondAttribute="bottom" id="xke-4W-p8d"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TB0-uc-THR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4224.6376811594209" y="-19.419642857142858"/>
+            <point key="canvasLocation" x="2984" y="-675"/>
         </scene>
         <!--레이블-->
         <scene sceneID="OgY-bf-bV9">
@@ -1415,6 +1377,9 @@
             <size key="intrinsicContentSize" width="96.5" height="20"/>
         </designable>
     </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="h9h-al-eOU"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="1.circle.fill" catalog="system" width="128" height="121"/>
         <image name="2.circle.fill" catalog="system" width="128" height="121"/>

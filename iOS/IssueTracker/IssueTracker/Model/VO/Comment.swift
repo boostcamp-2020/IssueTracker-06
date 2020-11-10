@@ -25,4 +25,12 @@ struct Comment: Codable, HTTPDataProviding {
         case content
         case id
     }
+    
+    struct NewComment: Codable {
+        
+        static var key: String = "commentId"
+        
+        let content: String
+        let issueId: Int
+    }
 }

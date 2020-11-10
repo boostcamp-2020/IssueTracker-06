@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		199109EE2551AA8C009B3C58 /* DetailIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109ED2551AA8C009B3C58 /* DetailIssue.swift */; };
 		199109F62552756A009B3C58 /* HTTPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109F52552756A009B3C58 /* HTTPData.swift */; };
-		199109FE2552C596009B3C58 /* IssueListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109FD2552C596009B3C58 /* IssueListDataProvider.swift */; };
-		19910A032552D0C0009B3C58 /* DetailIssueDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A022552D0C0009B3C58 /* DetailIssueDataProvider.swift */; };
+		199109FE2552C596009B3C58 /* IssueListDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109FD2552C596009B3C58 /* IssueListDataManager.swift */; };
+		19910A032552D0C0009B3C58 /* DetailIssueDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A022552D0C0009B3C58 /* DetailIssueDataManager.swift */; };
 		19910A092553D43F009B3C58 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A072553D43F009B3C58 /* LabelCollectionViewCell.swift */; };
 		19910A0A2553D43F009B3C58 /* LabelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19910A082553D43F009B3C58 /* LabelCollectionViewCell.xib */; };
 		19910A172553DB43009B3C58 /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A162553DB43009B3C58 /* LabelViewController.swift */; };
-		19910A1C2553EE68009B3C58 /* LabelListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */; };
+		19910A1C2553EE68009B3C58 /* LabelListDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19910A1B2553EE68009B3C58 /* LabelListDataManager.swift */; };
 		19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */; };
 		19934487254FD48B000D0D5E /* IssueListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */; };
 		1993449C254FF627000D0D5E /* IssueListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993449B254FF626000D0D5E /* IssueListEditViewController.swift */; };
@@ -27,7 +27,7 @@
 		19ABABF82549511D00F4939A /* IssueDetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ABABF72549511D00F4939A /* IssueDetailCollectionViewHeader.swift */; };
 		19ABABFD254953A600F4939A /* IssueStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ABABFC254953A600F4939A /* IssueStateView.swift */; };
 		19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ABAC18254968B700F4939A /* IssueDetailCollectionViewCell.swift */; };
-		19B3A142255122FB00754C2E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 19B3A141255122FB00754C2E /* SwiftPackageProductDependency */; };
+		19B3A142255122FB00754C2E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 19B3A141255122FB00754C2E /* Alamofire */; };
 		19B3A14825514A1000754C2E /* HTTPServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A14725514A1000754C2E /* HTTPServiceHelper.swift */; };
 		19B3A15925516C4900754C2E /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F43B254DD6B70050B6C0 /* Milestone.swift */; };
 		19B3A15D25516C4C00754C2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F43C254DD6B70050B6C0 /* User.swift */; };
@@ -40,8 +40,9 @@
 		C80381862547B353008EEF6E /* IssueTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381852547B353008EEF6E /* IssueTrackerTests.swift */; };
 		C80381912547B353008EEF6E /* IssueTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381902547B353008EEF6E /* IssueTrackerUITests.swift */; };
 		C80381B82547D4A3008EEF6E /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80381B72547D4A3008EEF6E /* LabelView.swift */; };
+		C81AF5EE255A6F1900E34428 /* CommentDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81AF5ED255A6F1900E34428 /* CommentDataManager.swift */; };
 		C84433E62553C30200A3CE69 /* MilestoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */; };
-		C84433EB2553C47000A3CE69 /* MilestoneDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84433EA2553C47000A3CE69 /* MilestoneDataProvider.swift */; };
+		C84433EB2553C47000A3CE69 /* MilestoneDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84433EA2553C47000A3CE69 /* MilestoneDataManager.swift */; };
 		C84433F12553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84433EF2553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift */; };
 		C84433F22553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84433F02553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib */; };
 		C854E8242548151800011D26 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E8232548151800011D26 /* Issue.swift */; };
@@ -76,12 +77,12 @@
 /* Begin PBXFileReference section */
 		199109ED2551AA8C009B3C58 /* DetailIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssue.swift; sourceTree = "<group>"; };
 		199109F52552756A009B3C58 /* HTTPData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPData.swift; sourceTree = "<group>"; };
-		199109FD2552C596009B3C58 /* IssueListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListDataProvider.swift; sourceTree = "<group>"; };
-		19910A022552D0C0009B3C58 /* DetailIssueDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssueDataProvider.swift; sourceTree = "<group>"; };
+		199109FD2552C596009B3C58 /* IssueListDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListDataManager.swift; sourceTree = "<group>"; };
+		19910A022552D0C0009B3C58 /* DetailIssueDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssueDataManager.swift; sourceTree = "<group>"; };
 		19910A072553D43F009B3C58 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		19910A082553D43F009B3C58 /* LabelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelCollectionViewCell.xib; sourceTree = "<group>"; };
 		19910A162553DB43009B3C58 /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
-		19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListDataProvider.swift; sourceTree = "<group>"; };
+		19910A1B2553EE68009B3C58 /* LabelListDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListDataManager.swift; sourceTree = "<group>"; };
 		19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueListCollectionViewCell.xib; sourceTree = "<group>"; };
 		1993449B254FF626000D0D5E /* IssueListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditViewController.swift; sourceTree = "<group>"; };
@@ -115,8 +116,9 @@
 		C80381902547B353008EEF6E /* IssueTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerUITests.swift; sourceTree = "<group>"; };
 		C80381922547B353008EEF6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C80381B72547D4A3008EEF6E /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		C81AF5ED255A6F1900E34428 /* CommentDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataManager.swift; sourceTree = "<group>"; };
 		C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneListViewController.swift; sourceTree = "<group>"; };
-		C84433EA2553C47000A3CE69 /* MilestoneDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneDataProvider.swift; sourceTree = "<group>"; };
+		C84433EA2553C47000A3CE69 /* MilestoneDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneDataManager.swift; sourceTree = "<group>"; };
 		C84433EF2553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneListCollectionViewCell.swift; sourceTree = "<group>"; };
 		C84433F02553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MilestoneListCollectionViewCell.xib; sourceTree = "<group>"; };
 		C854E8232548151800011D26 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19B3A142255122FB00754C2E /* BuildFile in Frameworks */,
+				19B3A142255122FB00754C2E /* Alamofire in Frameworks */,
 				5EBBFD26B86D0520584C1DD3 /* Pods_IssueTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,7 +217,6 @@
 				4842C7B09BF846536B176940 /* Pods-IssueTrackerTests.debug.xcconfig */,
 				8AFCCECEB46895EA52FFA6BC /* Pods-IssueTrackerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -284,10 +285,11 @@
 				19B3A15825516C3E00754C2E /* VO */,
 				19B3A14725514A1000754C2E /* HTTPServiceHelper.swift */,
 				199109F52552756A009B3C58 /* HTTPData.swift */,
-				199109FD2552C596009B3C58 /* IssueListDataProvider.swift */,
-				19910A022552D0C0009B3C58 /* DetailIssueDataProvider.swift */,
-				19910A1B2553EE68009B3C58 /* LabelListDataProvider.swift */,
-				C84433EA2553C47000A3CE69 /* MilestoneDataProvider.swift */,
+				199109FD2552C596009B3C58 /* IssueListDataManager.swift */,
+				19910A022552D0C0009B3C58 /* DetailIssueDataManager.swift */,
+				19910A1B2553EE68009B3C58 /* LabelListDataManager.swift */,
+				C84433EA2553C47000A3CE69 /* MilestoneDataManager.swift */,
+				C81AF5ED255A6F1900E34428 /* CommentDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,7 +361,7 @@
 			);
 			name = IssueTracker;
 			packageProductDependencies = (
-				19B3A141255122FB00754C2E /* SwiftPackageProductDependency */,
+				19B3A141255122FB00754C2E /* Alamofire */,
 			);
 			productName = IssueTracker;
 			productReference = C803816B2547B34F008EEF6E /* IssueTracker.app */;
@@ -436,7 +438,7 @@
 			);
 			mainGroup = C80381622547B34F008EEF6E;
 			packageReferences = (
-				19B3A140255122FB00754C2E /* RemoteSwiftPackageReference */,
+				19B3A140255122FB00754C2E /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = C803816C2547B34F008EEF6E /* Products */;
 			projectDirPath = "";
@@ -589,18 +591,19 @@
 				19ABABF82549511D00F4939A /* IssueDetailCollectionViewHeader.swift in Sources */,
 				1993449C254FF627000D0D5E /* IssueListEditViewController.swift in Sources */,
 				C80381732547B34F008EEF6E /* IssueListViewController.swift in Sources */,
-				C84433EB2553C47000A3CE69 /* MilestoneDataProvider.swift in Sources */,
+				C84433EB2553C47000A3CE69 /* MilestoneDataManager.swift in Sources */,
 				C8FA4B08254F9F6D00630263 /* FilterSelectTableViewController.swift in Sources */,
 				19B3A15925516C4900754C2E /* Milestone.swift in Sources */,
+				C81AF5EE255A6F1900E34428 /* CommentDataManager.swift in Sources */,
 				C84433E62553C30200A3CE69 /* MilestoneListViewController.swift in Sources */,
 				19B3A15D25516C4C00754C2E /* User.swift in Sources */,
 				C854E83C25481FF700011D26 /* LabelsStackView.swift in Sources */,
 				C8F0F43D254DD6B70050B6C0 /* Comment.swift in Sources */,
 				C803816F2547B34F008EEF6E /* AppDelegate.swift in Sources */,
-				199109FE2552C596009B3C58 /* IssueListDataProvider.swift in Sources */,
+				199109FE2552C596009B3C58 /* IssueListDataManager.swift in Sources */,
 				19ABABF325494DE900F4939A /* Extension.swift in Sources */,
 				19910A172553DB43009B3C58 /* LabelViewController.swift in Sources */,
-				19910A1C2553EE68009B3C58 /* LabelListDataProvider.swift in Sources */,
+				19910A1C2553EE68009B3C58 /* LabelListDataManager.swift in Sources */,
 				199344A1254FF743000D0D5E /* IssueListCollectionViewDataSource.swift in Sources */,
 				19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */,
 				C80381B82547D4A3008EEF6E /* LabelView.swift in Sources */,
@@ -612,7 +615,7 @@
 				1996E4F8254ABAA30052E659 /* BottomDetailView.swift in Sources */,
 				19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */,
 				C8CEF6C325591C9400BDCB46 /* NewIssueAddViewController.swift in Sources */,
-				19910A032552D0C0009B3C58 /* DetailIssueDataProvider.swift in Sources */,
+				19910A032552D0C0009B3C58 /* DetailIssueDataManager.swift in Sources */,
 				C84433F12553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift in Sources */,
 				C80381712547B34F008EEF6E /* SceneDelegate.swift in Sources */,
 				C8CEF6992558E77300BDCB46 /* LabelMilestoneAddViewController.swift in Sources */,
@@ -962,7 +965,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		19B3A140255122FB00754C2E /* RemoteSwiftPackageReference */ = {
+		19B3A140255122FB00754C2E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -973,9 +976,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		19B3A141255122FB00754C2E /* SwiftPackageProductDependency */ = {
+		19B3A141255122FB00754C2E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 19B3A140255122FB00754C2E /* RemoteSwiftPackageReference */;
+			package = 19B3A140255122FB00754C2E /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

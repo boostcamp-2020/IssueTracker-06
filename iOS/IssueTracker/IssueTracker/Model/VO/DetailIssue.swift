@@ -33,4 +33,12 @@ struct DetailIssue: Codable, HTTPDataProviding {
         case isOpen = "is_open"
         case assignee = "Assignee"
     }
+    
+    struct patchTitleDetailIssue: Codable {
+        let title: String
+    }
+    
+    struct patchContentDetailIssue: Codable {
+        let content: String
+    }
 }
