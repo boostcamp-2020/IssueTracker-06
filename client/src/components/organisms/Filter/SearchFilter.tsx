@@ -7,7 +7,7 @@ interface Props {
   type: ButtonType;
   label: string;
   optionHeader: string;
-  children: React.ReactChild;
+  children: React.ReactChild | React.ReactChild[];
   Icon: FunctionComponent;
   onClick?: () => void;
   inputValue?: string;

@@ -5,7 +5,7 @@ import BoldText from '@components/atoms/BoldText';
 
 interface Props {
   optionHeader: string;
-  children: React.ReactChild;
+  children: React.ReactChild | React.ReactChild[];
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputValue?: string;
   placeholder?: string;
@@ -20,6 +20,7 @@ const StyledUl = styled.ul`
 
   & > li {
     border-bottom: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
+    cursor: pointer;
   }
 
   &:first-child {

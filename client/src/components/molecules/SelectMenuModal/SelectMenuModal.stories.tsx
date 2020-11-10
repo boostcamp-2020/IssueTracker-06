@@ -23,11 +23,9 @@ export const Default = () => {
 
   return (
     <SelectMenuModal optionHeader={optionHeader}>
-      <>
-        {options.map((v) => (
-          <SelectMenuItem key={v}>{v}</SelectMenuItem>
-        ))}
-      </>
+      {options.map((v) => (
+        <SelectMenuItem key={v}>{v}</SelectMenuItem>
+      ))}
     </SelectMenuModal>
   );
 };
@@ -46,33 +44,31 @@ export const Author = () => {
       inputValue={value}
       placeholder={placeholder}
     >
-      <>
-        <SelectMenuItemUser
-          key="user1"
-          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-          title="user1"
-        />
-        <SelectMenuItemUser
-          key="user2"
-          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-          title="user2"
-        />
-        <SelectMenuItemUser
-          key="user3"
-          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-          title="user3"
-        />
-        <SelectMenuItemUser
-          key="user4"
-          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-          title="user4"
-        />
-        <SelectMenuItemUser
-          key="user5"
-          userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-          title="user5"
-        />
-      </>
+      <SelectMenuItemUser
+        key="user1"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user1"
+      />
+      <SelectMenuItemUser
+        key="user2"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user2"
+      />
+      <SelectMenuItemUser
+        key="user3"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user3"
+      />
+      <SelectMenuItemUser
+        key="user4"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user4"
+      />
+      <SelectMenuItemUser
+        key="user5"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user5"
+      />
     </SelectMenuModal>
   );
 };

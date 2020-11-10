@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
 interface Props {
-  children: React.ReactChild;
+  children: React.ReactChild | React.ReactChild[];
   onClick?: () => void;
 }
 
