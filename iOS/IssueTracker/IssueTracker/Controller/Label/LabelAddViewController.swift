@@ -25,7 +25,9 @@ class LabelAddViewController: UIViewController {
     }
     
     private func save(label: Label) {
-        dismiss(animated: false, completion: nil)
+        LabelListDataManager().post(body: label, successHandler: { [weak self] _ in
+            self?.dismiss(animated: false, completion: nil)
+        })
     }
 }
 
@@ -36,7 +38,7 @@ extension LabelAddViewController: AddViewDelegate {
     }
     
     func saveButtonTouched(_ addView: AddView, inputTexts: [String : String]) {
-        guard let label = LabelListDataProvider.createLabel(labelDictionary: inputTexts)
+        guard let label = LabelListDataManager.createLabel(labelDictionary: inputTexts)
         else {
             return
         }
