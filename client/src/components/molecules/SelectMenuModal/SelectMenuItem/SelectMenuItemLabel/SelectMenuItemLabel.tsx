@@ -8,15 +8,17 @@ interface Props {
   swatchColor: string;
   title: string;
   description?: string;
+  onClick?: () => void;
 }
 
 const FilterItemLabel: FunctionComponent<Props> = ({
   swatchColor,
   title,
   description,
+  onClick,
 }) => (
   <>
-    <StyledTitleWrapper>
+    <StyledTitleWrapper onClick={onClick}>
       <ColorSwatch bgColor={swatchColor} />
       <Title text={title} />
     </StyledTitleWrapper>
