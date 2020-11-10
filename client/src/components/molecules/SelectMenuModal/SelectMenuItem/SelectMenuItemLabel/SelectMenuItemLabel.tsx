@@ -20,9 +20,7 @@ const FilterItemLabel: FunctionComponent<Props> = ({
       <ColorSwatch bgColor={swatchColor} />
       <Title text={title} />
     </StyledTitleWrapper>
-    <div>
-      <Description text={description} />
-    </div>
+    {description && <Description text={description} />}
   </>
 );
 
