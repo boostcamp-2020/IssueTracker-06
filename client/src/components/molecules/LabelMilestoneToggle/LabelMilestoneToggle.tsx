@@ -2,8 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
 import TextWithIcon from '@components/molecules/TextWithIcon';
-import IconTag from '@components/atoms/icons/IconTag';
-import IconMilestone from '@components/atoms/icons/IconMilestone';
+import { TagIcon, MilestoneIcon } from '@/components/atoms/icons';
 import { ToggleType } from '.';
 
 interface Props {
@@ -40,13 +39,13 @@ const LabelMilestoneToggle: FunctionComponent<Props> = ({
 }) => (
   <StyledLabelMilestoneToggle>
     <TextWithIcon
-      icon={IconTag}
+      icon={TagIcon}
       text="Labels"
       onClick={() => onClickToggle('label')}
       className={focus === 'label' ? 'focus' : ''}
     />
     <TextWithIcon
-      icon={IconMilestone}
+      icon={MilestoneIcon}
       text="Milestones"
       onClick={() => onClickToggle('milestone')}
       className={focus === 'milestone' ? 'focus' : ''}

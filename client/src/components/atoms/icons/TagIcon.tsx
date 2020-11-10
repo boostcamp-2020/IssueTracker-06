@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-const IconTag: FunctionComponent = () => (
+const TagIcon: FunctionComponent = () => (
   <svg viewBox="0 0 16 16">
     <path
       fillRule="evenodd"
@@ -9,4 +9,4 @@ const IconTag: FunctionComponent = () => (
   </svg>
 );
 
-export default IconTag;
+export default TagIcon;

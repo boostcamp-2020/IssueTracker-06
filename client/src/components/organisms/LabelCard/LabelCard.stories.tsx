@@ -17,11 +17,5 @@ export const Default = () => {
     .join('')
     .slice(0, 6);
   const description = text('description', 'api develop');
-  return (
-    <LabelCard
-      title={title}
-      bgColor={`#${hexColor}`}
-      description={description}
-    />
-  );
+  return <LabelCard data={{ id: 0, name: title, color: `#${hexColor}` }} />;
 };

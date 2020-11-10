@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 
+import useChange from '@hooks/useChange';
+
 import TextareaWithImgUpload from '.';
 
 export default {
@@ -8,10 +10,7 @@ export default {
 };
 
 export const Default = () => {
-  const [value, setValue] = useState('');
+  const [value, , onChangeValue] = useChange<HTMLTextAreaElement>('');
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-  return <TextareaWithImgUpload value={value} onChange={onChange} />;
+  return <TextareaWithImgUpload value={value} onChange={onChangeValue} />;
 };

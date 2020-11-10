@@ -9,7 +9,7 @@ const StyledDatePicker = styled.input`
 `;
 
 interface Props {
-  value?: string;
+  value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 

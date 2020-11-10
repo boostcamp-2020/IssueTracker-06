@@ -1,4 +1,7 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
+
+import useChange from '@hooks/useChange';
+
 import DatePickerInput from './DatePickerInput';
 
 export default {
@@ -7,11 +10,7 @@ export default {
 };
 
 export const Default = () => {
-  const [date, setDate] = useState('');
+  const [date, , onChangeDate] = useChange<HTMLInputElement>('');
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
-  };
-
-  return <DatePickerInput value={date} onChange={onChange} />;
+  return <DatePickerInput value={date} onChange={onChangeDate} />;
 };

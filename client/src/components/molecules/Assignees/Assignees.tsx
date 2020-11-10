@@ -8,11 +8,11 @@ interface Props {
 }
 
 interface StyledProps {
-  left: string;
+  left: number;
 }
 
 const StyledImg = styled(Img)<StyledProps>`
-  left: ${({ left }) => left};
+  left: ${({ left }) => left}rem;
 `;
 
 const StyledDiv = styled.div`
@@ -26,7 +26,7 @@ const StyledDiv = styled.div`
 const Assignees: FunctionComponent<Props> = ({ users }) => (
   <StyledDiv>
     {users?.map((user, i) => (
-      <StyledImg src={user.img} key={user.id} left={`${0.6 * i}rem`} />
+      <StyledImg src={user.img} key={user.id} left={0.6 * i} />
     ))}
   </StyledDiv>
 );
