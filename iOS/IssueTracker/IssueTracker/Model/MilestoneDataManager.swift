@@ -53,7 +53,7 @@ struct MilestoneDataManager {
         })
     }
     
-    func post(body: Milestone, successHandler: ((String?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+    func post(body: Milestone, successHandler: ((Int?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
         guard let url = IssueTrackerURL.milestone else { return }
         HTTPServiceHelper.shared.post(
             url: url,

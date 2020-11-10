@@ -1204,7 +1204,7 @@
                                         <barButtonItem key="rightBarButtonItem" id="6oL-r2-Qe7">
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                             <connections>
-                                                <segue destination="zVS-0D-IsH" kind="show" animates="NO" id="id9-nh-MIP"/>
+                                                <segue destination="zVS-0D-IsH" kind="show" destinationCreationSelector="presentAddViewController:" animates="NO" id="id9-nh-MIP"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

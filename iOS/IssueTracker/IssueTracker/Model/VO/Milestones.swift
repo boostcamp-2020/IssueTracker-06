@@ -11,6 +11,10 @@ struct Milestones {
 
     private(set) var milestones: [Milestone]
     
+    var count: Int {
+        milestones.count
+    }
+    
     init(milestones: [Milestone]) {
         self.milestones = milestones
     }
@@ -23,6 +27,10 @@ struct Milestones {
         milestones.removeAll {
             $0 == milestone
         }
+    }
+    
+    subscript (_ index: Int) -> Milestone? {
+        milestones[safe: index]
     }
 }
 

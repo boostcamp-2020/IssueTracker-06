@@ -52,9 +52,23 @@ class MilestoneListViewController: UIViewController {
     
     private func configureIssuesData(milestoneName: String, completionHandler: ((Issues?) -> Void)? = nil) {
         let processedName = milestoneName.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-        MilestoneDataProvider().getIssues(name: processedName, successHandler: {
+        MilestoneDataManager().getIssues(name: processedName, successHandler: {
             completionHandler?($0)
         })
+    }
+    
+    @IBSegueAction func presentAddViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
+        let addViewController = MilestoneAddViewController(coder: coder)
+        addViewController?.addMilestoneDelegate = self
+        return addViewController
+    }
+}
+
+extension MilestoneListViewController: AddMilestoneDelegate {
+    
+    func add(milestone: Milestone) {
+        milestones?.add(milestone: milestone)
+        milestoneCollectionView.reloadData()
     }
 }
 
@@ -63,7 +77,7 @@ extension MilestoneListViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
-        milestones?.milestones.count ?? 0
+        milestones?.count ?? 0
     }
 
     func collectionView(
@@ -74,7 +88,7 @@ extension MilestoneListViewController: UICollectionViewDataSource {
             withReuseIdentifier: Constant.milestoneListCell,
             for: indexPath)
         guard let milestoneCell = cell as? MilestoneListCollectionViewCell,
-              let milestone = milestones?.milestones[indexPath.row]
+              let milestone = milestones?[indexPath.row]
         else {
             return cell
         }

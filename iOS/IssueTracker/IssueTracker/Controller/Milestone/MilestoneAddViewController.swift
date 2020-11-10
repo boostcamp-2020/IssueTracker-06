@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol AddMilestoneDelegate: class {
+    func add(milestone: Milestone)
+}
+
 final class MilestoneAddViewController: UIViewController {
 
     @IBOutlet private weak var addView: AddView!
     @IBOutlet private weak var addViewCenterYConstraint: NSLayoutConstraint!
     private let dataSource = MilestoneAddViewDataSource()
+    weak var addMilestoneDelegate: AddMilestoneDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,7 @@ extension MilestoneAddViewController: AddViewDelegate {
     
     private func save(milestone: Milestone) {
         MilestoneDataManager().post(body: milestone, successHandler: { [weak self] _ in
+            self?.addMilestoneDelegate?.add(milestone: milestone)
             self?.dismiss(animated: false, completion: nil)
         })
     }
