@@ -1,6 +1,5 @@
 import React from 'react';
 import { text } from '@storybook/addon-knobs';
-import { ResetIcon } from '@components/atoms/icons';
 import XButton from './XButton';
 
 export default {
@@ -15,5 +14,5 @@ export const Default = () => {
   const onClick = () => {
     // 필터 초기화
   };
-  return <XButton Icon={ResetIcon} content={content} onClick={onClick} />;
+  return <XButton content={content} onClick={onClick} />;
 };
