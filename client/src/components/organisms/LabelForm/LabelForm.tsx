@@ -48,6 +48,9 @@ interface Props {
   title: string;
   description?: string;
   bgColor: string;
+  onChangeTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeDescription: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeColor: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClick: () => void;
 }
 
@@ -56,18 +59,27 @@ const LabelForm: FunctionComponent<Props> = ({
   description = '',
   bgColor,
   onClick,
+  onChangeTitle,
+  onChangeDescription,
+  onChangeColor,
 }) => {
   return (
     <StyledLabelForm bgColor={bgColor}>
       <div>
         <InputLabel text="Label name" />
-        <Input placeholder="Label name" value={title} type="text" />
+        <Input
+          placeholder="Label name"
+          value={title}
+          onChange={onChangeTitle}
+          type="text"
+        />
       </div>
       <div>
         <InputLabel text="Description" />
         <Input
           placeholder="Descriptio (optional)"
           value={description}
+          onChange={onChangeDescription}
           type="text"
         />
       </div>
@@ -77,7 +89,7 @@ const LabelForm: FunctionComponent<Props> = ({
           <Button onClick={onClick}>
             <TextWithIcon icon={ChangeIcon} text="" />
           </Button>
-          <Input value={bgColor} type="text" />
+          <Input value={bgColor} type="text" onChange={onChangeColor} />
         </div>
       </div>
 

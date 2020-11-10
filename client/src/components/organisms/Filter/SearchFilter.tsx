@@ -11,7 +11,8 @@ interface Props {
   options: () => JSX.Element;
   Icon: FunctionComponent;
   onClick?: () => void;
-  input?: string;
+  inputValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isShow: boolean;
   keys: string[];
 }
@@ -24,7 +25,8 @@ const SearchFilter: FunctionComponent<Props> = ({
   Icon,
   onClick,
   isShow,
-  input,
+  inputValue,
+  onChange,
   keys,
 }) => {
   return (
@@ -41,7 +43,8 @@ const SearchFilter: FunctionComponent<Props> = ({
       {isShow && (
         <FilterModal
           optionHeader={optionHeader}
-          input={input}
+          inputValue={inputValue}
+          onChange={onChange}
           options={options}
           keys={keys}
         />

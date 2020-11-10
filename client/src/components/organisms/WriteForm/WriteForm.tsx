@@ -11,7 +11,7 @@ interface Props {
   title?: string;
   content: string;
   onChangeTitle?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContent: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeContent: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const StyledWriteForm = styled.form`
@@ -78,7 +78,7 @@ const WriteForm: FunctionComponent<Props> = ({
   onChangeContent,
 }) => (
   <StyledWriteForm>
-    {onChangeTitle && (
+    {onChangeTitle && title && (
       <Input
         type="text"
         placeholder="Title"

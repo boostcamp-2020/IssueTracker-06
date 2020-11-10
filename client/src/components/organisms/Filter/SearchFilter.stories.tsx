@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { text, select } from '@storybook/addon-knobs';
+
+import useChange from '@hooks/useChange';
 import { DropdownIcon } from '@components/atoms/icons';
 import SelectMenuItemLabel from '@components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemLabel';
 import SelectMenuItemUser from '@components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemUser';
@@ -47,6 +49,7 @@ export const Default = () => {
 };
 
 export const Label = () => {
+  const [value, , onChangeValue] = useChange<HTMLInputElement>('');
   const [isShow, changeShow] = useState(false);
   const type = select(
     'type',
@@ -88,7 +91,6 @@ export const Label = () => {
     changeShow(!isShow);
   };
   const keys = ['label1', 'label2', 'label3', 'label4', 'label5'];
-  const input = 'Filter labels';
   return (
     <SearchFilter
       type={type}
@@ -98,13 +100,15 @@ export const Label = () => {
       Icon={DropdownIcon}
       onClick={onClick}
       isShow={isShow}
-      input={input}
+      inputValue={value}
+      onChange={onChangeValue}
       keys={keys}
     />
   );
 };
 
 export const User = () => {
+  const [value, , onChangeValue] = useChange<HTMLInputElement>('');
   const [isShow, changeShow] = useState(false);
   const type = select(
     'type',
@@ -151,7 +155,6 @@ export const User = () => {
     changeShow(!isShow);
   };
   const keys = ['user1', 'user2', 'user3', 'user4', 'user5'];
-  const input = 'Filter users';
   return (
     <SearchFilter
       type={type}
@@ -161,7 +164,8 @@ export const User = () => {
       Icon={DropdownIcon}
       onClick={onClick}
       isShow={isShow}
-      input={input}
+      inputValue={value}
+      onChange={onChangeValue}
       keys={keys}
     />
   );

@@ -1,4 +1,6 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
+
+import useChange from '@hooks/useChange';
 
 import WriteFormWithProfile from '.';
 
@@ -11,16 +13,8 @@ const PROFILE_URL =
   'https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4';
 
 export const Default = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-
-  const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const onChangeContent = (e: ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
-  };
+  const [title, , onChangeTitle] = useChange<HTMLInputElement>('');
+  const [content, , onChangeContent] = useChange<HTMLTextAreaElement>('');
 
   return (
     <WriteFormWithProfile
@@ -34,11 +28,7 @@ export const Default = () => {
 };
 
 export const OnlyContent = () => {
-  const [content, setContent] = useState('');
-
-  const onChangeContent = (e: ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
-  };
+  const [content, , onChangeContent] = useChange<HTMLTextAreaElement>('');
 
   return (
     <WriteFormWithProfile

@@ -10,7 +10,7 @@ interface Props {
   options: string[] | (() => JSX.Element[]);
   onClick?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  input?: string;
+  inputValue?: string;
   placeholder?: string;
   keys: string[];
 }
@@ -60,16 +60,16 @@ const SearchFilter: FunctionComponent<Props> = ({
   options,
   onClick,
   onChange,
-  input,
+  inputValue,
   placeholder,
   keys,
 }) => {
   return (
     <StyledUl>
       <List content={<BoldText value={optionHeader} />} />
-      {input !== undefined && (
+      {inputValue !== undefined && onChange && (
         <Input
-          value={input}
+          value={inputValue}
           placeholder={placeholder}
           onChange={onChange}
           type="text"

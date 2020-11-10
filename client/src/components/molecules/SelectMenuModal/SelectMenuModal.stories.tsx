@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { text } from '@storybook/addon-knobs';
+
+import useChange from '@hooks/useChange';
+
 import SelectMenuModal from './SelectMenuModal';
 
 export default {
@@ -33,7 +36,7 @@ export const Default = () => {
 };
 
 export const Author = () => {
-  const [value, setValue] = useState('');
+  const [value, , onChangeValue] = useChange<HTMLInputElement>('');
   const optionHeader = text('optionHeader', 'Filter by author');
   const options = ['user1', 'user2', 'user3', 'user4', 'user5'];
   const onClick = () => {
@@ -42,9 +45,6 @@ export const Author = () => {
 
   const keys = ['radio1', 'radio2', 'radio3', 'radio4', 'radio5'];
   const placeholder = 'Filter users';
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
 
   return (
     <SelectMenuModal
@@ -52,8 +52,8 @@ export const Author = () => {
       optionHeader={optionHeader}
       options={options}
       onClick={onClick}
-      onChange={onChange}
-      input={value}
+      onChange={onChangeValue}
+      inputValue={value}
       placeholder={placeholder}
       keys={keys}
     />
