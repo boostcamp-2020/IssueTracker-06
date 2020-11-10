@@ -32,7 +32,9 @@ final class ColorInputView: ContentInputView {
     }
 
     @IBAction private func randomColorButtonTouched(_ sender: UIButton) {
-        
+        let randomColor = UIColor.randomColor
+        colorView.backgroundColor = randomColor
+        colorTextField.text = randomColor.toHexString
     }
 }
 
