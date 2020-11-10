@@ -7,39 +7,20 @@
 
 import Foundation
 
-struct Labels: Codable, HTTPDataProviding {
-
-    typealias DataType = [Label]
-    static var key = "labels"
-
-    private let labels: [Label]
+struct Label {
     
-    var count: Int {
-        labels.count
-    }
-    
-    init() {
-        labels = []
-    }
-    
-    init(labels: [Label]) {
-        self.labels = labels
-    }
-    
-    subscript (_ index: Int) -> Label? {
-        labels[safe: index]
-    }
-}
-
-struct Label: Codable, HTTPDataProviding {
-    
-    typealias DataType = Label
-    static var key = "label"
-
     let id: Int
     let name: String
     let color: String
     let description: String?
+}
+
+extension Label: Codable {}
+
+extension Label: HTTPDataProviding {
+    
+    typealias DataType = Label
+    static var key = "label"
 }
 
 extension Label {

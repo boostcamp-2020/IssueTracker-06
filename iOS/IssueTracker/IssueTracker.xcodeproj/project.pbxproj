@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1916674F255A61C2009E710C /* Milestones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916674E255A61C2009E710C /* Milestones.swift */; };
+		19166757255A61F2009E710C /* Issues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19166756255A61F2009E710C /* Issues.swift */; };
+		1916675F255A6392009E710C /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916675E255A6392009E710C /* Labels.swift */; };
 		1924DE8A2559A30C0054D185 /* MilestoneAddViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE892559A30C0054D185 /* MilestoneAddViewDataSource.swift */; };
 		1924DE9A2559A3F20054D185 /* LabelAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE992559A3F20054D185 /* LabelAddViewController.swift */; };
 		1924DE9F2559A40D0054D185 /* LabelAddViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE9E2559A40D0054D185 /* LabelAddViewDataSource.swift */; };
@@ -82,6 +85,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1916674E255A61C2009E710C /* Milestones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestones.swift; sourceTree = "<group>"; };
+		19166756255A61F2009E710C /* Issues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issues.swift; sourceTree = "<group>"; };
+		1916675E255A6392009E710C /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		1924DE892559A30C0054D185 /* MilestoneAddViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneAddViewDataSource.swift; sourceTree = "<group>"; };
 		1924DE992559A3F20054D185 /* LabelAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAddViewController.swift; sourceTree = "<group>"; };
 		1924DE9E2559A40D0054D185 /* LabelAddViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAddViewDataSource.swift; sourceTree = "<group>"; };
@@ -272,10 +278,13 @@
 			isa = PBXGroup;
 			children = (
 				C8F0F439254DD6B70050B6C0 /* Comment.swift */,
+				1916674E255A61C2009E710C /* Milestones.swift */,
 				C8F0F43B254DD6B70050B6C0 /* Milestone.swift */,
 				C8F0F43C254DD6B70050B6C0 /* User.swift */,
+				19166756255A61F2009E710C /* Issues.swift */,
 				C854E8232548151800011D26 /* Issue.swift */,
 				199109ED2551AA8C009B3C58 /* DetailIssue.swift */,
+				1916675E255A6392009E710C /* Labels.swift */,
 				C854E828254816C600011D26 /* Label.swift */,
 			);
 			path = VO;
@@ -556,11 +565,13 @@
 				19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */,
 				C80381B82547D4A3008EEF6E /* LabelView.swift in Sources */,
 				19B3A14825514A1000754C2E /* HTTPServiceHelper.swift in Sources */,
+				1916674F255A61C2009E710C /* Milestones.swift in Sources */,
 				1924DE9F2559A40D0054D185 /* LabelAddViewDataSource.swift in Sources */,
 				1996E505254ABB9B0052E659 /* AssigneeView.swift in Sources */,
 				19ABABED25493F6D00F4939A /* IssueDetailViewController.swift in Sources */,
 				19ABABFD254953A600F4939A /* IssueStateView.swift in Sources */,
 				199109EE2551AA8C009B3C58 /* DetailIssue.swift in Sources */,
+				1916675F255A6392009E710C /* Labels.swift in Sources */,
 				1996E4F8254ABAA30052E659 /* BottomDetailView.swift in Sources */,
 				19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */,
 				19910A032552D0C0009B3C58 /* DetailIssueDataManager.swift in Sources */,
@@ -573,6 +584,7 @@
 				1996E4FD254ABB530052E659 /* AssigneeStackView.swift in Sources */,
 				199109F62552756A009B3C58 /* HTTPData.swift in Sources */,
 				19910A092553D43F009B3C58 /* LabelCollectionViewCell.swift in Sources */,
+				19166757255A61F2009E710C /* Issues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

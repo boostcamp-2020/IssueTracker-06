@@ -7,22 +7,7 @@
 
 import Foundation
 
-struct Milestones: Codable, HTTPDataProviding {
-    
-    typealias DataType = [Milestone]
-    static let key: String = "milestones"
-    
-    let milestones: [Milestone]
-    
-    init(milestones: [Milestone]) {
-        self.milestones = milestones
-    }
-}
-
-struct Milestone: Codable, HTTPDataProviding {
-    
-    typealias DataType = Milestone
-    static var key: String = "milestone"
+struct Milestone {
     
     private var issues: Issues?
     let date: String?
@@ -42,6 +27,9 @@ struct Milestone: Codable, HTTPDataProviding {
     mutating func issues(_ issues: Issues) {
         self.issues = issues
     }
+}
+
+extension Milestone: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case date
@@ -49,6 +37,19 @@ struct Milestone: Codable, HTTPDataProviding {
         case id
         case name
         case isOpen = "is_open"
+    }
+}
+
+extension Milestone: HTTPDataProviding {
+    
+    typealias DataType = Milestone
+    static var key: String = "milestone"
+}
+
+extension Milestone: Equatable {
+    
+    static func == (lhs: Milestone, rhs: Milestone) -> Bool {
+        lhs.id == rhs.id
     }
 }
 
