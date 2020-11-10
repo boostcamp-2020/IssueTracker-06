@@ -29,7 +29,7 @@ final class IssueListEditViewController: UIViewController {
     }
     
     private func configureIssuesData() {
-        IssueListDataProvider().get(successHandler: { [weak self] in
+        IssueListDataManager().get(successHandler: { [weak self] in
             guard let issue = $0 else { return }
             self?.issues = issue
             self?.configureIssueListCollectionView()

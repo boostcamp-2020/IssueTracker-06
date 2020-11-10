@@ -22,7 +22,7 @@ class LabelViewController: UIViewController {
     }
     
     private func configureLabelListData(completionHandler: (() -> Void)? = nil) {
-        LabelListDataProvider().get(successHandler: { [weak self] in
+        LabelListDataManager().get(successHandler: { [weak self] in
             self?.labels = $0
             completionHandler?()
         })

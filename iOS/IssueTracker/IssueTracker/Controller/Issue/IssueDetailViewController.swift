@@ -30,7 +30,7 @@ final class IssueDetailViewController: UIViewController {
     
     private func configureIssueData() {
         guard let id = issueId else { return }
-        DetailIssueDataProvider().get(id: id, successHandler: { [weak self] in
+        DetailIssueDataManager().get(id: id, successHandler: { [weak self] in
             guard let issue = $0 else { return }
             self?.issue = issue
             self?.configureIssueDetailCollectionView()
@@ -86,6 +86,7 @@ final class IssueDetailViewController: UIViewController {
 extension IssueDetailViewController: UICollectionViewDelegate {}
 
 extension IssueDetailViewController: UICollectionViewDataSource {
+    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -133,6 +134,7 @@ extension IssueDetailViewController: UICollectionViewDataSource {
 }
 
 extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -154,12 +156,14 @@ extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension IssueDetailViewController: IssueListViewControllerDelegate {
+    
     func issueId(_ id: Int) {
         issueId = id
     }
 }
 
 private extension IssueDetailViewController {
+    
     enum Constant {
         static let issueDetailCell: String = "IssueDetailCell"
         static let issueDetailHeader: String = "IssueDetailHeader"

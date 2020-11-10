@@ -9,6 +9,8 @@ import Foundation
 
 struct MilestoneDataManager {
     
+    private var mileStones: Milestones?
+
     func get(successHandler: ((Milestones?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
         
         guard let url = IssueTrackerURL.milestones else { return }
@@ -17,6 +19,14 @@ struct MilestoneDataManager {
                 successHandler?(nil)
                 return
             }
+            
+//            milestones.forEach { milestone in
+//                getIssues(name: milestone.name, successHandler: {
+//                    milestoneWithIssues = milestone
+//                    guard let issues = $0 else { return }
+//                    milestoneWithIssues?.issues(issues)
+//                })
+//            }
             successHandler?(Milestones(milestones: milestones))
             
         },

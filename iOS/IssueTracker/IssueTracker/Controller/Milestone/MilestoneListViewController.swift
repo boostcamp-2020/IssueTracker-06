@@ -25,7 +25,7 @@ class MilestoneListViewController: UIViewController {
     }
     
     private func configureMilestonesData() {
-        MilestoneDataProvider().get(successHandler: { [weak self] in
+        MilestoneDataManager().get(successHandler: { [weak self] in
             self?.milestones = $0
             guard let data = self?.milestones else { return }
             self?.configureMilestoneCollectionView()
