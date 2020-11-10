@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MilestoneDataProvider {
+struct MilestoneDataManager {
     
     func get(successHandler: ((Milestones?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
         
@@ -35,13 +35,14 @@ struct MilestoneDataProvider {
                 return
             }
             successHandler?(Issues(issues: issues))
-        }, errorHandler: {
+        },
+        errorHandler: {
             errorHandler?($0)
         })
     }
 }
 
-extension MilestoneDataProvider {
+extension MilestoneDataManager {
     
     static func createMilestone(milestoneDictionary: [String: String]) -> Milestone? {
         guard let title = milestoneDictionary[Milestone.Key.title],
@@ -60,9 +61,10 @@ extension MilestoneDataProvider {
     }
 }
 
-private extension MilestoneDataProvider {
+private extension MilestoneDataManager {
+    
     enum IssueTrackerURL {
         static let milestones = URL(string: "http://issue-tracker.cf/api/milestones")
-        static let issues = "http://issue-tracker.cf/api/issues?milestone="
+        static let issues: String = "http://issue-tracker.cf/api/issues?milestone="
     }
 }

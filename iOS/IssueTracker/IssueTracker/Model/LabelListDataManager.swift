@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LabelListDataProvider {
+struct LabelListDataManager {
     
     func get(
         successHandler: ((Labels?) -> Void)? = nil,
@@ -25,7 +25,7 @@ struct LabelListDataProvider {
     }
 }
 
-extension LabelListDataProvider {
+extension LabelListDataManager {
     
     static func createLabel(labelDictionary: [String:String]) -> Label? {
         guard let title = labelDictionary[Label.Key.title],
@@ -38,7 +38,8 @@ extension LabelListDataProvider {
     }
 }
 
-private extension LabelListDataProvider {
+private extension LabelListDataManager {
+    
     enum IssueTrackerURL {
         static let labels: URL? = URL(string: "http://issue-tracker.cf/api/labels")
     }

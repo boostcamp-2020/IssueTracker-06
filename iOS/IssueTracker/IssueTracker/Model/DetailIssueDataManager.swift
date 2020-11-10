@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DetailIssueDataProvider {
+struct DetailIssueDataManager {
     
     func get(
         id: Int,
@@ -26,7 +26,8 @@ struct DetailIssueDataProvider {
     }
 }
 
-private extension DetailIssueDataProvider {
+private extension DetailIssueDataManager {
+    
     enum IssueTrackerURL {
         static let issue: String = "http://issue-tracker.cf/api/issue"
     }
