@@ -29,12 +29,13 @@ final class MilestoneListCollectionViewCell: UICollectionViewCell {
         openIssueLabel.translatesAutoresizingMaskIntoConstraints = false
         closedIssueLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
             milestoneLabelView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             milestoneLabelView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
             descriptionLabel.leadingAnchor.constraint(equalTo: milestoneLabelView.leadingAnchor),
             descriptionLabel.widthAnchor.constraint(equalToConstant: bounds.width/2),
             descriptionLabel.topAnchor.constraint(equalTo: milestoneLabelView.bottomAnchor, constant: 15),
-            descriptionLabel.trailingAnchor.constraint(equalTo: closedIssueLabel.leadingAnchor, constant: -30),
+            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: closedIssueLabel.leadingAnchor, constant: -30),
             dateLabel.leadingAnchor.constraint(equalTo: milestoneLabelView.trailingAnchor, constant: 15),
             dateLabel.centerYAnchor.constraint(equalTo: milestoneLabelView.centerYAnchor),
             percentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
