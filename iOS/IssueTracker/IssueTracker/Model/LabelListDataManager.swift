@@ -25,7 +25,7 @@ struct LabelListDataManager {
     }
     
     func post(body: Label, successHandler: ((Int?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
-        guard let url = IssueTrackerURL.label else { return }
+        guard let url = URL(string: IssueTrackerURL.label) else { return }
         HTTPServiceHelper.shared.post(
             url: url,
             body: body,
@@ -38,25 +38,36 @@ struct LabelListDataManager {
             }
         )
     }
+    
+    func put(body: Label, successHandler: ((Bool) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: "\(IssueTrackerURL.label)/\(body.id)") else { return }
+        HTTPServiceHelper.shared.put(url: url, body: body, successHandler: {
+            successHandler?($0)
+        },
+        errorHandler: {
+            errorHandler?($0)
+        })
+    }
 }
 
 extension LabelListDataManager {
     
-    static func createLabel(labelDictionary: [String:String]) -> Label? {
+    static func createLabel(_ label: Label? = nil, labelDictionary: [String:String]) -> Label? {
         guard let title = labelDictionary[Label.Key.title],
               let color = labelDictionary[Label.Key.color],
               let description = labelDictionary[Label.Key.description]
         else {
             return nil
         }
-        return Label(id: .zero, name: title, color: color, description: description)
+        let id = label != nil ? (label?.id) ?? .zero : .zero
+        return Label(id: id, name: title, color: color, description: description)
     }
 }
 
 private extension LabelListDataManager {
     
     enum IssueTrackerURL {
-        static let label: URL? = URL(string: "http://issue-tracker.cf/api/label")
+        static let label: String = "http://issue-tracker.cf/api/label"
         static let labels: URL? = URL(string: "http://issue-tracker.cf/api/labels")
     }
 }

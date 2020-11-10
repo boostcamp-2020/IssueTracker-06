@@ -33,6 +33,11 @@ struct Labels {
         }
     }
     
+    mutating func replace(label: Label) {
+        guard let index = labels.firstIndex(of: label) else { return }
+        labels[index] = label
+    }
+    
     subscript (_ index: Int) -> Label? {
         labels[safe: index]
     }

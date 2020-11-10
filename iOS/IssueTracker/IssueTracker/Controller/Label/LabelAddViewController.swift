@@ -7,17 +7,21 @@
 
 import UIKit
 
-protocol AddLabelDelegate: class {
+protocol UpdateLabelDelegate: class {
     func add(label: Label)
+    func update(label: Label)
 }
 
 class LabelAddViewController: UIViewController {
 
-    weak var addLabelDelegate: AddLabelDelegate?
+    weak var updateLabelDelegate: UpdateLabelDelegate?
     @IBOutlet private weak var addView: AddView!
     @IBOutlet private weak var addViewCenterYConstraint: NSLayoutConstraint!
+    private var label: Label?
 
-    private let dataSource = LabelAddViewDataSource()
+    private lazy var dataSource: LabelAddViewDataSource = {
+        LabelAddViewDataSource(label: label)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +32,6 @@ class LabelAddViewController: UIViewController {
         addView.delegate = self
         addView.dataSource = dataSource
     }
-    
-    private func save(label: Label) {
-        LabelListDataManager().post(body: label, successHandler: { [weak self] _ in
-            self?.addLabelDelegate?.add(label: label)
-            self?.dismiss(animated: false, completion: nil)
-        })
-    }
 }
 
 extension LabelAddViewController: AddViewDelegate {
@@ -44,10 +41,35 @@ extension LabelAddViewController: AddViewDelegate {
     }
     
     func saveButtonTouched(_ addView: AddView, inputTexts: [String : String]) {
-        guard let label = LabelListDataManager.createLabel(labelDictionary: inputTexts)
+        guard let newLabel = LabelListDataManager.createLabel(label, labelDictionary: inputTexts)
         else {
             return
         }
-        save(label: label)
+        guard let _ = label else {
+            save(label: newLabel)
+            return
+        }
+        update(label: newLabel)
+    }
+    
+    private func save(label: Label) {
+        LabelListDataManager().post(body: label, successHandler: { [weak self] _ in
+            self?.updateLabelDelegate?.add(label: label)
+            self?.dismiss(animated: false, completion: nil)
+        })
+    }
+    
+    private func update(label: Label) {
+        LabelListDataManager().put(body: label, successHandler: { [weak self] _ in
+            self?.updateLabelDelegate?.update(label: label)
+            self?.dismiss(animated: false, completion: nil)
+        })
+    }
+}
+
+extension LabelAddViewController: LabelViewControllerDelegate {
+    
+    func label(_ label: Label) {
+        self.label = label
     }
 }

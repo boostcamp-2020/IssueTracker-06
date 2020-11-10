@@ -19,6 +19,11 @@ class MilestoneListViewController: UIViewController {
     private var selectedIndexPath: IndexPath?
     private var milestoneIssuesMap = [Int: Issues]()
     
+    private var selectedMilestone: Milestone? {
+        guard let indexPath = selectedIndexPath else { return nil }
+        return milestones?[indexPath.row]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         removeNavigationBarUnderLine()
@@ -62,21 +67,17 @@ class MilestoneListViewController: UIViewController {
         })
     }
     
-    @IBSegueAction func presentAddViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
+    @IBSegueAction private func presentAddViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
         let addViewController = MilestoneAddViewController(coder: coder)
         addViewController?.updateMilestoneDelegate = self
         return addViewController
     }
     
-    @IBSegueAction func presentUpdateViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
+    @IBSegueAction private func presentUpdateViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
         let updateViewController = MilestoneAddViewController(coder: coder)
         updateViewController?.updateMilestoneDelegate = self
 
-        guard let indexPath = selectedIndexPath,
-              let milestone = milestones?[indexPath.row]
-        else {
-            return updateViewController
-        }
+        guard let milestone = selectedMilestone else { return updateViewController }
         updateViewController?.milestone(milestone)
         return updateViewController
     }

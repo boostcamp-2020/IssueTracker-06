@@ -7,11 +7,21 @@
 
 import UIKit
 
+protocol LabelViewControllerDelegate {
+    func label(_ label: Label)
+}
+
 class LabelViewController: UIViewController {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var labelCollectionView: UICollectionView!
+    private var selectedIndexPath: IndexPath?
     private var labels: Labels?
+    
+    private var selectedLabel: Label? {
+        guard let indexPath = selectedIndexPath else { return nil }
+        return labels?[indexPath.row]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,22 +53,42 @@ class LabelViewController: UIViewController {
         labelCollectionView.dataSource = self
     }
     
-    @IBSegueAction func presentAddViewController(_ coder: NSCoder) -> LabelAddViewController? {
+    @IBSegueAction private func presentAddViewController(_ coder: NSCoder) -> LabelAddViewController? {
         let addViewController = LabelAddViewController(coder: coder)
-        addViewController?.addLabelDelegate = self
+        addViewController?.updateLabelDelegate = self
         return addViewController
+    }
+    
+    @IBSegueAction private func presentUpdateViewController(_ coder: NSCoder) -> LabelAddViewController? {
+        let updateViewController = LabelAddViewController(coder: coder)
+        updateViewController?.updateLabelDelegate = self
+        
+        guard let label = selectedLabel else { return updateViewController }
+        updateViewController?.label(label)
+        return updateViewController
     }
 }
 
-extension LabelViewController: AddLabelDelegate {
+extension LabelViewController: UpdateLabelDelegate {
     
     func add(label: Label) {
         labels?.add(label: label)
         labelCollectionView.reloadData()
     }
+    
+    func update(label: Label) {
+        labels?.replace(label: label)
+        labelCollectionView.reloadData()
+    }
 }
 
-extension LabelViewController: UICollectionViewDelegate {}
+extension LabelViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        performSegue(withIdentifier: Constant.updateSegue, sender: nil)
+    }
+}
 
 extension LabelViewController: UICollectionViewDataSource {
     
@@ -99,6 +129,7 @@ extension LabelViewController: UICollectionViewDelegateFlowLayout {
 private extension LabelViewController {
     
     enum Constant {
+        static let updateSegue: String = "UpdateSegue"
         static let labelCell: String = "LabelCell"
         static let labelCollectionViewCell: String = "LabelCollectionViewCell"
     }

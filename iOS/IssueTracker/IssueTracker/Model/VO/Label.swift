@@ -23,7 +23,12 @@ extension Label: HTTPDataProviding {
     static var key = "label"
 }
 
-extension Label: Equatable {}
+extension Label: Equatable {
+    
+    static func == (lhs: Label, rhs: Label) -> Bool {
+        lhs.id == rhs.id
+    }
+}
 
 extension Label {
     

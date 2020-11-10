@@ -17,6 +17,7 @@ final class ColorInputView: ContentInputView {
         }
         set {
             colorTextField.text = newValue
+            colorView.backgroundColor = newValue.color
         }
     }
     

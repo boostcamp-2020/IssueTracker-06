@@ -800,11 +800,12 @@
                     <connections>
                         <outlet property="labelCollectionView" destination="Tyn-3p-hlV" id="nfm-P0-ThD"/>
                         <outlet property="navigationBar" destination="2rW-hA-UpA" id="Ytg-CP-FCX"/>
+                        <segue destination="p5r-OP-A0j" kind="show" identifier="UpdateSegue" destinationCreationSelector="presentUpdateViewController:" animates="NO" id="jGC-Iq-EQ4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLh-jD-gcT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="769"/>
+            <point key="canvasLocation" x="91" y="769"/>
         </scene>
         <!--Filter Select View Controller-->
         <scene sceneID="JV2-N4-TqG">
@@ -1277,10 +1278,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CpQ-R5-8jI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="769"/>
+            <point key="canvasLocation" x="961" y="769"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="jGC-Iq-EQ4"/>
         <segue reference="ORY-4b-YBL"/>
     </inferredMetricsTieBreakers>
     <resources>
