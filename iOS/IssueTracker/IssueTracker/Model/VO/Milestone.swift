@@ -58,6 +58,7 @@ extension Milestone {
         static let title = "제목"
         static let completeDate = "완료 날짜"
         static let description = "설명"
+        static let milestoneID: String = "milestoneID"
     }
     
     enum Constant {

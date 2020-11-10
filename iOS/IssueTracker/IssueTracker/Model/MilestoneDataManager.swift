@@ -18,7 +18,9 @@ struct MilestoneDataManager {
                 return
             }
             successHandler?(Milestones(milestones: milestones))
-        }, errorHandler: {
+            
+        },
+        errorHandler: {
             errorHandler?($0)
         })
     }
@@ -39,6 +41,21 @@ struct MilestoneDataManager {
         errorHandler: {
             errorHandler?($0)
         })
+    }
+    
+    func post(body: Milestone, successHandler: ((String?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = IssueTrackerURL.milestone else { return }
+        HTTPServiceHelper.shared.post(
+            url: url,
+            body: body,
+            responseKeyID: Milestone.Key.milestoneID,
+            successHandler: {
+                successHandler?($0.id)
+            },
+            errorHandler: {
+                errorHandler?($0)
+            }
+        )
     }
 }
 
@@ -64,6 +81,7 @@ extension MilestoneDataManager {
 private extension MilestoneDataManager {
     
     enum IssueTrackerURL {
+        static let milestone = URL(string: "http://issue-tracker.cf/api/milestone")
         static let milestones = URL(string: "http://issue-tracker.cf/api/milestones")
         static let issues: String = "http://issue-tracker.cf/api/issues?milestone="
     }
