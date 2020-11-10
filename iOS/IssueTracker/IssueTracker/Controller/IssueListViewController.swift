@@ -31,7 +31,7 @@ final class IssueListViewController: UIViewController {
     }
     
     private func configureIssuesData() {
-        IssueListDataProvider().get(successHandler: { [weak self] in
+        IssueListDataManager().get(successHandler: { [weak self] in
             self?.issues = $0
             self?.configureIssueListCollectionView()
         })

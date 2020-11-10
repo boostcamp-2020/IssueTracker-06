@@ -25,7 +25,7 @@ class MilestoneListViewController: UIViewController {
     }
     
     private func configureMilestonesData() {
-        MilestoneDataProvider().get(successHandler: { [weak self] in
+        MilestoneDataManager().get(successHandler: { [weak self] in
             self?.milestones = $0
             guard let data = self?.milestones else { return }
             self?.configureMilestoneCollectionView()
@@ -52,7 +52,7 @@ class MilestoneListViewController: UIViewController {
     
     private func configureIssuesData(milestoneName: String, completionHandler: ((Issues?) -> Void)? = nil) {
         let processedName = milestoneName.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-        MilestoneDataProvider().getIssues(name: processedName, successHandler: {
+        MilestoneDataManager().getIssues(name: processedName, successHandler: {
             completionHandler?($0)
         })
     }

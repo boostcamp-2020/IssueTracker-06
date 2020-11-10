@@ -30,7 +30,7 @@ final class IssueDetailViewController: UIViewController {
     
     private func configureIssueData() {
         guard let id = issueId else { return }
-        DetailIssueDataProvider().get(id: id, successHandler: { [weak self] in
+        DetailIssueDataManager().get(id: id, successHandler: { [weak self] in
             guard let issue = $0 else { return }
             self?.issue = issue
             self?.configureIssueDetailCollectionView()
