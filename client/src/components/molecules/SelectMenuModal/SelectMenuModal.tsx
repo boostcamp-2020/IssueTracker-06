@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 import Input from '@components/atoms/Input';
 import SelectMenuItem from '@components/molecules/SelectMenuModal/SelectMenuItem';
-import List from '@components/atoms/List';
 import BoldText from '@components/atoms/BoldText';
 
 interface Props {
@@ -66,7 +65,9 @@ const SearchFilter: FunctionComponent<Props> = ({
 }) => {
   return (
     <StyledUl>
-      <List content={<BoldText value={optionHeader} />} />
+      <li>
+        <BoldText value={optionHeader} />
+      </li>
       {inputValue !== undefined && onChange && (
         <Input
           value={inputValue}
@@ -76,10 +77,9 @@ const SearchFilter: FunctionComponent<Props> = ({
         />
       )}
       {options.map((option: string, i: number) => (
-        <List
-          key={keys[i]}
-          content={<SelectMenuItem content={option} onClick={onClick} />}
-        />
+        <li key={keys[i]}>
+          <SelectMenuItem content={option} onClick={onClick} />
+        </li>
       ))}
     </StyledUl>
   );
