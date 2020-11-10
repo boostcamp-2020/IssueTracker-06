@@ -17,5 +17,5 @@ export const Default = () => {
     .join('')
     .slice(0, 6);
 
-  return <LabelTag id={0} name={value} color={`#${hexColor}`} />;
+  return <LabelTag data={{ id: 0, name: value, color: `#${hexColor}` }} />;
 };

@@ -3,6 +3,10 @@ import styled from '@themes/styled';
 import getTextColorByBGColor from '@lib/getTextColorByBGColor';
 import { Label } from '.';
 
+interface Props {
+  data: Label;
+}
+
 interface StyledProps {
   bgColor: string;
 }
@@ -19,8 +23,8 @@ const StyledLabelTag = styled.span<StyledProps>`
   background-color: ${({ bgColor }) => bgColor};
 `;
 
-const LabelTag: FunctionComponent<Label> = ({ name, color }) => (
-  <StyledLabelTag bgColor={color}>{name}</StyledLabelTag>
+const LabelTag: FunctionComponent<Props> = ({ data }) => (
+  <StyledLabelTag bgColor={data.color}>{data.name}</StyledLabelTag>
 );
 
 export default LabelTag;

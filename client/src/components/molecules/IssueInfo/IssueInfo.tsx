@@ -62,12 +62,7 @@ const IssueInfo: FunctionComponent<Props> = ({
     <div className="issueTitleContainer">
       <h1>{title}</h1>
       {labels?.map((label) => (
-        <LabelTag
-          key={label.id}
-          id={label.id}
-          name={label.name}
-          color={label.color}
-        />
+        <LabelTag key={label.id} data={label} />
       ))}
     </div>
     <div className="issueDescriptionContainer">
