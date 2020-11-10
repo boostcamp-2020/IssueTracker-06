@@ -17,7 +17,7 @@ interface Props {
 }
 
 const FilterButton: FunctionComponent<Props> = ({ onClick, text }) => (
-  <StyledFilterButton onClick={onClick}>{text} ▾</StyledFilterButton>
+  <StyledFilterButton onClick={onClick}>{`${text} ▾`}</StyledFilterButton>
 );
 
 export default FilterButton;

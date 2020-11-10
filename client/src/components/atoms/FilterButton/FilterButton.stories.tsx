@@ -1,5 +1,6 @@
 import React from 'react';
 import { text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import FilterButton from './FilterButton';
 
 export default {
@@ -8,8 +9,7 @@ export default {
 };
 
 export const Default = () => {
-  const onClick = () => {};
   const value = text('button text', 'Author');
 
-  return <FilterButton onClick={onClick} text={value} />;
+  return <FilterButton onClick={action('click')} text={value} />;
 };
