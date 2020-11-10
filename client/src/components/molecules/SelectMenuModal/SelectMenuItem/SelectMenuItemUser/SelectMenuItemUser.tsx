@@ -6,11 +6,16 @@ import StyledTitleWrapper from '../selectMenuItemStyle';
 interface Props {
   title: string;
   userImgSrc: string;
+  onClick?: () => void;
 }
 
-const FilterItemUser: FunctionComponent<Props> = ({ title, userImgSrc }) => (
+const FilterItemUser: FunctionComponent<Props> = ({
+  title,
+  userImgSrc,
+  onClick,
+}) => (
   <li>
-    <StyledTitleWrapper>
+    <StyledTitleWrapper onClick={onClick}>
       <Img src={userImgSrc} alt="profile" />
       <Title text={title} />
     </StyledTitleWrapper>

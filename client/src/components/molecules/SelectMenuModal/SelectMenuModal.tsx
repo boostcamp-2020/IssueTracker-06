@@ -32,19 +32,14 @@ const StyledUl = styled.ul`
     text-align: left;
   }
 
-  & > li > button,
-  & :first-child {
+  & > li {
     color: ${({ theme }) => theme.palette.PRIMARY};
     font-size: 0.8rem;
     padding: 4px 8px;
   }
 
-  & > li > button:hover {
+  & > li:hover {
     background-color: ${({ theme }) => theme.palette.BG_COLOR02};
-  }
-
-  & > li > button:focus {
-    outline: none;
   }
 
   & > li > :last-child {
