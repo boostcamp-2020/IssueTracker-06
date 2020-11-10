@@ -24,7 +24,7 @@ struct LabelListDataManager {
         })
     }
     
-    func post(body: Label, successHandler: ((String?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+    func post(body: Label, successHandler: ((Int?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
         guard let url = IssueTrackerURL.label else { return }
         HTTPServiceHelper.shared.post(
             url: url,

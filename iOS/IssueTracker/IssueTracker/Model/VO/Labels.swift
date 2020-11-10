@@ -9,7 +9,7 @@ import Foundation
 
 struct Labels {
 
-    private let labels: [Label]
+    private var labels: [Label]
     
     var count: Int {
         labels.count
@@ -21,6 +21,16 @@ struct Labels {
     
     init(labels: [Label]) {
         self.labels = labels
+    }
+    
+    mutating func add(label: Label) {
+        labels.append(label)
+    }
+    
+    mutating func remove(label: Label) {
+        labels.removeAll {
+            $0 == label
+        }
     }
     
     subscript (_ index: Int) -> Label? {

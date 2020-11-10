@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol AddLabelDelegate: class {
+    func add(label: Label)
+}
+
 class LabelAddViewController: UIViewController {
 
+    weak var addLabelDelegate: AddLabelDelegate?
     @IBOutlet private weak var addView: AddView!
     @IBOutlet private weak var addViewCenterYConstraint: NSLayoutConstraint!
 
@@ -26,6 +31,7 @@ class LabelAddViewController: UIViewController {
     
     private func save(label: Label) {
         LabelListDataManager().post(body: label, successHandler: { [weak self] _ in
+            self?.addLabelDelegate?.add(label: label)
             self?.dismiss(animated: false, completion: nil)
         })
     }

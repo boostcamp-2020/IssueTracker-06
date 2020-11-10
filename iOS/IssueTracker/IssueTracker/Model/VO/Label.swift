@@ -23,6 +23,8 @@ extension Label: HTTPDataProviding {
     static var key = "label"
 }
 
+extension Label: Equatable {}
+
 extension Label {
     
     enum Key {

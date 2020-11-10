@@ -768,7 +768,7 @@
                                         <barButtonItem key="rightBarButtonItem" id="RjC-by-H9W">
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                             <connections>
-                                                <segue destination="p5r-OP-A0j" kind="show" animates="NO" id="ssJ-H2-NeC"/>
+                                                <segue destination="p5r-OP-A0j" kind="show" destinationCreationSelector="presentAddViewController:" animates="NO" id="ssJ-H2-NeC"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

@@ -42,6 +42,20 @@ class LabelViewController: UIViewController {
         labelCollectionView.delegate = self
         labelCollectionView.dataSource = self
     }
+    
+    @IBSegueAction func presentAddViewController(_ coder: NSCoder) -> LabelAddViewController? {
+        let addViewController = LabelAddViewController(coder: coder)
+        addViewController?.addLabelDelegate = self
+        return addViewController
+    }
+}
+
+extension LabelViewController: AddLabelDelegate {
+    
+    func add(label: Label) {
+        labels?.add(label: label)
+        labelCollectionView.reloadData()
+    }
 }
 
 extension LabelViewController: UICollectionViewDelegate {}
