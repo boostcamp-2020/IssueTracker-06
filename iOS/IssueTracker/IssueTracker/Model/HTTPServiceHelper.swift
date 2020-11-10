@@ -30,13 +30,13 @@ struct HTTPServiceHelper {
         }
     }
     
-    func put<T: Codable & HTTPDataProviding>(
+    func put<T: Codable>(
         url: URL,
         body: T,
         successHandler: ((Bool) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
         AF.request(url, method: .put, parameters: body)
-            .responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
+            .responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
             switch response.result {
             case .success(let httpData):
                 successHandler?(httpData.result)
@@ -47,15 +47,15 @@ struct HTTPServiceHelper {
     }
     
     // api에서 post response로 result: Bool, ()Id: String? 이 오기때문에 responseKeyID를 매개변수로 추가함
-    func post<T: Codable & HTTPDataProviding>(
+    func post<T: Codable>(
         url: URL,
         body: T,
         responseKeyID: String,
         successHandler: (((result: Bool, id: String?)) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
-        HTTPPostResponseData.keyID = responseKeyID
+        HTTPResponseData.keyID = responseKeyID
         AF.request(url, method: .post, parameters: body)
-            .responseDecodable { (response: AFDataResponse<HTTPPostResponseData>) in
+            .responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
             switch response.result {
             case .success(let httpData):
                 successHandler?((result: httpData.result, id: httpData.id))
@@ -65,12 +65,12 @@ struct HTTPServiceHelper {
         }
     }
   
-    func delete<T: Codable & HTTPDataProviding>(
+    func delete<T: Codable>(
         url: URL,
         requestType: T.Type,
         successHandler: ((Bool) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
-        AF.request(url, method: .delete).responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
+        AF.request(url, method: .delete).responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
             switch response.result {
             case .success(let httpData):
                 successHandler?((httpData.result))
