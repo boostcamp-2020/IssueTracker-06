@@ -1,5 +1,6 @@
 export { default as ChangeIcon } from './ChangeIcon';
 export { default as DropdownIcon } from './DropdownIcon';
+export { default as GithubIcon } from './GithubIcon';
 export { default as IssueClosedIcon } from './IssueClosedIcon';
 export { default as IssueOpenedIcon } from './IssueOpenedIcon';
 export { default as MilestoneIcon } from './MilestoneIcon';
