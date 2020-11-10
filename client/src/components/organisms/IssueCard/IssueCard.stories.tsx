@@ -37,8 +37,7 @@ export const Default = () => {
     <IssueCard
       isOpen={isOpen}
       title={title}
-      label={label}
-      labelBg={labelBg}
+      labels={[{ id: 0, name: label, color: labelBg }]}
       issueNum={issueNum}
       time={time}
       author={author}

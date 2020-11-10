@@ -3,12 +3,12 @@ import IssueInfo from '@components/molecules/IssueInfo';
 import { IssueOpenedIcon, IssueClosedIcon } from '@components/atoms/icons';
 import styled from '@themes/styled';
 import Assignees, { User } from '@components/molecules/Assignees';
+import { Label } from '@components/atoms/LabelTag';
 
 interface Props {
   isOpen: boolean;
   title: string;
-  label?: string;
-  labelBg?: string;
+  labels?: Label[];
   issueNum: number;
   time: string;
   author: string;
@@ -27,8 +27,7 @@ const StyledIssueCard = styled.div`
 const IssueCard: FunctionComponent<Props> = ({
   isOpen,
   title,
-  label,
-  labelBg,
+  labels,
   issueNum,
   time,
   author,
@@ -41,8 +40,7 @@ const IssueCard: FunctionComponent<Props> = ({
     <IssueInfo
       isOpen={isOpen}
       title={title}
-      label={label}
-      labelBg={labelBg}
+      labels={labels}
       issueNum={issueNum}
       time={time}
       author={author}
