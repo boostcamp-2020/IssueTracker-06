@@ -11,7 +11,12 @@ final class TextFieldInputView: ContentInputView {
     
     @IBOutlet private weak var inputTextField: UITextField!
     override var text: String {
-        inputTextField.text ?? Constant.blank
+        get {
+            inputTextField.text ?? Constant.blank
+        }
+        set {
+            inputTextField.text = newValue
+        }
     }
     
     init(propertyName: String, placeholder: String = Constant.blank) {

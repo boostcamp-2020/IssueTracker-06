@@ -20,7 +20,25 @@ final class MilestoneAddViewDataSource: AddViewDataSource {
         [titleInputView, completeDateInputView, descriptionInputView]
     }()
     
+    init(milestone: Milestone? = nil) {
+        guard let milestone = milestone else { return }
+        configureInputView(milestone: milestone)
+    }
+    
     func contentViews(_ addView: AddView) -> [ContentInputView] {
         inputViews
+    }
+    
+    private func configureInputView(milestone: Milestone) {
+        titleInputView.text = milestone.name
+        completeDateInputView.text = milestone.date ?? Constant.blank
+        descriptionInputView.text = milestone.description
+    }
+}
+
+private extension MilestoneAddViewDataSource {
+    
+    enum Constant {
+        static let blank = ""
     }
 }

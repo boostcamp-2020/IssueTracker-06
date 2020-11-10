@@ -9,13 +9,13 @@ import UIKit
 
 protocol Inputable {
     var propertyName: String { get }
-    var text: String { get }
+    var text: String { set get }
     func reset()
 }
 
 class ContentInputView: UIView, Inputable {
     
-    private(set) var text: String = Constant.blank
+    var text: String = Constant.blank
     let propertyName: String
     
     func reset() {}

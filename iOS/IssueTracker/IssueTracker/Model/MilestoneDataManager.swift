@@ -54,7 +54,7 @@ struct MilestoneDataManager {
     }
     
     func post(body: Milestone, successHandler: ((Int?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
-        guard let url = IssueTrackerURL.milestone else { return }
+        guard let url = URL(string: IssueTrackerURL.milestone) else { return }
         HTTPServiceHelper.shared.post(
             url: url,
             body: body,
@@ -67,21 +67,34 @@ struct MilestoneDataManager {
             }
         )
     }
+    
+    func put(body: Milestone, successHandler: ((Bool) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: "\(IssueTrackerURL.milestone)/\(body.id)") else { return }
+        HTTPServiceHelper.shared.put(url: url, body: body, successHandler: {
+            successHandler?($0)
+        },
+        errorHandler: {
+            errorHandler?($0)
+        })
+    }
 }
 
 extension MilestoneDataManager {
     
-    static func createMilestone(milestoneDictionary: [String: String]) -> Milestone? {
+    static func createMilestone(
+        _ milestone: Milestone? = nil,
+        milestoneDictionary: [String: String]) -> Milestone? {
         guard let title = milestoneDictionary[Milestone.Key.title],
               let completeDate = milestoneDictionary[Milestone.Key.completeDate],
               let description = milestoneDictionary[Milestone.Key.description]
         else {
             return nil
         }
+        let id = milestone != nil ? (milestone?.id) ?? .zero : .zero
         return Milestone(
             date: completeDate,
             description: description,
-            id: .zero,
+            id: id,
             isOpen: 1,
             name: title
         )
@@ -91,7 +104,7 @@ extension MilestoneDataManager {
 private extension MilestoneDataManager {
     
     enum IssueTrackerURL {
-        static let milestone = URL(string: "http://issue-tracker.cf/api/milestone")
+        static let milestone: String = "http://issue-tracker.cf/api/milestone"
         static let milestones = URL(string: "http://issue-tracker.cf/api/milestones")
         static let issues: String = "http://issue-tracker.cf/api/issues?milestone="
     }

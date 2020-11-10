@@ -11,7 +11,12 @@ final class TextViewInputView: ContentInputView {
     
     @IBOutlet private weak var inputTextView: UITextView!
     override var text: String {
-        inputTextView.text
+        get {
+            inputTextView.text
+        }
+        set {
+            inputTextView.text = newValue
+        }
     }
     
     override init(propertyName: String) {

@@ -29,6 +29,11 @@ struct Milestones {
         }
     }
     
+    mutating func replace(milestone: Milestone) {
+        guard let index = milestones.firstIndex(of: milestone) else { return }
+        milestones[index] = milestone
+    }
+    
     subscript (_ index: Int) -> Milestone? {
         milestones[safe: index]
     }

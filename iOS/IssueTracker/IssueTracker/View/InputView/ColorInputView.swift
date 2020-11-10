@@ -12,7 +12,12 @@ final class ColorInputView: ContentInputView {
     @IBOutlet private weak var colorTextField: UITextField!
     @IBOutlet private weak var colorView: UIView!
     override var text: String {
-        colorTextField.text ?? Constant.blank
+        get {
+            colorTextField.text ?? Constant.blank
+        }
+        set {
+            colorTextField.text = newValue
+        }
     }
     
     override init(propertyName: String) {
