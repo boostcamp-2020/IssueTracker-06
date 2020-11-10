@@ -457,7 +457,7 @@
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <state key="normal" title="댓글 추가"/>
                                         <connections>
-                                            <segue destination="pv4-pT-Ce3" kind="show" id="hLU-ZL-ZgT"/>
+                                            <segue destination="pv4-pT-Ce3" kind="show" identifier="CommentAddSegue" id="hLU-ZL-ZgT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gub-as-6q9">

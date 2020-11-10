@@ -83,6 +83,10 @@ final class IssueDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CommentAddSegue" {
+            guard let destination = segue.destination as? CommentAddViewController else { return }
+            destination.issueId = issueId
+        }
         guard let destination = segue.destination as? NewIssueAddViewController else { return }
         destination.mode = "modify"
         destination.issue = issue

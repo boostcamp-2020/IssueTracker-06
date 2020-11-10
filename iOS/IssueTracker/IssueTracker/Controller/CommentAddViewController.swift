@@ -14,6 +14,7 @@ class CommentAddViewController: UIViewController {
     @IBOutlet weak var previewTextView: UITextView!
     @IBOutlet weak var commentTextView: UITextView!
     private var markdownParser: MarkdownParser?
+    var issueId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,16 @@ class CommentAddViewController: UIViewController {
     }
     
     @IBAction func uploadButtonPressed() {
-        print("upload")
+        if commentTextView.text == Constant.commentSet
+            || commentTextView.text == Constant.beginEdting {
+            return
+        }
+        guard let content = previewTextView.text else { return }
+        guard let issueId = issueId else { return }
+        let commentDataManager = CommentDataManager()
+        let newComment = Comment.NewComment(content: content, issueId: issueId)
+        commentDataManager.post(body: newComment, successHandler: nil, errorHandler: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
