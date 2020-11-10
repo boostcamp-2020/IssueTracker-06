@@ -22,10 +22,6 @@ final class MilestoneAddViewController: UIViewController {
         addView.delegate = self
         addView.dataSource = dataSource
     }
-    
-    private func save(milestone: Milestone) {
-        dismiss(animated: false, completion: nil)
-    }
 }
 
 extension MilestoneAddViewController: AddViewDelegate {
@@ -35,10 +31,16 @@ extension MilestoneAddViewController: AddViewDelegate {
     }
     
     func saveButtonTouched(_ addView: AddView, inputTexts: [String : String]) {
-        guard let milestone = MilestoneDataProvider.createMilestone(milestoneDictionary: inputTexts)
+        guard let milestone = MilestoneDataManager.createMilestone(milestoneDictionary: inputTexts)
         else {
             return
         }
         save(milestone: milestone)
+    }
+    
+    private func save(milestone: Milestone) {
+        MilestoneDataManager().post(body: milestone, successHandler: { [weak self] _ in
+            self?.dismiss(animated: false, completion: nil)
+        })
     }
 }
