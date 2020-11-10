@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { text, select } from '@storybook/addon-knobs';
-import { Dropdown } from '@components/atoms/icons';
+import { DropdownIcon } from '@components/atoms/icons';
 import SelectMenuItemLabel from '@components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemLabel';
 import SelectMenuItemUser from '@components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemUser';
 import PlainText from '@components/atoms/PlainText';
@@ -28,7 +28,6 @@ export const Default = () => {
     'Closed issues', */}
     </>
   );
-  const Icon = Dropdown;
   const onClick = () => {
     changeShow(!isShow);
   };
@@ -39,7 +38,7 @@ export const Default = () => {
       label={label}
       optionHeader={optionHeader}
       options={options}
-      Icon={Icon}
+      Icon={DropdownIcon}
       onClick={onClick}
       isShow={isShow}
       keys={keys}
@@ -85,7 +84,6 @@ export const Label = () => {
       ,
     </>
   );
-  const Icon = Dropdown;
   const onClick = () => {
     changeShow(!isShow);
   };
@@ -97,7 +95,7 @@ export const Label = () => {
       label={label}
       optionHeader={optionHeader}
       options={options}
-      Icon={Icon}
+      Icon={DropdownIcon}
       onClick={onClick}
       isShow={isShow}
       input={input}
@@ -149,7 +147,6 @@ export const User = () => {
       />
     </>
   );
-  const Icon = Dropdown;
   const onClick = () => {
     changeShow(!isShow);
   };
@@ -161,7 +158,7 @@ export const User = () => {
       label={label}
       optionHeader={optionHeader}
       options={options}
-      Icon={Icon}
+      Icon={DropdownIcon}
       onClick={onClick}
       isShow={isShow}
       input={input}

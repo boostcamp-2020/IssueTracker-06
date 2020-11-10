@@ -3,7 +3,7 @@ import React, { ChangeEvent, FunctionComponent } from 'react';
 import styled from '@themes/styled';
 import Input from '@components/atoms/Input';
 import IconWithText from '@components/molecules/TextWithIcon';
-import CheckedIssue from '@components/atoms/icons/ChekcedIssue';
+import { IssueClosedIcon } from '@components/atoms/icons';
 import Button from '@components/atoms/Button';
 import TextareaWithImgUpload from '@components/molecules/TextareaWithImgUpload';
 
@@ -100,7 +100,7 @@ const WriteForm: FunctionComponent<Props> = ({
     ) : (
       <div className="button-form align-right">
         <Button type="error">
-          <IconWithText text="Close issue" icon={CheckedIssue} />
+          <IconWithText text="Close issue" icon={IssueClosedIcon} />
         </Button>
         <Button type="primary">Comment</Button>
       </div>

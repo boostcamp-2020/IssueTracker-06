@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import LabelTag, { Label } from '@components/atoms/LabelTag';
 import styled from '@themes/styled';
-import IconMilestone from '@components/atoms/icons/IconMilestone';
+import { MilestoneIcon } from '@/components/atoms/icons';
 import TextWithIcon from '../TextWithIcon';
 
 interface Props {
@@ -84,7 +84,7 @@ const IssueInfo: FunctionComponent<Props> = ({
           <span>{`was closed ${time}`}</span>
         </>
       )}
-      {milestone && <TextWithIcon icon={IconMilestone} text={milestone} />}
+      {milestone && <TextWithIcon icon={MilestoneIcon} text={milestone} />}
     </div>
   </StyledIssueInfo>
 );

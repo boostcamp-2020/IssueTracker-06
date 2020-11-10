@@ -5,7 +5,7 @@ import InputLabel from '@components/atoms/InputLabel';
 import Button from '@components/atoms/Button';
 import BoldText from '@/components/atoms/BoldText';
 import TextWithIcon from '@/components/molecules/TextWithIcon';
-import { Change } from '@components/atoms/icons';
+import { ChangeIcon } from '@components/atoms/icons';
 import getTextColorByBGColor from '@lib/getTextColorByBGColor';
 
 interface StyledProps {
@@ -75,7 +75,7 @@ const LabelForm: FunctionComponent<Props> = ({
         <InputLabel text="Color" />
         <div>
           <Button onClick={onClick}>
-            <TextWithIcon icon={Change} text="" />
+            <TextWithIcon icon={ChangeIcon} text="" />
           </Button>
           <Input value={bgColor} type="text" />
         </div>

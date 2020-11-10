@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import IssueInfo from '@components/molecules/IssueInfo';
-import { IssueOpened, IssueClosed } from '@components/atoms/icons';
+import { IssueOpenedIcon, IssueClosedIcon } from '@components/atoms/icons';
 import styled from '@themes/styled';
 import Assignees, { User } from '@components/molecules/Assignees';
 
@@ -37,7 +37,7 @@ const IssueCard: FunctionComponent<Props> = ({
 }) => (
   <StyledIssueCard>
     <input type="checkbox" />
-    {isOpen ? <IssueOpened /> : <IssueClosed />}
+    {isOpen ? <IssueOpenedIcon /> : <IssueClosedIcon />}
     <IssueInfo
       isOpen={isOpen}
       title={title}

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
-import { Warning } from '@components/atoms/icons';
+import { WarningIcon } from '@components/atoms/icons';
 import BoldText from '@components/atoms/BoldText';
 
 interface Props {
@@ -23,7 +23,7 @@ const StyledDiv = styled.div`
 `;
 
 const XButton: FunctionComponent<Props> = ({
-  Icon = Warning,
+  Icon = WarningIcon,
   content = 'No results matched your search.',
 }) => {
   return (

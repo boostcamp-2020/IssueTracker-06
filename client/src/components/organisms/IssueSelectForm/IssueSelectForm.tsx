@@ -2,7 +2,7 @@ import React, { FunctionComponent, useCallback, useState } from 'react';
 
 import styled from '@themes/styled';
 import Button from '@components/atoms/Button';
-import SettingIcon from '@components/atoms/icons/SettingIcon';
+import { SettingIcon } from '@components/atoms/icons';
 
 interface Props {
   title: string;
