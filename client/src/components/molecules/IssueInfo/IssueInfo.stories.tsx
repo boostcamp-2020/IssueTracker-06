@@ -1,5 +1,8 @@
 import React from 'react';
 import { text, number, boolean } from '@storybook/addon-knobs';
+
+import { Label } from '@components/atoms/LabelTag';
+
 import IssueInfo from './IssueInfo';
 
 export default {
@@ -20,8 +23,7 @@ export const Default = () => {
     <IssueInfo
       isOpen={isOpen}
       title={title}
-      label={label}
-      labelBg={labelBg}
+      labels={[{ id: 0, name: label, color: labelBg }] as Label[]}
       issueNum={issueNum}
       time={time}
       author={author}
