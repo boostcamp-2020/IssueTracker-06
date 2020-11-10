@@ -48,6 +48,7 @@ extension Label {
         static let title = "제목"
         static let color = "색상"
         static let description = "설명"
+        static let labelID = "labelId"
     }
     
     enum Constant {
