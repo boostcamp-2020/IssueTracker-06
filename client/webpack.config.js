@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -57,5 +58,6 @@ module.exports = {
     new webpack.ProvidePlugin({ React: 'react' }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new Dotenv(),
   ],
 };

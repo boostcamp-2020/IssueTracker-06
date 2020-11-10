@@ -10,6 +10,7 @@
   "dependencies": {
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
+    "axios": "^0.21.0",
     "emotion-reset": "^2.0.7",
     "emotion-theming": "^10.0.27",
     "react": "^16.13.1",
@@ -36,6 +37,7 @@
     "@typescript-eslint/parser": "^4.6.1",
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "^10.0.0",
+    "dotenv-webpack": "^5.1.0",
     "eslint": "^7.12.1",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.15.0",
