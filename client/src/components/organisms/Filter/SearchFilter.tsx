@@ -1,18 +1,18 @@
 import React, { Children, FunctionComponent } from 'react';
 import styled from '@themes/styled';
-import Button from '@components/atoms/Button';
+import Button, { ButtonType } from '@components/atoms/Button';
 import FilterModal from '@components/molecules/SelectMenuModal';
 import TextWithIcon from '@/components/molecules/TextWithIcon';
 
 interface Props {
-  type: 'transparent' | 'default' | 'error' | 'primary' | undefined;
+  type: ButtonType;
   label: string;
   optionHeader: string;
-  options: string[] | React.ReactChild;
+  options: () => JSX.Element;
   Icon: FunctionComponent;
-  onClick: () => void;
+  onClick?: () => void;
   input?: string;
-  display: 'none' | 'display';
+  isShow: boolean;
   keys: string[];
 }
 
@@ -23,7 +23,7 @@ const SearchFilter: FunctionComponent<Props> = ({
   options,
   Icon,
   onClick,
-  display,
+  isShow,
   input,
   keys,
 }) => {
@@ -38,13 +38,14 @@ const SearchFilter: FunctionComponent<Props> = ({
         />
       </Button>
 
-      <FilterModal
-        display={display}
-        optionHeader={optionHeader}
-        input={input}
-        options={options}
-        keys={keys}
-      />
+      {isShow && (
+        <FilterModal
+          optionHeader={optionHeader}
+          input={input}
+          options={options}
+          keys={keys}
+        />
+      )}
     </>
   );
 };

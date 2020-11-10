@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
 interface Props {
-  content: string | Element;
+  content: string | (() => JSX.Element);
   onClick?: () => void;
 }
 
