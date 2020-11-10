@@ -51,7 +51,7 @@ struct HTTPServiceHelper {
         url: URL,
         body: T,
         responseKeyID: String,
-        successHandler: (((result: Bool, id: String?)) -> Void)? = nil,
+        successHandler: (((result: Bool, id: Int?)) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
         HTTPResponseData.keyID = responseKeyID
         AF.request(url, method: .post, parameters: body)

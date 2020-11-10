@@ -34,12 +34,12 @@ struct HTTPResponseData: Codable {
     
     static var keyID: String = ""
     
-    let id: String?
+    let id: Int?
     let result: Bool
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try? container.decode(String.self, forKey: CodingKeys(stringValue: HTTPResponseData.keyID))
+        id = try? container.decode(Int.self, forKey: CodingKeys(stringValue: HTTPResponseData.keyID))
         result = try container.decode(Bool.self, forKey: CodingKeys(stringValue: Key.result.rawValue))
     }
 
