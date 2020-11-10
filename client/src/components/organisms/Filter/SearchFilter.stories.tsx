@@ -5,6 +5,7 @@ import useChange from '@hooks/useChange';
 import { DropdownIcon } from '@components/atoms/icons';
 import SelectMenuItemLabel from '@components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemLabel';
 import SelectMenuItemUser from '@components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemUser';
+import SelectMenuItem from '@components/molecules/SelectMenuModal/SelectMenuItem';
 import PlainText from '@components/atoms/PlainText';
 import SearchFilter from './SearchFilter';
 
@@ -21,30 +22,46 @@ export const Default = () => {
   );
   const label = text('label', 'filter');
   const optionHeader = text('optionHeader', 'Filter Issues');
-  const options = (
-    <>
-      <PlainText value="Open issues" />
-      {/* 'Your issues',
-    'Everything assigned to you',
-    'Everything mentioning to you',
-    'Closed issues', */}
-    </>
-  );
   const onClick = () => {
     changeShow(!isShow);
   };
-  const keys = ['search1', 'search2', 'search3', 'search4', 'search5'];
   return (
     <SearchFilter
       type={type}
       label={label}
       optionHeader={optionHeader}
-      options={options}
       Icon={DropdownIcon}
       onClick={onClick}
       isShow={isShow}
-      keys={keys}
-    />
+    >
+      <>
+        <li>
+          <SelectMenuItem>
+            <PlainText value="Open issues" />
+          </SelectMenuItem>
+        </li>
+        <li>
+          <SelectMenuItem>
+            <PlainText value="Your issues" />
+          </SelectMenuItem>
+        </li>
+        <li>
+          <SelectMenuItem>
+            <PlainText value="Everything assigned to you" />
+          </SelectMenuItem>
+        </li>
+        <li>
+          <SelectMenuItem>
+            <PlainText value="Everything mentioning to you" />
+          </SelectMenuItem>
+        </li>
+        <li>
+          <SelectMenuItem>
+            <PlainText value="Closed issues" />
+          </SelectMenuItem>
+        </li>
+      </>
+    </SearchFilter>
   );
 };
 
@@ -58,52 +75,54 @@ export const Label = () => {
   );
   const label = text('label', 'Label');
   const optionHeader = text('optionHeader', 'Filter by label');
-  const options = (
-    <>
-      <SelectMenuItemLabel
-        key="label1"
-        swatchColor="#eee"
-        title="1번"
-        description="1번1번"
-      />
-      ,
-      <SelectMenuItemLabel key="label2" swatchColor="#ddd" title="2번" />
-      ,
-      <SelectMenuItemLabel
-        key="label3"
-        swatchColor="#ccc"
-        title="3번"
-        description="3번3번"
-      />
-      ,
-      <SelectMenuItemLabel key="label4" swatchColor="#bbb" title="4번" />
-      ,
-      <SelectMenuItemLabel
-        key="label5"
-        swatchColor="#aaa"
-        title="5번"
-        description="5번5번"
-      />
-      ,
-    </>
-  );
+
   const onClick = () => {
     changeShow(!isShow);
   };
-  const keys = ['label1', 'label2', 'label3', 'label4', 'label5'];
   return (
     <SearchFilter
       type={type}
       label={label}
       optionHeader={optionHeader}
-      options={options}
       Icon={DropdownIcon}
       onClick={onClick}
       isShow={isShow}
       inputValue={value}
       onChange={onChangeValue}
-      keys={keys}
-    />
+    >
+      <>
+        <li>
+          <SelectMenuItemLabel
+            key="label1"
+            swatchColor="#eee"
+            title="1번"
+            description="1번1번"
+          />
+        </li>
+        <li>
+          <SelectMenuItemLabel key="label2" swatchColor="#ddd" title="2번" />
+        </li>
+        <li>
+          <SelectMenuItemLabel
+            key="label3"
+            swatchColor="#ccc"
+            title="3번"
+            description="3번3번"
+          />
+        </li>
+        <li>
+          <SelectMenuItemLabel key="label4" swatchColor="#bbb" title="4번" />
+        </li>
+        <li>
+          <SelectMenuItemLabel
+            key="label5"
+            swatchColor="#aaa"
+            title="5번"
+            description="5번5번"
+          />
+        </li>
+      </>
+    </SearchFilter>
   );
 };
 
@@ -117,56 +136,63 @@ export const User = () => {
   );
   const label = text('label', 'Author');
   const optionHeader = text('optionHeader', 'Filter by Author');
-  const options = () => (
-    <>
-      <SelectMenuItemUser
-        key="user1"
-        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-        title="user1"
-        alt="user1"
-      />
-      <SelectMenuItemUser
-        key="user2"
-        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-        title="user2"
-        alt="user2"
-      />
-      <SelectMenuItemUser
-        key="user3"
-        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-        title="user3"
-        alt="user3"
-      />
-      <SelectMenuItemUser
-        key="user4"
-        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-        title="user4"
-        alt="user4"
-      />
-      <SelectMenuItemUser
-        key="user5"
-        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
-        title="user5"
-        alt="user5"
-      />
-    </>
-  );
+
   const onClick = () => {
     changeShow(!isShow);
   };
-  const keys = ['user1', 'user2', 'user3', 'user4', 'user5'];
   return (
     <SearchFilter
       type={type}
       label={label}
       optionHeader={optionHeader}
-      options={options}
       Icon={DropdownIcon}
       onClick={onClick}
       isShow={isShow}
       inputValue={value}
       onChange={onChangeValue}
-      keys={keys}
-    />
+    >
+      <>
+        <li>
+          <SelectMenuItemUser
+            key="user1"
+            userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+            title="user1"
+            alt="user1"
+          />
+        </li>
+        <li>
+          <SelectMenuItemUser
+            key="user2"
+            userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+            title="user2"
+            alt="user2"
+          />
+        </li>
+        <li>
+          <SelectMenuItemUser
+            key="user3"
+            userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+            title="user3"
+            alt="user3"
+          />
+        </li>
+        <li>
+          <SelectMenuItemUser
+            key="user4"
+            userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+            title="user4"
+            alt="user4"
+          />
+        </li>
+        <li>
+          <SelectMenuItemUser
+            key="user5"
+            userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+            title="user5"
+            alt="user5"
+          />
+        </li>
+      </>
+    </SearchFilter>
   );
 };

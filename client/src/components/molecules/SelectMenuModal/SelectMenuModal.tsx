@@ -1,17 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 import Input from '@components/atoms/Input';
-import SelectMenuItem from '@components/molecules/SelectMenuModal/SelectMenuItem';
 import BoldText from '@components/atoms/BoldText';
 
 interface Props {
   optionHeader: string;
-  options: string[] | (() => JSX.Element[]);
-  onClick?: () => void;
+  children: React.ReactChild;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputValue?: string;
   placeholder?: string;
-  keys: string[];
 }
 
 const StyledUl = styled.ul`
@@ -56,12 +53,10 @@ const StyledUl = styled.ul`
 
 const SearchFilter: FunctionComponent<Props> = ({
   optionHeader,
-  options,
-  onClick,
+  children,
   onChange,
   inputValue,
   placeholder,
-  keys,
 }) => {
   return (
     <StyledUl>
@@ -76,11 +71,7 @@ const SearchFilter: FunctionComponent<Props> = ({
           type="text"
         />
       )}
-      {options.map((option: string, i: number) => (
-        <li key={keys[i]}>
-          <SelectMenuItem content={option} onClick={onClick} />
-        </li>
-      ))}
+      {children}
     </StyledUl>
   );
 };

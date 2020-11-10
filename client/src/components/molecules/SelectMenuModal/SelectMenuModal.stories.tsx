@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { text } from '@storybook/addon-knobs';
+import SelectMenuItem from '@components/molecules/SelectMenuModal/SelectMenuItem';
 
 import useChange from '@hooks/useChange';
 
@@ -19,19 +20,16 @@ export const Default = () => {
     'Closed issues',
   ];
 
-  const keys = ['search1', 'search2', 'search3', 'search4', 'search5'];
-  const onClick = () => {
-    // modal button 클릭 시
-  };
-
   return (
-    <SelectMenuModal
-      display="block"
-      optionHeader={optionHeader}
-      options={options}
-      onClick={onClick}
-      keys={keys}
-    />
+    <SelectMenuModal optionHeader={optionHeader}>
+      <>
+        {options.map((v) => (
+          <li key={v}>
+            <SelectMenuItem>{v}</SelectMenuItem>
+          </li>
+        ))}
+      </>
+    </SelectMenuModal>
   );
 };
 
@@ -39,23 +37,23 @@ export const Author = () => {
   const [value, , onChangeValue] = useChange<HTMLInputElement>('');
   const optionHeader = text('optionHeader', 'Filter by author');
   const options = ['user1', 'user2', 'user3', 'user4', 'user5'];
-  const onClick = () => {
-    // modal button 클릭 시
-  };
 
-  const keys = ['radio1', 'radio2', 'radio3', 'radio4', 'radio5'];
   const placeholder = 'Filter users';
 
   return (
     <SelectMenuModal
-      display="block"
       optionHeader={optionHeader}
-      options={options}
-      onClick={onClick}
       onChange={onChangeValue}
       inputValue={value}
       placeholder={placeholder}
-      keys={keys}
-    />
+    >
+      <>
+        {options.map((v) => (
+          <li key={v}>
+            <SelectMenuItem>{v}</SelectMenuItem>
+          </li>
+        ))}
+      </>
+    </SelectMenuModal>
   );
 };

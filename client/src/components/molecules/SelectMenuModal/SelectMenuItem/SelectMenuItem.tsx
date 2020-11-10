@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
 interface Props {
-  content: string | (() => JSX.Element);
+  children: React.ReactChild;
   onClick?: () => void;
 }
 
@@ -18,8 +18,8 @@ const StyledButton = styled.button`
   }
 `;
 
-const SelectMenuItem: FunctionComponent<Props> = ({ content, onClick }) => {
-  return <StyledButton onClick={onClick}>{content}</StyledButton>;
+const SelectMenuItem: FunctionComponent<Props> = ({ children, onClick }) => {
+  return <StyledButton onClick={onClick}>{children}</StyledButton>;
 };
 
 export default SelectMenuItem;
