@@ -46,16 +46,19 @@ struct HTTPServiceHelper {
         }
     }
     
+    // api에서 post response로 result: Bool, ()Id: String? 이 오기때문에 responseKeyID를 매개변수로 추가함
     func post<T: Codable & HTTPDataProviding>(
         url: URL,
         body: T,
-        successHandler: ((Bool) -> Void)? = nil,
+        responseKeyID: String,
+        successHandler: (((result: Bool, id: String?)) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
+        HTTPPostResponseData.keyID = responseKeyID
         AF.request(url, method: .post, parameters: body)
-            .responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
+            .responseDecodable { (response: AFDataResponse<HTTPPostResponseData>) in
             switch response.result {
             case .success(let httpData):
-                successHandler?(httpData.result)
+                successHandler?((result: httpData.result, id: httpData.id))
             case .failure(let error):
                 errorHandler?(error)
             }

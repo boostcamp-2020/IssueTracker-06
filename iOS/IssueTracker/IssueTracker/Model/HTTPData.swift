@@ -28,20 +28,40 @@ struct HTTPData<T: Codable & HTTPDataProviding>: Codable {
         try container.encode(data, forKey: CodingKeys(stringValue: T.key))
         try container.encode(result, forKey: CodingKeys(stringValue: Key.result.rawValue))
     }
+}
 
-    private struct CodingKeys: CodingKey {
-        var stringValue: String
-        var intValue: Int?
-
-        init(stringValue: String) {
-            self.stringValue = stringValue
-        }
-        init?(intValue: Int) {
-            return nil
-        }
+struct HTTPPostResponseData: Codable {
+    
+    static var keyID: String = ""
+    
+    let id: String?
+    let result: Bool
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try? container.decode(String.self, forKey: CodingKeys(stringValue: HTTPPostResponseData.keyID))
+        result = try container.decode(Bool.self, forKey: CodingKeys(stringValue: Key.result.rawValue))
     }
 
-    private enum Key: String {
-        case result
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: CodingKeys(stringValue: HTTPPostResponseData.keyID))
+        try container.encode(result, forKey: CodingKeys(stringValue: Key.result.rawValue))
     }
+}
+
+private struct CodingKeys: CodingKey {
+    var stringValue: String
+    var intValue: Int?
+
+    init(stringValue: String) {
+        self.stringValue = stringValue
+    }
+    init?(intValue: Int) {
+        return nil
+    }
+}
+
+private enum Key: String {
+    case result
 }
