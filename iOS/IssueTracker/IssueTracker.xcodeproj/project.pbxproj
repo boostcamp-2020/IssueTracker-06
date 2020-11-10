@@ -48,6 +48,7 @@
 		C854E8242548151800011D26 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E8232548151800011D26 /* Issue.swift */; };
 		C854E829254816C600011D26 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E828254816C600011D26 /* Label.swift */; };
 		C854E83C25481FF700011D26 /* LabelsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E83B25481FF700011D26 /* LabelsStackView.swift */; };
+		C8CD7307255AE4090010A0B2 /* CommentAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD7306255AE4090010A0B2 /* CommentAddViewController.swift */; };
 		C8CEF6992558E77300BDCB46 /* LabelMilestoneAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CEF6982558E77300BDCB46 /* LabelMilestoneAddViewController.swift */; };
 		C8CEF6C325591C9400BDCB46 /* NewIssueAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CEF6C225591C9400BDCB46 /* NewIssueAddViewController.swift */; };
 		C8F0F43D254DD6B70050B6C0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0F439254DD6B70050B6C0 /* Comment.swift */; };
@@ -124,6 +125,7 @@
 		C854E8232548151800011D26 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		C854E828254816C600011D26 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		C854E83B25481FF700011D26 /* LabelsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStackView.swift; sourceTree = "<group>"; };
+		C8CD7306255AE4090010A0B2 /* CommentAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAddViewController.swift; sourceTree = "<group>"; };
 		C8CEF6982558E77300BDCB46 /* LabelMilestoneAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelMilestoneAddViewController.swift; sourceTree = "<group>"; };
 		C8CEF6C225591C9400BDCB46 /* NewIssueAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueAddViewController.swift; sourceTree = "<group>"; };
 		C8F0F425254DD6990050B6C0 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				C84433E52553C30200A3CE69 /* MilestoneListViewController.swift */,
 				C8CEF6982558E77300BDCB46 /* LabelMilestoneAddViewController.swift */,
 				C8CEF6C225591C9400BDCB46 /* NewIssueAddViewController.swift */,
+				C8CD7306255AE4090010A0B2 /* CommentAddViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */,
 				C8CEF6C325591C9400BDCB46 /* NewIssueAddViewController.swift in Sources */,
 				19910A032552D0C0009B3C58 /* DetailIssueDataManager.swift in Sources */,
+				C8CD7307255AE4090010A0B2 /* CommentAddViewController.swift in Sources */,
 				C84433F12553CC5600A3CE69 /* MilestoneListCollectionViewCell.swift in Sources */,
 				C80381712547B34F008EEF6E /* SceneDelegate.swift in Sources */,
 				C8CEF6992558E77300BDCB46 /* LabelMilestoneAddViewController.swift in Sources */,

@@ -177,7 +177,7 @@ extension NewIssueAddViewController: UITextViewDelegate {
     
     private func commentTextViewSet() {
         
-        commentTextView.text = Constant.contentSet
+        commentTextView.text = Constant.commentSet
         commentTextView.textColor = .lightGray
     }
 }
