@@ -1,10 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
-import { Warning } from '@components/atoms/icons';
+import { WarningIcon } from '@components/atoms/icons';
 import BoldText from '@components/atoms/BoldText';
 
 interface Props {
-  Icon?: FunctionComponent;
   content: string;
 }
 
@@ -23,12 +22,11 @@ const StyledDiv = styled.div`
 `;
 
 const XButton: FunctionComponent<Props> = ({
-  Icon = Warning,
   content = 'No results matched your search.',
 }) => {
   return (
     <StyledDiv>
-      <Icon />
+      <WarningIcon />
       <BoldText value={content} />
     </StyledDiv>
   );

@@ -1,31 +1,30 @@
-import React, { Children, FunctionComponent } from 'react';
-import styled from '@themes/styled';
-import Button from '@components/atoms/Button';
+import React, { FunctionComponent } from 'react';
+import Button, { ButtonType } from '@components/atoms/Button';
 import FilterModal from '@components/molecules/SelectMenuModal';
 import TextWithIcon from '@/components/molecules/TextWithIcon';
 
 interface Props {
-  type: 'transparent' | 'default' | 'error' | 'primary' | undefined;
+  type: ButtonType;
   label: string;
   optionHeader: string;
-  options: string[] | React.ReactChild;
+  children: React.ReactChild | React.ReactChild[];
   Icon: FunctionComponent;
-  onClick: () => void;
-  input?: string;
-  display: 'none' | 'display';
-  keys: string[];
+  onClick?: () => void;
+  inputValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isShow: boolean;
 }
 
 const SearchFilter: FunctionComponent<Props> = ({
   type,
   label,
   optionHeader,
-  options,
   Icon,
   onClick,
-  display,
-  input,
-  keys,
+  isShow,
+  inputValue,
+  onChange,
+  children,
 }) => {
   return (
     <>
@@ -38,13 +37,15 @@ const SearchFilter: FunctionComponent<Props> = ({
         />
       </Button>
 
-      <FilterModal
-        display={display}
-        optionHeader={optionHeader}
-        input={input}
-        options={options}
-        keys={keys}
-      />
+      {isShow && (
+        <FilterModal
+          optionHeader={optionHeader}
+          inputValue={inputValue}
+          onChange={onChange}
+        >
+          {children}
+        </FilterModal>
+      )}
     </>
   );
 };

@@ -6,7 +6,7 @@ const StyledSvg = styled.svg`
   fill: ${({ theme }) => theme.palette.CLOSE_RED};
 `;
 
-const IssueClosed: FunctionComponent = () => (
+const IssueClosedIcon: FunctionComponent = () => (
   <StyledSvg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
     <path
       fillRule="evenodd"
@@ -15,4 +15,4 @@ const IssueClosed: FunctionComponent = () => (
   </StyledSvg>
 );
 
-export default IssueClosed;
+export default IssueClosedIcon;

@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FunctionComponent } from 'react';
 
-const SettingIcon: FC = () => (
+const SettingIcon: FunctionComponent = () => (
   <svg viewBox="0 0 16 16">
     <path
       fillRule="evenodd"

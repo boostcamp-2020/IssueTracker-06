@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
-import TextWithIcon from '../TextWithIcon';
+import { ResetIcon } from '@components/atoms/icons';
+import TextWithIcon from '@components/molecules/TextWithIcon';
 
 interface Props {
-  Icon: FunctionComponent;
   content: string;
   onClick: () => void;
 }
@@ -21,8 +21,6 @@ const StyledButton = styled.button`
   }
 
   & svg {
-    display: flex;
-    vertical-align: center;
     width: 1rem;
     height: 1rem;
     padding: 1px;
@@ -30,7 +28,6 @@ const StyledButton = styled.button`
     fill: ${({ theme }) => theme.palette.LIGHT};
     background-color: currentColor;
     border-radius: 0.3rem;
-    border: none;
   }
 
   &:hover span {
@@ -46,10 +43,10 @@ const StyledButton = styled.button`
   }
 `;
 
-const XButton: FunctionComponent<Props> = ({ Icon, content, onClick }) => {
+const XButton: FunctionComponent<Props> = ({ content, onClick }) => {
   return (
     <StyledButton onClick={onClick}>
-      <TextWithIcon icon={Icon} text={content} />
+      <TextWithIcon icon={ResetIcon} text={content} />
     </StyledButton>
   );
 };

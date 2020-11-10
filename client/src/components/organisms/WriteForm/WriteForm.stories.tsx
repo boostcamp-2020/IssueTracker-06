@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
-import { text } from '@storybook/addon-knobs';
+
+import useChange from '@hooks/useChange';
 
 import WriteForm from '.';
 
@@ -9,16 +10,8 @@ export default {
 };
 
 export const Default = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-
-  const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const onChangeContent = (e: ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
-  };
+  const [title, , onChangeTitle] = useChange<HTMLInputElement>('');
+  const [content, , onChangeContent] = useChange<HTMLTextAreaElement>('');
 
   return (
     <WriteForm
@@ -31,11 +24,7 @@ export const Default = () => {
 };
 
 export const OnlyContent = () => {
-  const [content, setContent] = useState('');
-
-  const onChangeContent = (e: ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
-  };
+  const [content, , onChangeContent] = useChange<HTMLTextAreaElement>('');
 
   return <WriteForm content={content} onChangeContent={onChangeContent} />;
 };

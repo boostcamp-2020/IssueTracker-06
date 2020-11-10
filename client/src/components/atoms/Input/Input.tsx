@@ -3,9 +3,9 @@ import styled from '@themes/styled';
 
 interface Props {
   placeholder?: string;
-  value?: string;
+  value: string;
   type: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const StyledInput = styled.input`
@@ -28,8 +28,8 @@ const StyledInput = styled.input`
 `;
 
 const Input: FunctionComponent<Props> = ({
-  placeholder = 'Input',
-  value = '',
+  placeholder = '',
+  value,
   type,
   onChange,
 }) => {

@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { text } from '@storybook/addon-knobs';
+import SelectMenuItem from '@components/molecules/SelectMenuModal/SelectMenuItem';
+import SelectMenuItemUser from '@components/molecules/SelectMenuModal/SelectMenuItem/SelectMenuItemUser';
+
+import useChange from '@hooks/useChange';
+
 import SelectMenuModal from './SelectMenuModal';
 
 export default {
@@ -16,46 +21,54 @@ export const Default = () => {
     'Closed issues',
   ];
 
-  const keys = ['search1', 'search2', 'search3', 'search4', 'search5'];
-  const onClick = () => {
-    // modal button 클릭 시
-  };
-
   return (
-    <SelectMenuModal
-      display="block"
-      optionHeader={optionHeader}
-      options={options}
-      onClick={onClick}
-      keys={keys}
-    />
+    <SelectMenuModal optionHeader={optionHeader}>
+      {options.map((v) => (
+        <SelectMenuItem key={v}>{v}</SelectMenuItem>
+      ))}
+    </SelectMenuModal>
   );
 };
 
 export const Author = () => {
-  const [value, setValue] = useState('');
+  const [value, , onChangeValue] = useChange<HTMLInputElement>('');
   const optionHeader = text('optionHeader', 'Filter by author');
   const options = ['user1', 'user2', 'user3', 'user4', 'user5'];
-  const onClick = () => {
-    // modal button 클릭 시
-  };
 
-  const keys = ['radio1', 'radio2', 'radio3', 'radio4', 'radio5'];
   const placeholder = 'Filter users';
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
 
   return (
     <SelectMenuModal
-      display="block"
       optionHeader={optionHeader}
-      options={options}
-      onClick={onClick}
-      onChange={onChange}
-      input={value}
+      onChange={onChangeValue}
+      inputValue={value}
       placeholder={placeholder}
-      keys={keys}
-    />
+    >
+      <SelectMenuItemUser
+        key="user1"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user1"
+      />
+      <SelectMenuItemUser
+        key="user2"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user2"
+      />
+      <SelectMenuItemUser
+        key="user3"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user3"
+      />
+      <SelectMenuItemUser
+        key="user4"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user4"
+      />
+      <SelectMenuItemUser
+        key="user5"
+        userImgSrc="https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4"
+        title="user5"
+      />
+    </SelectMenuModal>
   );
 };

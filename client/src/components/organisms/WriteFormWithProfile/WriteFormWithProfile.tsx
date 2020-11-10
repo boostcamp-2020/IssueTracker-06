@@ -9,7 +9,7 @@ interface Props {
   title?: string;
   content: string;
   onChangeTitle?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContent: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeContent: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const StyledWriteFormWithProfile = styled.div`

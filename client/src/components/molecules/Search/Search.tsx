@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
-import IconSearch from '@components/atoms/icons/IconSearch';
+import { SearchIcon } from '@/components/atoms/icons';
 
 interface Props {
   value: string;
@@ -52,7 +52,7 @@ const Search: FunctionComponent<Props> = ({
       onChange={onChange}
       placeholder={placeholder}
     />
-    <IconSearch />
+    <SearchIcon />
   </StyledSearch>
 );
 

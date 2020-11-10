@@ -12,7 +12,7 @@ import Textarea from '@components/atoms/TextArea';
 
 interface Props {
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const StyledTextareaWithImgUpload = styled.div`
@@ -36,7 +36,10 @@ const StyledTextareaWithImgUpload = styled.div`
   }
 `;
 
-const TextareaWithImgUpload: FunctionComponent<Props> = () => {
+const TextareaWithImgUpload: FunctionComponent<Props> = ({
+  value,
+  onChange,
+}) => {
   const uploadRef = useRef<HTMLInputElement>(null);
 
   const onClickUpload = useCallback(() => {
@@ -52,6 +55,8 @@ const TextareaWithImgUpload: FunctionComponent<Props> = () => {
         textAreaWidth="100%"
         textAreaHeight="200px"
         placeHolder="Leave a comment"
+        value={value}
+        onChange={onChange}
       />
       <div className="image-upload" onClick={onClickUpload}>
         Attach files by selecting here

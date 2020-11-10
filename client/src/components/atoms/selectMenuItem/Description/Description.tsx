@@ -8,7 +8,7 @@ const StyledDescription = styled.div`
 `;
 
 interface Props {
-  text?: string;
+  text: string;
 }
 
 const Description: FunctionComponent<Props> = ({ text }) => (

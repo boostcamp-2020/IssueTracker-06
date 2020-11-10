@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import IssueInfo from '@components/molecules/IssueInfo';
-import { IssueOpened, IssueClosed } from '@components/atoms/icons';
+import { IssueOpenedIcon, IssueClosedIcon } from '@components/atoms/icons';
 import styled from '@themes/styled';
 import Assignees, { User } from '@components/molecules/Assignees';
+import { Label } from '@components/atoms/LabelTag';
 
 interface Props {
   isOpen: boolean;
   title: string;
-  label?: string;
-  labelBg?: string;
+  labels?: Label[];
   issueNum: number;
   time: string;
   author: string;
@@ -27,8 +27,7 @@ const StyledIssueCard = styled.div`
 const IssueCard: FunctionComponent<Props> = ({
   isOpen,
   title,
-  label,
-  labelBg,
+  labels,
   issueNum,
   time,
   author,
@@ -37,12 +36,11 @@ const IssueCard: FunctionComponent<Props> = ({
 }) => (
   <StyledIssueCard>
     <input type="checkbox" />
-    {isOpen ? <IssueOpened /> : <IssueClosed />}
+    {isOpen ? <IssueOpenedIcon /> : <IssueClosedIcon />}
     <IssueInfo
       isOpen={isOpen}
       title={title}
-      label={label}
-      labelBg={labelBg}
+      labels={labels}
       issueNum={issueNum}
       time={time}
       author={author}

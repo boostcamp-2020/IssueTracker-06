@@ -1,13 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
-import LabelTag from '@components/atoms/LabelTag';
+import LabelTag, { Label } from '@components/atoms/LabelTag';
 import Button from '@components/atoms/Button';
 import PlainText from '@components/atoms/PlainText';
 
 interface Props {
-  title: string;
-  bgColor: string;
-  description?: string;
+  data: Label;
 }
 
 const StyledLabelCard = styled.div`
@@ -22,18 +20,14 @@ const StyledLabelCard = styled.div`
   }
 `;
 
-const LabelCard: FunctionComponent<Props> = ({
-  title,
-  bgColor,
-  description = '',
-}) => {
+const LabelCard: FunctionComponent<Props> = ({ data }) => {
   return (
     <StyledLabelCard>
       <div>
-        <LabelTag text={title} bgColor={bgColor} />
+        <LabelTag data={data} />
       </div>
       <div>
-        <PlainText value={description} />
+        <PlainText value={data.description || ''} />
       </div>
       <div>
         <Button type="transparent">

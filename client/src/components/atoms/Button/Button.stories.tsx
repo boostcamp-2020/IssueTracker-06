@@ -1,7 +1,7 @@
 import React from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 
-import IconTag from '@components/atoms/icons/IconTag';
+import { TagIcon } from '@/components/atoms/icons';
 import IconText from '@components/molecules/TextWithIcon';
 import BoldText from '@components/atoms/BoldText';
 import Button from './index';
@@ -17,7 +17,7 @@ export const Default = () => {
 
   return (
     <Button disabled={disabled}>
-      <IconText icon={IconTag} text={content} />
+      <IconText icon={TagIcon} text={content} />
     </Button>
   );
 };
@@ -39,7 +39,7 @@ export const Primary = () => {
 
   return (
     <Button type="primary" disabled={disabled}>
-      <IconText icon={IconTag} text={content} />
+      <IconText icon={TagIcon} text={content} />
     </Button>
   );
 };
@@ -50,7 +50,7 @@ export const transparent = () => {
 
   return (
     <Button type="transparent" disabled={disabled}>
-      <IconText icon={IconTag} text={content} />
+      <IconText icon={TagIcon} text={content} />
     </Button>
   );
 };

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-const IconSearch: FunctionComponent = () => (
+const SearchIcon: FunctionComponent = () => (
   <svg viewBox="0 0 16 16">
     <path
       fillRule="evenodd"
@@ -9,4 +9,4 @@ const IconSearch: FunctionComponent = () => (
   </svg>
 );
 
-export default IconSearch;
+export default SearchIcon;
