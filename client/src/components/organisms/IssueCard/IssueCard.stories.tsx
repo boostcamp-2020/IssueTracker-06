@@ -47,6 +47,7 @@ export const Default = () => {
       milestone={milestone}
       assignees={assignees}
       onCheck={(id: number) => {}}
+      isChecked={false}
     />
   );
 };

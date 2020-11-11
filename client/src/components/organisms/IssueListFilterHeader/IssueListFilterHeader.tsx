@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 
 import styled from '@themes/styled';
 import Filter from '@components/organisms/Filter';
@@ -6,6 +6,7 @@ import { DropdownIcon } from '@components/atoms/icons';
 
 interface Props {
   checkedCount: number;
+  onCheckIssueListHeader: (isChecked: boolean) => void;
 }
 
 const StyledIssueListFilterHeader = styled.header`
@@ -54,27 +55,39 @@ const filters = [
   'Sort',
 ];
 
-const IssueListFilterHeader: FunctionComponent<Props> = ({ checkedCount }) => (
-  <StyledIssueListFilterHeader>
-    <div className="section-selected">
-      <input type="checkbox" />
-      {checkedCount !== 0 && <span>{`${checkedCount} selected`}</span>}
-    </div>
-    <div className="filter-list">
-      {filters.map((filter) => (
-        <Filter
-          key={`main_filter_header_${filter}`}
-          type="transparent"
-          label={filter}
-          Icon={DropdownIcon}
-          optionHeader={`Fillter by ${filter}`}
-          isShow={false}
-        >
-          <span />
-        </Filter>
-      ))}
-    </div>
-  </StyledIssueListFilterHeader>
-);
+const IssueListFilterHeader: FunctionComponent<Props> = ({
+  checkedCount,
+  onCheckIssueListHeader,
+}) => {
+  const onChangeCheck = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onCheckIssueListHeader(e.target.checked);
+    },
+    [onCheckIssueListHeader],
+  );
+
+  return (
+    <StyledIssueListFilterHeader>
+      <div className="section-selected">
+        <input type="checkbox" onChange={onChangeCheck} />
+        {checkedCount !== 0 && <span>{`${checkedCount} selected`}</span>}
+      </div>
+      <div className="filter-list">
+        {filters.map((filter) => (
+          <Filter
+            key={`main_filter_header_${filter}`}
+            type="transparent"
+            label={filter}
+            Icon={DropdownIcon}
+            optionHeader={`Fillter by ${filter}`}
+            isShow={false}
+          >
+            <span />
+          </Filter>
+        ))}
+      </div>
+    </StyledIssueListFilterHeader>
+  );
+};
 
 export default IssueListFilterHeader;

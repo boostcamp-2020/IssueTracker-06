@@ -16,6 +16,7 @@ interface Props {
   milestone?: string;
   assignees?: User[];
   onCheck: (id: number) => void;
+  isChecked: boolean;
 }
 
 const StyledIssueCard = styled.li`
@@ -45,9 +46,14 @@ const IssueCard: FunctionComponent<Props> = ({
   milestone,
   assignees,
   onCheck,
+  isChecked,
 }) => (
   <StyledIssueCard>
-    <input type="checkbox" onChange={() => onCheck(issueNum)} />
+    <input
+      type="checkbox"
+      onChange={() => onCheck(issueNum)}
+      checked={isChecked}
+    />
     {isOpen ? <IssueOpenedIcon /> : <IssueClosedIcon />}
     <IssueInfo
       isOpen={isOpen}

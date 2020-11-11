@@ -15,6 +15,7 @@ interface Props {
   onChangeInputSearchFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onCheckIssue: (id: number) => void;
   onClickLabelMilestoneToggle: () => void;
+  onCheckIssueListHeader: (isChecked: boolean) => void;
   labelCount: number;
   milestoneCount: number;
   issues: Issue[];
@@ -45,6 +46,7 @@ const MainPresenter: FunctionComponent<Props> = ({
   onChangeInputSearchFilter,
   onClickLabelMilestoneToggle,
   onCheckIssue,
+  onCheckIssueListHeader,
   labelCount,
   milestoneCount,
   issues,
@@ -67,7 +69,10 @@ const MainPresenter: FunctionComponent<Props> = ({
         </Button>
       </nav>
       <section>
-        <IssueListFilterHeader checkedCount={checkedIssues.length} />
+        <IssueListFilterHeader
+          checkedCount={checkedIssues.length}
+          onCheckIssueListHeader={onCheckIssueListHeader}
+        />
         <ul>
           {issues.map(
             (issue) =>
@@ -83,6 +88,7 @@ const MainPresenter: FunctionComponent<Props> = ({
                   milestone={issue.Milestone?.name}
                   assignees={issue.Assignee}
                   onCheck={onCheckIssue}
+                  isChecked={checkedIssues.includes(issue.id)}
                 />
               ),
           )}

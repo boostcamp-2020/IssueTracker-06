@@ -38,6 +38,18 @@ const MainContainer: FunctionComponent = () => {
     [checkedIssues],
   );
 
+  const onCheckIssueListHeader = useCallback(
+    (isChecked: boolean) => {
+      if (!isChecked) {
+        setCheckedIssues([]);
+        return;
+      }
+      const totalIssuesId = issues.map((issue) => issue.id);
+      setCheckedIssues(totalIssuesId);
+    },
+    [issues],
+  );
+
   useEffect(() => {
     if (issues.length === 0 && asyncDispatch) {
       asyncDispatch(getIssuesAction(), getIssuesAPI);
@@ -52,6 +64,7 @@ const MainContainer: FunctionComponent = () => {
       milestoneCount={DUMMY.milestoneCount}
       onClickLabelMilestoneToggle={onClickLabelMilestoneToggle}
       onCheckIssue={onCheckIssue}
+      onCheckIssueListHeader={onCheckIssueListHeader}
       issues={issues}
       checkedIssues={checkedIssues}
     />
