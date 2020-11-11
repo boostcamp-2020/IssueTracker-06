@@ -22,6 +22,8 @@ final class IssueDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureBottomViewLayout()
+        configureIssueData()
+        issueDetailCollectionView.reloadData()
     }
 
     override func viewDidLayoutSubviews() {

@@ -133,6 +133,7 @@ class NewIssueAddViewController: UIViewController {
             || commentTextView.text == Constant.beginEdting {
             return
         }
+        convertMarkdown()
         guard let content = previewTextView.text else { return }
         let commentDataManager = CommentDataManager()
         let newComment = Comment.NewComment(content: content, issueId: issueId)

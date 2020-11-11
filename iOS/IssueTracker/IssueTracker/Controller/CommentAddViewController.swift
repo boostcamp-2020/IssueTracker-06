@@ -55,6 +55,7 @@ class CommentAddViewController: UIViewController {
             || commentTextView.text == Constant.beginEdting {
             return
         }
+        convertMarkdown()
         guard let content = previewTextView.text else { return }
         guard let issueId = issueId else { return }
         let commentDataManager = CommentDataManager()
@@ -78,9 +79,9 @@ extension CommentAddViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        
         if textView.text == Constant.beginEdting {
             commentTextViewSet()
+            return
         }
     }
         
