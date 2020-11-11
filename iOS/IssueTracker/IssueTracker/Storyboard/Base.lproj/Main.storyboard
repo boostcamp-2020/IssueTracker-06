@@ -467,6 +467,9 @@
                                             <constraint firstAttribute="width" secondItem="gub-as-6q9" secondAttribute="height" multiplier="1:1" id="weE-4B-Pbb"/>
                                         </constraints>
                                         <state key="normal" image="chevron.up" catalog="system"/>
+                                        <connections>
+                                            <action selector="cellFocusUp" destination="bsV-cy-HC3" eventType="touchUpInside" id="7Nv-z5-bpg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6k-Dd-Tm6">
                                         <rect key="frame" x="359" y="28" width="40" height="40"/>
@@ -475,6 +478,9 @@
                                             <constraint firstAttribute="width" secondItem="f6k-Dd-Tm6" secondAttribute="height" multiplier="1:1" id="L0h-mp-uTI"/>
                                         </constraints>
                                         <state key="normal" image="chevron.down" catalog="system"/>
+                                        <connections>
+                                            <action selector="cellFocusDown" destination="bsV-cy-HC3" eventType="touchUpInside" id="tCE-ui-R00"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="담당자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OnI-Px-AZT">
                                         <rect key="frame" x="15" y="98" width="47" height="21.5"/>

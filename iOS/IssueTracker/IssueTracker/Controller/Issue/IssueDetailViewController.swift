@@ -167,6 +167,31 @@ extension IssueDetailViewController: UICollectionViewDataSource {
         issueDetailCollectionViewHeader.configureHeader(issue: issue)
         return header
     }
+    
+    // up, down 버튼 클릭시 해당 셀로 포커스
+    private func focusCurrentCell() -> CGPoint{
+        var visibleRect = CGRect()
+        visibleRect.origin = issueDetailCollectionView.contentOffset
+        visibleRect.size = issueDetailCollectionView.bounds.size
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        return visiblePoint
+    }
+    
+    @IBAction func cellFocusUp() {
+        guard let indexPath = issueDetailCollectionView.indexPathForItem(
+                at: focusCurrentCell()
+        ) else { return }
+        let nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        issueDetailCollectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
+    }
+    
+    @IBAction func cellFocusDown() {
+        guard let indexPath = issueDetailCollectionView.indexPathForItem(
+                at: focusCurrentCell()
+        ) else { return }
+        let nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+        issueDetailCollectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
+    }
 }
 
 extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
