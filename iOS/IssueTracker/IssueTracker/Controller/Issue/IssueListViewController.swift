@@ -14,14 +14,21 @@ protocol IssueListViewControllerDelegate: class {
 final class IssueListViewController: UIViewController {
 
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
-    @IBOutlet weak var leftBarButton: UIBarButtonItem!
-    @IBOutlet weak var rightBarButton: UIBarButtonItem!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var addIssueButton: UIButton!
-    @IBOutlet weak var bottomToolbar: UIToolbar!
+    @IBOutlet private weak var leftBarButton: UIBarButtonItem!
+    @IBOutlet private weak var rightBarButton: UIBarButtonItem!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var addIssueButton: UIButton!
+    @IBOutlet private weak var bottomToolbar: UIToolbar!
+    @IBOutlet private weak var bottomGuidelineConstraint: NSLayoutConstraint!
     
+    private let issueListDataManager = IssueListDataManager()
     private var selectedIndexPath: IndexPath?
-    private var issues: Issues?
+    private var issues: Issues? {
+        didSet {
+            guard let issues = issues else { return }
+            issueListCollectionViewSetting?.update(issues: issues)
+        }
+    }
     private var selectedIssues = Issues() {
         didSet {
             issueListCollectionViewSetting?.update(selectedIssues: selectedIssues)
@@ -30,26 +37,8 @@ final class IssueListViewController: UIViewController {
     
     private var mode: IssueListCellMode = .normal {
         didSet {
-            selectedIssues = Issues()
             let isEditMode = mode.isEditMode
-            tabBarController?.tabBar.isHidden = isEditMode
-            view.layoutIfNeeded()
-            issueListCollectionViewSetting?.cellMode = mode
-            bottomToolbar.isHidden = !isEditMode
-            tapGesture.isEnabled = !isEditMode
-            editViewTapGesture.isEnabled = isEditMode
-            view.layoutIfNeeded()
-            addIssueButton.isHidden = isEditMode
-            let rightBarButtonTitle = isEditMode ? "Cancel" : "Edit"
-            let leftBarButtonTitle = isEditMode ? "SelectAll" : "Filter"
-            let leftBarButtonAction =
-                isEditMode ? #selector(selectAllButtonTouched(_:)) : #selector(filterButtonTouched(_:))
-            rightBarButton.title = rightBarButtonTitle
-            leftBarButton.title = leftBarButtonTitle
-            leftBarButton.action = leftBarButtonAction
-            
-            let titleText = isEditMode ? "\(selectedIssues.count.selectedCountText)" : "이슈"
-            titleLabel.text = titleText
+            changeMode(isEditMode: isEditMode)
         }
     }
     
@@ -60,7 +49,7 @@ final class IssueListViewController: UIViewController {
             data: issues)
     }()
     
-    private lazy var tapGesture: UITapGestureRecognizer = {
+    private lazy var normalModeTapGesture: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTouched(_:)))
         tapGestureRecognizer.numberOfTouchesRequired = 1
         tapGestureRecognizer.isEnabled = true
@@ -68,7 +57,7 @@ final class IssueListViewController: UIViewController {
         return tapGestureRecognizer
     }()
     
-    private lazy var editViewTapGesture: UITapGestureRecognizer = {
+    private lazy var editModeTapGesture: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(editCellTouched(_:)))
         tapGestureRecognizer.numberOfTouchesRequired = 1
         tapGestureRecognizer.isEnabled = false
@@ -78,82 +67,37 @@ final class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureLeftBarButton()
         configureIssuesData()
+        configureBottomGuideline()
         removeNavigationBarUnderLine()
     }
     
-    private func configureIssuesData() {
-        IssueListDataManager().get(successHandler: { [weak self] in
-            self?.issues = $0
-            self?.configureIssueListCollectionView()
-        })
+    private func changeMode(isEditMode: Bool) {
+        selectedIssues = Issues()
+        tabBarController?.tabBar.isHidden = isEditMode
+        issueListCollectionViewSetting?.cellMode = mode
+        bottomToolbar.isHidden = !isEditMode
+        normalModeTapGesture.isEnabled = !isEditMode
+        editModeTapGesture.isEnabled = isEditMode
+        addIssueButton.isHidden = isEditMode
+        let rightBarButtonTitle = isEditMode ? Constant.cancel : Constant.edit
+        let leftBarButtonTitle = isEditMode ? Constant.selectAll : Constant.filter
+        let leftBarButtonAction =
+            isEditMode ? #selector(selectAllButtonTouched(_:)) : #selector(filterButtonTouched(_:))
+        rightBarButton.title = rightBarButtonTitle
+        leftBarButton.title = leftBarButtonTitle
+        leftBarButton.action = leftBarButtonAction
+        
+        let titleText = isEditMode ? "\(selectedIssues.count.selectedCountText)" : Constant.issue
+        titleLabel.text = titleText
     }
 
-    private func configureIssueListCollectionView() {
-        issueListCollectionView.delegate = issueListCollectionViewSetting
-        issueListCollectionView.dataSource = issueListCollectionViewSetting
-        issueListCollectionView.addGestureRecognizer(tapGesture)
-        issueListCollectionView.addGestureRecognizer(editViewTapGesture)
-    }
-
-    private func removeNavigationBarUnderLine() {
-        navigationController?.navigationBar.shadowImage = UIImage()
-    }
-
-    @objc private func cellTouched(_ sender: UITapGestureRecognizer) {
-        let point = sender.location(in: issueListCollectionView)
-        guard let indexPath = issueListCollectionView.indexPathForItem(at: point) else { return }
-        selectedIndexPath = indexPath
-        moveToIssueDetailViewController()
-    }
-    
-    @objc private func editCellTouched(_ sender: UITapGestureRecognizer) {
-        let point = sender.location(in: issueListCollectionView)
-        guard let indexPath = issueListCollectionView.indexPathForItem(at: point),
-              let issue = issues?[indexPath.row]
-        else { return }
-        switchIssueSelected(issue: issue)
-        titleLabel.text = selectedIssues.count.selectedCountText
-        issueListCollectionView.reloadData()
-    }
-    
-    private func switchIssueSelected(issue: Issue) {
-        if selectedIssues.contains(issue: issue) {
-            selectedIssues.remove(issue: issue)
-            return
-        }
-        selectedIssues.add(issue: issue)
-    }
-    
-    @objc private func filterButtonTouched(_ sender: UIBarButtonItem) {
-        moveToIssueFilterViewController()
-    }
-    
-    @objc private func selectAllButtonTouched(_ sender: UIBarButtonItem) {
-        guard let issues = issues else { return }
-        selectedIssues = issues
-        titleLabel.text = selectedIssues.count.selectedCountText
-        issueListCollectionViewSetting?.update(selectedIssues: issues)
-        issueListCollectionView.reloadData()
-    }
-
-    private func moveToIssueDetailViewController() {
-        performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
-    }
-    
-    private func moveToIssueFilterViewController() {
-        performSegue(withIdentifier: Constant.filterSegue, sender: nil)
-    }
-    
-    @IBAction func rightBarButtonTouched(_ sender: UIBarButtonItem) {
+    @IBAction private func rightBarButtonTouched(_ sender: UIBarButtonItem) {
         mode = mode.switchMode
     }
     
-    @IBAction func selectedIssuesCloseButton(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    @IBSegueAction func presentIssueDeatilViewController(_ coder: NSCoder) -> IssueDetailViewController? {
+    @IBSegueAction private func presentIssueDeatilViewController(_ coder: NSCoder) -> IssueDetailViewController? {
         let issueDetailViewController = IssueDetailViewController(coder: coder)
         guard let selectedIndexPath = selectedIndexPath,
               let issueId = issues?[selectedIndexPath.row]?.id
@@ -165,11 +109,108 @@ final class IssueListViewController: UIViewController {
     }
 }
 
+// MARK: NormalMode
+private extension IssueListViewController {
+    
+    func moveToIssueFilterViewController() {
+        performSegue(withIdentifier: Constant.filterSegue, sender: nil)
+    }
+    
+    func moveToIssueDetailViewController() {
+        performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
+    }
+    
+    @objc func cellTouched(_ sender: UITapGestureRecognizer) {
+        guard let indexPath = issueListCollectionView.indexPath(with: sender)
+        else {
+            return
+        }
+        selectedIndexPath = indexPath
+        moveToIssueDetailViewController()
+    }
+
+    @objc func filterButtonTouched(_ sender: UIBarButtonItem) {
+        moveToIssueFilterViewController()
+    }
+}
+
+// MARK: EditMode
+private extension IssueListViewController {
+    
+    func switchIssueSelected(issue: Issue) {
+        if selectedIssues.contains(issue: issue) {
+            selectedIssues.remove(issue: issue)
+            return
+        }
+        selectedIssues.add(issue: issue)
+    }
+    
+    @objc func editCellTouched(_ sender: UITapGestureRecognizer) {
+        guard let indexPath = issueListCollectionView.indexPath(with: sender),
+              let issue = issues?[indexPath.row]
+        else { return }
+        switchIssueSelected(issue: issue)
+        titleLabel.text = selectedIssues.count.selectedCountText
+    }
+    
+    @objc func selectAllButtonTouched(_ sender: UIBarButtonItem) {
+        guard let issues = issues else { return }
+        selectedIssues = issues
+        titleLabel.text = selectedIssues.count.selectedCountText
+    }
+
+    @IBAction func selectedIssuesCloseButton(_ sender: UIBarButtonItem) {
+        issueListDataManager.closeIssues(id: selectedIssues.id, successHandler: { [weak self] in
+            self?.issues?.close(id: $0)
+            DispatchQueue.main.async {
+                self?.mode = .normal
+            }
+        })
+    }
+}
+
+// MARK: configure
+private extension IssueListViewController {
+    
+    func configureLeftBarButton() {
+        leftBarButton.target = self
+        leftBarButton.action = #selector(filterButtonTouched(_:))
+    }
+    
+    func configureIssuesData() {
+        issueListDataManager.get(successHandler: { [weak self] in
+            self?.issues = $0
+            self?.configureIssueListCollectionView()
+        })
+    }
+
+    func configureIssueListCollectionView() {
+        issueListCollectionView.delegate = issueListCollectionViewSetting
+        issueListCollectionView.dataSource = issueListCollectionViewSetting
+        issueListCollectionView.addGestureRecognizer(normalModeTapGesture)
+        issueListCollectionView.addGestureRecognizer(editModeTapGesture)
+    }
+    
+    func configureBottomGuideline() {
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        bottomGuidelineConstraint.constant = tabBarHeight
+    }
+
+    func removeNavigationBarUnderLine() {
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+}
+
 private extension IssueListViewController {
     
     enum Constant {
         static let filterSegue: String = "FilterSegue"
         static let issueDetailSegue: String = "IssueDetailSegue"
+        static let issue: String = "이슈"
+        static let cancel: String = "Cancel"
+        static let edit: String = "Edit"
+        static let selectAll: String = "SelectAll"
+        static let filter: String = "Filter"
     }
 }
 

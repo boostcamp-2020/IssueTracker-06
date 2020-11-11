@@ -10,8 +10,16 @@ import UIKit
 final class IssueListCollectionViewSetting: NSObject {
     
     private let collectionView: UICollectionView
-    private let data: Issues
-    private var selectedIssues = Issues()
+    private var data: Issues {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    private var selectedIssues = Issues() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     var cellMode: IssueListCellMode = .normal {
         didSet {
@@ -33,6 +41,10 @@ final class IssueListCollectionViewSetting: NSObject {
     
     func update(selectedIssues: Issues) {
         self.selectedIssues = selectedIssues
+    }
+    
+    func update(issues: Issues) {
+        self.data = issues
     }
 
     private func registerNib() {

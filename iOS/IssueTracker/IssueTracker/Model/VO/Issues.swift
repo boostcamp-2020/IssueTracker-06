@@ -27,6 +27,12 @@ struct Issues {
         }.count
     }
     
+    var id: [Int] {
+        issues.map {
+            $0.id
+        }
+    }
+    
     init() {
         issues = []
     }
@@ -46,6 +52,14 @@ struct Issues {
     mutating func remove(issue: Issue) {
         issues.removeAll {
             $0 == issue
+        }
+    }
+    
+    mutating func close(id: [Int]) {
+        issues = issues.map {
+            var issue = $0
+            issue.updateStatus(isOpen: false)
+            return issue
         }
     }
     

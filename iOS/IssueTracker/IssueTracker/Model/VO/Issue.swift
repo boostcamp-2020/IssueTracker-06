@@ -14,7 +14,12 @@ struct Issue {
     let milestone: Milestone?
     let labels: [Label]
     let content: String
-    let isOpen: Int
+    var isOpen: Int
+    
+    mutating func updateStatus(isOpen: Bool) {
+        let isOpen = isOpen ? 1 : 0
+        self.isOpen = isOpen
+    }
 }
 
 extension Issue: Codable {

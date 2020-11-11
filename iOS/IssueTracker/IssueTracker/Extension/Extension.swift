@@ -19,6 +19,14 @@ extension NSObject {
     }
 }
 
+extension UICollectionView {
+    
+    func indexPath(with tapGestureRecognizer: UITapGestureRecognizer) -> IndexPath? {
+        let point = tapGestureRecognizer.location(in: self)
+        return self.indexPathForItem(at: point)
+    }
+}
+
 extension UIView {
     var viewFromNib: UIView? {
         let bundle = Bundle(for: type(of: self))
