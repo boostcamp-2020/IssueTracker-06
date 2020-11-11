@@ -1,9 +1,16 @@
 import { createContext, Dispatch } from 'react';
 import { Issue } from './type';
 import { AddIssueActions, AddIssueAction, ADD_ISSUE_SUCCESS } from './addIssue';
+import {
+  GetIssuesActions,
+  GetIssuesAction,
+  GET_ISSUES_REQUEST,
+  GET_ISSUES_SUCCESS,
+  GET_ISSUES_FAILURE,
+} from './getIssues';
 
-export type Actions = AddIssueActions;
-export type ActionCreator = AddIssueAction;
+export type Actions = AddIssueActions | GetIssuesActions;
+export type ActionCreator = AddIssueAction | GetIssuesAction;
 
 interface IssuesState {
   issues: Issue[];
@@ -32,6 +39,11 @@ export const reducer = (
         issues: [...state.issues, createdIssue],
       };
     }
+    case GET_ISSUES_REQUEST:
+    case GET_ISSUES_FAILURE:
+      return { ...state };
+    case GET_ISSUES_SUCCESS:
+      return { issues: action.issues };
     default:
       return state;
   }
