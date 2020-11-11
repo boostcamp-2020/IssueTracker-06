@@ -22,6 +22,8 @@ final class IssueDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureBottomViewLayout()
+        configureIssueData()
+        issueDetailCollectionView.reloadData()
     }
 
     override func viewDidLayoutSubviews() {
@@ -30,7 +32,7 @@ final class IssueDetailViewController: UIViewController {
     
     private func configureIssueData() {
         guard let id = issueId else { return }
-        DetailIssueDataProvider().get(id: id, successHandler: { [weak self] in
+        DetailIssueDataManager().get(id: id, successHandler: { [weak self] in
             guard let issue = $0 else { return }
             self?.issue = issue
             self?.configureIssueDetailCollectionView()
@@ -80,6 +82,16 @@ final class IssueDetailViewController: UIViewController {
             guard let currentViewHeight = self?.view.frame.height else { return }
             self?.bottomDetailView.frame.origin.y = currentViewHeight - Metric.bottomDetailViewHeight
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CommentAddSegue" {
+            guard let destination = segue.destination as? CommentAddViewController else { return }
+            destination.issueId = issueId
+        }
+        guard let destination = segue.destination as? NewIssueAddViewController else { return }
+        destination.mode = "modify"
+        destination.issue = issue
     }
 }
 

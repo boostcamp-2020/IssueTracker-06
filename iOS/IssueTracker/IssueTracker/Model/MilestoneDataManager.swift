@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MilestoneDataProvider {
+struct MilestoneDataManager {
     
     func get(successHandler: ((Milestones?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
         
@@ -41,7 +41,7 @@ struct MilestoneDataProvider {
     }
 }
 
-private extension MilestoneDataProvider {
+private extension MilestoneDataManager {
     enum IssueTrackerURL {
         static let milestones = URL(string: "http://issue-tracker.cf/api/milestones")
         static let issues = "http://issue-tracker.cf/api/issues?milestone="

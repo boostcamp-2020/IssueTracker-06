@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IssueListDataProvider {
+struct IssueListDataManager {
     
     func get(successHandler: ((Issues?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
         guard let url = IssueTrackerURL.issues else { return }
@@ -21,10 +21,27 @@ struct IssueListDataProvider {
             errorHandler?($0)
         })
     }
+    
+    func post(body: Issue.NewIssue, successHandler: ((Int?) -> Void)? = nil,
+              errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = IssueTrackerURL.newIssue else { return }
+        HTTPServiceHelper.shared.post(
+            url: url,
+            body: body,
+            responseKeyID: Issue.NewIssue.key,
+            successHandler: {
+                successHandler?($0.id)
+            },
+            errorHandler: {
+                errorHandler?($0)
+            }
+        )
+    }
 }
 
-private extension IssueListDataProvider {
+private extension IssueListDataManager {
     enum IssueTrackerURL {
         static let issues: URL? = URL(string: "http://issue-tracker.cf/api/issues")
+        static let newIssue: URL? = URL(string: "http://issue-tracker.cf/api/issue")
     }
 }

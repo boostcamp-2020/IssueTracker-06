@@ -30,44 +30,67 @@ struct HTTPServiceHelper {
         }
     }
     
-    func put<T: Codable & HTTPDataProviding>(
+    func put<T: Codable>(
         url: URL,
         body: T,
         successHandler: ((Bool) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
         AF.request(url, method: .put, parameters: body)
-            .responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
+            .responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
             switch response.result {
             case .success(let httpData):
                 successHandler?(httpData.result)
             case .failure(let error):
+                print(response)
                 errorHandler?(error)
             }
         }
     }
     
-    func post<T: Codable & HTTPDataProviding>(
+    func patch<T: Codable>(
         url: URL,
         body: T,
         successHandler: ((Bool) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
-        AF.request(url, method: .post, parameters: body)
-            .responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
+        AF.request(url, method: .patch, parameters: body)
+            .responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
             switch response.result {
             case .success(let httpData):
                 successHandler?(httpData.result)
+            case .failure(let error):
+                print(response)
+                errorHandler?(error)
+            }
+        }
+    }
+    
+    func post<T: Codable>(
+        url: URL,
+        body: T,
+        responseKeyID: String,
+        successHandler: (((result: Bool, id: Int?)) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        HTTPResponseData.keyID = responseKeyID
+        AF.request(
+            url,
+            method: .post,
+            parameters: body).responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
+            switch response.result {
+            case .success(let httpData):
+                successHandler?((result: httpData.result, id: httpData.id))
             case .failure(let error):
                 errorHandler?(error)
             }
         }
     }
   
-    func delete<T: Codable & HTTPDataProviding>(
+    func delete<T: Codable>(
         url: URL,
         requestType: T.Type,
         successHandler: ((Bool) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
-        AF.request(url, method: .delete).responseDecodable { (response: AFDataResponse<HTTPData<T>>) in
+        AF.request(url, method: .delete).responseDecodable {
+            (response: AFDataResponse<HTTPResponseData>) in
             switch response.result {
             case .success(let httpData):
                 successHandler?((httpData.result))

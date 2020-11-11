@@ -25,7 +25,7 @@ class MilestoneListViewController: UIViewController {
     }
     
     private func configureMilestonesData() {
-        MilestoneDataProvider().get(successHandler: { [weak self] in
+        MilestoneDataManager().get(successHandler: { [weak self] in
             self?.milestones = $0
             guard let data = self?.milestones else { return }
             self?.configureMilestoneCollectionView()
@@ -52,9 +52,23 @@ class MilestoneListViewController: UIViewController {
     
     private func configureIssuesData(milestoneName: String, completionHandler: ((Issues?) -> Void)? = nil) {
         let processedName = milestoneName.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-        MilestoneDataProvider().getIssues(name: processedName, successHandler: {
+        MilestoneDataManager().getIssues(name: processedName, successHandler: {
             completionHandler?($0)
         })
+    }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        guard let labelMilestoneAddVC = self.storyboard?.instantiateViewController(
+                withIdentifier: Constant.labelMilestoneAddViewController)
+                as? LabelMilestoneAddViewController else { return }
+        labelMilestoneAddVC.modalPresentationStyle = .fullScreen
+        
+        guard let snap = UIApplication.shared.keyWindow!.snapshotView(
+                afterScreenUpdates: true
+        ) else { return }
+        
+        labelMilestoneAddVC.snapshotView = snap
+        present(labelMilestoneAddVC, animated: false, completion: nil)
     }
 }
 
@@ -101,6 +115,7 @@ private extension MilestoneListViewController {
     enum Constant {
         static let milestoneListCell: String = "MilestoneListCell"
         static let milestoneListCollectionViewCell: String = "MilestoneListCollectionViewCell"
+        static let labelMilestoneAddViewController: String = "LabelMilestoneAddViewController"
     }
     
     enum Metric {

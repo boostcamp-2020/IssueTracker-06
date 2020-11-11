@@ -78,4 +78,15 @@ struct Issue: Codable, Equatable {
     static func == (lhs: Issue, rhs: Issue) -> Bool {
         lhs.id == rhs.id
     }
+    
+    struct NewIssue: Codable {
+        
+        static var key: String = "issueId"
+        
+        let title: String
+        let content: String
+        let milestoneId: Int?
+        let labelIds: [Int]?
+        let assigneeIds: [Int]?
+    }
 }
