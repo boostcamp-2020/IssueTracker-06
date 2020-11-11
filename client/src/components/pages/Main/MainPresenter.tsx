@@ -11,6 +11,7 @@ import BoldText from '@components/atoms/BoldText';
 import IssueListFilterHeader from '@components/organisms/IssueListFilterHeader';
 import IssueCard from '@components/organisms/IssueCard';
 import { Issue } from '@stores/type';
+import { Link } from 'react-router-dom';
 
 interface Props {
   inputSearchFilter: string;
@@ -66,9 +67,11 @@ const MainPresenter: FunctionComponent<Props> = ({
           labelCount={labelCount}
           milestoneCount={milestoneCount}
         />
-        <Button type="primary">
-          <BoldText value="New issue" />
-        </Button>
+        <Link to="/issue/new">
+          <Button type="primary">
+            <BoldText value="New issue" />
+          </Button>
+        </Link>
       </nav>
       <section>
         <IssueListFilterHeader
