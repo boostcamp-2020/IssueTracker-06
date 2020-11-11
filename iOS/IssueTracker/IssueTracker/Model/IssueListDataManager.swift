@@ -36,6 +36,31 @@ struct IssueListDataManager {
             errorHandler?($0)
         })
     }
+    
+    func closeIssues(
+        id: [Int],
+        successHandler: (([Int]) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        
+        let queue = DispatchQueue.global()
+        queue.async {
+            var successIssuesID = [Int]()
+            let dispatchGroup = DispatchGroup()
+            id.forEach { id in
+                dispatchGroup.enter()
+                updateStatus(id: id, status: false, successHandler: {
+                    successIssuesID.append(id)
+                    dispatchGroup.leave()
+                }, errorHandler: {
+                    errorHandler?($0)
+                    dispatchGroup.leave()
+                })
+            }
+            dispatchGroup.notify(queue: queue) {
+                successHandler?(successIssuesID)
+            }
+        }
+    }
 }
 
 private extension IssueListDataManager {
