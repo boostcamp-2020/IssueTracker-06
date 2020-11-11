@@ -5,11 +5,13 @@ import React, {
   useContext,
   useState,
 } from 'react';
+import { useHistory } from 'react-router-dom';
 import issueContext from '@stores/.';
 
 import useChange from '@hooks/useChange';
 import getIssuesAction from '@stores/getIssues';
 import getIssuesAPI from '@apis/getIssues';
+import { ToggleType } from '@components/molecules/LabelMilestoneToggle';
 
 import MainPresenter from './MainPresenter';
 
@@ -22,8 +24,14 @@ const MainContainer: FunctionComponent = () => {
   const { issues, asyncDispatch } = useContext(issueContext);
   const [inputSearchFilter, , onChangeInputSearchFilter] = useChange('');
   const [checkedIssues, setCheckedIssues] = useState<number[]>([]);
+  const history = useHistory();
 
-  const onClickLabelMilestoneToggle = useCallback(() => {}, []);
+  const onClickLabelMilestoneToggle = useCallback(
+    (clickedToggle: ToggleType) => {
+      history.push(`/${clickedToggle}`);
+    },
+    [],
+  );
 
   const onCheckIssue = useCallback(
     (id: number) => {

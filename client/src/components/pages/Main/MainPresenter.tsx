@@ -3,7 +3,9 @@ import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 import AppLayout from '@components/organisms/AppLayout';
 import SearchWithFilter from '@components/organisms/SearchWithFilter';
-import LabelMilestoneToggle from '@components/molecules/LabelMilestoneToggle';
+import LabelMilestoneToggle, {
+  ToggleType,
+} from '@components/molecules/LabelMilestoneToggle';
 import Button from '@components/atoms/Button';
 import BoldText from '@components/atoms/BoldText';
 import IssueListFilterHeader from '@components/organisms/IssueListFilterHeader';
@@ -14,7 +16,7 @@ interface Props {
   inputSearchFilter: string;
   onChangeInputSearchFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onCheckIssue: (id: number) => void;
-  onClickLabelMilestoneToggle: () => void;
+  onClickLabelMilestoneToggle: (clickedToggle: ToggleType) => void;
   onCheckIssueListHeader: (isChecked: boolean) => void;
   labelCount: number;
   milestoneCount: number;
