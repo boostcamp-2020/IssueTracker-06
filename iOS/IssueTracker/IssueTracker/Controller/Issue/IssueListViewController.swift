@@ -138,9 +138,16 @@ private extension IssueListViewController {
               let issueID = issues?[indexPath.row]?.id else { return }
         issueListDataManager.closeIssue(id: issueID, successHandler: {
             DispatchQueue.main.async { [weak self] in
-                self?.issues?.close(id: [issueID])
+                self?.closeItemFromCollectionView(at: indexPath, id: issueID)
             }
         })
+    }
+    
+    func closeItemFromCollectionView(at indexPath: IndexPath, id: Int) {
+        issueListCollectionView.performBatchUpdates({
+            issues?.close(id: [id])
+            issueListCollectionView.reloadItems(at: [indexPath])
+        }, completion: nil)
     }
     
     func deleteButtonTouched(cell: UICollectionViewCell) {
