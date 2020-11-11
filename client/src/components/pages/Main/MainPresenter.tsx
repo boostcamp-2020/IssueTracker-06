@@ -19,9 +19,11 @@ interface Props {
   onCheckIssue: (id: number) => void;
   onClickLabelMilestoneToggle: (clickedToggle: ToggleType) => void;
   onCheckIssueListHeader: (isChecked: boolean) => void;
+  onClickOpenOrCloseFilter: (isOpen: boolean) => void;
   labelCount: number;
   milestoneCount: number;
   issues: Issue[];
+  isOpenIssue: boolean;
   checkedIssues: number[];
 }
 
@@ -50,9 +52,11 @@ const MainPresenter: FunctionComponent<Props> = ({
   onClickLabelMilestoneToggle,
   onCheckIssue,
   onCheckIssueListHeader,
+  onClickOpenOrCloseFilter,
   labelCount,
   milestoneCount,
   issues,
+  isOpenIssue,
   checkedIssues,
 }) => (
   <AppLayout>
@@ -61,6 +65,7 @@ const MainPresenter: FunctionComponent<Props> = ({
         <SearchWithFilter
           value={inputSearchFilter}
           onChange={onChangeInputSearchFilter}
+          onClickOpenFilter={onClickOpenOrCloseFilter}
         />
         <LabelMilestoneToggle
           onClickToggle={onClickLabelMilestoneToggle}
@@ -81,7 +86,7 @@ const MainPresenter: FunctionComponent<Props> = ({
         <ul>
           {issues.map(
             (issue) =>
-              issue.is_open === 1 && (
+              Boolean(issue.is_open) === isOpenIssue && (
                 <IssueCard
                   key={`mainpage_${issue.id}`}
                   isOpen={issue.is_open}

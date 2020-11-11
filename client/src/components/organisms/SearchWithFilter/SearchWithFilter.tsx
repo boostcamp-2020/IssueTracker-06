@@ -10,6 +10,7 @@ import { DropdownIcon } from '@components/atoms/icons';
 interface Props {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClickOpenFilter: (isOpen: boolean) => void;
 }
 
 const options = [
@@ -19,6 +20,8 @@ const options = [
   'Everything mentioning to you',
   'Closed issues',
 ];
+
+const optionsFilter = [true, null, null, null, false];
 
 const StyledSearchWithFilter = styled.form`
   display: flex;
@@ -40,15 +43,24 @@ const StyledSearchWithFilter = styled.form`
   }
 `;
 
-const SearchWithFilter: FunctionComponent<Props> = ({ value, onChange }) => {
+const SearchWithFilter: FunctionComponent<Props> = ({
+  value,
+  onChange,
+  onClickOpenFilter,
+}) => {
   const [isShowFilterOptions, setIsShowFilterOptions] = useState(false);
 
   const onOpenFilter = useCallback(() => {
     setIsShowFilterOptions(!isShowFilterOptions);
   }, [isShowFilterOptions]);
 
+  const onSearchFilter = useCallback((e: React.FormEvent) => {
+    e.preventDefault();
+    setIsShowFilterOptions(false);
+  }, []);
+
   return (
-    <StyledSearchWithFilter>
+    <StyledSearchWithFilter onSubmit={onSearchFilter}>
       <Filter
         type="default"
         label="filter"
@@ -57,8 +69,14 @@ const SearchWithFilter: FunctionComponent<Props> = ({ value, onChange }) => {
         isShow={isShowFilterOptions}
         onClick={onOpenFilter}
       >
-        {options.map((option) => (
-          <SelectMenuItem key={`main_filter_${option}`}>
+        {options.map((option, i) => (
+          <SelectMenuItem
+            key={`main_filter_${option}`}
+            onClick={() =>
+              optionsFilter[i] !== null &&
+              onClickOpenFilter(optionsFilter[i] as boolean)
+            }
+          >
             <PlainText value={option} />
           </SelectMenuItem>
         ))}

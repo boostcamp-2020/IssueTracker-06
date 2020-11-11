@@ -22,9 +22,14 @@ const DUMMY = {
 
 const MainContainer: FunctionComponent = () => {
   const { issues, asyncDispatch } = useContext(issueContext);
+  const [isOpenIssue, setIsOpenIssue] = useState(true);
   const [inputSearchFilter, , onChangeInputSearchFilter] = useChange('');
   const [checkedIssues, setCheckedIssues] = useState<number[]>([]);
   const history = useHistory();
+
+  const onClickOpenOrCloseFilter = useCallback((isOpen: boolean) => {
+    setIsOpenIssue(isOpen);
+  }, []);
 
   const onClickLabelMilestoneToggle = useCallback(
     (clickedToggle: ToggleType) => {
@@ -73,7 +78,9 @@ const MainContainer: FunctionComponent = () => {
       onClickLabelMilestoneToggle={onClickLabelMilestoneToggle}
       onCheckIssue={onCheckIssue}
       onCheckIssueListHeader={onCheckIssueListHeader}
+      onClickOpenOrCloseFilter={onClickOpenOrCloseFilter}
       issues={issues}
+      isOpenIssue={isOpenIssue}
       checkedIssues={checkedIssues}
     />
   );
