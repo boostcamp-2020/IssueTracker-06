@@ -7,10 +7,7 @@
 
 import Foundation
 
-struct DetailIssue: Codable, HTTPDataProviding {
-    
-    typealias DataType = DetailIssue
-    static var key = "issue"
+struct DetailIssue {
     
     let id: Int
     let title: String
@@ -21,6 +18,9 @@ struct DetailIssue: Codable, HTTPDataProviding {
     let content: String
     let isOpen: Int
     let assignee: [User]
+}
+
+extension DetailIssue: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -41,4 +41,10 @@ struct DetailIssue: Codable, HTTPDataProviding {
     struct patchContentDetailIssue: Codable {
         let content: String
     }
+}
+
+extension DetailIssue: HTTPDataProviding {
+    
+    typealias DataType = DetailIssue
+    static var key = "issue"
 }

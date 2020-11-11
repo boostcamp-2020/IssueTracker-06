@@ -13,6 +13,38 @@ extension Array {
     }
 }
 
+extension NSObject {
+    var typeName: String {
+        String(describing: type(of: self))
+    }
+}
+
+extension UIView {
+    var viewFromNib: UIView? {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: typeName, bundle: bundle)
+        return nib.instantiate(withOwner: self, options: nil).first as? UIView
+    }
+    
+    func configureNib() {
+        guard let view = viewFromNib else { return }
+        view.frame = bounds
+        addSubview(view)
+    }
+}
+
+extension UIView {
+    func setConstraintToFit(at view: UIView) {
+        NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topAnchor.constraint(equalTo: view.topAnchor),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+}
+
+
 extension UIView {
     @IBInspectable
     var cornerRadius: CGFloat {
@@ -21,6 +53,27 @@ extension UIView {
         }
         set {
             layer.cornerRadius = newValue
+        }
+    }
+    
+    @IBInspectable
+    var borderColor: UIColor? {
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
+        }
+        set {
+            layer.borderColor = newValue?.cgColor
+        }
+    }
+    
+    @IBInspectable
+    var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
         }
     }
 }
@@ -56,5 +109,27 @@ extension String {
             blue: CGFloat(b) / 255.0,
             alpha: CGFloat(a) / 255.0
         )
+    }
+}
+
+extension UIColor {
+    
+    var toHexString: String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        return String(format:"#%06x", rgb)
+    }
+    
+    static var randomColor: UIColor {
+        let randomRed:CGFloat = CGFloat(drand48())
+        let randomGreen:CGFloat = CGFloat(drand48())
+        let randomBlue:CGFloat = CGFloat(drand48())
+        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
     }
 }

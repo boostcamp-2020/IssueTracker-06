@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct Comment: Codable, HTTPDataProviding {
-    
-    typealias DataType = Comment
-    static var key = "comment"
-    
+struct Comment {
+
     let user: User
     let createdAt: String?
     let updatedAt: String?
     let content: String
     let id: Int
+}
+
+extension Comment: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case user = "User"
@@ -33,4 +33,10 @@ struct Comment: Codable, HTTPDataProviding {
         let content: String
         let issueId: Int
     }
+}
+
+extension Comment: HTTPDataProviding {
+    
+    typealias DataType = Comment
+    static var key = "comment"
 }

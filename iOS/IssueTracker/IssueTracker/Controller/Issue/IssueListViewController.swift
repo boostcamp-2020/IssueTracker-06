@@ -84,6 +84,7 @@ extension IssueListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 private extension IssueListViewController {
+    
     enum Constant {
         static let issueDetailSegue: String = "IssueDetailSegue"
     }

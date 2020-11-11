@@ -9,8 +9,8 @@ import UIKit
 
 class LabelCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var labelView: LabelView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var labelView: LabelView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

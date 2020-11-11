@@ -9,11 +9,11 @@ import Foundation
 import Alamofire
 
 struct HTTPServiceHelper {
-    
+
     static let shared = HTTPServiceHelper()
-    
+
     private init() {}
-    
+
     func get<T: Codable & HTTPDataProviding>(
         url: URL,
         responseType: T.Type,
@@ -29,7 +29,7 @@ struct HTTPServiceHelper {
             }
         }
     }
-    
+
     func put<T: Codable>(
         url: URL,
         body: T,
@@ -41,12 +41,11 @@ struct HTTPServiceHelper {
             case .success(let httpData):
                 successHandler?(httpData.result)
             case .failure(let error):
-                print(response)
                 errorHandler?(error)
             }
         }
     }
-    
+
     func patch<T: Codable>(
         url: URL,
         body: T,
@@ -58,12 +57,12 @@ struct HTTPServiceHelper {
             case .success(let httpData):
                 successHandler?(httpData.result)
             case .failure(let error):
-                print(response)
                 errorHandler?(error)
             }
         }
     }
-    
+
+    // api에서 post response로 result: Bool, ()Id: String? 이 오기때문에 responseKeyID를 매개변수로 추가함
     func post<T: Codable>(
         url: URL,
         body: T,
@@ -71,10 +70,8 @@ struct HTTPServiceHelper {
         successHandler: (((result: Bool, id: Int?)) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
         HTTPResponseData.keyID = responseKeyID
-        AF.request(
-            url,
-            method: .post,
-            parameters: body).responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
+        AF.request(url, method: .post, parameters: body)
+            .responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
             switch response.result {
             case .success(let httpData):
                 successHandler?((result: httpData.result, id: httpData.id))
@@ -83,14 +80,13 @@ struct HTTPServiceHelper {
             }
         }
     }
-  
+
     func delete<T: Codable>(
         url: URL,
         requestType: T.Type,
         successHandler: ((Bool) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
-        AF.request(url, method: .delete).responseDecodable {
-            (response: AFDataResponse<HTTPResponseData>) in
+        AF.request(url, method: .delete).responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
             switch response.result {
             case .success(let httpData):
                 successHandler?((httpData.result))

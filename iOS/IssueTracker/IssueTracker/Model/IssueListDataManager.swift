@@ -40,7 +40,7 @@ struct IssueListDataManager {
 }
 
 private extension IssueListDataManager {
-    enum IssueTrackerURL {
+
         static let issues: URL? = URL(string: "http://issue-tracker.cf/api/issues")
         static let newIssue: URL? = URL(string: "http://issue-tracker.cf/api/issue")
     }

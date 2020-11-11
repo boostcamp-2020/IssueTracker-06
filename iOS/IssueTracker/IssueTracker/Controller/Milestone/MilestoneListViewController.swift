@@ -7,12 +7,22 @@
 
 import UIKit
 
+protocol MilestoneListViewControllerDelegate {
+    func milestone(_ milestone: Milestone)
+}
+
 class MilestoneListViewController: UIViewController {
 
     @IBOutlet weak var milestoneCollectionView: UICollectionView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     private var milestones: Milestones?
-    private var milestoneIssuesMap = [Milestone:Issues]()
+    private var selectedIndexPath: IndexPath?
+    private var milestoneIssuesMap = [Int: Issues]()
+    
+    private var selectedMilestone: Milestone? {
+        guard let indexPath = selectedIndexPath else { return nil }
+        return milestones?[indexPath.row]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +42,7 @@ class MilestoneListViewController: UIViewController {
             
             data.milestones.forEach { [weak self] milestone in
                 self?.configureIssuesData(milestoneName: milestone.name) { [weak self] issues in
-                    self?.milestoneIssuesMap[milestone] = issues
+                    self?.milestoneIssuesMap[milestone.id] = issues
                     self?.milestoneCollectionView.reloadData()
                 }
             }
@@ -57,18 +67,42 @@ class MilestoneListViewController: UIViewController {
         })
     }
     
-    @IBAction func addButtonPressed(_ sender: Any) {
-        guard let labelMilestoneAddVC = self.storyboard?.instantiateViewController(
-                withIdentifier: Constant.labelMilestoneAddViewController)
-                as? LabelMilestoneAddViewController else { return }
-        labelMilestoneAddVC.modalPresentationStyle = .fullScreen
-        
+    @IBSegueAction private func presentAddViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
+        let addViewController = MilestoneAddViewController(coder: coder)
+        addViewController?.updateMilestoneDelegate = self
+
         guard let snap = UIApplication.shared.keyWindow!.snapshotView(
                 afterScreenUpdates: true
         ) else { return }
-        
-        labelMilestoneAddVC.snapshotView = snap
-        present(labelMilestoneAddVC, animated: false, completion: nil)
+        addViewController?.snapshotView = snap
+        return addViewController
+    }
+    
+    @IBSegueAction private func presentUpdateViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
+        let updateViewController = MilestoneAddViewController(coder: coder)
+        updateViewController?.updateMilestoneDelegate = self
+
+        guard let milestone = selectedMilestone else { return updateViewController }
+        updateViewController?.milestone(milestone)
+
+        guard let snap = UIApplication.shared.keyWindow!.snapshotView(
+                afterScreenUpdates: true
+        ) else { return }
+        updateViewController?.snapshotView = snap
+        return updateViewController
+    }
+}
+
+extension MilestoneListViewController: UpdateMilestoneDelegate {
+    
+    func add(milestone: Milestone) {
+        milestones?.add(milestone: milestone)
+        milestoneCollectionView.reloadData()
+    }
+    
+    func update(milestone: Milestone) {
+        milestones?.replace(milestone: milestone)
+        milestoneCollectionView.reloadData()
     }
 }
 
@@ -77,7 +111,7 @@ extension MilestoneListViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
-        milestones?.milestones.count ?? 0
+        milestones?.count ?? 0
     }
 
     func collectionView(
@@ -88,18 +122,24 @@ extension MilestoneListViewController: UICollectionViewDataSource {
             withReuseIdentifier: Constant.milestoneListCell,
             for: indexPath)
         guard let milestoneCell = cell as? MilestoneListCollectionViewCell,
-              let milestone = milestones?.milestones[indexPath.row]
+              let milestone = milestones?[indexPath.row]
         else {
             return cell
         }
         milestoneCell.configure(with: milestone)
-        let issues = milestoneIssuesMap[milestone]
+        let issues = milestoneIssuesMap[milestone.id]
         milestoneCell.configure(with: issues)
         return cell
     }
 }
 
-extension MilestoneListViewController: UICollectionViewDelegate {}
+extension MilestoneListViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        performSegue(withIdentifier: Constant.updateSegue, sender: nil)
+    }
+}
 
 extension MilestoneListViewController: UICollectionViewDelegateFlowLayout {
     
@@ -113,6 +153,7 @@ extension MilestoneListViewController: UICollectionViewDelegateFlowLayout {
 private extension MilestoneListViewController {
     
     enum Constant {
+        static let updateSegue: String = "UpdateSegue"
         static let milestoneListCell: String = "MilestoneListCell"
         static let milestoneListCollectionViewCell: String = "MilestoneListCollectionViewCell"
         static let labelMilestoneAddViewController: String = "LabelMilestoneAddViewController"

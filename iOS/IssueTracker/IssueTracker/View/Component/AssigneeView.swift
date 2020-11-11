@@ -41,6 +41,7 @@ final class AssigneeView: UIView {
 }
 
 private extension AssigneeView {
+    
     enum Metric {
         static let cornerRadius: CGFloat = 9
         static let fontSize:CGFloat = 13
