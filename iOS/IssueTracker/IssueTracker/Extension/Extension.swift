@@ -44,6 +44,14 @@ extension UIView {
     }
 }
 
+extension UIApplication {
+    static var snapshotView: UIView? {
+        UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.snapshotView(
+                afterScreenUpdates: true
+        )
+    }
+}
+
 
 extension UIView {
     @IBInspectable
@@ -127,9 +135,9 @@ extension UIColor {
     }
     
     static var randomColor: UIColor {
-        let randomRed:CGFloat = CGFloat(drand48())
-        let randomGreen:CGFloat = CGFloat(drand48())
-        let randomBlue:CGFloat = CGFloat(drand48())
+        let randomRed: CGFloat = CGFloat(drand48())
+        let randomGreen: CGFloat = CGFloat(drand48())
+        let randomBlue: CGFloat = CGFloat(drand48())
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
     }
 }

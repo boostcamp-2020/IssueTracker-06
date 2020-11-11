@@ -17,7 +17,9 @@ class LabelAddViewController: UIViewController {
     weak var updateLabelDelegate: UpdateLabelDelegate?
     @IBOutlet private weak var addView: AddView!
     @IBOutlet private weak var addViewCenterYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var backgroundView: UIView!
     private var label: Label?
+    private var snapshotView: UIView?
 
     private lazy var dataSource: LabelAddViewDataSource = {
         LabelAddViewDataSource(label: label)
@@ -26,11 +28,26 @@ class LabelAddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAddView()
+        configureBackgroundView()
+        view.configureTapGesture(target: self, action: #selector(handleTapGesture(recognizer:)))
     }
     
     private func configureAddView() {
         addView.delegate = self
         addView.dataSource = dataSource
+    }
+    
+    private func configureBackgroundView() {
+        guard let snapshotView = snapshotView else {
+            return
+        }
+        snapshotView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.addSubview(snapshotView)
+        snapshotView.setConstraintToFit(at: backgroundView)
+    }
+    
+    @objc private func handleTapGesture(recognizer: UITapGestureRecognizer) {
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
@@ -68,7 +85,10 @@ extension LabelAddViewController: AddViewDelegate {
 }
 
 extension LabelAddViewController: LabelViewControllerDelegate {
-    
+    func snapshot(_ snapshot: UIView) {
+        snapshotView = snapshot
+    }
+
     func label(_ label: Label) {
         self.label = label
     }

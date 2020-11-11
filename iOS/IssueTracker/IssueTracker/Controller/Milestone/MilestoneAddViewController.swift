@@ -17,7 +17,10 @@ final class MilestoneAddViewController: UIViewController {
     weak var updateMilestoneDelegate: UpdateMilestoneDelegate?
     @IBOutlet private weak var addView: AddView!
     @IBOutlet private weak var addViewCenterYConstraint: NSLayoutConstraint!
+    
+    @IBOutlet private weak var backgroundView: UIView!
     private var milestone: Milestone?
+    private var snapshotView: UIView?
     
     private lazy var dataSource: MilestoneAddViewDataSource = {
         MilestoneAddViewDataSource(milestone: milestone)
@@ -25,12 +28,27 @@ final class MilestoneAddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureBackgroundView()
         configureAddView()
+        view.configureTapGesture(target: self, action: #selector(handleTapGesture(recognizer:)))
     }
     
     private func configureAddView() {
         addView.delegate = self
         addView.dataSource = dataSource
+    }
+    
+    private func configureBackgroundView() {
+        guard let snapshotView = snapshotView else {
+            return
+        }
+        snapshotView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.addSubview(snapshotView)
+        snapshotView.setConstraintToFit(at: backgroundView)
+    }
+    
+    @objc private func handleTapGesture(recognizer: UITapGestureRecognizer) {
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
@@ -73,5 +91,9 @@ extension MilestoneAddViewController: MilestoneListViewControllerDelegate {
     
     func milestone(_ milestone: Milestone) {
         self.milestone = milestone
+    }
+    
+    func snapshot(_ snapshot: UIView) {
+        snapshotView = snapshot
     }
 }
