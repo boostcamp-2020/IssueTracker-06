@@ -16,21 +16,15 @@ struct Issues {
     }
     
     var openCount: Int {
-        issues.filter {
-            $0.isOpen == 1
-        }.count
+        issues.filter { $0.isOpen }.count
     }
     
     var closedCount: Int {
-        issues.filter {
-            $0.isOpen == 0
-        }.count
+        issues.filter { !$0.isOpen }.count
     }
     
     var id: [Int] {
-        issues.map {
-            $0.id
-        }
+        issues.map { $0.id }
     }
     
     init() {
@@ -57,6 +51,7 @@ struct Issues {
     
     mutating func close(id: [Int]) {
         issues = issues.map {
+            guard id.contains($0.id) else { return $0 }
             var issue = $0
             issue.updateStatus(isOpen: false)
             return issue

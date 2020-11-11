@@ -14,10 +14,19 @@ struct Issue {
     let milestone: Milestone?
     let labels: [Label]
     let content: String
-    var isOpen: Int
+    var isOpen: Bool
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        title = try container.decode(String.self, forKey: .title)
+        milestone = try? container.decode(Milestone.self, forKey: .milestone)
+        labels = try container.decode([Label].self, forKey: .labels)
+        content = try container.decode(String.self, forKey: .content)
+        isOpen = try container.decode(Int.self, forKey: .isOpen) == 1 ? true : false
+    }
     
     mutating func updateStatus(isOpen: Bool) {
-        let isOpen = isOpen ? 1 : 0
         self.isOpen = isOpen
     }
 }
