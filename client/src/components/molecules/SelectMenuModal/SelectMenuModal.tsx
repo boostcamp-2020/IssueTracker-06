@@ -19,8 +19,10 @@ const StyledUl = styled.ul`
   max-width: 300px;
   margin: 10px 0;
   transform: translateY(30px);
+  z-index: 100;
 
   & > li {
+    background-color: ${({ theme }) => theme.palette.LIGHT};
     border-bottom: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
     cursor: pointer;
   }
