@@ -2,7 +2,8 @@ import React, { FunctionComponent } from 'react';
 import IssueInfo from '@components/molecules/IssueInfo';
 import { IssueOpenedIcon, IssueClosedIcon } from '@components/atoms/icons';
 import styled from '@themes/styled';
-import Assignees, { User } from '@components/molecules/Assignees';
+import Assignees from '@components/molecules/Assignees';
+import { User } from '@stores/type';
 import { Label } from '@components/atoms/LabelTag';
 
 interface Props {

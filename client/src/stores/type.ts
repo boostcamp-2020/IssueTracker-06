@@ -1,13 +1,17 @@
-export interface Issue {
-  id: number;
+/* eslint-disable camelcase */
+export interface IssueWithoutId {
   title: string;
   content: string;
-  isOpen: boolean;
-  user: User;
-  assignees: User[];
-  comments: Comment[];
-  milestone: Milestone | null;
-  labels: Label[];
+  is_open: boolean;
+  User: User;
+  Assignee: User[];
+  Comments: Comment[];
+  Milestone: Milestone | null;
+  Labels: Label[];
+}
+
+export interface Issue extends IssueWithoutId {
+  id: number;
 }
 
 export interface User {
@@ -20,9 +24,9 @@ export interface User {
 export interface Comment {
   id: number;
   content: string;
-  createdAt?: string;
-  updatedAt?: string;
-  user: User;
+  created_at?: string;
+  updated_at?: string;
+  User: User;
 }
 
 export interface Milestone {
@@ -30,7 +34,7 @@ export interface Milestone {
   name: string;
   date?: string;
   description: string;
-  isOpen: boolean;
+  is_open: boolean;
 }
 
 export interface Label {
