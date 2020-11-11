@@ -46,6 +46,7 @@ export const Default = () => {
       author={author}
       milestone={milestone}
       assignees={assignees}
+      onCheck={(id: number) => {}}
     />
   );
 };

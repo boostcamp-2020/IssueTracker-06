@@ -25,6 +25,19 @@ const MainContainer: FunctionComponent = () => {
 
   const onClickLabelMilestoneToggle = useCallback(() => {}, []);
 
+  const onCheckIssue = useCallback(
+    (id: number) => {
+      const isCheckedIssue = checkedIssues.includes(id);
+      if (!isCheckedIssue) {
+        setCheckedIssues([...checkedIssues, id]);
+        return;
+      }
+      const deletedIssues = checkedIssues.filter((issue) => issue !== id);
+      setCheckedIssues(deletedIssues);
+    },
+    [checkedIssues],
+  );
+
   useEffect(() => {
     if (issues.length === 0 && asyncDispatch) {
       asyncDispatch(getIssuesAction(), getIssuesAPI);
@@ -38,6 +51,7 @@ const MainContainer: FunctionComponent = () => {
       labelCount={DUMMY.labelCount}
       milestoneCount={DUMMY.milestoneCount}
       onClickLabelMilestoneToggle={onClickLabelMilestoneToggle}
+      onCheckIssue={onCheckIssue}
       issues={issues}
       checkedIssues={checkedIssues}
     />

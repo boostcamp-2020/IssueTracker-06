@@ -13,6 +13,7 @@ import { Issue } from '@stores/type';
 interface Props {
   inputSearchFilter: string;
   onChangeInputSearchFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onCheckIssue: (id: number) => void;
   onClickLabelMilestoneToggle: () => void;
   labelCount: number;
   milestoneCount: number;
@@ -43,6 +44,7 @@ const MainPresenter: FunctionComponent<Props> = ({
   inputSearchFilter,
   onChangeInputSearchFilter,
   onClickLabelMilestoneToggle,
+  onCheckIssue,
   labelCount,
   milestoneCount,
   issues,
@@ -80,6 +82,7 @@ const MainPresenter: FunctionComponent<Props> = ({
                   author={issue.User.name}
                   milestone={issue.Milestone?.name}
                   assignees={issue.Assignee}
+                  onCheck={onCheckIssue}
                 />
               ),
           )}
