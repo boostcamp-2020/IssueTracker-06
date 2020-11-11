@@ -34,6 +34,9 @@
                                         <state key="normal" title="Delete">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="deleteButtonTouched:" destination="gTV-IL-0wX" eventType="touchUpInside" id="8ui-zE-urg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-9a-rab">
                                         <rect key="frame" x="340" y="0.0" width="80" height="128"/>
@@ -44,6 +47,9 @@
                                         <state key="normal" title="Close">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="closeButtonTouched:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Jrj-ye-rdV"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="레이블 목록 보기 구현ㄹㅇㅁㄴㄹㅇㅁㄹㅁㄴㅇㅁㅎㅇㄴㄹㅁㄴㅇㄹㅎㅁㄴㅇㄹㅁ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdY-Lp-RMh">
                                         <rect key="frame" x="43" y="15" width="229" height="20.5"/>

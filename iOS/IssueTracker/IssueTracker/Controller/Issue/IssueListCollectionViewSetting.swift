@@ -21,6 +21,8 @@ final class IssueListCollectionViewSetting: NSObject {
         }
     }
     
+    var closeButtonHandler: ((UICollectionViewCell) -> Void)?
+
     var cellMode: IssueListCellMode = .normal {
         didSet {
             guard oldValue != cellMode else { return }
@@ -74,6 +76,7 @@ extension IssueListCollectionViewSetting: UICollectionViewDataSource {
         if let issueListCollectionViewCell = cell as? IssueListCollectionViewCell {
             configureIssueListCollectionViewCellData(issueListCollectionViewCell, at: indexPath)
             configureCellLayout(issueListCollectionViewCell)
+            issueListCollectionViewCell.closeButtonHandler = closeButtonHandler
         }
         return cell
     }

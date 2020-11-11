@@ -37,6 +37,18 @@ struct IssueListDataManager {
         })
     }
     
+    func closeIssue(
+        id: Int,
+        successHandler: (() -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        
+        updateStatus(id: id, status: false, successHandler: {
+            successHandler?()
+        }, errorHandler: {
+            errorHandler?($0)
+        })
+    }
+    
     func closeIssues(
         id: [Int],
         successHandler: (([Int]) -> Void)? = nil,

@@ -44,9 +44,12 @@ final class IssueListViewController: UIViewController {
     
     private lazy var issueListCollectionViewSetting: IssueListCollectionViewSetting? = {
         guard let issues = issues else { return nil }
-        return IssueListCollectionViewSetting(
+        let issueListCollectionViewSetting = IssueListCollectionViewSetting(
             collectionView: issueListCollectionView,
             data: issues)
+        
+        issueListCollectionViewSetting.closeButtonHandler = closeButtonTouched(cell:)
+        return issueListCollectionViewSetting
     }()
     
     private lazy var normalModeTapGesture: UITapGestureRecognizer = {
@@ -71,6 +74,7 @@ final class IssueListViewController: UIViewController {
         configureIssuesData()
         configureBottomGuideline()
         removeNavigationBarUnderLine()
+        normalModeTapGesture.delegate = self
     }
     
     private func changeMode(isEditMode: Bool) {
@@ -109,6 +113,14 @@ final class IssueListViewController: UIViewController {
     }
 }
 
+extension IssueListViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let isUIControl = touch.view is UIControl
+        return !isUIControl
+    }
+}
+
 // MARK: NormalMode
 private extension IssueListViewController {
     
@@ -118,6 +130,16 @@ private extension IssueListViewController {
     
     func moveToIssueDetailViewController() {
         performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
+    }
+    
+    func closeButtonTouched(cell: UICollectionViewCell) {
+        guard let indexPath = issueListCollectionView.indexPath(for: cell),
+              let issueID = issues?[indexPath.row]?.id else { return }
+        issueListDataManager.closeIssue(id: issueID, successHandler: {
+            DispatchQueue.main.async { [weak self] in
+                self?.issues?.close(id: [issueID])
+            }
+        })
     }
     
     @objc func cellTouched(_ sender: UITapGestureRecognizer) {

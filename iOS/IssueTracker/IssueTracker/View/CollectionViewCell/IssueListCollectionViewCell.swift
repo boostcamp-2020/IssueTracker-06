@@ -19,6 +19,8 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var checkboxLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var issueStateView: UIImageView!
     
+    var closeButtonHandler: ((UICollectionViewCell) -> Void)?
+    
     var isCheckboxEnabled: Bool = false {
         didSet {
             guard oldValue == !isCheckboxEnabled else { return }
@@ -56,6 +58,13 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     
     func updateCheckboxState(isSelected: Bool) {
         checkboxButton.isSelected = isSelected
+    }
+    
+    @IBAction func closeButtonTouched(_ sender: UIButton) {
+        closeButtonHandler?(self)
+    }
+    
+    @IBAction func deleteButtonTouched(_ sender: UIButton) {
     }
 }
 
