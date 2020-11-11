@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+
 import IssueInfo from '@components/molecules/IssueInfo';
 import { IssueOpenedIcon, IssueClosedIcon } from '@components/atoms/icons';
 import styled from '@themes/styled';
@@ -25,7 +26,6 @@ const StyledIssueCard = styled.li`
   border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
   border-top: none;
   padding: 4px 0;
-  cursor: pointer;
 
   & > input {
     margin: 11px 0px 8px 16px;
