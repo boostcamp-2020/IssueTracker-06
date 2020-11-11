@@ -160,9 +160,11 @@ private extension IssueListViewController {
     }
 
     @IBAction func selectedIssuesCloseButton(_ sender: UIBarButtonItem) {
-        issueListDataManager.closeIssues(id: selectedIssues.id, successHandler: { [weak self] in
-            self?.issues?.close(id: $0)
-            DispatchQueue.main.async {
+        issueListDataManager.closeIssues(
+            id: selectedIssues.id,
+            successHandler: { id in
+            DispatchQueue.main.async { [weak self] in
+                self?.issues?.close(id: id)
                 self?.mode = .normal
             }
         })

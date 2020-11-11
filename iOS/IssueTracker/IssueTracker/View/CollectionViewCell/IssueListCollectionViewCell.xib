@@ -46,13 +46,13 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="레이블 목록 보기 구현ㄹㅇㅁㄴㄹㅇㅁㄹㅁㄴㅇㅁㅎㅇㄴㄹㅁㄴㅇㄹㅎㅁㄴㅇㄹㅁ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdY-Lp-RMh">
-                                        <rect key="frame" x="15" y="15" width="257" height="20.5"/>
+                                        <rect key="frame" x="43" y="15" width="229" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ㅁㄴㅇㄹㅁㄴㅇㅁㅎㅇㅁㄹㅁㅎㄴㅇㄹㅁㄴㅇㅎㅁㄴㅇㄹㅁㅎㄴㅇㄹㅁㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㅁㄴㅇㅁㄴㅇㄹ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQl-Om-rdg">
-                                        <rect key="frame" x="15" y="43.5" width="208" height="36"/>
+                                        <rect key="frame" x="43" y="43.5" width="182" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
@@ -139,22 +139,33 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ta-tw-Ywk">
+                                        <rect key="frame" x="15" y="13" width="20" height="24"/>
+                                        <color key="tintColor" red="0.26276978849999999" green="0.51625436540000003" blue="0.26269772650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="5ta-tw-Ywk" secondAttribute="height" multiplier="1:1" id="E6g-ND-SWO"/>
+                                            <constraint firstAttribute="width" constant="20" id="R1s-pN-CAs"/>
+                                        </constraints>
+                                        <imageReference key="image" image="exclamationmark.circle" catalog="system" symbolScale="large"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="h9M-wR-YFC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qQl-Om-rdg" secondAttribute="trailing" constant="20" id="2GZ-yp-Z6w"/>
                                     <constraint firstItem="thr-uq-gwl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jdY-Lp-RMh" secondAttribute="trailing" constant="20" id="49Y-sp-lnh"/>
                                     <constraint firstItem="h9M-wR-YFC" firstAttribute="top" secondItem="thr-uq-gwl" secondAttribute="bottom" constant="8" id="4M5-zw-UEv"/>
+                                    <constraint firstItem="5ta-tw-Ywk" firstAttribute="leading" secondItem="TF1-zY-mOH" secondAttribute="leading" constant="15" id="4vT-Xt-5j5"/>
                                     <constraint firstAttribute="bottom" secondItem="OTy-9a-rab" secondAttribute="bottom" id="7Xw-oh-221"/>
                                     <constraint firstItem="qQl-Om-rdg" firstAttribute="top" secondItem="jdY-Lp-RMh" secondAttribute="bottom" constant="8" id="7nc-KK-oKp"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qQl-Om-rdg" secondAttribute="bottom" constant="15" id="DXO-Nh-NCk"/>
                                     <constraint firstItem="OTy-9a-rab" firstAttribute="leading" secondItem="thr-uq-gwl" secondAttribute="trailing" constant="15" id="FA9-pJ-caE"/>
                                     <constraint firstItem="thr-uq-gwl" firstAttribute="centerY" secondItem="jdY-Lp-RMh" secondAttribute="centerY" id="Nh9-T4-IEG"/>
                                     <constraint firstItem="rYC-uo-xo7" firstAttribute="top" secondItem="TF1-zY-mOH" secondAttribute="top" id="WND-L2-C4E"/>
-                                    <constraint firstItem="qQl-Om-rdg" firstAttribute="leading" secondItem="TF1-zY-mOH" secondAttribute="leading" constant="15" id="Wb3-Na-c17"/>
+                                    <constraint firstItem="qQl-Om-rdg" firstAttribute="leading" secondItem="jdY-Lp-RMh" secondAttribute="leading" id="Wb3-Na-c17"/>
                                     <constraint firstAttribute="width" constant="500" id="Xzc-pj-6Qe"/>
                                     <constraint firstItem="rYC-uo-xo7" firstAttribute="leading" secondItem="OTy-9a-rab" secondAttribute="trailing" id="ZRY-p1-KIe"/>
-                                    <constraint firstItem="jdY-Lp-RMh" firstAttribute="leading" secondItem="TF1-zY-mOH" secondAttribute="leading" constant="15" id="erw-2o-d26"/>
+                                    <constraint firstItem="5ta-tw-Ywk" firstAttribute="top" secondItem="TF1-zY-mOH" secondAttribute="top" constant="15" id="dRw-sf-Ush"/>
+                                    <constraint firstItem="jdY-Lp-RMh" firstAttribute="leading" secondItem="5ta-tw-Ywk" secondAttribute="trailing" constant="8" id="erw-2o-d26"/>
                                     <constraint firstItem="OTy-9a-rab" firstAttribute="leading" secondItem="h9M-wR-YFC" secondAttribute="trailing" constant="15" id="h1s-fT-e5h"/>
                                     <constraint firstItem="jdY-Lp-RMh" firstAttribute="top" secondItem="TF1-zY-mOH" secondAttribute="top" constant="15" id="qhN-1K-FH9"/>
                                     <constraint firstItem="OTy-9a-rab" firstAttribute="top" secondItem="TF1-zY-mOH" secondAttribute="top" id="rTb-bC-ts6"/>
@@ -214,6 +225,7 @@
                 <outlet property="checkboxButton" destination="E5s-4K-wVR" id="cef-N8-poU"/>
                 <outlet property="checkboxLeadingConstraint" destination="5dL-sh-mKX" id="P6x-9c-inM"/>
                 <outlet property="descriptionLabel" destination="qQl-Om-rdg" id="qvX-GC-uXZ"/>
+                <outlet property="issueStateView" destination="5ta-tw-Ywk" id="SEY-mx-XP9"/>
                 <outlet property="labelsStackView" destination="h9M-wR-YFC" id="6kN-Qs-yBc"/>
                 <outlet property="milestoneView" destination="thr-uq-gwl" id="HDX-jM-sm5"/>
                 <outlet property="scrollView" destination="cVn-OL-dSA" id="Mlq-gp-hNI"/>
@@ -226,6 +238,7 @@
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

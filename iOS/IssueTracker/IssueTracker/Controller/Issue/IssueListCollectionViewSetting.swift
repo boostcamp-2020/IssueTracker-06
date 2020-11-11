@@ -112,6 +112,7 @@ extension IssueListCollectionViewSetting: UICollectionViewDelegateFlowLayout {
             return
         }
         cell.updateCheckboxState(isSelected: false)
+        cell.configureIssueStateView(isOpen: issue.isOpen)
     }
 }
 
