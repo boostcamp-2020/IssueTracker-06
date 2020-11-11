@@ -645,6 +645,9 @@
                                         <state key="normal" title="Close Issue">
                                             <color key="titleColor" red="0.74330145120000002" green="0.23191976550000001" blue="0.23919671770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="issueStateButtonPressed" destination="bsV-cy-HC3" eventType="touchUpInside" id="KK5-cq-NG7"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNt-Zc-XlY">
                                         <rect key="frame" x="15" y="754" width="384" height="1"/>
@@ -724,6 +727,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="assigneeStackView" destination="C7Y-ZN-XJJ" id="1df-UW-5jX"/>
+                                    <outlet property="issueStatusButton" destination="nA6-wW-g90" id="OdE-qB-UdD"/>
                                     <outlet property="labelStackView" destination="xnK-dT-kvM" id="93Y-AY-F8s"/>
                                 </connections>
                             </view>
@@ -1579,7 +1583,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="jGC-Iq-EQ4"/>
         <segue reference="id9-nh-MIP"/>
-        <segue reference="aJK-ch-Nmz"/>
+        <segue reference="h9h-al-eOU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1.circle.fill" catalog="system" width="128" height="121"/>
