@@ -67,6 +67,20 @@ class LabelViewController: UIViewController {
         updateViewController?.label(label)
         return updateViewController
     }
+
+    @IBAction func addButtonPressed(_ sender: Any) {
+        guard let labelMilestoneAddVC = self.storyboard?.instantiateViewController(
+                withIdentifier: Constant.labelMilestoneAddViewController)
+                as? LabelMilestoneAddViewController else { return }
+        labelMilestoneAddVC.modalPresentationStyle = .fullScreen
+        
+        guard let snap = UIApplication.shared.keyWindow!.snapshotView(
+                afterScreenUpdates: true
+        ) else { return }
+        
+        labelMilestoneAddVC.snapshotView = snap
+        present(labelMilestoneAddVC, animated: false, completion: nil)
+    }
 }
 
 extension LabelViewController: UpdateLabelDelegate {
@@ -132,5 +146,16 @@ private extension LabelViewController {
         static let updateSegue: String = "UpdateSegue"
         static let labelCell: String = "LabelCell"
         static let labelCollectionViewCell: String = "LabelCollectionViewCell"
+        static let labelMilestoneAddViewController: String = "LabelMilestoneAddViewController"
     }
+}
+
+extension UIView {
+   func snapshotImage() -> UIImage? {
+       UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0)
+       drawHierarchy(in: bounds, afterScreenUpdates: false)
+       let image = UIGraphicsGetImageFromCurrentImageContext()
+       UIGraphicsEndImageContext()
+       return image
+   }
 }

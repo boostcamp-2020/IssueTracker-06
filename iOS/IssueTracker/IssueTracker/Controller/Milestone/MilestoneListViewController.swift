@@ -70,6 +70,11 @@ class MilestoneListViewController: UIViewController {
     @IBSegueAction private func presentAddViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
         let addViewController = MilestoneAddViewController(coder: coder)
         addViewController?.updateMilestoneDelegate = self
+
+        guard let snap = UIApplication.shared.keyWindow!.snapshotView(
+                afterScreenUpdates: true
+        ) else { return }
+        addViewController?.snapshotView = snap
         return addViewController
     }
     
@@ -79,6 +84,11 @@ class MilestoneListViewController: UIViewController {
 
         guard let milestone = selectedMilestone else { return updateViewController }
         updateViewController?.milestone(milestone)
+
+        guard let snap = UIApplication.shared.keyWindow!.snapshotView(
+                afterScreenUpdates: true
+        ) else { return }
+        updateViewController?.snapshotView = snap
         return updateViewController
     }
 }
@@ -146,6 +156,7 @@ private extension MilestoneListViewController {
         static let updateSegue: String = "UpdateSegue"
         static let milestoneListCell: String = "MilestoneListCell"
         static let milestoneListCollectionViewCell: String = "MilestoneListCollectionViewCell"
+        static let labelMilestoneAddViewController: String = "LabelMilestoneAddViewController"
     }
     
     enum Metric {
