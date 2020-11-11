@@ -15,17 +15,17 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="Jy0-5f-YyN" customClass="IssueListEditViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r1W-UV-Cft">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0개 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUN-sy-k0y">
-                                <rect key="frame" x="15" y="15" width="118.5" height="41"/>
+                                <rect key="frame" x="15" y="59" width="118.5" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P91-1D-QkK">
-                                <rect key="frame" x="0.0" y="61" width="414" height="664"/>
+                                <rect key="frame" x="0.0" y="105" width="414" height="713"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="P2D-Fg-PMb">
                                     <size key="itemSize" width="128" height="128"/>
@@ -47,7 +47,7 @@
                                 </cells>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDC-tm-QDF">
-                                <rect key="frame" x="0.0" y="725" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="flexibleSpace" id="pcj-Jc-a6h"/>
                                     <barButtonItem title="선택 이슈 닫기" id="w5d-Gu-SOe"/>
@@ -70,11 +70,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ec6-XF-rvl">
-                        <barButtonItem key="leftBarButtonItem" title="SelectAll" id="C0v-Z7-T6r">
-                            <connections>
-                                <action selector="selectAllButtonTouched:" destination="Jy0-5f-YyN" id="ehu-Jm-TFs"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="SelectAll" id="C0v-Z7-T6r"/>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="VH2-0o-Opq">
                             <connections>
                                 <action selector="cancelButtonTouched:" destination="Jy0-5f-YyN" id="AQ5-zx-710"/>
@@ -151,6 +147,17 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wjB-NP-nbJ">
+                                <rect key="frame" x="0.0" y="676" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem systemItem="flexibleSpace" id="CdU-am-w4Q"/>
+                                    <barButtonItem title="선택 이슈 닫기" id="8gj-cA-g5I">
+                                        <connections>
+                                            <action selector="selectedIssuesCloseButton:" destination="BYZ-38-t0r" id="LXs-ne-SLl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -160,32 +167,49 @@
                             <constraint firstItem="LBd-8J-wFT" firstAttribute="top" secondItem="aaM-iP-gFn" secondAttribute="bottom" constant="5" id="5zD-bZ-v4W"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JHs-Zp-fEN" secondAttribute="bottom" id="E7i-0p-0B3"/>
                             <constraint firstItem="JHs-Zp-fEN" firstAttribute="top" secondItem="LBd-8J-wFT" secondAttribute="bottom" constant="5" id="JGd-JV-Dej"/>
+                            <constraint firstItem="wjB-NP-nbJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jqx-JS-XoC"/>
+                            <constraint firstItem="wjB-NP-nbJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UGV-lp-L7a"/>
                             <constraint firstItem="aaM-iP-gFn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="VAd-9E-rKB"/>
                             <constraint firstItem="aaM-iP-gFn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="dr8-7U-o70"/>
                             <constraint firstItem="JHs-Zp-fEN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dxD-PN-h31"/>
                             <constraint firstItem="LBd-8J-wFT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="gMp-ZE-Umz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aaM-iP-gFn" secondAttribute="trailing" constant="15" id="jFI-Ye-PT8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JHs-Zp-fEN" secondAttribute="trailing" id="oyw-bX-jV5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zFw-9l-qPf" secondAttribute="bottom" constant="20" id="vFI-Be-WmY"/>
+                            <constraint firstItem="JHs-Zp-fEN" firstAttribute="bottom" secondItem="zFw-9l-qPf" secondAttribute="bottom" constant="20" id="vFI-Be-WmY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wjB-NP-nbJ" secondAttribute="bottom" id="xd3-X3-6CL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FUr-ze-lRh">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="6i9-Oj-TAM">
-                            <connections>
-                                <segue destination="oW6-ue-0aA" kind="show" id="c4y-BD-d31"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="6i9-Oj-TAM"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="QCY-a0-DGt">
                             <connections>
-                                <segue destination="Jy0-5f-YyN" kind="show" animates="NO" id="h8n-lm-qba"/>
+                                <action selector="rightBarButtonTouched:" destination="BYZ-38-t0r" id="pFe-sI-nxP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addIssueButton" destination="zFw-9l-qPf" id="lLi-Az-10e"/>
+                        <outlet property="bottomToolbar" destination="wjB-NP-nbJ" id="dQz-2u-nre"/>
                         <outlet property="issueListCollectionView" destination="JHs-Zp-fEN" id="E3o-nw-Ys0"/>
+                        <outlet property="leftBarButton" destination="6i9-Oj-TAM" id="tmx-yj-XF2"/>
+                        <outlet property="rightBarButton" destination="QCY-a0-DGt" id="bhq-ff-qqr"/>
+                        <outlet property="titleLabel" destination="aaM-iP-gFn" id="vQT-ay-ot1"/>
+                        <segue destination="oW6-ue-0aA" kind="show" identifier="FilterSegue" id="786-EC-i91"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <navigationItem id="PXK-q2-VBS">
+                    <barButtonItem key="leftBarButtonItem" title="SelectAll" id="P03-jF-Eh3">
+                        <connections>
+                            <action selector="selectAllButtonTouched:" destination="Jy0-5f-YyN" id="WNj-1Z-cva"/>
+                        </connections>
+                    </barButtonItem>
+                    <barButtonItem key="rightBarButtonItem" title="Cancel" id="Z5S-9n-ixm">
+                        <connections>
+                            <action selector="cancelButtonTouched:" destination="Jy0-5f-YyN" id="JIJ-Gc-heP"/>
+                        </connections>
+                    </barButtonItem>
+                </navigationItem>
             </objects>
             <point key="canvasLocation" x="1830" y="3"/>
         </scene>
@@ -548,7 +572,7 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-h0-gur">
                                         <rect key="frame" x="15" y="318" width="384" height="100"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xnK-dT-kvM" customClass="LabelsStackView" customModule="IssueTracker" customModuleProvider="target">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xnK-dT-kvM" customClass="LabelsStackView" customModule="IssueTracker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="96.5" height="100"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avn-RY-luK">
@@ -851,7 +875,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M3i-Vz-zOu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1829" y="749"/>
+            <point key="canvasLocation" x="1829" y="769"/>
         </scene>
         <!--Filter Select Table View Controller-->
         <scene sceneID="Z6m-i0-1Ei">

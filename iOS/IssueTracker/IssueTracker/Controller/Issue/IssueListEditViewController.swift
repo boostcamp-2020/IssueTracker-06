@@ -14,13 +14,11 @@ final class IssueListEditViewController: UIViewController {
     private var issues: Issues?
     private var selectedIssues = Issues()
     
-    private lazy var issueListCollectionViewDataSource: IssueListCollectionViewDataSource? = {
+    private lazy var issueListCollectionViewDataSource: IssueListCollectionViewSetting? = {
         guard let issues = issues else { return nil }
-        return IssueListCollectionViewDataSource(
+        return IssueListCollectionViewSetting(
             collectionView: issueListCollectionView,
-            data: issues,
-            scrollEnabled: false,
-            checkboxEnabled: true)
+            data: issues)
     }()
 
     override func viewDidLoad() {
@@ -39,7 +37,7 @@ final class IssueListEditViewController: UIViewController {
     private func configureIssueListCollectionView() {
         issueListCollectionView.delegate = self
         issueListCollectionView.dataSource = issueListCollectionViewDataSource
-        issueListCollectionView.configureTapGesture(target: self, action: #selector(cellTouched(_:)))
+//        issueListCollectionView.configureTapGesture(target: self, action: #selector(cellTouched(_:)))
     }
     
     private func switchIssueSelected(issue: Issue) {

@@ -10,6 +10,7 @@
 		1916674F255A61C2009E710C /* Milestones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916674E255A61C2009E710C /* Milestones.swift */; };
 		19166757255A61F2009E710C /* Issues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19166756255A61F2009E710C /* Issues.swift */; };
 		1916675F255A6392009E710C /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916675E255A6392009E710C /* Labels.swift */; };
+		1916676A255AE893009E710C /* IssueListCellMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19166769255AE893009E710C /* IssueListCellMode.swift */; };
 		1924DE8A2559A30C0054D185 /* MilestoneAddViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE892559A30C0054D185 /* MilestoneAddViewDataSource.swift */; };
 		1924DE9A2559A3F20054D185 /* LabelAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE992559A3F20054D185 /* LabelAddViewController.swift */; };
 		1924DE9F2559A40D0054D185 /* LabelAddViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924DE9E2559A40D0054D185 /* LabelAddViewDataSource.swift */; };
@@ -32,7 +33,7 @@
 		19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */; };
 		19934487254FD48B000D0D5E /* IssueListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */; };
 		1993449C254FF627000D0D5E /* IssueListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993449B254FF626000D0D5E /* IssueListEditViewController.swift */; };
-		199344A1254FF743000D0D5E /* IssueListCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199344A0254FF743000D0D5E /* IssueListCollectionViewDataSource.swift */; };
+		199344A1254FF743000D0D5E /* IssueListCollectionViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199344A0254FF743000D0D5E /* IssueListCollectionViewSetting.swift */; };
 		1996E4F8254ABAA30052E659 /* BottomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E4F7254ABAA20052E659 /* BottomDetailView.swift */; };
 		1996E4FD254ABB530052E659 /* AssigneeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E4FC254ABB530052E659 /* AssigneeStackView.swift */; };
 		1996E505254ABB9B0052E659 /* AssigneeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E504254ABB9B0052E659 /* AssigneeView.swift */; };
@@ -88,6 +89,7 @@
 		1916674E255A61C2009E710C /* Milestones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestones.swift; sourceTree = "<group>"; };
 		19166756255A61F2009E710C /* Issues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issues.swift; sourceTree = "<group>"; };
 		1916675E255A6392009E710C /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
+		19166769255AE893009E710C /* IssueListCellMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCellMode.swift; sourceTree = "<group>"; };
 		1924DE892559A30C0054D185 /* MilestoneAddViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneAddViewDataSource.swift; sourceTree = "<group>"; };
 		1924DE992559A3F20054D185 /* LabelAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAddViewController.swift; sourceTree = "<group>"; };
 		1924DE9E2559A40D0054D185 /* LabelAddViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAddViewDataSource.swift; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 		19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueListCollectionViewCell.xib; sourceTree = "<group>"; };
 		1993449B254FF626000D0D5E /* IssueListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditViewController.swift; sourceTree = "<group>"; };
-		199344A0254FF743000D0D5E /* IssueListCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		199344A0254FF743000D0D5E /* IssueListCollectionViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewSetting.swift; sourceTree = "<group>"; };
 		1996E4F7254ABAA20052E659 /* BottomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomDetailView.swift; sourceTree = "<group>"; };
 		1996E4FC254ABB530052E659 /* AssigneeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeStackView.swift; sourceTree = "<group>"; };
 		1996E504254ABB9B0052E659 /* AssigneeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeView.swift; sourceTree = "<group>"; };
@@ -219,12 +221,13 @@
 		19454F4E25598E800056FE89 /* Issue */ = {
 			isa = PBXGroup;
 			children = (
+				19166769255AE893009E710C /* IssueListCellMode.swift */,
 				C80381722547B34F008EEF6E /* IssueListViewController.swift */,
+				199344A0254FF743000D0D5E /* IssueListCollectionViewSetting.swift */,
 				C8FA4B02254F9E8700630263 /* FilterSelectViewController.swift */,
 				C8FA4B07254F9F6D00630263 /* FilterSelectTableViewController.swift */,
 				19ABABEC25493F6C00F4939A /* IssueDetailViewController.swift */,
 				1993449B254FF626000D0D5E /* IssueListEditViewController.swift */,
-				199344A0254FF743000D0D5E /* IssueListCollectionViewDataSource.swift */,
 			);
 			path = Issue;
 			sourceTree = "<group>";
@@ -560,7 +563,7 @@
 				19910A172553DB43009B3C58 /* LabelViewController.swift in Sources */,
 				19910A4B2558EA08009B3C58 /* MilestoneAddViewController.swift in Sources */,
 				19910A1C2553EE68009B3C58 /* LabelListDataManager.swift in Sources */,
-				199344A1254FF743000D0D5E /* IssueListCollectionViewDataSource.swift in Sources */,
+				199344A1254FF743000D0D5E /* IssueListCollectionViewSetting.swift in Sources */,
 				1924DE9A2559A3F20054D185 /* LabelAddViewController.swift in Sources */,
 				19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */,
 				C80381B82547D4A3008EEF6E /* LabelView.swift in Sources */,
@@ -571,6 +574,7 @@
 				19ABABED25493F6D00F4939A /* IssueDetailViewController.swift in Sources */,
 				19ABABFD254953A600F4939A /* IssueStateView.swift in Sources */,
 				199109EE2551AA8C009B3C58 /* DetailIssue.swift in Sources */,
+				1916676A255AE893009E710C /* IssueListCellMode.swift in Sources */,
 				1916675F255A6392009E710C /* Labels.swift in Sources */,
 				1996E4F8254ABAA30052E659 /* BottomDetailView.swift in Sources */,
 				19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */,

@@ -46,6 +46,22 @@ struct HTTPServiceHelper {
         }
     }
     
+    func patch<T: Codable>(
+        url: URL,
+        body: T,
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        AF.request(url, method: .patch, parameters: body)
+            .responseDecodable { (response: AFDataResponse<HTTPResponseData>) in
+            switch response.result {
+            case .success(let httpData):
+                successHandler?(httpData.result)
+            case .failure(let error):
+                errorHandler?(error)
+            }
+        }
+    }
+    
     // api에서 post response로 result: Bool, ()Id: String? 이 오기때문에 responseKeyID를 매개변수로 추가함
     func post<T: Codable>(
         url: URL,
@@ -64,7 +80,7 @@ struct HTTPServiceHelper {
             }
         }
     }
-  
+      
     func delete<T: Codable>(
         url: URL,
         requestType: T.Type,

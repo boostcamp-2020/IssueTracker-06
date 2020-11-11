@@ -78,17 +78,6 @@ extension UIView {
     }
 }
 
-extension UIView {
-    func configureTapGesture(target: Any?, action: Selector? = nil) {
-        let tapGestureRecognizer =
-            UITapGestureRecognizer(target: target, action: action)
-        tapGestureRecognizer.numberOfTouchesRequired = 1
-        tapGestureRecognizer.isEnabled = true
-        tapGestureRecognizer.cancelsTouchesInView = false
-        addGestureRecognizer(tapGestureRecognizer)
-    }
-}
-
 extension String {
     var color: UIColor {
         let hex = trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -127,9 +116,9 @@ extension UIColor {
     }
     
     static var randomColor: UIColor {
-        let randomRed:CGFloat = CGFloat(drand48())
-        let randomGreen:CGFloat = CGFloat(drand48())
-        let randomBlue:CGFloat = CGFloat(drand48())
+        let randomRed: CGFloat = CGFloat(drand48())
+        let randomGreen: CGFloat = CGFloat(drand48())
+        let randomBlue: CGFloat = CGFloat(drand48())
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
     }
 }
