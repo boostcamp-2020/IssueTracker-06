@@ -2,7 +2,7 @@
 export interface IssueWithoutId {
   title: string;
   content: string;
-  is_open: boolean;
+  is_open: 1 | 0;
   User: User;
   Assignee: User[];
   Comments: Comment[];
@@ -34,7 +34,7 @@ export interface Milestone {
   name: string;
   date?: string;
   description: string;
-  is_open: boolean;
+  is_open: 1 | 0;
 }
 
 export interface Label {

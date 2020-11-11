@@ -5,7 +5,7 @@ import { MilestoneIcon } from '@/components/atoms/icons';
 import TextWithIcon from '../TextWithIcon';
 
 interface Props {
-  isOpen: boolean;
+  isOpen: 1 | 0;
   title: string;
   labels?: Label[];
   issueNum: number;
@@ -18,7 +18,8 @@ const StyledIssueInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin: 8px;
-  width: 70%;
+  flex-grow: 1;
+
   & > .issueTitleContainer {
     display: flex;
     align-items: center;

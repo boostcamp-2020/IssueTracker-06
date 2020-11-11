@@ -17,7 +17,7 @@ const StyledImg = styled(Img)<StyledProps>`
 
 const StyledDiv = styled.div`
   position: relative;
-  margin: 8px;
+  margin: 8px 140px 8px 8px;
   & > img {
     position: absolute;
   }

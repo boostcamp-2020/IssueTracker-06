@@ -7,7 +7,7 @@ import { User } from '@stores/type';
 import { Label } from '@components/atoms/LabelTag';
 
 interface Props {
-  isOpen: boolean;
+  isOpen: 1 | 0;
   title: string;
   labels?: Label[];
   issueNum: number;

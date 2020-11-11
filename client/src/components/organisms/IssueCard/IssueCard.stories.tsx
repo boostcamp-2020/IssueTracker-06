@@ -38,7 +38,7 @@ export const Default = () => {
   ];
   return (
     <IssueCard
-      isOpen={isOpen}
+      isOpen={isOpen ? 1 : 0}
       title={title}
       labels={[{ id: 0, name: label, color: labelBg }]}
       issueNum={issueNum}
