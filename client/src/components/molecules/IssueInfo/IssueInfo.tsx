@@ -23,11 +23,15 @@ const StyledIssueInfo = styled.div`
   & > .issueTitleContainer {
     display: flex;
     align-items: center;
+
     & > h1 {
       all: unset;
       font-size: 1rem;
       font-weight: 600;
       margin-right: 0.2rem;
+    }
+    & > span {
+      margin-right: 6px;
     }
   }
 

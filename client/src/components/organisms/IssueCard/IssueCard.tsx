@@ -17,11 +17,20 @@ interface Props {
   assignees?: User[];
 }
 
-const StyledIssueCard = styled.div`
+const StyledIssueCard = styled.li`
   display: flex;
   box-sizing: border-box;
+  border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
+  border-top: none;
+  padding: 4px 0;
+  cursor: pointer;
+
   & > input {
     margin: 11px 0px 8px 16px;
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.palette.BG_COLOR02};
   }
 `;
 
