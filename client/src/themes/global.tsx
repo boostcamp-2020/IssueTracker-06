@@ -16,6 +16,11 @@ const GlobalStyle = () => (
       body {
         font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
       }
+
+      a {
+        text-decoration: none;
+        color: currentColor;
+      }
     `}
   />
 );
