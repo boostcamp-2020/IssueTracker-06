@@ -3,7 +3,7 @@ import { ActionCreator, Actions } from '@stores/.';
 
 const useAsync = (dispatch: Dispatch<Actions>) => async (
   action: ActionCreator,
-  apiCallback: (requestActions: Actions) => Promise<any>,
+  apiCallback: (requestActions: Actions) => Promise<any> | (() => Promise<any>),
 ): Promise<void> => {
   try {
     const requestAction = action.request();
