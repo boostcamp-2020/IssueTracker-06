@@ -49,6 +49,7 @@ final class IssueListViewController: UIViewController {
             data: issues)
         
         issueListCollectionViewSetting.closeButtonHandler = closeButtonTouched(cell:)
+        issueListCollectionViewSetting.deleteButtonHandler = deleteButtonTouched(cell:)
         return issueListCollectionViewSetting
     }()
     
@@ -142,6 +143,29 @@ private extension IssueListViewController {
         })
     }
     
+    func deleteButtonTouched(cell: UICollectionViewCell) {
+        guard let indexPath = issueListCollectionView.indexPath(for: cell),
+              let issueID = issues?[indexPath.row]?.id else { return }
+        issueListDataManager.delete(id: issueID, successHandler: {
+            DispatchQueue.main.async { [weak self] in
+                self?.presentDeleteIssueAlert(at: indexPath, id: issueID)
+            }
+        })
+    }
+    
+    func presentDeleteIssueAlert(at indexPath: IndexPath, id: Int) {
+        presentAlert(title: Constant.blank, message: Message.deleteIssue) { [weak self] in
+            self?.deleteItemFromCollectionView(at: indexPath, id: id)
+        }
+    }
+    
+    func deleteItemFromCollectionView(at indexPath: IndexPath, id: Int) {
+        issueListCollectionView.performBatchUpdates({
+            issues?.remove(id: id)
+            issueListCollectionView.deleteItems(at: [indexPath])
+        }, completion: nil)
+    }
+    
     @objc func cellTouched(_ sender: UITapGestureRecognizer) {
         guard let indexPath = issueListCollectionView.indexPath(with: sender)
         else {
@@ -228,6 +252,7 @@ private extension IssueListViewController {
 private extension IssueListViewController {
     
     enum Constant {
+        static let blank: String = ""
         static let filterSegue: String = "FilterSegue"
         static let issueDetailSegue: String = "IssueDetailSegue"
         static let issue: String = "이슈"
@@ -235,6 +260,12 @@ private extension IssueListViewController {
         static let edit: String = "Edit"
         static let selectAll: String = "SelectAll"
         static let filter: String = "Filter"
+        static let 확인: String = "확인"
+        static let 취소: String = "취소"
+    }
+    
+    enum Message {
+        static let deleteIssue: String = "이슈를 삭제하시겠습니까?\n삭제하면 다시 복구할 수 없습니다."
     }
 }
 

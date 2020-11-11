@@ -73,13 +73,24 @@ struct IssueListDataManager {
             }
         }
     }
+    
+    // api에서 Issue delete 구현X
+    func delete(
+        id: Int,
+        successHandler: (() -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        
+        successHandler?()
+    }
 }
 
 private extension IssueListDataManager {
     
     enum IssueTrackerURL {
         static let issues: URL? = URL(string: "http://issue-tracker.cf/api/issues")
-        
+        static func issue(id: Int) -> String {
+            "http://issue-tracker.cf/api/issue/\(id)"
+        }
         static func issueStatusURL(id: Int) -> String {
             "http://issue-tracker.cf/api/issue/\(id)/status"
         }

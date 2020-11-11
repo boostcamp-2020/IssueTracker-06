@@ -20,7 +20,8 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var issueStateView: UIImageView!
     
     var closeButtonHandler: ((UICollectionViewCell) -> Void)?
-    
+    var deleteButtonHandler: ((UICollectionViewCell) -> Void)?
+
     var isCheckboxEnabled: Bool = false {
         didSet {
             guard oldValue == !isCheckboxEnabled else { return }
@@ -65,6 +66,7 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func deleteButtonTouched(_ sender: UIButton) {
+        deleteButtonHandler?(self)
     }
 }
 

@@ -49,6 +49,12 @@ struct Issues {
         }
     }
     
+    mutating func remove(id: Int) {
+        issues.removeAll {
+            $0.id == id
+        }
+    }
+    
     mutating func close(id: [Int]) {
         issues = issues.map {
             guard id.contains($0.id) else { return $0 }

@@ -52,6 +52,24 @@ extension UIView {
     }
 }
 
+extension UIViewController {
+    func presentAlert(title: String, message: String, allowHandler: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let allowAction = UIAlertAction(title: Constant.확인, style: .default) { (action) in
+            allowHandler?()
+        }
+        let cancelAction = UIAlertAction(title: Constant.취소, style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(allowAction)
+        present(alert, animated: true)
+    }
+    
+    enum Constant {
+        static let 확인: String = "확인"
+        static let 취소: String = "취소"
+    }
+}
+
 
 extension UIView {
     @IBInspectable
