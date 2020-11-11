@@ -17,6 +17,9 @@ const StyledUl = styled.ul`
   border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
   max-width: 300px;
   margin: 10px 0;
+  background-color: ${({ theme }) => theme.palette.LIGHT};
+  position: absolute;
+  width: 100%;
 
   & > li {
     border-bottom: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
