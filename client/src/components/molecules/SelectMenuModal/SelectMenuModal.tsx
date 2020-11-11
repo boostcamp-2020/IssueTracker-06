@@ -12,11 +12,13 @@ interface Props {
 }
 
 const StyledUl = styled.ul`
+  position: absolute;
   border-radius: 0.3rem;
   list-style: none;
   border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
   max-width: 300px;
   margin: 10px 0;
+  transform: translateY(30px);
 
   & > li {
     border-bottom: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
