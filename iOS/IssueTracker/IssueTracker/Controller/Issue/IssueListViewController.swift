@@ -14,8 +14,12 @@ protocol IssueListViewControllerDelegate: class {
 final class IssueListViewController: UIViewController {
 
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
+    //서치바 추가
+    @IBOutlet private weak var searchBar: UISearchBar!
     private var selectedIndexPath: IndexPath?
     private var issues: Issues?
+    // 서치바 필터 데이터 추가
+    private var filterIssues: Issues = Issues()
     
     private lazy var issueListCollectionViewDataSource: IssueListCollectionViewDataSource? = {
         guard let issues = issues else { return nil }
@@ -28,6 +32,8 @@ final class IssueListViewController: UIViewController {
         super.viewDidLoad()
         configureIssuesData()
         removeNavigationBarUnderLine()
+        //서치바 추가
+        searchBar.delegate = self
     }
     
     private func configureIssuesData() {
@@ -80,6 +86,18 @@ extension IssueListViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         return CGSize(width: issueListCollectionView.bounds.width, height: Metric.cellHeight)
+    }
+}
+
+// 서치바
+extension IssueListViewController: UISearchBarDelegate {
+    // 서치바에 입력될때마다 호출되는 메소드
+    // 이슈 데이터들 필터
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let issues = issues else { return }
+        filterIssues.issues = searchText.isEmpty ? issues.issues : issues.issues.filter { return $0.title.contains(searchText) }
+        issueListCollectionViewDataSource?.data = filterIssues
+        issueListCollectionViewDataSource?.collectionView.reloadData()
     }
 }
 

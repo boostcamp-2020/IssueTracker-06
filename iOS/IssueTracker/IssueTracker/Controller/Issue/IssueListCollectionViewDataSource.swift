@@ -9,8 +9,8 @@ import UIKit
 
 final class IssueListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private let collectionView: UICollectionView
-    private let data: Issues
+    let collectionView: UICollectionView
+    var data: Issues
     private let scrollEnabled: Bool
     private let checkboxEnabled: Bool
     

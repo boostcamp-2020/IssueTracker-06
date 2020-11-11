@@ -9,7 +9,7 @@ import Foundation
 
 struct Issues {
     
-    private var issues: [Issue]
+    var issues: [Issue]
     
     var count: Int {
         issues.count

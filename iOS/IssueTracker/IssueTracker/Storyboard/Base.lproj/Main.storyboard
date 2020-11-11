@@ -186,6 +186,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="issueListCollectionView" destination="JHs-Zp-fEN" id="E3o-nw-Ys0"/>
+                        <outlet property="searchBar" destination="LBd-8J-wFT" id="Pxn-3a-06L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1589,7 +1590,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="jGC-Iq-EQ4"/>
         <segue reference="id9-nh-MIP"/>
-        <segue reference="h9h-al-eOU"/>
+        <segue reference="aJK-ch-Nmz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1.circle.fill" catalog="system" width="128" height="121"/>
