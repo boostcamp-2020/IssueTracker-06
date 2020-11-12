@@ -15,15 +15,17 @@ interface Props {
 
 const StyledContentWithProfile = styled.div`
   display: flex;
+  width: (100% -24px);
+  box-sizing: border-box;
 
   & > img {
     width: 40px;
     height: 40px;
     margin-right: 20px;
   }
-
-  .content {
-    min-width: 740px;
+  & > div {
+    flex-grow: 1;
+    box-sizing: border-box;
   }
 `;
 
