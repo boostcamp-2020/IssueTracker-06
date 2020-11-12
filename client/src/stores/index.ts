@@ -1,33 +1,11 @@
-import { createContext, Dispatch } from 'react';
-import { Issue } from './type';
 import { AddIssueActions, AddIssueAction, ADD_ISSUE_SUCCESS } from './addIssue';
-import {
-  GetIssuesActions,
-  GetIssuesAction,
-  GET_ISSUES_REQUEST,
-  GET_ISSUES_SUCCESS,
-  GET_ISSUES_FAILURE,
-} from './getIssues';
+import { GetIssuesActions, GetIssuesAction, GET_ISSUES_REQUEST, GET_ISSUES_SUCCESS, GET_ISSUES_FAILURE } from './getIssues';
+import { ReadLabelsAction, ReadLabelsActions } from './label/readLabels';
 
-export type Actions = AddIssueActions | GetIssuesActions;
-export type ActionCreator = AddIssueAction | GetIssuesAction;
+export type Actions = AddIssueActions | ReadLabelsActions | GetIssuesActions;
+export type ActionCreator = AddIssueAction | ReadLabelsAction | GetIssuesAction;
 
-interface IssuesState {
-  issues: Issue[];
-}
-
-interface IssuesContext extends IssuesState {
-  dispatch: Dispatch<Actions>;
-  asyncDispatch?: (
-    action: ActionCreator,
-    apiCallback: (requestActions: Actions) => Promise<any>,
-  ) => Promise<void>;
-}
-
-export const initialIssues: IssuesState = {
-  issues: [],
-};
-
+// TODO: issueReducer로 이동
 export const reducer = (
   state: IssuesState = initialIssues,
   action: Actions,
@@ -48,8 +26,3 @@ export const reducer = (
       return state;
   }
 };
-
-export default createContext<IssuesContext>({
-  ...initialIssues,
-  dispatch: () => {},
-});

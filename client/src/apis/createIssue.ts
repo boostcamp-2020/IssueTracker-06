@@ -1,7 +1,7 @@
 import axios from '@lib/axios';
 import convertIssue from '@lib/convertType';
 import { IssueWithoutId, Issue } from '@stores/type';
-import { AddIssueRequest } from '@stores/addIssue';
+import { AddIssueRequest } from '@stores/issue/addIssue';
 
 export type CreateIssue = IssueWithoutId;
 

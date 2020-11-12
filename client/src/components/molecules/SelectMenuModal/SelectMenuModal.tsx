@@ -20,6 +20,8 @@ const StyledUl = styled.ul`
   margin: 10px 0;
   transform: translateY(30px);
   z-index: 100;
+  background-color: ${({ theme }) => theme.palette.LIGHT};
+  width: 100%;
 
   & > li {
     background-color: ${({ theme }) => theme.palette.LIGHT};
