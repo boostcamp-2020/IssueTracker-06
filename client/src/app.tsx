@@ -7,6 +7,7 @@ import theme from '@themes/index';
 import GlobalStyle from '@themes/global';
 
 import Main from '@components/pages/Main';
+import IssueDetail from '@components/pages/IssueDetail';
 import useAsync from './hooks/useAsync';
 
 const App: FunctionComponent = () => {
@@ -18,6 +19,7 @@ const App: FunctionComponent = () => {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Main} />
+            <Route path="/issue/:id" component={IssueDetail} />
           </Switch>
           <GlobalStyle />
         </BrowserRouter>
