@@ -26,7 +26,7 @@ const CreateIssueContainer: FunctionComponent = () => {
   const [content, , onChangeContent] = useChange<HTMLTextAreaElement>('');
   const [selectedAssignees, setSelectedAssignees] = useState<User[]>([]);
   const [selectedLabels, setSelectedLabels] = useState<Label[]>([]);
-  const [selectedMilestone, setSelectedMilestone] = useState<Milestone>();
+  const [selectedMilestone, setSelectedMilestone] = useState<Milestone[]>([]);
 
   useEffect(() => {
     if (asyncDispatchLabel) {
@@ -55,7 +55,7 @@ const CreateIssueContainer: FunctionComponent = () => {
   };
 
   const onSelectMilestone = (selected: Milestone) => {
-    setSelectedMilestone(selected);
+    setSelectedMilestone([selected]);
   };
 
   return (

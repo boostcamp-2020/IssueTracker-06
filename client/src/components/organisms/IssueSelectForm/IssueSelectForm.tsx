@@ -24,8 +24,7 @@ interface Props {
   emptyMessage?: string;
   onSelect: <T extends User | Label | Milestone>(selected: T) => void;
   optionHeader: string;
-  selectedItems?: (User | Label)[];
-  selectedItem?: Milestone;
+  selectedItems?: (User | Label | Milestone)[];
 }
 
 const StyledIssueSelectForm = styled.div`
@@ -60,6 +59,10 @@ const StyledIssueSelectForm = styled.div`
     font-size: 0.8rem;
   }
 
+  & .label {
+    margin: 0.1rem;
+  }
+
   & > hr {
     width: 100%;
     border: 0.5px solid ${({ theme }) => theme.palette.BG_COLOR03};
@@ -73,7 +76,6 @@ const IssueSelectForm: FunctionComponent<Props> = ({
   onSelect,
   optionHeader,
   selectedItems,
-  selectedItem,
 }) => {
   const [isOptionOpened, setIsOptionOpened] = useState(false);
   const [value, , onChangeValue] = useChange<HTMLInputElement>('');
@@ -87,15 +89,18 @@ const IssueSelectForm: FunctionComponent<Props> = ({
   const setOptions = () => {
     switch (title) {
       case 'Labels': {
-        return labels.map((label) => (
-          <SelectMenuItemLabel
-            key={label.id}
-            swatchColor={label.color}
-            title={label.name}
-            description={label.description}
-            onClick={() => onSelect(label)}
-          />
-        ));
+        return labels.map((label) => {
+          return (
+            <SelectMenuItemLabel
+              key={label.id}
+              swatchColor={label.color}
+              title={label.name}
+              description={label.description}
+              onClick={() => onSelect(label)}
+              isClicked={selectedItems?.includes(label)}
+            />
+          );
+        });
       }
       case 'Milestone': {
         return milestones.map((milestone) => (
@@ -104,6 +109,7 @@ const IssueSelectForm: FunctionComponent<Props> = ({
             title={milestone.name}
             description={milestone.description}
             onClick={() => onSelect(milestone)}
+            isClicked={selectedItems?.includes(milestone)}
           />
         ));
       }
@@ -115,6 +121,7 @@ const IssueSelectForm: FunctionComponent<Props> = ({
   const options = setOptions();
 
   const showClicked = (clickedItems: any) => {
+    console.log(clickedItems);
     switch (title) {
       case 'Labels': {
         return clickedItems.map((item: Label) => (
@@ -122,7 +129,9 @@ const IssueSelectForm: FunctionComponent<Props> = ({
         ));
       }
       case 'Milestone': {
-        return <Title text={clickedItems.name} />;
+        return clickedItems.map((item: Milestone) => (
+          <Title key={item.id} text={item.name} />
+        ));
       }
       default:
         return null;
@@ -146,12 +155,8 @@ const IssueSelectForm: FunctionComponent<Props> = ({
           {options || <></>}
         </SelectMenuModal>
       )}
-      {title !== 'Milestone' && selectedItems?.length ? (
-        selectedItem ? (
-          showClicked(selectedItem)
-        ) : (
-          showClicked(selectedItems)
-        )
+      {selectedItems?.length ? (
+        showClicked(selectedItems)
       ) : (
         <span>{emptyMessage}</span>
       )}

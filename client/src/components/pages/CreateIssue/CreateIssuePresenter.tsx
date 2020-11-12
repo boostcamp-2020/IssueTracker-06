@@ -9,9 +9,10 @@ import styled from '@themes/styled';
 const StyledSection = styled.section`
   display: flex;
   justify-content: space-between;
-  margin: 5% 20% 0 20%;
+  margin: 5% 10% 0 10%;
   & > div:nth-child(2) {
-    width: 28%;
+    margin-left: 5rem;
+    width: 290px;
     ul {
       top: 1.5rem;
       z-index: 1;
@@ -36,7 +37,7 @@ interface Props {
   onSelectMilestone: (selected: Milestone) => void;
   selectedAssignees: User[];
   selectedLabels: Label[];
-  selectedMilestone?: Milestone;
+  selectedMilestone?: Milestone[];
 }
 
 const CreateIssuePresenter: FunctionComponent<Props> = ({
@@ -81,7 +82,7 @@ const CreateIssuePresenter: FunctionComponent<Props> = ({
             emptyMessage="No milestone"
             optionHeader="Set milestone"
             onSelect={onSelectMilestone as any}
-            selectedItem={selectedMilestone}
+            selectedItems={selectedMilestone}
           />
         </div>
       </StyledSection>
