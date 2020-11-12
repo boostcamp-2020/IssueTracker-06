@@ -1,0 +1,57 @@
+import React, { FunctionComponent } from 'react';
+import styled from '@themes/styled';
+
+import TextWithIcon from '@components/molecules/TextWithIcon';
+import IconTag from '@components/atoms/icons/IconTag';
+import IconMilestone from '@components/atoms/icons/IconMilestone';
+import { ToggleType } from '.';
+
+interface Props {
+  focus: ToggleType;
+  onClickToggle: (clickedToggle: ToggleType) => void;
+}
+
+const StyledLabelMilestoneToggle = styled.nav`
+  display: flex;
+  width: fit-content;
+  border: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+
+  & > span {
+    padding: 8px 16px;
+    transition: background 0.5s;
+
+    &.focus {
+      background-color: ${({ theme }) => theme.palette.LINK_BLUE};
+      color: ${({ theme }) => theme.palette.LIGHT};
+    }
+
+    &:not(.focus):hover {
+      background-color: ${({ theme }) => theme.palette.BG_COLOR02};
+    }
+  }
+`;
+
+const LabelMilestoneToggle: FunctionComponent<Props> = ({
+  focus,
+  onClickToggle,
+}) => (
+  <StyledLabelMilestoneToggle>
+    <TextWithIcon
+      icon={IconTag}
+      text="Labels"
+      onClick={() => onClickToggle('label')}
+      className={focus === 'label' ? 'focus' : ''}
+    />
+    <TextWithIcon
+      icon={IconMilestone}
+      text="Milestones"
+      onClick={() => onClickToggle('milestone')}
+      className={focus === 'milestone' ? 'focus' : ''}
+    />
+  </StyledLabelMilestoneToggle>
+);
+
+export default LabelMilestoneToggle;

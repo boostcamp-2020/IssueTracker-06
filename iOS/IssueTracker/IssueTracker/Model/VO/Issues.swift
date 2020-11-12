@@ -26,7 +26,7 @@ struct Issues {
     var id: [Int] {
         issues.map { $0.id }
     }
-    
+
     init() {
         issues = []
     }
@@ -37,6 +37,10 @@ struct Issues {
     
     func contains(issue: Issue) -> Bool {
         issues.contains(issue)
+    }
+    
+    func filter(condition: (Issue) -> Bool) -> Issues {
+        Issues(issues: issues.filter(condition))
     }
     
     mutating func add(issue: Issue) {

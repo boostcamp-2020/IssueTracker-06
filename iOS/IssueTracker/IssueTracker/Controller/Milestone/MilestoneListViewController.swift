@@ -9,6 +9,7 @@ import UIKit
 
 protocol MilestoneListViewControllerDelegate {
     func milestone(_ milestone: Milestone)
+    func snapshot(_ snapshot: UIView)
 }
 
 class MilestoneListViewController: UIViewController {
@@ -67,18 +68,26 @@ class MilestoneListViewController: UIViewController {
         })
     }
     
+    private func configurePresentedViewController(_ viewController: MilestoneAddViewController) {
+        viewController.updateMilestoneDelegate = self
+        guard let snapshot = UIApplication.snapshotView else { return }
+        viewController.snapshot(snapshot)
+        guard let milestone = selectedMilestone else { return }
+        viewController.milestone(milestone)
+        selectedIndexPath = nil
+    }
+    
     @IBSegueAction private func presentAddViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
         let addViewController = MilestoneAddViewController(coder: coder)
-        addViewController?.updateMilestoneDelegate = self
+        guard let viewController = addViewController else { return addViewController }
+        configurePresentedViewController(viewController)
         return addViewController
     }
     
     @IBSegueAction private func presentUpdateViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
         let updateViewController = MilestoneAddViewController(coder: coder)
-        updateViewController?.updateMilestoneDelegate = self
-
-        guard let milestone = selectedMilestone else { return updateViewController }
-        updateViewController?.milestone(milestone)
+        guard let viewController = updateViewController else { return updateViewController }
+        configurePresentedViewController(viewController)
         return updateViewController
     }
 }
@@ -146,6 +155,7 @@ private extension MilestoneListViewController {
         static let updateSegue: String = "UpdateSegue"
         static let milestoneListCell: String = "MilestoneListCell"
         static let milestoneListCollectionViewCell: String = "MilestoneListCollectionViewCell"
+        static let labelMilestoneAddViewController: String = "LabelMilestoneAddViewController"
     }
     
     enum Metric {

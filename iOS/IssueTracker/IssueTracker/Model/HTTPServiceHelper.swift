@@ -9,11 +9,11 @@ import Foundation
 import Alamofire
 
 struct HTTPServiceHelper {
-    
+
     static let shared = HTTPServiceHelper()
-    
+
     private init() {}
-    
+
     func get<T: Codable & HTTPDataProviding>(
         url: URL,
         responseType: T.Type,
@@ -29,7 +29,7 @@ struct HTTPServiceHelper {
             }
         }
     }
-    
+
     func put<T: Codable>(
         url: URL,
         body: T,
@@ -45,7 +45,7 @@ struct HTTPServiceHelper {
             }
         }
     }
-    
+
     func patch<T: Codable>(
         url: URL,
         body: T,
@@ -61,7 +61,7 @@ struct HTTPServiceHelper {
             }
         }
     }
-    
+
     // api에서 post response로 result: Bool, ()Id: String? 이 오기때문에 responseKeyID를 매개변수로 추가함
     func post<T: Codable>(
         url: URL,

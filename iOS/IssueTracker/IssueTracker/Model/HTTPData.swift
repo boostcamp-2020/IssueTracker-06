@@ -13,7 +13,7 @@ protocol HTTPDataProviding {
 }
 
 struct HTTPData<T: Codable & HTTPDataProviding>: Codable {
-  
+
     let data: T.DataType?
     let result: Bool
 
@@ -31,12 +31,12 @@ struct HTTPData<T: Codable & HTTPDataProviding>: Codable {
 }
 
 struct HTTPResponseData: Codable {
-    
+
     static var keyID: String = ""
-    
+
     let id: Int?
     let result: Bool
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try? container.decode(Int.self, forKey: CodingKeys(stringValue: HTTPResponseData.keyID))

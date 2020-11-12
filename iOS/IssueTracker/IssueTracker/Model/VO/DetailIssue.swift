@@ -33,6 +33,18 @@ extension DetailIssue: Codable {
         case isOpen = "is_open"
         case assignee = "Assignee"
     }
+    
+    struct patchTitleDetailIssue: Codable {
+        let title: String
+    }
+    
+    struct patchContentDetailIssue: Codable {
+        let content: String
+    }
+    
+    struct IssueStatus: Codable {
+        let isOpen: Bool
+    }
 }
 
 extension DetailIssue: HTTPDataProviding {

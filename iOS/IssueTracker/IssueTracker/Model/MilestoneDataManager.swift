@@ -9,8 +9,32 @@ import Foundation
 
 struct MilestoneDataManager {
     
-    private var mileStones: Milestones?
-
+    func post(body: Milestone, successHandler: ((Int?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: IssueTrackerURL.milestone) else { return }
+        HTTPServiceHelper.shared.post(
+            url: url,
+            body: body,
+            responseKeyID: Milestone.Key.milestoneID,
+            successHandler: {
+                successHandler?($0.id)
+            },
+            errorHandler: {
+                errorHandler?($0)
+            }
+        )
+    }
+        
+    func put(body: Milestone, successHandler: ((Bool) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: "\(IssueTrackerURL.milestone)/\(body.id)") else { return }
+        HTTPServiceHelper.shared.put(url: url, body: body, successHandler: {
+            successHandler?($0)
+        },
+        errorHandler: {
+            errorHandler?($0)
+        })
+    }
+    
+    
     func get(successHandler: ((Milestones?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
         
         guard let url = IssueTrackerURL.milestones else { return }
@@ -19,18 +43,8 @@ struct MilestoneDataManager {
                 successHandler?(nil)
                 return
             }
-            
-//            milestones.forEach { milestone in
-//                getIssues(name: milestone.name, successHandler: {
-//                    milestoneWithIssues = milestone
-//                    guard let issues = $0 else { return }
-//                    milestoneWithIssues?.issues(issues)
-//                })
-//            }
             successHandler?(Milestones(milestones: milestones))
-            
-        },
-        errorHandler: {
+        }, errorHandler: {
             errorHandler?($0)
         })
     }
@@ -47,33 +61,7 @@ struct MilestoneDataManager {
                 return
             }
             successHandler?(Issues(issues: issues))
-        },
-        errorHandler: {
-            errorHandler?($0)
-        })
-    }
-    
-    func post(body: Milestone, successHandler: ((Int?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
-        guard let url = URL(string: IssueTrackerURL.milestone) else { return }
-        HTTPServiceHelper.shared.post(
-            url: url,
-            body: body,
-            responseKeyID: Milestone.Key.milestoneID,
-            successHandler: {
-                successHandler?($0.id)
-            },
-            errorHandler: {
-                errorHandler?($0)
-            }
-        )
-    }
-    
-    func put(body: Milestone, successHandler: ((Bool) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
-        guard let url = URL(string: "\(IssueTrackerURL.milestone)/\(body.id)") else { return }
-        HTTPServiceHelper.shared.put(url: url, body: body, successHandler: {
-            successHandler?($0)
-        },
-        errorHandler: {
+        }, errorHandler: {
             errorHandler?($0)
         })
     }

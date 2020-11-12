@@ -20,9 +20,19 @@ final class IssueListViewController: UIViewController {
     @IBOutlet private weak var addIssueButton: UIButton!
     @IBOutlet private weak var bottomToolbar: UIToolbar!
     @IBOutlet private weak var bottomGuidelineConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var searchBar: UISearchBar!
+
+    private let issueListDataManager = IssueListDataManager()
+    private var selectedIndexPath: IndexPath?
     
     private let issueListDataManager = IssueListDataManager()
     private var selectedIndexPath: IndexPath?
+    private var filterIssues: Issues = Issues() {
+        didSet {
+            issueListCollectionViewSetting?.update(issues: filterIssues)
+        }
+    }
+    
     private var issues: Issues? {
         didSet {
             guard let issues = issues else { return }
@@ -34,14 +44,14 @@ final class IssueListViewController: UIViewController {
             issueListCollectionViewSetting?.update(selectedIssues: selectedIssues)
         }
     }
-    
+  
     private var mode: IssueListCellMode = .normal {
         didSet {
             let isEditMode = mode.isEditMode
             changeMode(isEditMode: isEditMode)
         }
     }
-    
+        
     private lazy var issueListCollectionViewSetting: IssueListCollectionViewSetting? = {
         guard let issues = issues else { return nil }
         let issueListCollectionViewSetting = IssueListCollectionViewSetting(
@@ -76,6 +86,7 @@ final class IssueListViewController: UIViewController {
         configureBottomGuideline()
         removeNavigationBarUnderLine()
         normalModeTapGesture.delegate = self
+        searchBar.delegate = self
     }
     
     private func changeMode(isEditMode: Bool) {
@@ -97,6 +108,17 @@ final class IssueListViewController: UIViewController {
         let titleText = isEditMode ? "\(selectedIssues.count.selectedCountText)" : Constant.issue
         titleLabel.text = titleText
     }
+    
+    @IBSegueAction private func presentIssueDeatilViewController(_ coder: NSCoder) -> IssueDetailViewController? {
+        let issueDetailViewController = IssueDetailViewController(coder: coder)
+        guard let selectedIndexPath = selectedIndexPath,
+              let issueId = issues?[selectedIndexPath.row]?.id
+        else {
+            return issueDetailViewController
+        }
+        issueDetailViewController?.issueId(issueId)
+        return issueDetailViewController
+    }
 
     @IBAction private func rightBarButtonTouched(_ sender: UIBarButtonItem) {
         mode = mode.switchMode
@@ -111,6 +133,17 @@ final class IssueListViewController: UIViewController {
         }
         issueDetailViewController?.issueId(issueId)
         return issueDetailViewController
+    }
+}
+
+extension IssueListViewController: UISearchBarDelegate {
+    // 서치바에 입력될때마다 호출되는 메소드
+    // 이슈 데이터들 필터
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let issues = issues else { return }
+        filterIssues = searchText.isEmpty ? issues : issues.filter {
+            return $0.title.contains(searchText)
+        }
     }
 }
 
@@ -223,7 +256,7 @@ private extension IssueListViewController {
         })
     }
 }
-
+  
 // MARK: configure
 private extension IssueListViewController {
     
@@ -249,10 +282,6 @@ private extension IssueListViewController {
     func configureBottomGuideline() {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         bottomGuidelineConstraint.constant = tabBarHeight
-    }
-
-    func removeNavigationBarUnderLine() {
-        navigationController?.navigationBar.shadowImage = UIImage()
     }
 }
 

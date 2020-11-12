@@ -21,6 +21,22 @@ struct IssueListDataManager {
             errorHandler?($0)
         })
     }
+
+    func post(body: Issue.NewIssue, successHandler: ((Int?) -> Void)? = nil,
+              errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = IssueTrackerURL.newIssue else { return }
+        HTTPServiceHelper.shared.post(
+            url: url,
+            body: body,
+            responseKeyID: Issue.NewIssue.key,
+            successHandler: {
+                successHandler?($0.id)
+            },
+            errorHandler: {
+                errorHandler?($0)
+            }
+        )
+    }
     
     func updateStatus(
         id: Int,
@@ -88,6 +104,7 @@ private extension IssueListDataManager {
     
     enum IssueTrackerURL {
         static let issues: URL? = URL(string: "http://issue-tracker.cf/api/issues")
+        static let newIssue: URL? = URL(string: "http://issue-tracker.cf/api/issue")
         static func issue(id: Int) -> String {
             "http://issue-tracker.cf/api/issue/\(id)"
         }
@@ -95,7 +112,7 @@ private extension IssueListDataManager {
             "http://issue-tracker.cf/api/issue/\(id)/status"
         }
     }
-    
+  
     enum Constant {
         static let isOpen = "isOpen"
     }

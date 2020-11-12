@@ -70,6 +70,13 @@ extension UIViewController {
     }
 }
 
+extension UIApplication {
+    static var snapshotView: UIView? {
+        UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.snapshotView(
+                afterScreenUpdates: true
+        )
+    }
+}
 
 extension UIView {
     @IBInspectable
