@@ -69,7 +69,7 @@ struct DetailIssueDataManager {
         successHandler: ((Issues?) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
         
-        let processedName = name.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        let processedName = name.processedBlank
         guard let url = URL(string: IssueTrackerURL.milestoneIssues(name: processedName))
         else {
             return

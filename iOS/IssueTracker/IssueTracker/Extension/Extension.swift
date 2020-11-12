@@ -19,6 +19,12 @@ extension NSObject {
     }
 }
 
+extension String {
+    var processedBlank: String {
+        self.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+    }
+}
+
 extension UICollectionView {
     
     func indexPath(with tapGestureRecognizer: UITapGestureRecognizer) -> IndexPath? {

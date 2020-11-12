@@ -9,7 +9,11 @@ import Foundation
 
 struct MilestoneDataManager {
     
-    func post(body: Milestone, successHandler: ((Int?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+    func post(
+        body: Milestone,
+        successHandler: ((Int?) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        
         guard let url = URL(string: IssueTrackerURL.milestone) else { return }
         HTTPServiceHelper.shared.post(
             url: url,
@@ -24,7 +28,11 @@ struct MilestoneDataManager {
         )
     }
         
-    func put(body: Milestone, successHandler: ((Bool) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+    func put(
+        body: Milestone,
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        
         guard let url = URL(string: "\(IssueTrackerURL.milestone)/\(body.id)") else { return }
         HTTPServiceHelper.shared.put(url: url, body: body, successHandler: {
             successHandler?($0)
@@ -35,7 +43,9 @@ struct MilestoneDataManager {
     }
     
     
-    func get(successHandler: ((Milestones?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+    func get(
+        successHandler: ((Milestones?) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
         
         guard let url = IssueTrackerURL.milestones else { return }
         HTTPServiceHelper.shared.get(url: url, responseType: Milestones.self, successHandler: {
@@ -49,10 +59,14 @@ struct MilestoneDataManager {
         })
     }
     
-    func getIssues(name: String, successHandler: ((Issues?) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+    func getIssues(
+        name: String,
+        successHandler: ((Issues?) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
         
+        let processedName = name.processedBlank
         var urlString = IssueTrackerURL.issues
-        urlString.append(name)
+        urlString.append(processedName)
         guard let url = URL(string: urlString) else {
             return }
         HTTPServiceHelper.shared.get(url: url, responseType: Issues.self, successHandler: {
@@ -72,6 +86,7 @@ extension MilestoneDataManager {
     static func createMilestone(
         _ milestone: Milestone? = nil,
         milestoneDictionary: [String: String]) -> Milestone? {
+        
         guard let title = milestoneDictionary[Milestone.Key.title],
               let completeDate = milestoneDictionary[Milestone.Key.completeDate],
               let description = milestoneDictionary[Milestone.Key.description]
