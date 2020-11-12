@@ -217,7 +217,7 @@ extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension IssueDetailViewController: IssueListViewControllerDelegate {
-    
+ 
     func issueId(_ id: Int) {
         issueId = id
     }

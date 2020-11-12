@@ -111,6 +111,18 @@ extension UIView {
     }
 }
 
+
+extension UIView {
+    func configureTapGesture(target: Any?, action: Selector? = nil) {
+        let tapGestureRecognizer =
+            UITapGestureRecognizer(target: target, action: action)
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.isEnabled = true
+        tapGestureRecognizer.cancelsTouchesInView = false
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+}
+
 extension String {
     var color: UIColor {
         let hex = trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

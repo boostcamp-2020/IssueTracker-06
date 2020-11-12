@@ -129,9 +129,9 @@
                         <outlet property="issueListCollectionView" destination="JHs-Zp-fEN" id="E3o-nw-Ys0"/>
                         <outlet property="leftBarButton" destination="6i9-Oj-TAM" id="tmx-yj-XF2"/>
                         <outlet property="rightBarButton" destination="QCY-a0-DGt" id="bhq-ff-qqr"/>
-                        <outlet property="titleLabel" destination="aaM-iP-gFn" id="vQT-ay-ot1"/>
-                        <segue destination="oW6-ue-0aA" kind="show" identifier="FilterSegue" id="786-EC-i91"/>
                         <outlet property="searchBar" destination="LBd-8J-wFT" id="Pxn-3a-06L"/>
+                        <outlet property="titleLabel" destination="aaM-iP-gFn" id="vQT-ay-ot1"/>
+                        <segue destination="oW6-ue-0aA" kind="show" identifier="FilterSegue" destinationCreationSelector="presentFilterSelectViewController:" id="786-EC-i91"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -953,7 +953,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyd-Wc-Ojy">
                                 <rect key="frame" x="0.0" y="52" width="414" height="673"/>
                                 <connections>
-                                    <segue destination="8Dc-hF-0oa" kind="embed" id="zu2-YT-Kdy"/>
+                                    <segue destination="8Dc-hF-0oa" kind="embed" identifier="ContainerViewSegue" id="zu2-YT-Kdy"/>
                                 </connections>
                             </containerView>
                         </subviews>
