@@ -9,16 +9,14 @@ interface Props {
   swatchColor: string;
   title: string;
   description?: string;
-  onClick?: (arg: any) => void;
+  onClick?: () => void;
+  isClicked?: boolean;
 }
 
-interface StyledProps {
-  isClicked: boolean;
-}
-
-const StyledLi = styled.li<StyledProps>`
-  background-color: ${({ isClicked, theme }) =>
-    isClicked && theme.palette.BG_COLOR02};
+const StyledLi = styled.li`
+  &.clicked {
+    background-color: ${({ theme }) => theme.palette.LIGHT_BLUE01};
+  }
 `;
 
 const FilterItemLabel: FunctionComponent<Props> = ({
@@ -26,18 +24,11 @@ const FilterItemLabel: FunctionComponent<Props> = ({
   title,
   description,
   onClick,
+  isClicked,
 }) => {
-  const [isClicked, setIsClicked] = useState(false);
-
-  const handleClick = useCallback(() => {
-    if (onClick) {
-      onClick(setIsClicked(!isClicked));
-    }
-  }, [isClicked]);
-
   return (
-    <StyledLi isClicked={isClicked}>
-      <StyledTitleWrapper onClick={handleClick}>
+    <StyledLi className={isClicked ? 'clicked' : ''}>
+      <StyledTitleWrapper onClick={onClick}>
         <ColorSwatch bgColor={swatchColor} />
         <Title text={title} />
       </StyledTitleWrapper>
