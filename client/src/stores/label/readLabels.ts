@@ -1,7 +1,7 @@
 import { Label } from '@stores/type';
 
 export const READ_LABELS_REQUEST = 'READ_LABELS_REQUEST';
-export const READ_LABELS_SUCCESS = 'READ_LABELS_SUCESS';
+export const READ_LABELS_SUCCESS = 'READ_LABELS_SUCCESS';
 export const READ_LABELS_FAILURE = 'READ_LABELS_FAILURE';
 
 export interface ReadLabelsRequest {

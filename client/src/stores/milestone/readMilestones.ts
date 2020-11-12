@@ -1,7 +1,7 @@
 import { Milestone } from '@stores/type';
 
 export const READ_MILESTONES_REQUEST = 'READ_MILESTONES_REQUEST';
-export const READ_MILESTONES_SUCCESS = 'READ_MILESTONES_SUCESS';
+export const READ_MILESTONES_SUCCESS = 'READ_MILESTONES_SUCCESS';
 export const READ_MILESTONES_FAILURE = 'READ_MILESTONES_FAILURE';
 
 export interface ReadMilestonesRequest {
