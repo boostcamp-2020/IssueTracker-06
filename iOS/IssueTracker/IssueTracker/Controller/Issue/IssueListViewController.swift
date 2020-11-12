@@ -14,7 +14,16 @@ protocol IssueListViewControllerDelegate: class {
 final class IssueListViewController: UIViewController {
 
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
+    @IBOutlet private weak var leftBarButton: UIBarButtonItem!
+    @IBOutlet private weak var rightBarButton: UIBarButtonItem!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var addIssueButton: UIButton!
+    @IBOutlet private weak var bottomToolbar: UIToolbar!
+    @IBOutlet private weak var bottomGuidelineConstraint: NSLayoutConstraint!
     @IBOutlet private weak var searchBar: UISearchBar!
+
+    private let issueListDataManager = IssueListDataManager()
+    private var selectedIndexPath: IndexPath?
     
     private let issueListDataManager = IssueListDataManager()
     private var selectedIndexPath: IndexPath?
@@ -35,13 +44,14 @@ final class IssueListViewController: UIViewController {
             issueListCollectionViewSetting?.update(selectedIssues: selectedIssues)
         }
     }
-    
+  
     private var mode: IssueListCellMode = .normal {
         didSet {
             let isEditMode = mode.isEditMode
+            changeMode(isEditMode: isEditMode)
         }
     }
-    
+        
     private lazy var issueListCollectionViewSetting: IssueListCollectionViewSetting? = {
         guard let issues = issues else { return nil }
         let issueListCollectionViewSetting = IssueListCollectionViewSetting(
@@ -71,10 +81,47 @@ final class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureLeftBarButton()
         configureIssuesData()
+        configureBottomGuideline()
         removeNavigationBarUnderLine()
         normalModeTapGesture.delegate = self
         searchBar.delegate = self
+    }
+    
+    private func changeMode(isEditMode: Bool) {
+        selectedIssues = Issues()
+        tabBarController?.tabBar.isHidden = isEditMode
+        issueListCollectionViewSetting?.cellMode = mode
+        bottomToolbar.isHidden = !isEditMode
+        normalModeTapGesture.isEnabled = !isEditMode
+        editModeTapGesture.isEnabled = isEditMode
+        addIssueButton.isHidden = isEditMode
+        let rightBarButtonTitle = isEditMode ? Constant.cancel : Constant.edit
+        let leftBarButtonTitle = isEditMode ? Constant.selectAll : Constant.filter
+        let leftBarButtonAction =
+            isEditMode ? #selector(selectAllButtonTouched(_:)) : #selector(filterButtonTouched(_:))
+        rightBarButton.title = rightBarButtonTitle
+        leftBarButton.title = leftBarButtonTitle
+        leftBarButton.action = leftBarButtonAction
+        
+        let titleText = isEditMode ? "\(selectedIssues.count.selectedCountText)" : Constant.issue
+        titleLabel.text = titleText
+    }
+    
+    @IBSegueAction private func presentIssueDeatilViewController(_ coder: NSCoder) -> IssueDetailViewController? {
+        let issueDetailViewController = IssueDetailViewController(coder: coder)
+        guard let selectedIndexPath = selectedIndexPath,
+              let issueId = issues?[selectedIndexPath.row]?.id
+        else {
+            return issueDetailViewController
+        }
+        issueDetailViewController?.issueId(issueId)
+        return issueDetailViewController
+    }
+
+    @IBAction private func rightBarButtonTouched(_ sender: UIBarButtonItem) {
+        mode = mode.switchMode
     }
     
     @IBSegueAction private func presentIssueDeatilViewController(_ coder: NSCoder) -> IssueDetailViewController? {
@@ -189,11 +236,13 @@ private extension IssueListViewController {
               let issue = issues?[indexPath.row]
         else { return }
         switchIssueSelected(issue: issue)
+        titleLabel.text = selectedIssues.count.selectedCountText
     }
     
     @objc func selectAllButtonTouched(_ sender: UIBarButtonItem) {
         guard let issues = issues else { return }
         selectedIssues = issues
+        titleLabel.text = selectedIssues.count.selectedCountText
     }
 
     @IBAction func selectedIssuesCloseButton(_ sender: UIBarButtonItem) {
@@ -207,9 +256,14 @@ private extension IssueListViewController {
         })
     }
 }
-
+  
 // MARK: configure
 private extension IssueListViewController {
+    
+    func configureLeftBarButton() {
+        leftBarButton.target = self
+        leftBarButton.action = #selector(filterButtonTouched(_:))
+    }
     
     func configureIssuesData() {
         issueListDataManager.get(successHandler: { [weak self] in
@@ -224,9 +278,10 @@ private extension IssueListViewController {
         issueListCollectionView.addGestureRecognizer(normalModeTapGesture)
         issueListCollectionView.addGestureRecognizer(editModeTapGesture)
     }
-
-    func removeNavigationBarUnderLine() {
-        navigationController?.navigationBar.shadowImage = UIImage()
+    
+    func configureBottomGuideline() {
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        bottomGuidelineConstraint.constant = tabBarHeight
     }
 }
 
@@ -256,4 +311,3 @@ private extension Int {
         "\(self)개 선택"
     }
 }
-

@@ -21,7 +21,7 @@ struct IssueListDataManager {
             errorHandler?($0)
         })
     }
-    
+
     func post(body: Issue.NewIssue, successHandler: ((Int?) -> Void)? = nil,
               errorHandler: ((Error) -> Void)? = nil) {
         guard let url = IssueTrackerURL.newIssue else { return }
@@ -112,7 +112,7 @@ private extension IssueListDataManager {
             "http://issue-tracker.cf/api/issue/\(id)/status"
         }
     }
-        
+  
     enum Constant {
         static let isOpen = "isOpen"
     }

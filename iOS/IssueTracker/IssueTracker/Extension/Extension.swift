@@ -78,7 +78,6 @@ extension UIApplication {
     }
 }
 
-
 extension UIView {
     @IBInspectable
     var cornerRadius: CGFloat {
@@ -109,17 +108,6 @@ extension UIView {
         set {
             layer.borderWidth = newValue
         }
-    }
-}
-
-extension UIView {
-    func configureTapGesture(target: Any?, action: Selector? = nil) {
-        let tapGestureRecognizer =
-            UITapGestureRecognizer(target: target, action: action)
-        tapGestureRecognizer.numberOfTouchesRequired = 1
-        tapGestureRecognizer.isEnabled = true
-        tapGestureRecognizer.cancelsTouchesInView = false
-        addGestureRecognizer(tapGestureRecognizer)
     }
 }
 

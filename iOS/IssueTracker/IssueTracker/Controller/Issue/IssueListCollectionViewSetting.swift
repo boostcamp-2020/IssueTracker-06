@@ -117,6 +117,7 @@ extension IssueListCollectionViewSetting: UICollectionViewDelegateFlowLayout {
             return
         }
         cell.updateCheckboxState(isSelected: false)
+        cell.configureIssueStateView(isOpen: issue.isOpen)
     }
 }
 
@@ -133,4 +134,3 @@ private extension IssueListCollectionViewSetting {
         static let deleteButtonWidth: CGFloat = 80
     }
 }
-

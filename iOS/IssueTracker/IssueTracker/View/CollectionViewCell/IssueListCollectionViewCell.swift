@@ -17,6 +17,7 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var checkboxButton: UIButton!
     @IBOutlet private weak var checkboxLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var issueStateView: UIImageView!
     
     var closeButtonHandler: ((UICollectionViewCell) -> Void)?
     var deleteButtonHandler: ((UICollectionViewCell) -> Void)?
@@ -49,6 +50,11 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
             return
         }
         milestoneView.text = milestone.name
+    }
+    
+    func configureIssueStateView(isOpen: Bool) {
+        let color = isOpen ? Color.open : Color.close
+        issueStateView.tintColor = color
     }
     
     func updateCheckboxState(isSelected: Bool) {
@@ -130,4 +136,3 @@ private extension IssueListCollectionViewCell {
         static let close: UIColor = .init(red: 187/255, green: 54/255, blue: 56/255, alpha: 1)
     }
 }
-

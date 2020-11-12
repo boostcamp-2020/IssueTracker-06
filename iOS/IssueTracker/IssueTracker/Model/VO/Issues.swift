@@ -16,21 +16,17 @@ struct Issues {
     }
     
     var openCount: Int {
-        issues.filter {
-            $0.isOpen == true
-        }.count
+        issues.filter { $0.isOpen }.count
     }
     
     var closedCount: Int {
-        issues.filter {
-            $0.isOpen == false
-        }.count
+        issues.filter { !$0.isOpen }.count
     }
     
     var id: [Int] {
         issues.map { $0.id }
     }
-    
+
     init() {
         issues = []
     }
@@ -58,7 +54,7 @@ struct Issues {
     }
     
     mutating func remove(id: Int) {
-            issues.removeAll {
+        issues.removeAll {
             $0.id == id
         }
     }
