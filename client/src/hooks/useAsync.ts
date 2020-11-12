@@ -1,9 +1,18 @@
 import { Dispatch } from 'react';
-import { ActionCreator, Actions } from '@stores/.';
 
-const useAsync = (dispatch: Dispatch<Actions>) => async (
-  action: ActionCreator,
-  apiCallback: (requestActions: Actions) => Promise<any>,
+type ActionCreator = (...value: any) => any;
+
+interface CommonActionCreator {
+  request: ActionCreator;
+  success: ActionCreator;
+  failure: ActionCreator;
+}
+
+const useAsync = <T>(dispatch: Dispatch<T>) => async <
+  A extends CommonActionCreator
+>(
+  action: A,
+  apiCallback: (requestActions: T) => Promise<any> | ((...rest: any) => Promise<any>),
 ): Promise<void> => {
   try {
     const requestAction = action.request();

@@ -20,22 +20,25 @@ export const Default = () => {
     {
       id: 0,
       name: 'user1',
-      img: 'https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4',
+      profile: 'https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4',
+      email: '',
     },
     {
       id: 1,
       name: 'user2',
-      img: 'https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4',
+      profile: 'https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4',
+      email: '',
     },
     {
       id: 2,
       name: 'user3',
-      img: 'https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4',
+      profile: 'https://avatars0.githubusercontent.com/u/37282087?s=40&amp;v=4',
+      email: '',
     },
   ];
   return (
     <IssueCard
-      isOpen={isOpen}
+      isOpen={isOpen ? 1 : 0}
       title={title}
       labels={[{ id: 0, name: label, color: labelBg }]}
       issueNum={issueNum}
@@ -43,6 +46,8 @@ export const Default = () => {
       author={author}
       milestone={milestone}
       assignees={assignees}
+      onCheck={(id: number) => {}}
+      isChecked={false}
     />
   );
 };

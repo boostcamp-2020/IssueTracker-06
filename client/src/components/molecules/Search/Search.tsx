@@ -11,9 +11,9 @@ interface Props {
 
 const StyledSearch = styled.div`
   color: ${({ theme }) => theme.palette.SECONDARY};
+  position: relative;
 
   & > input {
-    position: relative;
     width: 100%;
     font-size: 1rem;
     background-color: ${({ theme }) => theme.palette.BG_COLOR01};

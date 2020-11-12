@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { StyledImg as Img } from '@components/atoms/selectMenuItem/Image';
 import styled from '@themes/styled';
-import { User } from '.';
+import { User } from '@stores/type';
 
 interface Props {
   users?: User[];
@@ -17,7 +17,7 @@ const StyledImg = styled(Img)<StyledProps>`
 
 const StyledDiv = styled.div`
   position: relative;
-  margin: 8px;
+  margin: 8px 140px 8px 8px;
   & > img {
     position: absolute;
   }
@@ -26,7 +26,7 @@ const StyledDiv = styled.div`
 const Assignees: FunctionComponent<Props> = ({ users }) => (
   <StyledDiv>
     {users?.map((user, i) => (
-      <StyledImg src={user.img} key={user.id} left={0.6 * i} />
+      <StyledImg src={user.profile} key={user.id} left={0.6 * i} />
     ))}
   </StyledDiv>
 );
