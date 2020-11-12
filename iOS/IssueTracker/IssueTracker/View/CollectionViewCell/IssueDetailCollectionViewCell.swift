@@ -21,6 +21,14 @@ final class IssueDetailCollectionViewCell: UICollectionViewCell {
         id.text = comment.user.name
         writingTime.text = comment.createdAt ?? Constant.blank
         commentLabel.text = comment.content
+        //이미지 추가
+        guard let url = URL(string: comment.user.profile) else { return }
+        do {
+            let data = try Data(contentsOf: url)
+            userImage.image = UIImage(data: data)
+        } catch {
+            return
+        }
     }
 }
 
