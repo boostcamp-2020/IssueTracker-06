@@ -1,12 +1,12 @@
-import { User, Comment, Milestone, Label } from '@stores/type';
+import { User, Comment, Milestone, Label, Issue } from '@stores/type';
 
-interface Issue {
-  title: string;
-  content: string;
-  milestoneId?: number;
-  labelIds?: number[];
-  assigneeIds?: number[];
-}
+// interface Issue {
+//   title: string;
+//   content: string;
+//   milestoneId?: number;
+//   labelIds?: number[];
+//   assigneeIds?: number[];
+// }
 
 interface CreateIssue {
   title: string;
@@ -19,7 +19,7 @@ interface CreateIssue {
   labels: Label[];
 }
 
-const convertIssue = (issue: CreateIssue): Issue => {
+const convertIssue = (issue: CreateIssue):any => {
   const milestoneId = issue.milestone?.id;
   const labelIds = issue.labels.map((label) => label.id);
   const assigneeIds = issue.assignees.map((assignee) => assignee.id);
@@ -29,6 +29,23 @@ const convertIssue = (issue: CreateIssue): Issue => {
     milestoneId,
     labelIds,
     assigneeIds,
+  };
+  return newTypeIssue;
+};
+
+export const convertSelectedIssue = (issue: any): Issue => {
+  const { id, title, content } = issue;
+
+  const newTypeIssue = {
+    id,
+    title,
+    content,
+    labels: issue.Labels,
+    assignees: issue.Assignee,
+    comments: issue.Comments,
+    milestone: issue.Milestone,
+    user: issue.User,
+    isOpen: issue.is_open,
   };
   return newTypeIssue;
 };
