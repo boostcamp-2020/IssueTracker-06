@@ -20,6 +20,6 @@ final class IssueDetailCollectionViewHeader: UICollectionReusableView {
         usernameLabel.text = issue.user.name
         titleLabel.text = issue.title
         issueNumberLabel.text = "#\(issue.id)"
-        issueStateView.updateState(enabled: (issue.isOpen != 0))
+        issueStateView.updateState(enabled: issue.isOpen)
     }
 }

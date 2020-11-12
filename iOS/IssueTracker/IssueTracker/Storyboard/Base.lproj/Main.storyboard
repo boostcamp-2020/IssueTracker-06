@@ -129,9 +129,9 @@
                         <outlet property="issueListCollectionView" destination="JHs-Zp-fEN" id="E3o-nw-Ys0"/>
                         <outlet property="leftBarButton" destination="6i9-Oj-TAM" id="tmx-yj-XF2"/>
                         <outlet property="rightBarButton" destination="QCY-a0-DGt" id="bhq-ff-qqr"/>
+                        <outlet property="searchBar" destination="LBd-8J-wFT" id="Pxn-3a-06L"/>
                         <outlet property="titleLabel" destination="aaM-iP-gFn" id="vQT-ay-ot1"/>
                         <segue destination="oW6-ue-0aA" kind="show" identifier="FilterSegue" id="786-EC-i91"/>
-                        <outlet property="searchBar" destination="LBd-8J-wFT" id="Pxn-3a-06L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1538,7 +1538,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="jGC-Iq-EQ4"/>
         <segue reference="id9-nh-MIP"/>
-        <segue reference="aJK-ch-Nmz"/>
+        <segue reference="h9h-al-eOU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1.circle.fill" catalog="system" width="128" height="121"/>

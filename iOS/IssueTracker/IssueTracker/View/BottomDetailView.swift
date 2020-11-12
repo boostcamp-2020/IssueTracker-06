@@ -14,8 +14,19 @@ final class BottomDetailView: UIView {
     @IBOutlet weak var issueStatusButton: UIButton!
 
     func configureView(issue: DetailIssue) {
+        configureIssueStatusButton(isOpen: issue.isOpen)
         configureAssigneeStackView(assignee: issue.assignee)
         configureLabelStackView(labels: issue.labels)
+    }
+    
+    private func configureIssueStatusButton(isOpen: Bool) {
+        if !isOpen {
+            issueStatusButton.setTitle(Constant.reopenIssue, for: .normal)
+            issueStatusButton.setTitleColor(.none, for: .normal)
+            return
+        }
+        issueStatusButton.setTitle(Constant.closeIssue, for: .normal)
+        issueStatusButton.setTitleColor(Color.close, for: .normal)
     }
 
     private func configureAssigneeStackView(assignee: [User]) {
@@ -34,5 +45,17 @@ final class BottomDetailView: UIView {
             let labelView = LabelView.create(text: $0.name, color: $0.color.color)
             labelStackView.add(label: labelView)
         }
+    }
+}
+
+private extension BottomDetailView {
+    
+    enum Constant {
+        static let reopenIssue: String = "Reopen Issue"
+        static let closeIssue: String = "Close Issue"
+    }
+    
+    enum Color {
+        static let close: UIColor = .init(red: 190/255, green: 59/255, blue: 61/255, alpha: 1)
     }
 }
