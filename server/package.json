@@ -4,8 +4,8 @@
   "description": "team6 issue tracker clone api server",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ./node_modules/.bin/ts-node -r tsconfig-paths/register ./src/app.ts",
-    "start": "NODE_ENV=production PORT=80 pm2 start ./src/app.ts"
+    "dev": "NODE_ENV=production nodemon --exec ./node_modules/.bin/ts-node -r tsconfig-paths/register ./src/app.ts",
+    "start": "NODE_ENV=production PORT=80 pm2 start ts-node -- --type-check -r tsconfig-paths/register ./src/app.ts"
   },
   "keywords": [],
   "author": "team6",
