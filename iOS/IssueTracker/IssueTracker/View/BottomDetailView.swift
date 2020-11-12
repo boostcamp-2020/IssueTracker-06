@@ -11,6 +11,7 @@ final class BottomDetailView: UIView {
     
     @IBOutlet private weak var assigneeStackView: AssigneeStackView!
     @IBOutlet private weak var labelStackView: LabelsStackView!
+    @IBOutlet weak var issueStatusButton: UIButton!
 
     func configureView(issue: DetailIssue) {
         configureAssigneeStackView(assignee: issue.assignee)

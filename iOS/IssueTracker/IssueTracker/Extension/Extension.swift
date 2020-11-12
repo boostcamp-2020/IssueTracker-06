@@ -19,6 +19,14 @@ extension NSObject {
     }
 }
 
+extension UICollectionView {
+    
+    func indexPath(with tapGestureRecognizer: UITapGestureRecognizer) -> IndexPath? {
+        let point = tapGestureRecognizer.location(in: self)
+        return self.indexPathForItem(at: point)
+    }
+}
+
 extension UIView {
     var viewFromNib: UIView? {
         let bundle = Bundle(for: type(of: self))
@@ -44,6 +52,42 @@ extension UIView {
     }
 }
 
+extension UIView {
+    func configureTapGesture(target: Any?, action: Selector? = nil) {
+        let tapGestureRecognizer =
+            UITapGestureRecognizer(target: target, action: action)
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.isEnabled = true
+        tapGestureRecognizer.cancelsTouchesInView = false
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+}
+
+extension UIViewController {
+    func presentAlert(title: String, message: String, allowHandler: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let allowAction = UIAlertAction(title: Constant.확인, style: .default) { (action) in
+            allowHandler?()
+        }
+        let cancelAction = UIAlertAction(title: Constant.취소, style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(allowAction)
+        present(alert, animated: true)
+    }
+    
+    enum Constant {
+        static let 확인: String = "확인"
+        static let 취소: String = "취소"
+    }
+}
+
+extension UIApplication {
+    static var snapshotView: UIView? {
+        UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.snapshotView(
+                afterScreenUpdates: true
+        )
+    }
+}
 
 extension UIView {
     @IBInspectable
@@ -75,17 +119,6 @@ extension UIView {
         set {
             layer.borderWidth = newValue
         }
-    }
-}
-
-extension UIView {
-    func configureTapGesture(target: Any?, action: Selector? = nil) {
-        let tapGestureRecognizer =
-            UITapGestureRecognizer(target: target, action: action)
-        tapGestureRecognizer.numberOfTouchesRequired = 1
-        tapGestureRecognizer.isEnabled = true
-        tapGestureRecognizer.cancelsTouchesInView = false
-        addGestureRecognizer(tapGestureRecognizer)
     }
 }
 
@@ -127,9 +160,9 @@ extension UIColor {
     }
     
     static var randomColor: UIColor {
-        let randomRed:CGFloat = CGFloat(drand48())
-        let randomGreen:CGFloat = CGFloat(drand48())
-        let randomBlue:CGFloat = CGFloat(drand48())
+        let randomRed: CGFloat = CGFloat(drand48())
+        let randomGreen: CGFloat = CGFloat(drand48())
+        let randomBlue: CGFloat = CGFloat(drand48())
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
     }
 }

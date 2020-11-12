@@ -41,6 +41,10 @@ extension DetailIssue: Codable {
     struct patchContentDetailIssue: Codable {
         let content: String
     }
+    
+    struct IssueStatus: Codable {
+        let isOpen: Bool
+    }
 }
 
 extension DetailIssue: HTTPDataProviding {

@@ -24,11 +24,52 @@ struct DetailIssueDataManager {
             errorHandler?($0)
         })
     }
+    
+    func patchTitle(
+        id: Int,
+        body: DetailIssue.patchTitleDetailIssue,
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: "\(IssueTrackerURL.patchIssue)/\(id)/title") else { return }
+        HTTPServiceHelper.shared.patch(url: url, body: body, successHandler: {
+            successHandler?($0)
+        }, errorHandler: { error in
+            errorHandler?(error)
+        })
+    }
+    
+    func patchContent(
+        id: Int,
+        body: DetailIssue.patchContentDetailIssue,
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: "\(IssueTrackerURL.patchIssue)/\(id)/content") else { return }
+        HTTPServiceHelper.shared.patch(url: url, body: body, successHandler: {
+            successHandler?($0)
+        }, errorHandler: { error in
+            errorHandler?(error)
+        })
+    }
+    
+    func patchIssueStatus(
+        id: Int,
+        body: DetailIssue.IssueStatus,
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: "\(IssueTrackerURL.issueState)/\(id)/status") else { return }
+        HTTPServiceHelper.shared.patch(url: url, body: body, successHandler: {
+            successHandler?($0)
+        }, errorHandler: { error in
+            errorHandler?(error)
+        })
+    }
+    
 }
 
 private extension DetailIssueDataManager {
-    
     enum IssueTrackerURL {
+        static let patchIssue: String = "http://issue-tracker.cf/api/issue"
         static let issue: String = "http://issue-tracker.cf/api/issue"
+        static let issueState: String = "http://issue-tracker.cf/api/issue"
     }
 }
