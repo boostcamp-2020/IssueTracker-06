@@ -21,6 +21,7 @@ export const Default = () => {
       title={title}
       emptyMessage={emptyMessage}
       optionHeader={optionHeader}
+      onSelect={() => {}}
     />
   );
 };

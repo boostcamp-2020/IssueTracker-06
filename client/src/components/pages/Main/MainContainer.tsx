@@ -6,10 +6,10 @@ import React, {
   useState,
 } from 'react';
 import { useHistory } from 'react-router-dom';
-import issueContext from '@stores/.';
+import issueContext from '@stores/issue';
 
 import useChange from '@hooks/useChange';
-import getIssuesAction from '@stores/getIssues';
+import getIssuesAction from '@/stores/issue/getIssues';
 import getIssuesAPI from '@apis/getIssues';
 import { ToggleType } from '@components/molecules/LabelMilestoneToggle';
 

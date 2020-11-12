@@ -68,8 +68,8 @@ const App: FunctionComponent = () => {
           >
             <BrowserRouter>
               <Switch>
-                {/* <Route exact path="/" component={Main} /> */}
-                <Route exact path="/" component={CreateIssue} />
+                <Route exact path="/" component={Main} />
+                <Route exact path="/issue/new" component={CreateIssue} />
               </Switch>
               <GlobalStyle />
             </BrowserRouter>
