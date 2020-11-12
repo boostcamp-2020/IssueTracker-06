@@ -9,7 +9,7 @@ import styled from '@themes/styled';
 const StyledSection = styled.section`
   display: flex;
   justify-content: space-between;
-  margin: 5% 10% 0 10%;
+  margin: 3% 10% 0 10%;
   & > div:nth-child(2) {
     margin-left: 5rem;
     width: 290px;
