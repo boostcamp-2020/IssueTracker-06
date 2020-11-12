@@ -19,6 +19,14 @@ extension NSObject {
     }
 }
 
+extension UICollectionView {
+    
+    func indexPath(with tapGestureRecognizer: UITapGestureRecognizer) -> IndexPath? {
+        let point = tapGestureRecognizer.location(in: self)
+        return self.indexPathForItem(at: point)
+    }
+}
+
 extension UIView {
     var viewFromNib: UIView? {
         let bundle = Bundle(for: type(of: self))
@@ -41,6 +49,24 @@ extension UIView {
             topAnchor.constraint(equalTo: view.topAnchor),
             bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+}
+
+extension UIViewController {
+    func presentAlert(title: String, message: String, allowHandler: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let allowAction = UIAlertAction(title: Constant.확인, style: .default) { (action) in
+            allowHandler?()
+        }
+        let cancelAction = UIAlertAction(title: Constant.취소, style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(allowAction)
+        present(alert, animated: true)
+    }
+    
+    enum Constant {
+        static let 확인: String = "확인"
+        static let 취소: String = "취소"
     }
 }
 
