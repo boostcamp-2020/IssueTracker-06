@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { match } from 'react-router-dom';
 import getIssue from '@apis/getIssue';
-import { convertSelectedIssue } from '@lib/convertType';
 import useChange from '@hooks/useChange';
 import useDisplay from '@hooks/useDisplay';
 import IssueDetailPresenter from './IssueDetailPresenter';
@@ -41,11 +40,10 @@ const IssueDetailContainer: FunctionComponent<DetailProps> = ({
   useEffect(() => {
     (async () => {
       const issueId = parseInt(propsMatch.params.id, 10);
-      const result = await getIssue(issueId);
-      const convertIssue = convertSelectedIssue(result.issue);
-      setIssue(convertIssue);
-      setTitle(convertIssue.title);
-      setContent(convertIssue.content);
+      const { issue: currentIssue } = await getIssue(issueId);
+      setIssue(currentIssue);
+      setTitle(currentIssue.title);
+      setContent(currentIssue.content);
     })();
   }, []);
 

@@ -13,7 +13,7 @@ import { IssueOpenedIcon, IssueClosedIcon } from '@components/atoms/icons';
 
 interface Props {
   user?: any;
-  issue: any;
+  issue: Issue;
   commentContent: string;
   onChangeComment: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   issueContent: string;
@@ -159,9 +159,9 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
               <div>
                 <div className="title-container">
                   <span className="title">{issue.title}</span>
-                  <span className="title-no">#{issue.id}</span>
+                  <span className="title-no">{`#${issue.id}`}</span>
                 </div>
-                {user.id === issue.user.id && (
+                {user.id === issue.User.id && (
                   <div className="edit-btn">
                     <Button type="default" onClick={onClickTitleEdit}>
                       <BoldText value="Edit" />
@@ -172,7 +172,7 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
             )}
           </StyledTitle>
           <div>
-            {issue.isOpen ? (
+            {issue.is_open ? (
               <StyledSubTitle>
                 <TextWithIcon
                   icon={IssueOpenedIcon}
@@ -180,9 +180,9 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
                   className="opened"
                 />
                 <div className="issue-info">
-                  <BoldText value={issue.user.id.toString()} />
+                  <BoldText value={issue.User.id.toString()} />
                   <PlainText value="opened this issue" />
-                  <PlainText value={` · ${issue.comments.length} comments`} />
+                  <PlainText value={` · ${issue.Comments.length} comments`} />
                 </div>
               </StyledSubTitle>
             ) : (
@@ -193,7 +193,7 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
                   className="closed"
                 />
                 <div className="issue-info">
-                  <BoldText value={issue.user.id.toString()} />
+                  <BoldText value={issue.User.id.toString()} />
                   <PlainText value="closed this issue" />
                 </div>
               </StyledSubTitle>
@@ -202,9 +202,9 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
           <div className="issue-contents">
             {!contentEdit ? (
               <ContentWithProfile
-                myContent={issue.user.id === user.id}
-                profile={issue.user.profile}
-                name={issue.user.name}
+                myContent={issue.User.id === user.id}
+                profile={issue.User.profile}
+                name={issue.User.name}
                 content={issue.content}
                 onClick={onClickContentEdit}
               />
@@ -215,7 +215,7 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
                 onChangeContent={onChangeIssueContent}
               />
             )}
-            {issue.comments.map((comment: any) => (
+            {issue.Comments.map((comment: any) => (
               <ContentWithProfile
                 key={comment.id}
                 myComment={comment.User.id === user.id}
