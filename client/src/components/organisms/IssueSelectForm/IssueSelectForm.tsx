@@ -121,7 +121,6 @@ const IssueSelectForm: FunctionComponent<Props> = ({
   const options = setOptions();
 
   const showClicked = (clickedItems: any) => {
-    console.log(clickedItems);
     switch (title) {
       case 'Labels': {
         return clickedItems.map((item: Label) => (
