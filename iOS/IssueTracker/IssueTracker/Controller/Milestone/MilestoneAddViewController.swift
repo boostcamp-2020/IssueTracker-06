@@ -30,7 +30,7 @@ final class MilestoneAddViewController: UIViewController {
         super.viewDidLoad()
         configureBackgroundView()
         configureAddView()
-        view.configureTapGesture(target: self, action: #selector(handleTapGesture(recognizer:)))
+        configureKeyboardEvent()
     }
     
     private func configureAddView() {
@@ -45,10 +45,6 @@ final class MilestoneAddViewController: UIViewController {
         snapshotView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.addSubview(snapshotView)
         snapshotView.setConstraintToFit(at: backgroundView)
-    }
-    
-    @objc private func handleTapGesture(recognizer: UITapGestureRecognizer) {
-        self.dismiss(animated: false, completion: nil)
     }
 }
 
@@ -95,5 +91,45 @@ extension MilestoneAddViewController: MilestoneListViewControllerDelegate {
     
     func snapshot(_ snapshot: UIView) {
         snapshotView = snapshot
+    }
+}
+
+// 키보드 이벤트 처리
+private extension MilestoneAddViewController {
+    
+    func configureKeyboardEvent() {
+        configureKeyboardWillShowObserver()
+        configureKeyboardWillHideObserver()
+    }
+
+    func configureKeyboardWillShowObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+
+    func configureKeyboardWillHideObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame =
+                notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        else {
+            return
+        }
+        let keyboardHeight = keyboardFrame.cgRectValue.height
+        let differHeight = ((addView.frame.height / 2) + (keyboardHeight)) - (view.frame.height / 2)
+        addViewCenterYConstraint.constant = -(differHeight + 10)
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        addViewCenterYConstraint.constant = 0
+    }
+}
+
+// MARK: 키보드 관련 설정
+extension MilestoneAddViewController: UITextFieldDelegate {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
