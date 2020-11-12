@@ -11,7 +11,6 @@ import BoldText from '@components/atoms/BoldText';
 import IssueListFilterHeader from '@components/organisms/IssueListFilterHeader';
 import IssueCard from '@components/organisms/IssueCard';
 import { Issue } from '@stores/type';
-import { Link } from 'react-router-dom';
 
 interface Props {
   inputSearchFilter: string;
