@@ -21,7 +21,7 @@ export const Default = () => {
   const milestone = text('milestone', 'component UI');
   return (
     <IssueInfo
-      isOpen={isOpen}
+      isOpen={isOpen ? 1 : 0}
       title={title}
       labels={[{ id: 0, name: label, color: labelBg }] as Label[]}
       issueNum={issueNum}

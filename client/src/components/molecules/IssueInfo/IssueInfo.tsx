@@ -1,11 +1,13 @@
 import React, { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
+
 import LabelTag, { Label } from '@components/atoms/LabelTag';
 import styled from '@themes/styled';
 import { MilestoneIcon } from '@/components/atoms/icons';
 import TextWithIcon from '../TextWithIcon';
 
 interface Props {
-  isOpen: boolean;
+  isOpen: 1 | 0;
   title: string;
   labels?: Label[];
   issueNum: number;
@@ -18,15 +20,24 @@ const StyledIssueInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin: 8px;
-  width: 70%;
+  flex-grow: 1;
+
   & > .issueTitleContainer {
     display: flex;
     align-items: center;
-    & > h1 {
+
+    & > a > h1 {
       all: unset;
       font-size: 1rem;
       font-weight: 600;
       margin-right: 0.2rem;
+
+      &:hover {
+        color: ${({ theme }) => theme.palette.LINK_BLUE};
+      }
+    }
+    & > span {
+      margin-right: 6px;
     }
   }
 
@@ -60,7 +71,9 @@ const IssueInfo: FunctionComponent<Props> = ({
 }) => (
   <StyledIssueInfo>
     <div className="issueTitleContainer">
-      <h1>{title}</h1>
+      <Link to={`/issue/${issueNum}`}>
+        <h1>{title}</h1>
+      </Link>
       {labels?.map((label) => (
         <LabelTag key={label.id} data={label} />
       ))}

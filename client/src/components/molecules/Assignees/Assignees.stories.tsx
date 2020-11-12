@@ -11,9 +11,9 @@ const DUMMY_PROFILE =
 
 export const Default = () => {
   const users = [
-    { id: 0, name: 'user1', img: DUMMY_PROFILE },
-    { id: 1, name: 'user2', img: DUMMY_PROFILE },
-    { id: 2, name: 'user3', img: DUMMY_PROFILE },
+    { id: 0, name: 'user1', profile: DUMMY_PROFILE, email: '' },
+    { id: 1, name: 'user2', profile: DUMMY_PROFILE, email: '' },
+    { id: 2, name: 'user3', profile: DUMMY_PROFILE, email: '' },
   ];
   return <Assignees users={users} />;
 };

@@ -12,7 +12,7 @@ const useAsync = <T>(dispatch: Dispatch<T>) => async <
   A extends CommonActionCreator
 >(
   action: A,
-  apiCallback: (requestActions: T) => Promise<any>,
+  apiCallback: (requestActions: T) => Promise<any> | ((...rest: any) => Promise<any>),
 ): Promise<void> => {
   try {
     const requestAction = action.request();
