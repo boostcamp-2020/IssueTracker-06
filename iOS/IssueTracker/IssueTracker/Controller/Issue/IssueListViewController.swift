@@ -80,6 +80,14 @@ final class IssueListViewController: UIViewController {
         tapGestureRecognizer.cancelsTouchesInView = false
         return tapGestureRecognizer
     }()
+        
+    private lazy var keyboardHide: UITapGestureRecognizer = {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.isEnabled = true
+        tapGestureRecognizer.cancelsTouchesInView = false
+        return tapGestureRecognizer
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,6 +172,8 @@ private extension IssueListViewController {
     }
     
     func moveToIssueDetailViewController() {
+        //키보드 hide 추가
+        view.endEditing(true)
         performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
     }
     
@@ -245,6 +255,11 @@ private extension IssueListViewController {
         selectedIssues = issues
         titleLabel.text = selectedIssues.count.selectedCountText
     }
+    
+    // 키보드 hide 추가
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     @IBAction func selectedIssuesCloseButton(_ sender: UIBarButtonItem) {
         issueListDataManager.closeIssues(
@@ -278,6 +293,7 @@ private extension IssueListViewController {
         issueListCollectionView.dataSource = issueListCollectionViewSetting
         issueListCollectionView.addGestureRecognizer(normalModeTapGesture)
         issueListCollectionView.addGestureRecognizer(editModeTapGesture)
+        view.addGestureRecognizer(keyboardHide)
     }
     
     func configureBottomGuideline() {
