@@ -685,6 +685,8 @@
                                     <outlet property="assigneeStackView" destination="C7Y-ZN-XJJ" id="1df-UW-5jX"/>
                                     <outlet property="issueStatusButton" destination="nA6-wW-g90" id="OdE-qB-UdD"/>
                                     <outlet property="labelStackView" destination="xnK-dT-kvM" id="93Y-AY-F8s"/>
+                                    <outlet property="milestoneProgressView" destination="O2z-SE-ecN" id="NTk-vv-xDE"/>
+                                    <outlet property="milestoneTitleLabel" destination="rde-0e-fvz" id="C0x-6E-K7z"/>
                                 </connections>
                             </view>
                         </subviews>

@@ -12,11 +12,21 @@ final class BottomDetailView: UIView {
     @IBOutlet private weak var assigneeStackView: AssigneeStackView!
     @IBOutlet private weak var labelStackView: LabelsStackView!
     @IBOutlet weak var issueStatusButton: UIButton!
+    @IBOutlet weak var milestoneProgressView: UIProgressView!
+    @IBOutlet weak var milestoneTitleLabel: UILabel!
 
     func configureView(issue: DetailIssue) {
+        milestoneTitleLabel.text = issue.milestone?.name ?? .none
         configureIssueStatusButton(isOpen: issue.isOpen)
         configureAssigneeStackView(assignee: issue.assignee)
         configureLabelStackView(labels: issue.labels)
+    }
+    
+    func configureMilestoneView(issues: Issues) {
+        let openCount = issues.openCount
+        let closedCount = issues.closedCount
+        let progress = openCount + closedCount == 0 ? 0 : (Float(closedCount) / Float(openCount + closedCount))
+        milestoneProgressView.progress = progress
     }
     
     private func configureIssueStatusButton(isOpen: Bool) {

@@ -64,6 +64,26 @@ struct DetailIssueDataManager {
         })
     }
     
+    func getMilestoneIssues(
+        name: String,
+        successHandler: ((Issues?) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        
+        let processedName = name.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        guard let url = URL(string: IssueTrackerURL.milestoneIssues(name: processedName))
+        else {
+            return
+        }
+        HTTPServiceHelper.shared.get(url: url, responseType: Issues.self, successHandler: {
+            guard let issues = $0 else {
+                successHandler?(nil)
+                return
+            }
+            successHandler?(Issues(issues: issues))
+        }, errorHandler: {
+            errorHandler?($0)
+        })
+    }
 }
 
 private extension DetailIssueDataManager {
@@ -71,5 +91,8 @@ private extension DetailIssueDataManager {
         static let patchIssue: String = "http://issue-tracker.cf/api/issue"
         static let issue: String = "http://issue-tracker.cf/api/issue"
         static let issueState: String = "http://issue-tracker.cf/api/issue"
+        static func milestoneIssues(name: String) -> String {
+            "http://issue-tracker.cf/api/issues?milestone=\(name)"
+        }
     }
 }
