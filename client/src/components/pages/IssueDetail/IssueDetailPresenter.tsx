@@ -10,6 +10,7 @@ import WriteFormWithProfile from '@components/organisms/WriteFormWithProfile';
 import ContentWithProfile from '@components/organisms/ContentWithProfile';
 import Input from '@components/atoms/Input';
 import { IssueOpenedIcon, IssueClosedIcon } from '@components/atoms/icons';
+import SelectForm from '@components/pages/SelectForm';
 
 interface Props {
   user?: any;
@@ -29,8 +30,18 @@ interface Props {
 const StyledContainer = styled.div`
   padding: 32px;
 
+  .main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .issue-contents {
+    flex-grow: 1;
+  }
+
   .issue-contents > div {
-    margin: 16px auto;
+    margin: 16px;
   }
 
   .issue-contents > div:last-child {
@@ -199,36 +210,41 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
               </StyledSubTitle>
             )}
           </div>
-          <div className="issue-contents">
-            {!contentEdit ? (
-              <ContentWithProfile
-                myContent={issue.User.id === user.id}
-                profile={issue.User.profile}
-                name={issue.User.name}
-                content={issue.content}
-                onClick={onClickContentEdit}
-              />
-            ) : (
+          <div className="main-content">
+            <div className="issue-contents">
+              {!contentEdit ? (
+                <ContentWithProfile
+                  myContent={issue.User.id === user.id}
+                  profile={issue.User.profile}
+                  name={issue.User.name}
+                  content={issue.content}
+                  onClick={onClickContentEdit}
+                />
+              ) : (
+                <WriteFormWithProfile
+                  profile={user.profile}
+                  content={issueContent}
+                  onChangeContent={onChangeIssueContent}
+                />
+              )}
+              {issue.Comments.map((comment: any) => (
+                <ContentWithProfile
+                  key={comment.id}
+                  myComment={comment.User.id === user.id}
+                  profile={comment.User.profile}
+                  name={comment.User.name}
+                  content={comment.content}
+                />
+              ))}
               <WriteFormWithProfile
                 profile={user.profile}
-                content={issueContent}
-                onChangeContent={onChangeIssueContent}
+                content={commentContent}
+                onChangeContent={onChangeComment}
               />
-            )}
-            {issue.Comments.map((comment: any) => (
-              <ContentWithProfile
-                key={comment.id}
-                myComment={comment.User.id === user.id}
-                profile={comment.User.profile}
-                name={comment.User.name}
-                content={comment.content}
-              />
-            ))}
-            <WriteFormWithProfile
-              profile={user.profile}
-              content={commentContent}
-              onChangeContent={onChangeComment}
-            />
+            </div>
+            <div>
+              <SelectForm />
+            </div>
           </div>
         </StyledContainer>
       </AppLayout>
