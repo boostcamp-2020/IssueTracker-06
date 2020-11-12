@@ -14,6 +14,7 @@ interface Props {
 
 const StyledWriteFormWithProfile = styled.div`
   display: flex;
+  flex-grow: 1;
 
   & > img {
     width: 40px;
@@ -22,7 +23,7 @@ const StyledWriteFormWithProfile = styled.div`
   }
 
   & > form {
-    min-width: 740px;
+    width: 100%;
   }
 `;
 

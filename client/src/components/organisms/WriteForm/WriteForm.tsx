@@ -78,7 +78,7 @@ const WriteForm: FunctionComponent<Props> = ({
   onChangeContent,
 }) => (
   <StyledWriteForm>
-    {onChangeTitle && title && (
+    {onChangeTitle && title !== undefined && (
       <Input
         type="text"
         placeholder="Title"

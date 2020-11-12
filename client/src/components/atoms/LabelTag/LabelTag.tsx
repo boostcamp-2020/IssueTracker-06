@@ -24,7 +24,9 @@ const StyledLabelTag = styled.span<StyledProps>`
 `;
 
 const LabelTag: FunctionComponent<Props> = ({ data }) => (
-  <StyledLabelTag bgColor={data.color}>{data.name}</StyledLabelTag>
+  <StyledLabelTag bgColor={data.color} className="label">
+    {data.name}
+  </StyledLabelTag>
 );
 
 export default LabelTag;

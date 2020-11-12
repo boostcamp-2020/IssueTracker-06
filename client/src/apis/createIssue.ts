@@ -1,7 +1,7 @@
 import axios from '@lib/axios';
 import convertIssue from '@lib/convertType';
 import { Issue, User, Comment, Milestone, Label } from '@stores/type';
-import { AddIssueRequest } from '@stores/addIssue';
+import { AddIssueRequest } from '@stores/issue/addIssue';
 
 export interface CreateIssue {
   title: string;
