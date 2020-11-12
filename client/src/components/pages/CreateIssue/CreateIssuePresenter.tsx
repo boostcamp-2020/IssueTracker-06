@@ -1,8 +1,7 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import AppLayout from '@components/organisms/AppLayout';
 import WriteFormWithProfile from '@components/organisms/WriteFormWithProfile';
-import IssueSelectForm from '@components/organisms/IssueSelectForm';
-import { User, Label, Milestone } from '@stores/type';
+import SelectForm from '@components/pages/SelectForm';
 
 import styled from '@themes/styled';
 
@@ -32,12 +31,6 @@ interface Props {
   onChangeTitle?: (e: ChangeEvent<HTMLInputElement>) => void;
   content: string;
   onChangeContent: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  onSelectAssignees: (selected: User) => void;
-  onSelectLabels: (selected: Label) => void;
-  onSelectMilestone: (selected: Milestone) => void;
-  selectedAssignees: User[];
-  selectedLabels: Label[];
-  selectedMilestone?: Milestone[];
 }
 
 const CreateIssuePresenter: FunctionComponent<Props> = ({
@@ -45,12 +38,6 @@ const CreateIssuePresenter: FunctionComponent<Props> = ({
   content,
   onChangeTitle,
   onChangeContent,
-  onSelectAssignees,
-  onSelectLabels,
-  onSelectMilestone,
-  selectedAssignees,
-  selectedLabels,
-  selectedMilestone,
 }) => {
   return (
     <AppLayout>
@@ -63,27 +50,7 @@ const CreateIssuePresenter: FunctionComponent<Props> = ({
           onChangeTitle={onChangeTitle}
         />
         <div>
-          <IssueSelectForm
-            title="Assignees"
-            emptyMessage="No one—assign yourself"
-            optionHeader="Assign up to 10 people to this issue"
-            onSelect={onSelectAssignees as any}
-            selectedItems={selectedAssignees}
-          />
-          <IssueSelectForm
-            title="Labels"
-            emptyMessage="None yet"
-            optionHeader="Apply labels to this issue"
-            onSelect={onSelectLabels as any}
-            selectedItems={selectedLabels}
-          />
-          <IssueSelectForm
-            title="Milestone"
-            emptyMessage="No milestone"
-            optionHeader="Set milestone"
-            onSelect={onSelectMilestone as any}
-            selectedItems={selectedMilestone}
-          />
+          <SelectForm />
         </div>
       </StyledSection>
     </AppLayout>
