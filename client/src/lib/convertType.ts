@@ -1,13 +1,5 @@
 import { IssueWithoutId } from '@stores/type';
 
-interface Issue {
-  title: string;
-  content: string;
-  milestoneId?: number;
-  labelIds?: number[];
-  assigneeIds?: number[];
-}
-
 const convertIssue = (issue: IssueWithoutId): Issue => {
   const milestoneId = issue.Milestone?.id;
   const labelIds = issue.Labels.map((label) => label.id);
@@ -18,6 +10,23 @@ const convertIssue = (issue: IssueWithoutId): Issue => {
     milestoneId,
     labelIds,
     assigneeIds,
+  };
+  return newTypeIssue;
+};
+
+export const convertSelectedIssue = (issue: any): Issue => {
+  const { id, title, content } = issue;
+
+  const newTypeIssue = {
+    id,
+    title,
+    content,
+    labels: issue.Labels,
+    assignees: issue.Assignee,
+    comments: issue.Comments,
+    milestone: issue.Milestone,
+    user: issue.User,
+    isOpen: issue.is_open,
   };
   return newTypeIssue;
 };
