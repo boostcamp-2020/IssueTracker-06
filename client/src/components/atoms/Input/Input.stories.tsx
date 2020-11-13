@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { text } from '@storybook/addon-knobs';
+
+import useChange from '@hooks/useChange';
+
 import Input from './Input';
 
 export default {
@@ -7,17 +10,15 @@ export default {
   title: 'Atoms/Input',
 };
 export const Default = () => {
-  const [value, setValue] = useState('');
+  const [value, , onChangeValue] = useChange<HTMLInputElement>('');
   const placeholder = text('placeholder', 'Title');
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
   const type = text('type', 'text');
+
   return (
     <Input
       value={value}
       placeholder={placeholder}
-      onChange={onChange}
+      onChange={onChangeValue}
       type={type}
     />
   );

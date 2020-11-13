@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
-import { Warning } from '@components/atoms/icons';
+import { WarningIcon } from '@components/atoms/icons';
+import BoldText from '@components/atoms/BoldText';
 
 interface Props {
-  Icon?: FunctionComponent;
-  content?: string;
+  content: string;
 }
 
 const StyledDiv = styled.div`
@@ -15,23 +15,19 @@ const StyledDiv = styled.div`
     fill: ${({ theme }) => theme.palette.SECONDARY};
     margin: 8px 4px;
   }
-`;
-
-const StyledH3 = styled.h3`
-  color: ${({ theme }) => theme.palette.PRIMARY};
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin: 16px 0;
+  & > span {
+    display: block;
+    font-size: 2rem;
+  }
 `;
 
 const XButton: FunctionComponent<Props> = ({
-  Icon = Warning,
   content = 'No results matched your search.',
 }) => {
   return (
     <StyledDiv>
-      <Icon />
-      <StyledH3>{content}</StyledH3>
+      <WarningIcon />
+      <BoldText value={content} />
     </StyledDiv>
   );
 };

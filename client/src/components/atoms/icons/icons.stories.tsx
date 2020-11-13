@@ -1,9 +1,18 @@
 import React from 'react';
-import { Dropdown, Reset, Warning } from '.';
-import IconMilestone from './IconMilestone';
-import IconSearch from './IconSearch';
-import IconTag from './IconTag';
 import styled from '@emotion/styled';
+
+import {
+  ChangeIcon,
+  DropdownIcon,
+  IssueClosedIcon,
+  IssueOpenedIcon,
+  MilestoneIcon,
+  ResetIcon,
+  SearchIcon,
+  SettingIcon,
+  TagIcon,
+  WarningIcon,
+} from '.';
 
 const StyledIcons = styled.div`
   display: flex;
@@ -24,12 +33,16 @@ export default {
 export const Default = () => {
   return (
     <StyledIcons>
-      <Dropdown />
-      <Reset />
-      <Warning />
-      <IconMilestone />
-      <IconSearch />
-      <IconTag />
+      <ChangeIcon />
+      <DropdownIcon />
+      <IssueClosedIcon />
+      <IssueOpenedIcon />
+      <MilestoneIcon />
+      <ResetIcon />
+      <SearchIcon />
+      <SettingIcon />
+      <TagIcon />
+      <WarningIcon />
     </StyledIcons>
   );
 };

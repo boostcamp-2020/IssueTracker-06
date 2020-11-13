@@ -11,27 +11,29 @@ const StyledTextarea = styled.textarea<StyledProps>`
   resize: vertical;
   height: ${({ textAreaHeight }) => textAreaHeight};
   width: ${({ textAreaWidth }) => textAreaWidth};
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 interface Props {
   placeHolder?: string;
   textAreaHeight: string;
   textAreaWidth: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  value: string;
 }
 
 const Textarea: FunctionComponent<Props> = ({
   placeHolder,
   textAreaHeight,
   textAreaWidth,
+  onChange,
+  value,
 }) => (
   <StyledTextarea
     placeholder={placeHolder}
     textAreaHeight={textAreaHeight}
     textAreaWidth={textAreaWidth}
+    onChange={onChange}
+    value={value}
   />
 );
 

@@ -1,13 +1,16 @@
-import React, { FunctionComponent, ChangeEvent } from 'react';
+import React, { FunctionComponent } from 'react';
 import DatePickerInput from '@components/atoms/DatePickerInput';
 import InputLabel from '@components/atoms/InputLabel';
 
-const onChange = (e: ChangeEvent<HTMLInputElement>) => {};
+interface Props {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-const DatePicker: FunctionComponent = () => (
+const DatePicker: FunctionComponent<Props> = ({ value, onChange }) => (
   <div>
     <InputLabel text="Due date (optional)" />
-    <DatePickerInput onChange={onChange} />
+    <DatePickerInput value={value} onChange={onChange} />
   </div>
 );
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { text } from '@storybook/addon-knobs';
 
-import IconTag from '@components/atoms/icons/IconTag';
+import { TagIcon } from '@/components/atoms/icons';
 import TextWithIcon from './index';
 
 export default {
@@ -12,11 +12,11 @@ export default {
 export const Left = () => {
   const content = text('content', 'default');
 
-  return <TextWithIcon text={content} icon={IconTag} />;
+  return <TextWithIcon text={content} icon={TagIcon} />;
 };
 
 export const Right = () => {
   const content = text('content', 'default');
 
-  return <TextWithIcon text={content} icon={IconTag} align="right" />;
+  return <TextWithIcon text={content} icon={TagIcon} align="right" />;
 };

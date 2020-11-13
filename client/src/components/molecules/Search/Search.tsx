@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
-import IconSearch from '@components/atoms/icons/IconSearch';
+import { SearchIcon } from '@/components/atoms/icons';
 
 interface Props {
   value: string;
@@ -11,9 +11,9 @@ interface Props {
 
 const StyledSearch = styled.div`
   color: ${({ theme }) => theme.palette.SECONDARY};
+  position: relative;
 
   & > input {
-    position: relative;
     width: 100%;
     font-size: 1rem;
     background-color: ${({ theme }) => theme.palette.BG_COLOR01};
@@ -52,7 +52,7 @@ const Search: FunctionComponent<Props> = ({
       onChange={onChange}
       placeholder={placeholder}
     />
-    <IconSearch />
+    <SearchIcon />
   </StyledSearch>
 );
 

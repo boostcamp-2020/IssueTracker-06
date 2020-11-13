@@ -2,13 +2,14 @@ import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
 import TextWithIcon from '@components/molecules/TextWithIcon';
-import IconTag from '@components/atoms/icons/IconTag';
-import IconMilestone from '@components/atoms/icons/IconMilestone';
+import { TagIcon, MilestoneIcon } from '@/components/atoms/icons';
 import { ToggleType } from '.';
 
 interface Props {
-  focus: ToggleType;
+  focus?: ToggleType;
   onClickToggle: (clickedToggle: ToggleType) => void;
+  labelCount?: number;
+  milestoneCount?: number;
 }
 
 const StyledLabelMilestoneToggle = styled.nav`
@@ -22,6 +23,10 @@ const StyledLabelMilestoneToggle = styled.nav`
   & > span {
     padding: 8px 16px;
     transition: background 0.5s;
+
+    &:first-child {
+      border-right: 1px solid ${({ theme }) => theme.palette.BORDER_COLOR};
+    }
 
     &.focus {
       background-color: ${({ theme }) => theme.palette.LINK_BLUE};
@@ -37,19 +42,23 @@ const StyledLabelMilestoneToggle = styled.nav`
 const LabelMilestoneToggle: FunctionComponent<Props> = ({
   focus,
   onClickToggle,
+  labelCount,
+  milestoneCount,
 }) => (
   <StyledLabelMilestoneToggle>
     <TextWithIcon
-      icon={IconTag}
+      icon={TagIcon}
       text="Labels"
       onClick={() => onClickToggle('label')}
       className={focus === 'label' ? 'focus' : ''}
+      count={labelCount}
     />
     <TextWithIcon
-      icon={IconMilestone}
+      icon={MilestoneIcon}
       text="Milestones"
       onClick={() => onClickToggle('milestone')}
       className={focus === 'milestone' ? 'focus' : ''}
+      count={milestoneCount}
     />
   </StyledLabelMilestoneToggle>
 );

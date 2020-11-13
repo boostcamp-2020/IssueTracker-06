@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 
-const StyledImg = styled.img`
+export const StyledImg = styled.img`
   display: inline-block;
   margin-right: 0.5rem;
   border-radius: 50%;
@@ -13,10 +13,10 @@ const StyledImg = styled.img`
 
 interface Props {
   src: string;
-  alt: string;
+  alt?: string;
 }
 
-const Img: FunctionComponent<Props> = ({ src, alt }) => (
+const Img: FunctionComponent<Props> = ({ src, alt = 'user' }) => (
   <StyledImg src={src} alt={alt} />
 );
 

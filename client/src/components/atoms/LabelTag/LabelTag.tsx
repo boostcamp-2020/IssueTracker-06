@@ -1,6 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@themes/styled';
 import getTextColorByBGColor from '@lib/getTextColorByBGColor';
+import { Label } from '.';
+
+interface Props {
+  data: Label;
+}
 
 interface StyledProps {
   bgColor: string;
@@ -9,22 +14,18 @@ interface StyledProps {
 const StyledLabelTag = styled.span<StyledProps>`
   display: inline-block;
   vertical-align: middle;
-  padding: 0.05rem 0.8rem;
+  padding: 0.03rem 0.7rem;
   font-size: 0.7rem;
   font-weight: 500;
   border-radius: 0.7rem;
   line-height: 20px;
   color: ${({ bgColor }) => getTextColorByBGColor(bgColor)};
+  background-color: ${({ bgColor }) => bgColor};
 `;
 
-interface Props {
-  text: string;
-  bgColor: string;
-}
-
-const LabelTag: FunctionComponent<Props> = ({ text, bgColor }) => (
-  <StyledLabelTag style={{ backgroundColor: bgColor }} bgColor={bgColor}>
-    {text}
+const LabelTag: FunctionComponent<Props> = ({ data }) => (
+  <StyledLabelTag bgColor={data.color} className="label">
+    {data.name}
   </StyledLabelTag>
 );
 
