@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import AppLayout from '@components/organisms/AppLayout';
-import { Issue } from '@stores/type';
+import { Issue, User, Label, Milestone } from '@stores/type';
 import styled from '@themes/styled';
 import Button from '@components/atoms/Button';
 import BoldText from '@components/atoms/BoldText';
@@ -25,15 +25,29 @@ interface Props {
   onChangeIssueTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
   contentEdit: boolean;
   onClickContentEdit: () => void;
+  selectedAssignees: User[];
+  selectedLabels: Label[];
+  selectedMilestone?: Milestone[];
 }
 
-const StyledContainer = styled.div`
-  padding: 32px;
+const StyledContainer = styled.section`
+  margin: 3% 10% 0 10%;
 
   .main-content {
     width: 100%;
     display: flex;
-    flex-direction: row;
+
+    & > div:nth-child(2) {
+      margin-left: 5rem;
+      width: 290px;
+      ul {
+        top: 1.5rem;
+        z-index: 1;
+        li {
+          padding: 8px 20px;
+        }
+      }
+    }
   }
 
   .issue-contents {
@@ -144,6 +158,9 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
   onChangeIssueTitle,
   contentEdit,
   onClickContentEdit,
+  selectedAssignees,
+  selectedLabels,
+  selectedMilestone,
 }) => {
   return (
     <>
@@ -243,7 +260,11 @@ const IssueDetailPresenter: FunctionComponent<Props> = ({
               />
             </div>
             <div>
-              <SelectForm />
+              <SelectForm
+                assignees={selectedAssignees}
+                labels={selectedLabels}
+                milestone={selectedMilestone || []}
+              />
             </div>
           </div>
         </StyledContainer>

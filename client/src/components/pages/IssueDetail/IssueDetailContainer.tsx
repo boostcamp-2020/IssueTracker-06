@@ -3,6 +3,7 @@ import { match } from 'react-router-dom';
 import getIssue from '@apis/getIssue';
 import useChange from '@hooks/useChange';
 import useDisplay from '@hooks/useDisplay';
+import { User, Label, Milestone } from '@stores/type';
 import IssueDetailPresenter from './IssueDetailPresenter';
 
 interface DetailParams {
@@ -37,6 +38,10 @@ const IssueDetailContainer: FunctionComponent<DetailProps> = ({
     '',
   );
 
+  const [selectedAssignees, setSelectedAssignees] = useState<User[]>([]);
+  const [selectedLabels, setSelectedLabels] = useState<Label[]>([]);
+  const [selectedMilestone, setSelectedMilestone] = useState<Milestone[]>([]);
+
   useEffect(() => {
     (async () => {
       const issueId = parseInt(propsMatch.params.id, 10);
@@ -44,6 +49,9 @@ const IssueDetailContainer: FunctionComponent<DetailProps> = ({
       setIssue(currentIssue);
       setTitle(currentIssue.title);
       setContent(currentIssue.content);
+      setSelectedAssignees(currentIssue.Assignee);
+      setSelectedLabels(currentIssue.Labels);
+      setSelectedMilestone([currentIssue.Milestone] || []);
     })();
   }, []);
 
@@ -61,6 +69,9 @@ const IssueDetailContainer: FunctionComponent<DetailProps> = ({
       onChangeIssueTitle={onChangeIssueTitle}
       contentEdit={contentEdit}
       onClickContentEdit={onClickContentEdit}
+      selectedAssignees={selectedAssignees}
+      selectedLabels={selectedLabels}
+      selectedMilestone={selectedMilestone}
     />
   ) : (
     <></>
