@@ -20,8 +20,6 @@ final class LabelView: UILabel {
         label.backgroundColor = color
         label.clipsToBounds = true
         label.cornerRadius = Metric.cornerRadius
-        label.borderColor = .gray
-        label.borderWidth = 0.5
         label.font = label.font.withSize(Metric.fontSize)
         return label
     }
