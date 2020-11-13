@@ -21,13 +21,10 @@ final class IssueDetailCollectionViewHeader: UICollectionReusableView {
         titleLabel.text = issue.title
         issueNumberLabel.text = "#\(issue.id)"
         issueStateView.updateState(enabled: issue.isOpen)
-        // 이미지 추가
-        guard let url = URL(string: issue.user.profile) else { return }
-        do {
-            let data = try Data(contentsOf: url)
-            profileImageView.image = UIImage(data: data)
-        } catch {
-            return
-        }
+    }
+    
+    func configureImage(with url: String) {
+        let image = UIImage(named: url)
+        profileImageView.image = image
     }
 }

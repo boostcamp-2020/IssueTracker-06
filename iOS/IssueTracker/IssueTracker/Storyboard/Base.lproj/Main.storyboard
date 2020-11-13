@@ -443,7 +443,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Edit"/>
                                         <connections>
-                                            <action selector="assigneeEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="4IY-AB-5wd"/>
+                                            <action selector="assigneeEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="JMk-er-Dim"/>
                                         </connections>
                                     </button>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMy-jR-Mw6">
@@ -620,7 +620,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Edit"/>
                                         <connections>
-                                            <action selector="labelEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="1bI-PZ-dRE"/>
+                                            <action selector="labelEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="Pw4-9G-v8g"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgj-8g-CqL">
@@ -628,7 +628,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Edit"/>
                                         <connections>
-                                            <action selector="milestoneEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="gn1-fz-vjD"/>
+                                            <action selector="milestoneEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="7Fj-uo-2Lk"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -694,8 +694,8 @@
                                     <outlet property="assigneeStackView" destination="C7Y-ZN-XJJ" id="1df-UW-5jX"/>
                                     <outlet property="issueStatusButton" destination="nA6-wW-g90" id="OdE-qB-UdD"/>
                                     <outlet property="labelStackView" destination="xnK-dT-kvM" id="93Y-AY-F8s"/>
-                                    <outlet property="milestoneProgressView" destination="O2z-SE-ecN" id="NTk-vv-xDE"/>
-                                    <outlet property="milestoneTitleLabel" destination="rde-0e-fvz" id="C0x-6E-K7z"/>
+                                    <outlet property="milestoneProgressView" destination="O2z-SE-ecN" id="SW7-rC-Hkg"/>
+                                    <outlet property="milestoneTitleLabel" destination="rde-0e-fvz" id="egS-g9-H3L"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -987,7 +987,11 @@
                                 <action selector="CancelPressed:" destination="oW6-ue-0aA" id="uQ6-n9-Hx1"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="VS2-MB-IvK"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="VS2-MB-IvK">
+                            <connections>
+                                <action selector="doneButtonTouched:" destination="oW6-ue-0aA" id="2L1-CU-ncr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M3i-Vz-zOu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

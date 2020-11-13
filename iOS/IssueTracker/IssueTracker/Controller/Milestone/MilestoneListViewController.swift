@@ -16,9 +16,17 @@ class MilestoneListViewController: UIViewController {
 
     @IBOutlet weak var milestoneCollectionView: UICollectionView!
     @IBOutlet weak var navigationBar: UINavigationBar!
-    private var milestones: Milestones?
     private var selectedIndexPath: IndexPath?
-    private var milestoneIssuesMap = [Int: Issues]()
+    private var milestones: Milestones? {
+        didSet {
+            milestoneCollectionView.reloadData()
+        }
+    }
+    private var milestoneIssuesMap = [Int: Issues]() {
+        didSet {
+            milestoneCollectionView.reloadData()
+        }
+    }
     
     private var selectedMilestone: Milestone? {
         guard let indexPath = selectedIndexPath else { return nil }
@@ -28,53 +36,10 @@ class MilestoneListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         removeNavigationBarUnderLine()
-        configureMilestonesData()
-    }
-    
-    private func removeNavigationBarUnderLine() {
-        navigationBar.shadowImage = UIImage()
-    }
-    
-    private func configureMilestonesData() {
-        MilestoneDataManager().get(successHandler: { [weak self] in
-            self?.milestones = $0
-            guard let data = self?.milestones else { return }
+        configureRefreshControl()
+        configureMilestonesData() { [weak self] in
             self?.configureMilestoneCollectionView()
-            
-            data.milestones.forEach { [weak self] milestone in
-                self?.configureIssuesData(milestoneName: milestone.name) { [weak self] issues in
-                    self?.milestoneIssuesMap[milestone.id] = issues
-                    self?.milestoneCollectionView.reloadData()
-                }
-            }
-        })
-    }
-    
-    private func configureMilestoneCollectionView() {
-        milestoneCollectionView.delegate = self
-        milestoneCollectionView.dataSource = self
-        registerNib()
-    }
-    
-    private func registerNib() {
-        let nib = UINib(nibName: Constant.milestoneListCollectionViewCell, bundle: nil)
-        milestoneCollectionView.register(nib, forCellWithReuseIdentifier: Constant.milestoneListCell)
-    }
-    
-    private func configureIssuesData(milestoneName: String, completionHandler: ((Issues?) -> Void)? = nil) {
-        let processedName = milestoneName.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-        MilestoneDataManager().getIssues(name: processedName, successHandler: {
-            completionHandler?($0)
-        })
-    }
-    
-    private func configurePresentedViewController(_ viewController: MilestoneAddViewController) {
-        viewController.updateMilestoneDelegate = self
-        guard let snapshot = UIApplication.snapshotView else { return }
-        viewController.snapshot(snapshot)
-        guard let milestone = selectedMilestone else { return }
-        viewController.milestone(milestone)
-        selectedIndexPath = nil
+        }
     }
     
     @IBSegueAction private func presentAddViewController(_ coder: NSCoder) -> MilestoneAddViewController? {
@@ -92,16 +57,77 @@ class MilestoneListViewController: UIViewController {
     }
 }
 
+// MARK: configure
+private extension MilestoneListViewController {
+    
+    func removeNavigationBarUnderLine() {
+        navigationBar.shadowImage = UIImage()
+    }
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshIssues), for: .valueChanged)
+        milestoneCollectionView.refreshControl = refreshControl
+    }
+    
+    @objc func refreshIssues(_ refresh: UIRefreshControl) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            refresh.endRefreshing()
+        })
+        configureMilestonesData() {
+            refresh.endRefreshing()
+        }
+    }
+    
+    func configureMilestonesData(completionHandler: (() -> Void)? = nil) {
+        MilestoneDataManager().get(successHandler: { [weak self] in
+            self?.milestones = $0
+            guard let data = self?.milestones else { return }
+            completionHandler?()
+            
+            data.milestones.forEach { [weak self] milestone in
+                self?.configureIssuesData(milestoneName: milestone.name) { [weak self] issues in
+                    self?.milestoneIssuesMap[milestone.id] = issues
+                }
+            }
+        })
+    }
+    
+    func configureMilestoneCollectionView() {
+        milestoneCollectionView.delegate = self
+        milestoneCollectionView.dataSource = self
+        registerNib()
+    }
+    
+    func registerNib() {
+        let nib = UINib(nibName: Constant.milestoneListCollectionViewCell, bundle: nil)
+        milestoneCollectionView.register(nib, forCellWithReuseIdentifier: Constant.milestoneListCell)
+    }
+    
+    func configureIssuesData(milestoneName: String, completionHandler: ((Issues?) -> Void)? = nil) {
+        MilestoneDataManager().getIssues(name: milestoneName, successHandler: {
+            completionHandler?($0)
+        })
+    }
+    
+    func configurePresentedViewController(_ viewController: MilestoneAddViewController) {
+        viewController.updateMilestoneDelegate = self
+        guard let snapshot = UIApplication.snapshotView else { return }
+        viewController.snapshot(snapshot)
+        guard let milestone = selectedMilestone else { return }
+        viewController.milestone(milestone)
+        selectedIndexPath = nil
+    }
+}
+
 extension MilestoneListViewController: UpdateMilestoneDelegate {
     
     func add(milestone: Milestone) {
         milestones?.add(milestone: milestone)
-        milestoneCollectionView.reloadData()
     }
     
     func update(milestone: Milestone) {
         milestones?.replace(milestone: milestone)
-        milestoneCollectionView.reloadData()
     }
 }
 

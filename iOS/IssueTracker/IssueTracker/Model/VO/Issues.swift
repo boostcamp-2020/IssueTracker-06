@@ -26,6 +26,10 @@ struct Issues {
     var id: [Int] {
         issues.map { $0.id }
     }
+    
+    var reversed: Issues {
+        Issues(issues: issues.reversed())
+    }
 
     init() {
         issues = []

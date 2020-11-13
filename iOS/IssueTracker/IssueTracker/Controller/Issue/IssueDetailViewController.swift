@@ -11,87 +11,26 @@ final class IssueDetailViewController: UIViewController {
 
     @IBOutlet private weak var issueDetailCollectionView: UICollectionView!
     @IBOutlet private weak var bottomDetailView: BottomDetailView!
+    private let dataManager = DetailIssueDataManager()
     private var issueId: Int?
-    private var issue: DetailIssue?
+    private var issue: DetailIssue? {
+        didSet {
+            issueDetailCollectionView.reloadData()
+            configureBottomViewData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureIssueData()
+        configureIssueData() { [weak self] in
+            self?.configureIssueDetailCollectionView()
+        }
+        configureRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureBottomViewLayout()
-        configureIssueData()
-        issueDetailCollectionView.reloadData()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
-    // 버튼 상태 변경 추가
-    private func configureIssueStatusButton(issue: DetailIssue) {
-        if issue.isOpen == 0 {
-            bottomDetailView.issueStatusButton.setTitle(Constant.ReopenIssueStatus, for: .normal)
-            bottomDetailView.issueStatusButton.setTitleColor(.none, for: .normal)
-        }
-    }
-    
-    private func configureIssueData() {
-        guard let id = issueId else { return }
-        DetailIssueDataManager().get(id: id, successHandler: { [weak self] in
-            guard let issue = $0 else { return }
-            self?.issue = issue
-            self?.configureIssueDetailCollectionView()
-            self?.configureBottomViewData()
-            // 버튼 상태 변경 추가
-            self?.configureIssueStatusButton(issue: issue)
-        })
-    }
-    
-    private func configureIssueDetailCollectionView() {
-        issueDetailCollectionView.delegate = self
-        issueDetailCollectionView.dataSource = self
-    }
-
-    private func configureBottomViewLayout() {
-        bottomDetailView.frame.origin.y = view.frame.height - Metric.bottomDetailViewHeight
-        bottomDetailView.frame.size = CGSize(width: view.frame.width, height: view.frame.height - 10)
-        bottomDetailView.addGestureRecognizer(swipe(direction: .up, action: #selector(swipeUp)))
-        bottomDetailView.addGestureRecognizer(swipe(direction: .down, action: #selector(swipeDown)))
-    }
-
-    private func configureBottomViewData() {
-        guard let issue = issue else { return }
-        bottomDetailView.configureView(issue: issue)
-    }
-
-    private func swipe(
-        direction: UISwipeGestureRecognizer.Direction,
-        action: Selector) -> UISwipeGestureRecognizer {
-        let swipe = UISwipeGestureRecognizer(
-            target: self,
-            action: action
-        )
-        swipe.direction = direction
-        return swipe
-    }
-
-    @objc private func swipeUp() {
-        UIView.animate(withDuration: AnimationDuration.swipeUp, animations: { [weak self] in
-            guard let currentViewHeight = self?.view.frame.height,
-                  let bottomViewHeight = self?.bottomDetailView.frame.height else { return }
-            let nextY = currentViewHeight - bottomViewHeight
-            self?.bottomDetailView.frame.origin.y = nextY
-        })
-    }
-
-    @objc private func swipeDown() {
-        UIView.animate(withDuration: AnimationDuration.swipeDown, animations: { [weak self] in
-            guard let currentViewHeight = self?.view.frame.height else { return }
-            self?.bottomDetailView.frame.origin.y = currentViewHeight - Metric.bottomDetailViewHeight
-        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,16 +45,218 @@ final class IssueDetailViewController: UIViewController {
     
     // 이슈 상태 버튼 액션 추가
     // 이슈 상태 변경
-    @IBAction func issueStateButtonPressed() {
-        guard let id = issueId, let issue = issue else {
+    @IBAction private func issueStateButtonPressed() {
+        guard let id = issueId,
+              let issueStatus = issue?.isOpen
+        else {
             return
         }
-        let issueStatus = (issue.isOpen == 0) ? true : false
         DetailIssueDataManager().patchIssueStatus(
             id: id,
-            body: DetailIssue.IssueStatus(isOpen: issueStatus),
-            successHandler: { response in
-        }, errorHandler: nil)
+            body: DetailIssue.IssueStatus(isOpen: !issueStatus),
+            successHandler: { [weak self] _ in
+                self?.issue?.updateState(isOpen: !issueStatus)
+            }
+        )
+    }
+}
+
+// MARK: configure
+private extension IssueDetailViewController {
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshIssues), for: .valueChanged)
+        issueDetailCollectionView.refreshControl = refreshControl
+    }
+    
+    @objc func refreshIssues(_ refresh: UIRefreshControl) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            refresh.endRefreshing()
+        })
+        configureIssueData() {
+            refresh.endRefreshing()
+        }
+    }
+    
+    func configureIssueData(completionHandler: (() -> Void)? = nil) {
+        defer {
+            completionHandler?()
+        }
+        guard let id = issueId else { return }
+        dataManager.get(id: id, successHandler: { [weak self] in
+            guard let issue = $0 else { return }
+            self?.issue = issue
+            guard let milestoneName = issue.milestone?.name else { return }
+            self?.configureMilestoneIssues(milestoneName: milestoneName)
+        })
+    }
+    
+    func configureMilestoneIssues(milestoneName: String) {
+        dataManager.getMilestoneIssues(
+            name: milestoneName,
+            successHandler: { [weak self] issues in
+                guard let issues = issues else { return }
+                self?.configureBottomViewMilestone(issues: issues)
+            }
+        )
+    }
+    
+    func configureIssueDetailCollectionView() {
+        issueDetailCollectionView.delegate = self
+        issueDetailCollectionView.dataSource = self
+    }
+
+    func configureBottomViewLayout() {
+        bottomDetailView.frame.origin.y = view.frame.height - Metric.bottomDetailViewHeight
+        bottomDetailView.frame.size = CGSize(width: view.frame.width, height: view.frame.height - 10)
+        bottomDetailView.addGestureRecognizer(swipe(direction: .up, action: #selector(swipeUp)))
+        bottomDetailView.addGestureRecognizer(swipe(direction: .down, action: #selector(swipeDown)))
+    }
+
+    func configureBottomViewData() {
+        guard let issue = issue else { return }
+        bottomDetailView.configureView(issue: issue)
+    }
+    
+    func configureBottomViewMilestone(issues: Issues) {
+        bottomDetailView.configureMilestoneView(issues: issues)
+    }
+}
+
+// MARK: swipe
+private extension IssueDetailViewController {
+    
+    func swipe(
+        direction: UISwipeGestureRecognizer.Direction,
+        action: Selector) -> UISwipeGestureRecognizer {
+        let swipe = UISwipeGestureRecognizer(
+            target: self,
+            action: action
+        )
+        swipe.direction = direction
+        return swipe
+    }
+
+    @objc func swipeUp() {
+        UIView.animate(withDuration: AnimationDuration.swipeUp, animations: { [weak self] in
+            guard let currentViewHeight = self?.view.frame.height,
+                  let bottomViewHeight = self?.bottomDetailView.frame.height else { return }
+            let nextY = currentViewHeight - bottomViewHeight
+            self?.bottomDetailView.frame.origin.y = nextY
+        })
+    }
+
+    @objc func swipeDown() {
+        UIView.animate(withDuration: AnimationDuration.swipeDown, animations: { [weak self] in
+            guard let currentViewHeight = self?.view.frame.height else { return }
+            self?.bottomDetailView.frame.origin.y = currentViewHeight - Metric.bottomDetailViewHeight
+        })
+    }
+}
+
+// MARK: up, down 버튼 클릭시 해당 셀로 포커스
+private extension IssueDetailViewController {
+    
+    func currentIndexPath() -> IndexPath? {
+        issueDetailCollectionView.indexPathForItem(at: focusCurrentCell())
+    }
+    
+    func focusCurrentCell() -> CGPoint{
+        var visibleRect = CGRect()
+        visibleRect.origin = issueDetailCollectionView.contentOffset
+        visibleRect.size = issueDetailCollectionView.bounds.size
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        return visiblePoint
+    }
+    
+    @IBAction func cellFocusUp() {
+        guard let indexPath = currentIndexPath() else { return }
+        let nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        issueDetailCollectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
+    }
+    
+    @IBAction func cellFocusDown() {
+        guard let indexPath = currentIndexPath() else { return }
+        let nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+        issueDetailCollectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
+    }
+}
+
+// MARK: 하단뷰 편집화면 띄우기
+private extension IssueDetailViewController {
+    
+    @IBAction func assigneeEditButtonTouched(_ sender: UIButton) {
+        guard let snapshotView = UIApplication.snapshotView else { return }
+        let selectViewController = SelectViewController(dataType: .assignee)
+        selectViewController.setBackground(view: snapshotView)
+        selectViewController.modalPresentationStyle = .fullScreen
+        selectViewController.selectedHandler = updateIssueAssignee
+        present(selectViewController, animated: false)
+    }
+    
+    @IBAction func labelEditButtonTouched(_ sender: UIButton) {
+        guard let snapshotView = UIApplication.snapshotView else { return }
+        let selectViewController = SelectViewController(dataType: .label)
+        selectViewController.setBackground(view: snapshotView)
+        selectViewController.modalPresentationStyle = .fullScreen
+        selectViewController.selectedHandler = updateIssueLabel
+        present(selectViewController, animated: false)
+    }
+    
+    @IBAction func milestoneEditButtonTouched(_ sender: UIButton) {
+        guard let snapshotView = UIApplication.snapshotView else { return }
+        let selectViewController = SelectViewController(dataType: .milestone)
+        selectViewController.setBackground(view: snapshotView)
+        selectViewController.modalPresentationStyle = .fullScreen
+        selectViewController.selectedHandler = updateIssueMilestone
+        present(selectViewController, animated: false)
+    }
+}
+
+// MARK: 하단뷰 데이터 변경
+private extension IssueDetailViewController {
+    
+    func updateIssueAssignee(selectedData: Codable) {
+        guard let assignees = selectedData as? [User],
+              let issue = issue
+        else {
+            return
+        }
+        dataManager.updateAssignee(
+            id: issue.id,
+            targets: assignees.map { $0.id },
+            successHandler: { _ in
+            }
+        )
+    }
+    
+    func updateIssueLabel(selectedData: Codable) {
+        guard let labels = selectedData as? Labels,
+              let issue = issue
+        else {
+            return
+        }
+        dataManager.updateLabel(
+            id: issue.id,
+            targets: labels.id,
+            successHandler: { _ in
+            }
+        )
+    }
+    
+    func updateIssueMilestone(selectedData: Codable) {
+        guard let milestone = selectedData as? Milestone,
+              let issue = issue
+        else {
+            return
+        }
+        dataManager.updateMilestone(
+            id: issue.id,
+            target: milestone.id,
+            successHandler: { _ in
+            }
+        )
     }
 }
 
@@ -144,6 +285,9 @@ extension IssueDetailViewController: UICollectionViewDataSource {
             return cell
         }
         issueDetailCollectionViewCell.configureCell(with: comment)
+        ImageDataManager().get(id: comment.user.id, successHandler: {
+            issueDetailCollectionViewCell.configureImage(with: $0)
+        })
         NSLayoutConstraint.activate([
             issueDetailCollectionViewCell.widthAnchor.constraint(equalToConstant: view.bounds.width)
         ])
@@ -165,32 +309,10 @@ extension IssueDetailViewController: UICollectionViewDataSource {
             return header
         }
         issueDetailCollectionViewHeader.configureHeader(issue: issue)
+        ImageDataManager().get(id: issue.user.id, successHandler: {
+            issueDetailCollectionViewHeader.configureImage(with: $0)
+        })
         return header
-    }
-    
-    // up, down 버튼 클릭시 해당 셀로 포커스
-    private func focusCurrentCell() -> CGPoint{
-        var visibleRect = CGRect()
-        visibleRect.origin = issueDetailCollectionView.contentOffset
-        visibleRect.size = issueDetailCollectionView.bounds.size
-        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        return visiblePoint
-    }
-    
-    @IBAction func cellFocusUp() {
-        guard let indexPath = issueDetailCollectionView.indexPathForItem(
-                at: focusCurrentCell()
-        ) else { return }
-        let nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
-        issueDetailCollectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
-    }
-    
-    @IBAction func cellFocusDown() {
-        guard let indexPath = issueDetailCollectionView.indexPathForItem(
-                at: focusCurrentCell()
-        ) else { return }
-        let nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
-        issueDetailCollectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
     }
 }
 
@@ -217,7 +339,7 @@ extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension IssueDetailViewController: IssueListViewControllerDelegate {
- 
+    
     func issueId(_ id: Int) {
         issueId = id
     }
@@ -231,7 +353,6 @@ private extension IssueDetailViewController {
         static let blank: String = ""
         static let modifyMode: String = "modify"
         static let commentAddSegue: String = "CommentAddSegue"
-        static let ReopenIssueStatus: String = "Reopen issue"
     }
 
     enum Metric {

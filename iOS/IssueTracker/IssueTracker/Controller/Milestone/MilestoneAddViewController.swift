@@ -72,12 +72,20 @@ extension MilestoneAddViewController: AddViewDelegate {
         MilestoneDataManager().post(body: milestone, successHandler: { [weak self] _ in
             self?.updateMilestoneDelegate?.add(milestone: milestone)
             self?.dismiss(animated: false, completion: nil)
+        },
+        errorHandler: { [weak self] in
+            print($0)
+            self?.dismiss(animated: false, completion: nil)
         })
     }
     
     private func update(milestone: Milestone) {
         MilestoneDataManager().put(body: milestone, successHandler: { [weak self] _ in
             self?.updateMilestoneDelegate?.update(milestone: milestone)
+            self?.dismiss(animated: false, completion: nil)
+        },
+        errorHandler: { [weak self] in
+            print($0)
             self?.dismiss(animated: false, completion: nil)
         })
     }

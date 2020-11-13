@@ -80,9 +80,10 @@ struct HTTPServiceHelper {
             }
         }
     }
-      
-    func delete(
+
+    func delete<T: Codable>(
         url: URL,
+        requestType: T.Type,
         successHandler: ((Bool) -> Void)? = nil,
         errorHandler: ((Error) -> Void)? = nil) {
         AF.request(url, method: .delete).responseDecodable { (response: AFDataResponse<HTTPResponseData>) in

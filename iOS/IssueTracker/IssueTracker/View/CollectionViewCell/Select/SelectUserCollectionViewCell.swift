@@ -11,6 +11,7 @@ class SelectUserCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var checkImageView: UIImageView!
+    @IBOutlet private weak var userImageVIew: UIImageView!
     
     func configureCell(with user: User) {
         userNameLabel.text = user.name
@@ -18,5 +19,9 @@ class SelectUserCollectionViewCell: UICollectionViewCell {
     
     func updateCheckState(isSelected: Bool) {
         checkImageView.isHidden = !isSelected
+    }
+    
+    func configureImage(with url: String) {
+        userImageVIew.image = UIImage(named: url)
     }
 }

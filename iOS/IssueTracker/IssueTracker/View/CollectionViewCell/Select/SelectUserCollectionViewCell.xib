@@ -70,6 +70,7 @@
             </constraints>
             <connections>
                 <outlet property="checkImageView" destination="a6t-9S-7Ky" id="sG3-qq-ZXH"/>
+                <outlet property="userImageVIew" destination="puB-Im-p5x" id="Bmd-du-Qr3"/>
                 <outlet property="userNameLabel" destination="NaK-I9-bXd" id="WVO-Kh-8pe"/>
             </connections>
             <point key="canvasLocation" x="-17" y="67"/>

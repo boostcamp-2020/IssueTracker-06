@@ -67,7 +67,7 @@ extension LabelListDataManager {
 private extension LabelListDataManager {
     
     enum IssueTrackerURL {
-        static let label: String = "http://issue-tracker.cf/api/label"
+        static let label: String = "https://issue-tracker.cf/api/label"
         static let labels: URL? = URL(string: "http://issue-tracker.cf/api/labels")
     }
 }

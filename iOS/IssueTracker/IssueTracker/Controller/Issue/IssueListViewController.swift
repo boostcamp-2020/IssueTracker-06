@@ -10,6 +10,7 @@ import UIKit
 protocol IssueListViewControllerDelegate: class {
     func issueId(_ id: Int)
 }
+
 // 필터 화면 선택 추가
 protocol IssuesFilterDelegate {
     func issues(_ issues: Issues)
@@ -80,7 +81,7 @@ final class IssueListViewController: UIViewController {
         tapGestureRecognizer.cancelsTouchesInView = false
         return tapGestureRecognizer
     }()
-        
+    
     private lazy var keyboardHide: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGestureRecognizer.numberOfTouchesRequired = 1
@@ -91,8 +92,11 @@ final class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureRefreshControl()
         configureLeftBarButton()
-        configureIssuesData()
+        configureIssuesData() { [weak self] in
+            self?.configureIssueListCollectionView()
+        }
         configureBottomGuideline()
         removeNavigationBarUnderLine()
         normalModeTapGesture.delegate = self
@@ -118,7 +122,11 @@ final class IssueListViewController: UIViewController {
         let titleText = isEditMode ? "\(selectedIssues.count.selectedCountText)" : Constant.issue
         titleLabel.text = titleText
     }
-
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     @IBAction private func rightBarButtonTouched(_ sender: UIBarButtonItem) {
         mode = mode.switchMode
     }
@@ -135,7 +143,7 @@ final class IssueListViewController: UIViewController {
     }
     
     // 필터 화면 선택 추가
-    @IBSegueAction func presentFilterSelectViewController(_ coder: NSCoder) -> FilterSelectViewController? {
+    @IBSegueAction private func presentFilterSelectViewController(_ coder: NSCoder) -> FilterSelectViewController? {
         let filterSelectViewController = FilterSelectViewController(coder: coder)
         guard let issues = issues else {
             return filterSelectViewController
@@ -168,11 +176,11 @@ extension IssueListViewController: UIGestureRecognizerDelegate {
 private extension IssueListViewController {
     
     func moveToIssueFilterViewController() {
+        view.endEditing(true)
         performSegue(withIdentifier: Constant.filterSegue, sender: nil)
     }
     
     func moveToIssueDetailViewController() {
-        //키보드 hide 추가
         view.endEditing(true)
         performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
     }
@@ -255,11 +263,6 @@ private extension IssueListViewController {
         selectedIssues = issues
         titleLabel.text = selectedIssues.count.selectedCountText
     }
-    
-    // 키보드 hide 추가
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 
     @IBAction func selectedIssuesCloseButton(_ sender: UIBarButtonItem) {
         issueListDataManager.closeIssues(
@@ -276,15 +279,30 @@ private extension IssueListViewController {
 // MARK: configure
 private extension IssueListViewController {
     
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshIssues), for: .valueChanged)
+        issueListCollectionView.refreshControl = refreshControl
+    }
+    
+    @objc func refreshIssues(_ refresh: UIRefreshControl) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            refresh.endRefreshing()
+        })
+        configureIssuesData() {
+            refresh.endRefreshing()
+        }
+    }
+    
     func configureLeftBarButton() {
         leftBarButton.target = self
         leftBarButton.action = #selector(filterButtonTouched(_:))
     }
     
-    func configureIssuesData() {
+    func configureIssuesData(completionHandler: (() -> Void)? = nil) {
         issueListDataManager.get(successHandler: { [weak self] in
             self?.issues = $0
-            self?.configureIssueListCollectionView()
+            completionHandler?()
         })
     }
 

@@ -4,7 +4,6 @@
 //
 //  Created by 박태희 on 2020/11/11.
 //
-
 import UIKit
 import MarkdownKit
 
@@ -82,7 +81,7 @@ class CommentAddViewController: UIViewController {
         let commentDataManager = CommentDataManager()
         let newComment = Comment.NewComment(content: content, issueId: issueId)
         commentDataManager.post(body: newComment, successHandler: nil, errorHandler: nil)
-        self.navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
 }
@@ -121,4 +120,3 @@ private extension CommentAddViewController {
         static let beginEdting: String = ""
     }
 }
-

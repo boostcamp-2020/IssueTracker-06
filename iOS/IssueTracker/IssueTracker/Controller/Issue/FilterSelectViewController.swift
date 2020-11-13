@@ -4,7 +4,6 @@
 //
 //  Created by 박태희 on 2020/11/02.
 //
-
 import UIKit
 
 class FilterSelectViewController: UIViewController {
@@ -16,8 +15,12 @@ class FilterSelectViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func CancelPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+    @IBAction private func CancelPressed(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction private func doneButtonTouched(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
     }
     
     // 필터 화면 선택 추가

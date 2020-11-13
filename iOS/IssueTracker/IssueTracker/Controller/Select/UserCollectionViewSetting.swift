@@ -43,6 +43,9 @@ extension UserCollectionViewSetting: UICollectionViewDataSource {
             return cell
         }
         selectUserCell.configureCell(with: user)
+        ImageDataManager().get(id: user.id, successHandler: {
+            selectUserCell.configureImage(with: $0)
+        })
         return cell
     }
 }

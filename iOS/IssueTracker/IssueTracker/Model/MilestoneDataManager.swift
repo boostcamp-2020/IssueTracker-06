@@ -107,7 +107,7 @@ extension MilestoneDataManager {
 private extension MilestoneDataManager {
     
     enum IssueTrackerURL {
-        static let milestone: String = "http://issue-tracker.cf/api/milestone"
+        static let milestone: String = "https://issue-tracker.cf/api/milestone"
         static let milestones = URL(string: "http://issue-tracker.cf/api/milestones")
         static let issues: String = "http://issue-tracker.cf/api/issues?milestone="
     }

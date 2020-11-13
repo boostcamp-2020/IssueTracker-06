@@ -104,7 +104,7 @@ private extension IssueListDataManager {
     
     enum IssueTrackerURL {
         static let issues: URL? = URL(string: "http://issue-tracker.cf/api/issues")
-        static let newIssue: URL? = URL(string: "http://issue-tracker.cf/api/issue")
+        static let newIssue: URL? = URL(string: "https://issue-tracker.cf/api/issue")
         static func issue(id: Int) -> String {
             "http://issue-tracker.cf/api/issue/\(id)"
         }

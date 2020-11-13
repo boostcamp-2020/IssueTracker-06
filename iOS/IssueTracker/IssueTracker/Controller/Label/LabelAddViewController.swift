@@ -69,12 +69,16 @@ extension LabelAddViewController: AddViewDelegate {
         LabelListDataManager().post(body: label, successHandler: { [weak self] _ in
             self?.updateLabelDelegate?.add(label: label)
             self?.dismiss(animated: false, completion: nil)
+        }, errorHandler: { [weak self] _ in
+            self?.dismiss(animated: false, completion: nil)
         })
     }
     
     private func update(label: Label) {
         LabelListDataManager().put(body: label, successHandler: { [weak self] _ in
             self?.updateLabelDelegate?.update(label: label)
+            self?.dismiss(animated: false, completion: nil)
+        }, errorHandler: { [weak self] _ in
             self?.dismiss(animated: false, completion: nil)
         })
     }

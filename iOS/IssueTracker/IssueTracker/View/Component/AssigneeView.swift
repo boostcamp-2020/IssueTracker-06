@@ -36,6 +36,11 @@ final class AssigneeView: UIView {
             userNamelabel.bottomAnchor.constraint(equalTo: assigneeView.bottomAnchor, constant: -8),
             userNamelabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor)
         ])
+        
+        let imageName = "\((user.id % 5) == 0 ? 5 : (user.id % 5))"
+        let image = UIImage(named: imageName)
+        imageView.image = image
+    
         return assigneeView
     }
 }

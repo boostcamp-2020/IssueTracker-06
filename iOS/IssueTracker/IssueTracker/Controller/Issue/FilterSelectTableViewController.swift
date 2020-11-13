@@ -4,7 +4,6 @@
 //
 //  Created by 박태희 on 2020/11/02.
 //
-
 import UIKit
 
 class FilterSelectTableViewController: UITableViewController {
@@ -24,7 +23,6 @@ class FilterSelectTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -112,9 +110,9 @@ class FilterSelectTableViewController: UITableViewController {
         case 4:
             issueListViewController.filterIssues = issues.filter { return $0.isOpen == false }
         default:
-            return
+            navigationController?.popToViewController(issueListViewController, animated: true)
         }
-        self.navigationController?.popToViewController(issueListViewController, animated: true)
+        navigationController?.popToViewController(issueListViewController, animated: true)
     }
 }
 

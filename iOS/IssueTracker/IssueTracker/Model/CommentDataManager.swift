@@ -8,6 +8,7 @@
 import Foundation
 
 struct CommentDataManager {
+    
     func post(body: Comment.NewComment, successHandler: ((Int?) -> Void)? = nil,
               errorHandler: ((Error) -> Void)? = nil) {
         guard let url = IssueTrackerURL.newComment else { return }
@@ -27,6 +28,6 @@ struct CommentDataManager {
 
 private extension CommentDataManager {
     enum IssueTrackerURL {
-        static let newComment: URL? = URL(string: "http://issue-tracker.cf/api/comment")
+        static let newComment: URL? = URL(string: "https://issue-tracker.cf/api/comment")
     }
 }
