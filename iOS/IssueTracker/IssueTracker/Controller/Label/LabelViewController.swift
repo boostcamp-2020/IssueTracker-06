@@ -9,6 +9,7 @@ import UIKit
 
 protocol LabelViewControllerDelegate {
     func label(_ label: Label)
+    func snapshot(_ snapshot: UIView)
 }
 
 class LabelViewController: UIViewController {
@@ -53,33 +54,27 @@ class LabelViewController: UIViewController {
         labelCollectionView.dataSource = self
     }
     
+    private func configurePresentedViewController(_ viewController: LabelAddViewController) {
+        viewController.updateLabelDelegate = self
+        guard let snapshot = UIApplication.snapshotView else { return }
+        viewController.snapshot(snapshot)
+        guard let label = selectedLabel else { return }
+        viewController.label(label)
+        selectedIndexPath = nil
+    }
+    
     @IBSegueAction private func presentAddViewController(_ coder: NSCoder) -> LabelAddViewController? {
         let addViewController = LabelAddViewController(coder: coder)
-        addViewController?.updateLabelDelegate = self
+        guard let viewController = addViewController else { return addViewController }
+        configurePresentedViewController(viewController)
         return addViewController
     }
     
     @IBSegueAction private func presentUpdateViewController(_ coder: NSCoder) -> LabelAddViewController? {
         let updateViewController = LabelAddViewController(coder: coder)
-        updateViewController?.updateLabelDelegate = self
-        
-        guard let label = selectedLabel else { return updateViewController }
-        updateViewController?.label(label)
+        guard let viewController = updateViewController else { return updateViewController }
+        configurePresentedViewController(viewController)
         return updateViewController
-    }
-
-    @IBAction func addButtonPressed(_ sender: Any) {
-        guard let labelMilestoneAddVC = self.storyboard?.instantiateViewController(
-                withIdentifier: Constant.labelMilestoneAddViewController)
-                as? LabelMilestoneAddViewController else { return }
-        labelMilestoneAddVC.modalPresentationStyle = .fullScreen
-        
-        guard let snap = UIApplication.shared.keyWindow!.snapshotView(
-                afterScreenUpdates: true
-        ) else { return }
-        
-        labelMilestoneAddVC.snapshotView = snap
-        present(labelMilestoneAddVC, animated: false, completion: nil)
     }
 }
 

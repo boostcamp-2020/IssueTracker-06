@@ -30,6 +30,14 @@ final class IssueDetailViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
     
+    // 버튼 상태 변경 추가
+    private func configureIssueStatusButton(issue: DetailIssue) {
+        if issue.isOpen == 0 {
+            bottomDetailView.issueStatusButton.setTitle(Constant.ReopenIssueStatus, for: .normal)
+            bottomDetailView.issueStatusButton.setTitleColor(.none, for: .normal)
+        }
+    }
+    
     private func configureIssueData() {
         guard let id = issueId else { return }
         DetailIssueDataManager().get(id: id, successHandler: { [weak self] in
@@ -37,6 +45,8 @@ final class IssueDetailViewController: UIViewController {
             self?.issue = issue
             self?.configureIssueDetailCollectionView()
             self?.configureBottomViewData()
+            // 버튼 상태 변경 추가
+            self?.configureIssueStatusButton(issue: issue)
         })
     }
     
@@ -85,13 +95,27 @@ final class IssueDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CommentAddSegue" {
+        if segue.identifier == Constant.commentAddSegue {
             guard let destination = segue.destination as? CommentAddViewController else { return }
             destination.issueId = issueId
         }
         guard let destination = segue.destination as? NewIssueAddViewController else { return }
-        destination.mode = "modify"
+        destination.mode = Constant.modifyMode
         destination.issue = issue
+    }
+    
+    // 이슈 상태 버튼 액션 추가
+    // 이슈 상태 변경
+    @IBAction func issueStateButtonPressed() {
+        guard let id = issueId, let issue = issue else {
+            return
+        }
+        let issueStatus = (issue.isOpen == 0) ? true : false
+        DetailIssueDataManager().patchIssueStatus(
+            id: id,
+            body: DetailIssue.IssueStatus(isOpen: issueStatus),
+            successHandler: { response in
+        }, errorHandler: nil)
     }
 }
 
@@ -143,6 +167,31 @@ extension IssueDetailViewController: UICollectionViewDataSource {
         issueDetailCollectionViewHeader.configureHeader(issue: issue)
         return header
     }
+    
+    // up, down 버튼 클릭시 해당 셀로 포커스
+    private func focusCurrentCell() -> CGPoint{
+        var visibleRect = CGRect()
+        visibleRect.origin = issueDetailCollectionView.contentOffset
+        visibleRect.size = issueDetailCollectionView.bounds.size
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        return visiblePoint
+    }
+    
+    @IBAction func cellFocusUp() {
+        guard let indexPath = issueDetailCollectionView.indexPathForItem(
+                at: focusCurrentCell()
+        ) else { return }
+        let nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        issueDetailCollectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
+    }
+    
+    @IBAction func cellFocusDown() {
+        guard let indexPath = issueDetailCollectionView.indexPathForItem(
+                at: focusCurrentCell()
+        ) else { return }
+        let nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+        issueDetailCollectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
+    }
 }
 
 extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
@@ -168,7 +217,7 @@ extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension IssueDetailViewController: IssueListViewControllerDelegate {
-    
+ 
     func issueId(_ id: Int) {
         issueId = id
     }
@@ -180,6 +229,9 @@ private extension IssueDetailViewController {
         static let issueDetailCell: String = "IssueDetailCell"
         static let issueDetailHeader: String = "IssueDetailHeader"
         static let blank: String = ""
+        static let modifyMode: String = "modify"
+        static let commentAddSegue: String = "CommentAddSegue"
+        static let ReopenIssueStatus: String = "Reopen issue"
     }
 
     enum Metric {

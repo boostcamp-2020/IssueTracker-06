@@ -22,6 +22,7 @@ class CommentAddViewController: UIViewController {
         commentTextView.delegate = self
         previewTextView.isHidden = true
         markdownParser = MarkdownParser()
+        configureKeyboardNotification()
     }
     
     private func textViewSetupView() {
@@ -36,6 +37,26 @@ class CommentAddViewController: UIViewController {
               let str = commentTextView.text else { return }
         let parsedString = markdownParser.parse(str).string
         previewTextView.text = parsedString
+    }
+    
+    //키보드 추가
+    private lazy var keyboardHide: UITapGestureRecognizer = {
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard)
+        )
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.isEnabled = true
+        tapGestureRecognizer.cancelsTouchesInView = false
+        return tapGestureRecognizer
+    }()
+    
+    func configureKeyboardNotification() {
+        view.addGestureRecognizer(keyboardHide)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func segmentedAction(_ sender: UISegmentedControl) {
