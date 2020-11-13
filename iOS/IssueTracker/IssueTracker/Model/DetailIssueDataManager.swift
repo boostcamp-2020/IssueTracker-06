@@ -64,12 +64,96 @@ struct DetailIssueDataManager {
         })
     }
     
+    func updateAssignee(
+        id: Int,
+        targets: [Int],
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: IssueTrackerURL.updateIssue(id: id, target: Constant.assignee))
+        else {
+            return
+        }
+        let body = ["targets": targets]
+        HTTPServiceHelper.shared.patch(url: url, body: body, successHandler: {
+            successHandler?($0)
+        }, errorHandler: { error in
+            errorHandler?(error)
+        })
+    }
+    
+    func updateLabel(
+        id: Int,
+        targets: [Int],
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: IssueTrackerURL.updateIssue(id: id, target: Constant.label))
+        else {
+            return
+        }
+        let body = ["targets": targets]
+        HTTPServiceHelper.shared.patch(url: url, body: body, successHandler: {
+            successHandler?($0)
+        }, errorHandler: { error in
+            errorHandler?(error)
+        })
+    }
+    
+    func updateMilestone(
+        id: Int,
+        target: Int,
+        successHandler: ((Bool) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        guard let url = URL(string: IssueTrackerURL.updateIssue(id: id, target: Constant.milestone))
+        else {
+            return
+        }
+        let body = ["targets": [target]]
+        HTTPServiceHelper.shared.patch(url: url, body: body, successHandler: {
+            successHandler?($0)
+        }, errorHandler: { error in
+            errorHandler?(error)
+        })
+    }
+    
+    func getMilestoneIssues(
+        name: String,
+        successHandler: ((Issues?) -> Void)? = nil,
+        errorHandler: ((Error) -> Void)? = nil) {
+        
+        let processedName = name.processedBlank
+        guard let url = URL(string: IssueTrackerURL.milestoneIssues(name: processedName))
+        else {
+            return
+        }
+        HTTPServiceHelper.shared.get(url: url, responseType: Issues.self, successHandler: {
+            guard let issues = $0 else {
+                successHandler?(nil)
+                return
+            }
+            successHandler?(Issues(issues: issues))
+        }, errorHandler: {
+            errorHandler?($0)
+        })
+    }
 }
 
 private extension DetailIssueDataManager {
+    
     enum IssueTrackerURL {
         static let patchIssue: String = "http://issue-tracker.cf/api/issue"
         static let issue: String = "http://issue-tracker.cf/api/issue"
         static let issueState: String = "http://issue-tracker.cf/api/issue"
+        static func milestoneIssues(name: String) -> String {
+            "http://issue-tracker.cf/api/issues?milestone=\(name)"
+        }
+        static func updateIssue(id: Int, target: String) -> String {
+            "http://issue-tracker.cf/api/issue/\(id)/\(target)"
+        }
+    }
+    
+    enum Constant {
+        static let label: String = "label"
+        static let milestone: String = "milestone"
+        static let assignee: String = "assignee"
     }
 }

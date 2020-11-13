@@ -102,7 +102,7 @@
                 <constraint firstAttribute="trailing" secondItem="CQD-4G-SXF" secondAttribute="trailing" id="gxk-IY-cdz"/>
                 <constraint firstItem="CQD-4G-SXF" firstAttribute="bottom" secondItem="AZd-VO-34I" secondAttribute="bottom" constant="15" id="l78-Nu-555"/>
                 <constraint firstItem="Ae6-ev-ULr" firstAttribute="centerY" secondItem="AZd-VO-34I" secondAttribute="centerY" id="pNE-Hl-KZT"/>
-                <constraint firstItem="AZd-VO-34I" firstAttribute="leading" secondItem="Ae6-ev-ULr" secondAttribute="trailing" constant="15" id="zEM-9d-XSF"/>
+                <constraint firstItem="AZd-VO-34I" firstAttribute="leading" secondItem="Ae6-ev-ULr" secondAttribute="trailing" constant="11" id="zEM-9d-XSF"/>
             </constraints>
             <point key="canvasLocation" x="-149.27536231884059" y="53.571428571428569"/>
         </view>

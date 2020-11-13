@@ -19,6 +19,12 @@ extension NSObject {
     }
 }
 
+extension String {
+    var processedBlank: String {
+        self.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+    }
+}
+
 extension UICollectionView {
     
     func indexPath(with tapGestureRecognizer: UITapGestureRecognizer) -> IndexPath? {
@@ -49,6 +55,17 @@ extension UIView {
             topAnchor.constraint(equalTo: view.topAnchor),
             bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+}
+
+extension UIView {
+    func configureTapGesture(target: Any?, action: Selector? = nil) {
+        let tapGestureRecognizer =
+            UITapGestureRecognizer(target: target, action: action)
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.isEnabled = true
+        tapGestureRecognizer.cancelsTouchesInView = false
+        addGestureRecognizer(tapGestureRecognizer)
     }
 }
 
@@ -108,18 +125,6 @@ extension UIView {
         set {
             layer.borderWidth = newValue
         }
-    }
-}
-
-
-extension UIView {
-    func configureTapGesture(target: Any?, action: Selector? = nil) {
-        let tapGestureRecognizer =
-            UITapGestureRecognizer(target: target, action: action)
-        tapGestureRecognizer.numberOfTouchesRequired = 1
-        tapGestureRecognizer.isEnabled = true
-        tapGestureRecognizer.cancelsTouchesInView = false
-        addGestureRecognizer(tapGestureRecognizer)
     }
 }
 

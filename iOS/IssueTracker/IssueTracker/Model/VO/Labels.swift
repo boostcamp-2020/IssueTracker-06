@@ -15,12 +15,20 @@ struct Labels {
         labels.count
     }
     
+    var id: [Int] {
+        labels.map { $0.id }
+    }
+    
     init() {
         labels = []
     }
     
     init(labels: [Label]) {
         self.labels = labels
+    }
+    
+    func contains(label: Label) -> Bool {
+        labels.contains(label)
     }
     
     mutating func add(label: Label) {

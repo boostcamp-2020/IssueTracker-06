@@ -442,6 +442,9 @@
                                         <rect key="frame" x="369" y="94.5" width="30" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Edit"/>
+                                        <connections>
+                                            <action selector="assigneeEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="4IY-AB-5wd"/>
+                                        </connections>
                                     </button>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMy-jR-Mw6">
                                         <rect key="frame" x="15" y="134.5" width="384" height="100"/>
@@ -616,11 +619,17 @@
                                         <rect key="frame" x="369" y="278" width="30" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Edit"/>
+                                        <connections>
+                                            <action selector="labelEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="1bI-PZ-dRE"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgj-8g-CqL">
                                         <rect key="frame" x="369" y="461.5" width="30" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Edit"/>
+                                        <connections>
+                                            <action selector="milestoneEditButtonTouched:" destination="bsV-cy-HC3" eventType="touchUpInside" id="gn1-fz-vjD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.9686803222" green="0.96849924330000003" blue="0.97647231820000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -685,6 +694,8 @@
                                     <outlet property="assigneeStackView" destination="C7Y-ZN-XJJ" id="1df-UW-5jX"/>
                                     <outlet property="issueStatusButton" destination="nA6-wW-g90" id="OdE-qB-UdD"/>
                                     <outlet property="labelStackView" destination="xnK-dT-kvM" id="93Y-AY-F8s"/>
+                                    <outlet property="milestoneProgressView" destination="O2z-SE-ecN" id="NTk-vv-xDE"/>
+                                    <outlet property="milestoneTitleLabel" destination="rde-0e-fvz" id="C0x-6E-K7z"/>
                                 </connections>
                             </view>
                         </subviews>
