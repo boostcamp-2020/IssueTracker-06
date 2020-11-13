@@ -2,7 +2,7 @@ import React, { FunctionComponent, ChangeEvent } from 'react';
 import AppLayout from '@components/organisms/AppLayout';
 import WriteFormWithProfile from '@components/organisms/WriteFormWithProfile';
 import SelectForm from '@components/pages/SelectForm';
-
+import { User, Label, Milestone } from '@stores/type';
 import styled from '@themes/styled';
 
 const StyledSection = styled.section`
@@ -50,7 +50,7 @@ const CreateIssuePresenter: FunctionComponent<Props> = ({
           onChangeTitle={onChangeTitle}
         />
         <div>
-          <SelectForm />
+          <SelectForm assignees={[]} labels={[]} milestone={[]} />
         </div>
       </StyledSection>
     </AppLayout>
