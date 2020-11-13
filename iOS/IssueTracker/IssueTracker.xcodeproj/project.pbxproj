@@ -16,6 +16,11 @@
 		19454F24255934850056FE89 /* TextFieldInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19454F23255934850056FE89 /* TextFieldInputView.swift */; };
 		19454F29255934970056FE89 /* TextFieldInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19454F28255934970056FE89 /* TextFieldInputView.xib */; };
 		19454F2E2559792E0056FE89 /* ContentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19454F2D2559792E0056FE89 /* ContentInputView.swift */; };
+		1982266B255D3D4C00030708 /* LabelCollectionViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1982266A255D3D4C00030708 /* LabelCollectionViewSetting.swift */; };
+		19822670255D3D5C00030708 /* MilestoneCollectionViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1982266F255D3D5C00030708 /* MilestoneCollectionViewSetting.swift */; };
+		19822676255DC04E00030708 /* SelectUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19822674255DC04E00030708 /* SelectUserCollectionViewCell.swift */; };
+		19822677255DC04E00030708 /* SelectUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19822675255DC04E00030708 /* SelectUserCollectionViewCell.xib */; };
+		1982267C255DC17C00030708 /* UserCollectionViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1982267B255DC17C00030708 /* UserCollectionViewSetting.swift */; };
 		199109EE2551AA8C009B3C58 /* DetailIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109ED2551AA8C009B3C58 /* DetailIssue.swift */; };
 		199109F62552756A009B3C58 /* HTTPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109F52552756A009B3C58 /* HTTPData.swift */; };
 		199109FE2552C596009B3C58 /* IssueListDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199109FD2552C596009B3C58 /* IssueListDataManager.swift */; };
@@ -51,6 +56,10 @@
 		19D6C8EE255CDD7F00914461 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D6C8E8255CDD7F00914461 /* IssueListViewController.swift */; };
 		19D6C8EF255CDD7F00914461 /* FilterSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D6C8E9255CDD7F00914461 /* FilterSelectTableViewController.swift */; };
 		19D6C8F0255CDD7F00914461 /* FilterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D6C8EA255CDD7F00914461 /* FilterSelectViewController.swift */; };
+		19D6C8F7255D325F00914461 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D6C8F5255D325F00914461 /* SelectViewController.swift */; };
+		19D6C8F8255D325F00914461 /* SelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D6C8F6255D325F00914461 /* SelectViewController.xib */; };
+		19D6C8FF255D337400914461 /* SelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D6C8FD255D337400914461 /* SelectCollectionViewCell.swift */; };
+		19D6C900255D337400914461 /* SelectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D6C8FE255D337400914461 /* SelectCollectionViewCell.xib */; };
 		5EBBFD26B86D0520584C1DD3 /* Pods_IssueTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496A32230AD45F1DBB634B62 /* Pods_IssueTracker.framework */; };
 		A2E2D59F1336AAAF75E5C058 /* Pods_IssueTracker_IssueTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8337B9FFC6FF7BD89A7E50 /* Pods_IssueTracker_IssueTrackerUITests.framework */; };
 		C803816F2547B34F008EEF6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803816E2547B34F008EEF6E /* AppDelegate.swift */; };
@@ -101,6 +110,11 @@
 		19454F23255934850056FE89 /* TextFieldInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputView.swift; sourceTree = "<group>"; };
 		19454F28255934970056FE89 /* TextFieldInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldInputView.xib; sourceTree = "<group>"; };
 		19454F2D2559792E0056FE89 /* ContentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentInputView.swift; sourceTree = "<group>"; };
+		1982266A255D3D4C00030708 /* LabelCollectionViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewSetting.swift; sourceTree = "<group>"; };
+		1982266F255D3D5C00030708 /* MilestoneCollectionViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewSetting.swift; sourceTree = "<group>"; };
+		19822674255DC04E00030708 /* SelectUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUserCollectionViewCell.swift; sourceTree = "<group>"; };
+		19822675255DC04E00030708 /* SelectUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectUserCollectionViewCell.xib; sourceTree = "<group>"; };
+		1982267B255DC17C00030708 /* UserCollectionViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewSetting.swift; sourceTree = "<group>"; };
 		199109ED2551AA8C009B3C58 /* DetailIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssue.swift; sourceTree = "<group>"; };
 		199109F52552756A009B3C58 /* HTTPData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPData.swift; sourceTree = "<group>"; };
 		199109FD2552C596009B3C58 /* IssueListDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListDataManager.swift; sourceTree = "<group>"; };
@@ -133,6 +147,10 @@
 		19D6C8E8255CDD7F00914461 /* IssueListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueListViewController.swift; path = "../../../../../../../../Develop/iOS/부스트캠프/멤버십/그룹프로젝트/3주/IssueTracker-06/iOS/IssueTracker/IssueTracker/Controller/Issue/IssueListViewController.swift"; sourceTree = "<group>"; };
 		19D6C8E9255CDD7F00914461 /* FilterSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterSelectTableViewController.swift; path = "../../../../../../../../Develop/iOS/부스트캠프/멤버십/그룹프로젝트/3주/IssueTracker-06/iOS/IssueTracker/IssueTracker/Controller/Issue/FilterSelectTableViewController.swift"; sourceTree = "<group>"; };
 		19D6C8EA255CDD7F00914461 /* FilterSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterSelectViewController.swift; path = "../../../../../../../../Develop/iOS/부스트캠프/멤버십/그룹프로젝트/3주/IssueTracker-06/iOS/IssueTracker/IssueTracker/Controller/Issue/FilterSelectViewController.swift"; sourceTree = "<group>"; };
+		19D6C8F5255D325F00914461 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
+		19D6C8F6255D325F00914461 /* SelectViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectViewController.xib; sourceTree = "<group>"; };
+		19D6C8FD255D337400914461 /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		19D6C8FE255D337400914461 /* SelectCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCollectionViewCell.xib; sourceTree = "<group>"; };
 		3D8337B9FFC6FF7BD89A7E50 /* Pods_IssueTracker_IssueTrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IssueTracker_IssueTrackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4842C7B09BF846536B176940 /* Pods-IssueTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-IssueTrackerTests/Pods-IssueTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		496A32230AD45F1DBB634B62 /* Pods_IssueTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IssueTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +224,7 @@
 		19454F4B25598DEF0056FE89 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				19D6C907255D337F00914461 /* Select */,
 				19934484254FD48B000D0D5E /* IssueListCollectionViewCell.swift */,
 				19934485254FD48B000D0D5E /* IssueListCollectionViewCell.xib */,
 				19ABABF72549511D00F4939A /* IssueDetailCollectionViewHeader.swift */,
@@ -327,6 +346,29 @@
 			path = InputView;
 			sourceTree = "<group>";
 		};
+		19D6C8FC255D334D00914461 /* Select */ = {
+			isa = PBXGroup;
+			children = (
+				19D6C8F5255D325F00914461 /* SelectViewController.swift */,
+				19D6C8F6255D325F00914461 /* SelectViewController.xib */,
+				1982266A255D3D4C00030708 /* LabelCollectionViewSetting.swift */,
+				1982266F255D3D5C00030708 /* MilestoneCollectionViewSetting.swift */,
+				1982267B255DC17C00030708 /* UserCollectionViewSetting.swift */,
+			);
+			path = Select;
+			sourceTree = "<group>";
+		};
+		19D6C907255D337F00914461 /* Select */ = {
+			isa = PBXGroup;
+			children = (
+				19D6C8FD255D337400914461 /* SelectCollectionViewCell.swift */,
+				19D6C8FE255D337400914461 /* SelectCollectionViewCell.xib */,
+				19822674255DC04E00030708 /* SelectUserCollectionViewCell.swift */,
+				19822675255DC04E00030708 /* SelectUserCollectionViewCell.xib */,
+			);
+			path = Select;
+			sourceTree = "<group>";
+		};
 		7EBC9BF906C128694E6665C3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +471,7 @@
 		C80381A62547BB73008EEF6E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				19D6C8FC255D334D00914461 /* Select */,
 				19454F5025598EA60056FE89 /* Milestone */,
 				19454F4F25598E9D0056FE89 /* Label */,
 				19454F4E25598E800056FE89 /* Issue */,
@@ -563,14 +606,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19D6C8F8255D325F00914461 /* SelectViewController.xib in Resources */,
 				C8F0F449254DD6C30050B6C0 /* Main.storyboard in Resources */,
 				19934487254FD48B000D0D5E /* IssueListCollectionViewCell.xib in Resources */,
+				19D6C900255D337400914461 /* SelectCollectionViewCell.xib in Resources */,
 				C80381782547B352008EEF6E /* Assets.xcassets in Resources */,
 				19454F29255934970056FE89 /* TextFieldInputView.xib in Resources */,
 				19910A0A2553D43F009B3C58 /* LabelCollectionViewCell.xib in Resources */,
 				19910A552558EC89009B3C58 /* TextViewInputView.xib in Resources */,
 				19CE7AD52559244A00B3101C /* ColorInputView.xib in Resources */,
 				19910A462558DEB7009B3C58 /* AddView.xib in Resources */,
+				19822677255DC04E00030708 /* SelectUserCollectionViewCell.xib in Resources */,
 				C84433F22553CC5600A3CE69 /* MilestoneListCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,8 +759,10 @@
 				C854E83C25481FF700011D26 /* LabelsStackView.swift in Sources */,
 				C8F0F43D254DD6B70050B6C0 /* Comment.swift in Sources */,
 				19910A502558EC7D009B3C58 /* TextViewInputView.swift in Sources */,
+				1982267C255DC17C00030708 /* UserCollectionViewSetting.swift in Sources */,
 				C803816F2547B34F008EEF6E /* AppDelegate.swift in Sources */,
 				1924DE8A2559A30C0054D185 /* MilestoneAddViewDataSource.swift in Sources */,
+				19D6C8F7255D325F00914461 /* SelectViewController.swift in Sources */,
 				199109FE2552C596009B3C58 /* IssueListDataManager.swift in Sources */,
 				19D6C8ED255CDD7F00914461 /* IssueListCellMode.swift in Sources */,
 				19ABABF325494DE900F4939A /* Extension.swift in Sources */,
@@ -722,6 +770,7 @@
 				199109FE2552C596009B3C58 /* IssueListDataManager.swift in Sources */,
 				19ABABF325494DE900F4939A /* Extension.swift in Sources */,
 				19910A1C2553EE68009B3C58 /* LabelListDataManager.swift in Sources */,
+				1982266B255D3D4C00030708 /* LabelCollectionViewSetting.swift in Sources */,
 				1924DE9A2559A3F20054D185 /* LabelAddViewController.swift in Sources */,
 				19934486254FD48B000D0D5E /* IssueListCollectionViewCell.swift in Sources */,
 				C80381B82547D4A3008EEF6E /* LabelView.swift in Sources */,
@@ -734,6 +783,8 @@
 				19ABABFD254953A600F4939A /* IssueStateView.swift in Sources */,
 				199109EE2551AA8C009B3C58 /* DetailIssue.swift in Sources */,
 				1916675F255A6392009E710C /* Labels.swift in Sources */,
+				19822676255DC04E00030708 /* SelectUserCollectionViewCell.swift in Sources */,
+				19822670255D3D5C00030708 /* MilestoneCollectionViewSetting.swift in Sources */,
 				1996E4F8254ABAA30052E659 /* BottomDetailView.swift in Sources */,
 				19ABAC19254968B700F4939A /* IssueDetailCollectionViewCell.swift in Sources */,
 				19910A032552D0C0009B3C58 /* DetailIssueDataManager.swift in Sources */,
@@ -746,6 +797,7 @@
 				C80381712547B34F008EEF6E /* SceneDelegate.swift in Sources */,
 				C8CEF6992558E77300BDCB46 /* LabelMilestoneAddViewController.swift in Sources */,
 				C854E829254816C600011D26 /* Label.swift in Sources */,
+				19D6C8FF255D337400914461 /* SelectCollectionViewCell.swift in Sources */,
 				C854E8242548151800011D26 /* Issue.swift in Sources */,
 				1996E4FD254ABB530052E659 /* AssigneeStackView.swift in Sources */,
 				19D6C8F0255CDD7F00914461 /* FilterSelectViewController.swift in Sources */,
