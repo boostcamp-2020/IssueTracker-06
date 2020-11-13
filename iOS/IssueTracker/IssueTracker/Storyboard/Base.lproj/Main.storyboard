@@ -129,9 +129,9 @@
                         <outlet property="issueListCollectionView" destination="JHs-Zp-fEN" id="E3o-nw-Ys0"/>
                         <outlet property="leftBarButton" destination="6i9-Oj-TAM" id="tmx-yj-XF2"/>
                         <outlet property="rightBarButton" destination="QCY-a0-DGt" id="bhq-ff-qqr"/>
-                        <outlet property="titleLabel" destination="aaM-iP-gFn" id="vQT-ay-ot1"/>
-                        <segue destination="oW6-ue-0aA" kind="show" identifier="FilterSegue" id="786-EC-i91"/>
                         <outlet property="searchBar" destination="LBd-8J-wFT" id="Pxn-3a-06L"/>
+                        <outlet property="titleLabel" destination="aaM-iP-gFn" id="vQT-ay-ot1"/>
+                        <segue destination="oW6-ue-0aA" kind="show" identifier="FilterSegue" destinationCreationSelector="presentFilterSelectViewController:" id="786-EC-i91"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -760,19 +760,19 @@
                                                 </connections>
                                             </segmentedControl>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BFJ-zf-ktC">
-                                                <rect key="frame" x="20" y="283" width="374" height="150"/>
+                                                <rect key="frame" x="20" y="283" width="374" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="0s4-Qc-wFz"/>
+                                                    <constraint firstAttribute="height" constant="200" id="0s4-Qc-wFz"/>
                                                 </constraints>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ozV-fU-ZUN">
-                                                <rect key="frame" x="20" y="283" width="374" height="150"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ozV-fU-ZUN">
+                                                <rect key="frame" x="20" y="283" width="374" height="200"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="w6u-sN-ye6"/>
+                                                    <constraint firstAttribute="height" constant="200" id="w6u-sN-ye6"/>
                                                 </constraints>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -805,7 +805,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="NbR-hc-q1O" secondAttribute="trailing" id="3ZV-Im-SKJ"/>
                                     <constraint firstItem="NbR-hc-q1O" firstAttribute="width" secondItem="DeX-dI-7Ck" secondAttribute="width" id="EhQ-jo-WYg"/>
-                                    <constraint firstItem="NbR-hc-q1O" firstAttribute="height" secondItem="DeX-dI-7Ck" secondAttribute="height" id="M5v-js-j9b"/>
+                                    <constraint firstItem="NbR-hc-q1O" firstAttribute="height" secondItem="DeX-dI-7Ck" secondAttribute="height" priority="750" id="M5v-js-j9b"/>
                                     <constraint firstAttribute="bottom" secondItem="NbR-hc-q1O" secondAttribute="bottom" id="Nkz-Vu-cTz"/>
                                     <constraint firstItem="NbR-hc-q1O" firstAttribute="leading" secondItem="DeX-dI-7Ck" secondAttribute="leading" id="ZUM-68-atv"/>
                                     <constraint firstItem="NbR-hc-q1O" firstAttribute="top" secondItem="DeX-dI-7Ck" secondAttribute="top" id="h60-HT-kj5"/>
@@ -846,6 +846,7 @@
                         <outlet property="commentTextView" destination="BFJ-zf-ktC" id="nGj-Gk-2ai"/>
                         <outlet property="contentTextView" destination="fkz-gi-hYN" id="nCt-6C-kOx"/>
                         <outlet property="previewTextView" destination="ozV-fU-ZUN" id="blr-pc-Ubu"/>
+                        <outlet property="scrollView" destination="DeX-dI-7Ck" id="Bys-uc-CkC"/>
                         <outlet property="segmented" destination="gUZ-Jk-6G5" id="Koa-lo-vo2"/>
                         <outlet property="titleTextField" destination="ZEh-J9-AOW" id="Dpj-Rj-q2a"/>
                     </connections>
@@ -953,7 +954,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyd-Wc-Ojy">
                                 <rect key="frame" x="0.0" y="52" width="414" height="673"/>
                                 <connections>
-                                    <segue destination="8Dc-hF-0oa" kind="embed" id="zu2-YT-Kdy"/>
+                                    <segue destination="8Dc-hF-0oa" kind="embed" identifier="ContainerViewSegue" id="zu2-YT-Kdy"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -1460,7 +1461,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r35-wm-iYi">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r35-wm-iYi">
                                                 <rect key="frame" x="20" y="83" width="374" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="X6Y-cv-hvw"/>
@@ -1538,7 +1539,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="jGC-Iq-EQ4"/>
         <segue reference="id9-nh-MIP"/>
-        <segue reference="aJK-ch-Nmz"/>
+        <segue reference="h9h-al-eOU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1.circle.fill" catalog="system" width="128" height="121"/>

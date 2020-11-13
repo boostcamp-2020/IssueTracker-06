@@ -10,6 +10,10 @@ import UIKit
 protocol IssueListViewControllerDelegate: class {
     func issueId(_ id: Int)
 }
+// 필터 화면 선택 추가
+protocol IssuesFilterDelegate {
+    func issues(_ issues: Issues)
+}
 
 final class IssueListViewController: UIViewController {
 
@@ -25,9 +29,7 @@ final class IssueListViewController: UIViewController {
     private let issueListDataManager = IssueListDataManager()
     private var selectedIndexPath: IndexPath?
     
-    private let issueListDataManager = IssueListDataManager()
-    private var selectedIndexPath: IndexPath?
-    private var filterIssues: Issues = Issues() {
+    var filterIssues: Issues = Issues() {
         didSet {
             issueListCollectionViewSetting?.update(issues: filterIssues)
         }
@@ -78,6 +80,14 @@ final class IssueListViewController: UIViewController {
         tapGestureRecognizer.cancelsTouchesInView = false
         return tapGestureRecognizer
     }()
+        
+    private lazy var keyboardHide: UITapGestureRecognizer = {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.isEnabled = true
+        tapGestureRecognizer.cancelsTouchesInView = false
+        return tapGestureRecognizer
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,17 +118,6 @@ final class IssueListViewController: UIViewController {
         let titleText = isEditMode ? "\(selectedIssues.count.selectedCountText)" : Constant.issue
         titleLabel.text = titleText
     }
-    
-    @IBSegueAction private func presentIssueDeatilViewController(_ coder: NSCoder) -> IssueDetailViewController? {
-        let issueDetailViewController = IssueDetailViewController(coder: coder)
-        guard let selectedIndexPath = selectedIndexPath,
-              let issueId = issues?[selectedIndexPath.row]?.id
-        else {
-            return issueDetailViewController
-        }
-        issueDetailViewController?.issueId(issueId)
-        return issueDetailViewController
-    }
 
     @IBAction private func rightBarButtonTouched(_ sender: UIBarButtonItem) {
         mode = mode.switchMode
@@ -133,6 +132,16 @@ final class IssueListViewController: UIViewController {
         }
         issueDetailViewController?.issueId(issueId)
         return issueDetailViewController
+    }
+    
+    // 필터 화면 선택 추가
+    @IBSegueAction func presentFilterSelectViewController(_ coder: NSCoder) -> FilterSelectViewController? {
+        let filterSelectViewController = FilterSelectViewController(coder: coder)
+        guard let issues = issues else {
+            return filterSelectViewController
+        }
+        filterSelectViewController?.issues(issues)
+        return filterSelectViewController
     }
 }
 
@@ -163,6 +172,8 @@ private extension IssueListViewController {
     }
     
     func moveToIssueDetailViewController() {
+        //키보드 hide 추가
+        view.endEditing(true)
         performSegue(withIdentifier: Constant.issueDetailSegue, sender: nil)
     }
     
@@ -244,6 +255,11 @@ private extension IssueListViewController {
         selectedIssues = issues
         titleLabel.text = selectedIssues.count.selectedCountText
     }
+    
+    // 키보드 hide 추가
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     @IBAction func selectedIssuesCloseButton(_ sender: UIBarButtonItem) {
         issueListDataManager.closeIssues(
@@ -277,11 +293,16 @@ private extension IssueListViewController {
         issueListCollectionView.dataSource = issueListCollectionViewSetting
         issueListCollectionView.addGestureRecognizer(normalModeTapGesture)
         issueListCollectionView.addGestureRecognizer(editModeTapGesture)
+        view.addGestureRecognizer(keyboardHide)
     }
     
     func configureBottomGuideline() {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         bottomGuidelineConstraint.constant = tabBarHeight
+    }
+    
+    func removeNavigationBarUnderLine() {
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 }
 

@@ -39,5 +39,4 @@ class LabelMilestoneAddViewController: UIViewController {
     @objc private func handleTapGesture(recognizer: UITapGestureRecognizer) {
         self.dismiss(animated: false, completion: nil)
     }
-    
 }

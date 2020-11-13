@@ -10,6 +10,7 @@ import MarkdownKit
 
 class NewIssueAddViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var segmented: UISegmentedControl!
@@ -29,6 +30,8 @@ class NewIssueAddViewController: UIViewController {
         UIMenuController.shared.menuItems = [menuItem]
         previewTextView.isHidden = true
         markdownParser = MarkdownParser()
+        //키보드 추가
+        configureKeyboardNotification()
     }
     
     private func selectMode() {
@@ -57,6 +60,26 @@ class NewIssueAddViewController: UIViewController {
         commentTextView.textColor = .lightGray
     }
     
+    //키보드 추가
+    private lazy var keyboardHide: UITapGestureRecognizer = {
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard)
+        )
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.isEnabled = true
+        tapGestureRecognizer.cancelsTouchesInView = false
+        return tapGestureRecognizer
+    }()
+    
+    func configureKeyboardNotification() {
+        view.addGestureRecognizer(keyboardHide)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     @objc func insertPhoto() {
         print("insert photo")
     }
@@ -65,7 +88,6 @@ class NewIssueAddViewController: UIViewController {
         if titleTextField.text == Constant.beginEdting ||
             contentTextView.text == Constant.beginEdting ||
             contentTextView.text == Constant.contentSet {
-            print("123123")
             return
         }
         if mode != Mode.modifyMode.rawValue {
@@ -153,6 +175,13 @@ class NewIssueAddViewController: UIViewController {
 extension NewIssueAddViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+    
+        if textView == commentTextView && mode != Mode.modifyMode.rawValue {
+            var point = textView.frame.origin
+            point.x = 0
+            point.y -= 60
+            scrollView.setContentOffset(point, animated: true)
+        }
         
         if textView.text != Constant.commentSet &&
             textView.text != Constant.contentSet &&
@@ -164,6 +193,13 @@ extension NewIssueAddViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        
+        if textView == commentTextView && mode != Mode.modifyMode.rawValue {
+            var point = textView.frame.origin
+            point.x = 0
+            point.y = 0
+            scrollView.setContentOffset(point, animated: true)
+        }
         
         if textView.text == Constant.beginEdting {
             textView == commentTextView ? commentTextViewSet() : contentTextViewSet()
