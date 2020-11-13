@@ -55,7 +55,7 @@
 - Xcode
 - Alamofire
 
-### delpoy
+### deploy
 
 - Naver Cloud Platform
 - docker
