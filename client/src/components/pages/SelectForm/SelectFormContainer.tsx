@@ -14,15 +14,27 @@ import readLabelsAPI from '@apis/readLabels';
 import readMilestonesAPI from '@apis/readMilestones';
 import SelectFormPresenter from './SelectFormPresenter';
 
-const SelectFormContainer: FunctionComponent = () => {
+interface Props {
+  assignees: User[];
+  labels: Label[];
+  milestone: Milestone[];
+}
+
+const SelectFormContainer: FunctionComponent<Props> = (selectedFormItem) => {
   const { asyncDispatch: asyncDispatchLabel } = useContext(labelContext);
   const { asyncDispatch: asyncDispatchMilestone } = useContext(
     milestoneContext,
   );
 
-  const [selectedAssignees, setSelectedAssignees] = useState<User[]>([]);
-  const [selectedLabels, setSelectedLabels] = useState<Label[]>([]);
-  const [selectedMilestone, setSelectedMilestone] = useState<Milestone[]>([]);
+  const [selectedAssignees, setSelectedAssignees] = useState<User[]>(
+    selectedFormItem.assignees,
+  );
+  const [selectedLabels, setSelectedLabels] = useState<Label[]>(
+    selectedFormItem.labels,
+  );
+  const [selectedMilestone, setSelectedMilestone] = useState<Milestone[]>(
+    selectedFormItem.milestone,
+  );
 
   useEffect(() => {
     if (asyncDispatchLabel) {
@@ -31,7 +43,10 @@ const SelectFormContainer: FunctionComponent = () => {
     if (asyncDispatchMilestone) {
       asyncDispatchMilestone(readMilestonesAction(), readMilestonesAPI as any);
     }
-  }, []);
+    setSelectedAssignees(selectedFormItem.assignees);
+    setSelectedLabels(selectedFormItem.labels);
+    setSelectedMilestone(selectedFormItem.milestone);
+  }, [selectedFormItem]);
 
   const onSelectItems = <T extends User | Label | Milestone>(
     curSelectedItems: T[],
